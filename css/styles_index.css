@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    text-transform: capitalize;
+    transform: .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* INICIO CABEÇALHO */
+.topo-site{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    z-index: 1000;
+    background: #adb5bd;
+    box-shadow: 0.5rem 1rem rgba(0, 0, 0, 0.1)
+}
+
+.logo{
+    display: flex;
+    left: 50px;
+}
+
+
+.topo-site .logo img{
+    width: 128px;
+    height: 128px;
+}
+
+.topo-site .menu-site a{
+    color: white;
+    font-size: 1.7rem;
+    margin: 0 1rem;
+}
+
+.topo-site .menu-site a:hover{
+    color: #fdc500;
+}
+
+.topo-site .icons div{
+    color: white;
+    font-size:  2.5rem;
+    margin-left: 1.7rem;
+    cursor: pointer;
+}
+.icone-carrinho{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.topo-site .icons div:hover{
+    color: #fdc500;
+}
+
+#menu{
+    display: none;
+}
+/* FIM CABEÇALHO */
+
+
+.dropdown {
+    position: fixed;
+    position: relative;
+    bottom: 20px;
+    top: 20px;
+    left: 450px;
+    font-size: x-large;
+}
+.carousel-inner img{
+    width: 100%;
+    height: 350px;
+}

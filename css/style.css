@@ -1,0 +1,70 @@
+body{
+    background: linear-gradient(to top,#ffa500, #ff5733);
+    height: 100vh;
+}
+/* Media query para telas menores */
+@media (max-width: 768px) {
+    .produtos {
+        flex-direction: column; /* Alinha os itens em coluna */
+        align-items: center; /* Centraliza os itens */
+    }
+}
+.container{
+    margin-top: 10px;
+}
+header{
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    background-color: #ff5733;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    padding: 0;
+    align-items: center;
+}
+.logo img{
+    width: 200px;
+    height: 100px;
+}
+.navegacao{
+    margin: 10px;
+    align-items: center;
+}
+.navegacao a{
+    font-size: 25px;
+    color: #fff;
+    margin: 10px;
+}
+.loginCadastro{
+    margin: 10px;
+}
+.carrosselimg{
+    border-radius: 20px;
+}
+.carrosselimg img{
+    border-radius: 20px;
+    width: 100%;
+    height: 250px;
+}
+.titulo{
+    color: #fff;
+}
+.produtos{
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+}
+.espacoprodutos{
+    margin: 10px;
+}
+footer{
+    width: 100%;
+    height: 60px;
+    background-color: #ff5733;
+    text-align: center;
+    color: #fff;
+}

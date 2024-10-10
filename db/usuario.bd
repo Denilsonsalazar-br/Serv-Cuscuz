@@ -1,0 +1,15 @@
+CREATE TABLE usuario (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    status VARCHAR(50),
+    usuario_id INT
+);
+
+CREATE TABLE cliente (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100),
+    sobrenome VARCHAR(100),
+    email VARCHAR(100),
+    cpf VARCHAR(14),
+    telefone VARCHAR(15),
+    senha VARCHAR(255)
+);
