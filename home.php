@@ -15,8 +15,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <title>Serv+Cuscuz</title>
 </head>
 <body>
-    
-    <div class="container">
+  <div class="container">
         <header class="topo-site">
             <div class="navegacao">
                 <nav class="navbar navbar-expand-lg ">
@@ -57,47 +56,49 @@ $isLoggedIn = isset($_SESSION['user_id']);
             </div>
         </header>
         <!--Carrossel-->
-        <div id="carouselExampleDark" class="carousel carousel-dark slide">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <div class="carrossel">
+          <div id="carouselExampleDark" class=" carousel carousel-dark slide">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carrosselimg carousel-inner">
+                <div class="carousel-item active" data-bs-interval="2000">
+                  <img src="./img/Cuscuz_normal.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3 class="titulo">Cuscuz Normal</h3>
+                    <p class="titulo">Exclente opção para quem ama as raizes nordestinas.</p>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img src="./img/Cuscuz_Recheado_frango.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3 class="titulo">Cuscuz recheado com frango.</h3>
+                    <p class="titulo">Otima opção para quem está seguindo uma boa dieta.</p>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img src="./img/Cuscuz_Recheado_jerked.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3 class="titulo">Cuscuz recheado.</h3>
+                    <p class="titulo">Esse serve como uma refeição.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-            <div class="carrosselimg carousel-inner">
-              <div class="carousel-item active" data-bs-interval="2000">
-                <img src="./img/Cuscuz_normal.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h3 class="titulo">Cuscuz Normal</h3>
-                  <p class="titulo">Exclente opção para quem ama as raizes nordestinas.</p>
-                </div>
-              </div>
-              <div class="carousel-item" data-bs-interval="2000">
-                <img src="./img/Cuscuz_Recheado_frango.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h3 class="titulo">Cuscuz recheado com frango.</h3>
-                  <p class="titulo">Otima opção para quem está seguindo uma boa dieta.</p>
-                </div>
-              </div>
-              <div class="carousel-item" data-bs-interval="2000">
-                <img src="./img/Cuscuz_Recheado_jerked.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h3 class="titulo">Cuscuz recheado.</h3>
-                  <p class="titulo">Esse serve como uma refeição.</p>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
+      </div>
         <!--Fim carrossel-->
         <!--Meus produtos-->
-        <div class="produtos">
+      <div class="produtos">
             <div class="espacoprodutos card" style="width: 18rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -162,12 +163,12 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-        </div>
+      </div>
         <!--fim do meus produtos-->
         <footer>
             <h1>Rodapé</h1>
         </footer>
-    </div>
+  </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

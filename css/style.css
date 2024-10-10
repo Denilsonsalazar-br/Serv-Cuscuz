@@ -10,7 +10,7 @@ body{
     }
 }
 .container{
-    margin-top: 10px;
+    margin-top: 5px;
 }
 header{
     border-bottom: 1px solid #fff;
@@ -39,6 +39,9 @@ header{
 }
 .loginCadastro{
     margin: 10px;
+}
+.carrossel{
+    margin-top: 40px;
 }
 .carrosselimg{
     border-radius: 20px;
