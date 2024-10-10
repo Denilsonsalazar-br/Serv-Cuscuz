@@ -49,9 +49,9 @@ $isLoggedIn = isset($_SESSION['user_id']);
                 <div id="cart" class="bi bi-basket" style="width: 46px;"></div>
                 <!-- Verificar se o usuário está logado -->
                 <?php if ($isLoggedIn): ?>
-                    <a href="../Serv+Cuscuz/includes/logout.php" class="btn btn-danger" style="margin-left: 15px;">Sair</a>
+                    <a href="../Projeto_Conclusão_Curso/ServMaisCuscuz/includes/logout.php" class="btn btn-danger" style="margin-left: 15px;">Sair</a>
                 <?php else: ?>
-                    <a href="../Serv+Cuscuz/pages/login.php" class="btn btn-primary" style="margin-left: 15px;">Login</a>
+                    <a href="../Projeto_Conclusão_Curso/ServMaisCuscuz/pages/login.php" class="btn btn-primary" style="margin-left: 15px;">Login</a>
                 <?php endif; ?>
             </div>
         </header>
