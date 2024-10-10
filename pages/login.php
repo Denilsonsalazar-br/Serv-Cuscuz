@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
         <div class="form-container sign-up">
             <form method="post" onsubmit="return validarFormulario()">
                 <h1 class="criar-conta">Criar conta</h1>
-                <span class="loader"></span>              
+                <span class="loader"></span>             
                 <input type="text" id="nome" name="nome" placeholder="Nome" required>
                 <span id="mensagemErroNome" style="color: red;"></span>
                 <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required>
@@ -127,7 +127,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
                 <button class="cadastrar" type="submit" name="cadastrar">Cadastrar</button>
                 
                 <?php if ($mensagemErro): ?>
-                    <div style="color: red;"><?= htmlspecialchars($mensagemErro) ?></div>
+                    <div style="color: red;">
+                        <span>
+                        <?= htmlspecialchars($mensagemErro) ?>
+                        </span>
+                    </div>
                 <?php endif; ?>
             </form>
         </div>
