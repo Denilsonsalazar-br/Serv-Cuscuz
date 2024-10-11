@@ -14,8 +14,8 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <link rel="stylesheet" href="./css/style.css">
     <title>Serv+Cuscuz</title>
 </head>
-<body>
-  <div class="container">
+<body>   
+    <div class="container-fluid">
         <header class="topo-site">
             <div class="navegacao">
                 <nav class="navbar navbar-expand-lg ">
@@ -28,7 +28,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                                 <a class="navbar-brand" href="#">Quem somos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="navbar-brand" href="#">Menu</a>
+                                <a class="navbar-brand" href="#rodapé">Contatos</a>
                             </li>
                             <li class="nav-item">
                                 <form class="d-flex" role="search">
@@ -56,8 +56,8 @@ $isLoggedIn = isset($_SESSION['user_id']);
             </div>
         </header>
         <!--Carrossel-->
-      <div class="carrossel">
-          <div id="carouselExampleDark" class=" carousel carousel-dark slide">
+        <div class="carrossel">
+          <div id="carouselExampleDark" class="carousel carousel-dark slide">
               <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -95,11 +95,24 @@ $isLoggedIn = isset($_SESSION['user_id']);
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-      </div>
+        </div>        
         <!--Fim carrossel-->
+        <div class="lista-suspensa">
+          <div class="tipodecuscuz">
+            <select name="Tipos de Cuscuz" id="lista" onchange="scrollToSection(this.value)">
+                      <option value="simples" >Simples</option>
+                      <option value="vegano" >Vegano</option>
+                      <option value="frango" >Frango</option>
+                      <option value="carne" >Carne</option>
+                      <option value="dieta" >Dieta</option>
+                      <option value="personalizavel" >Personalizavel</option>
+            </select>
+          </divtipodecuscuz>        
+        </div>
         <!--Meus produtos-->
-      <div class="produtos">
-            <div class="espacoprodutos card" style="width: 18rem;">
+        <div class="produtos">
+          <section class="simples" id="simples">
+          <div class="espacoprodutos card" style="width: 25rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -107,7 +120,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 18rem;">
+            <div class="espacoprodutos card" style="width: 25rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -115,7 +128,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 18rem;">
+            <div class="espacoprodutos card" style="width: 25rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -123,7 +136,9 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 18rem;">
+          </section>
+          <sectio class="vegano" id="vegano">
+          <div class="espacoprodutos card" style="width: 25rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -131,7 +146,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 18rem;">
+            <div class="espacoprodutos card" style="width: 25rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -139,7 +154,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 18rem;">
+            <div class="espacoprodutos card" style="width: 25rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -147,7 +162,9 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 18rem;">
+          </sectio>
+          <section class="frango" id="frango">
+          <div class="espacoprodutos card" style="width: 25rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -155,7 +172,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 18rem;">
+            <div class="espacoprodutos card" style="width: 25rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -163,12 +180,101 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-      </div>
+            <div class="espacoprodutos card" style="width: 25rem;">
+                <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+          </section>
+          <section class="carne" id="carne">
+          <div class="espacoprodutos card" style="width: 25rem;">
+                <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="espacoprodutos card" style="width: 25rem;">
+                <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="espacoprodutos card" style="width: 25rem;">
+                <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+          </section>
+          <section class="dieta" id="dieta">
+            <div class="espacoprodutos card" style="width: 25rem;">
+                <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="espacoprodutos card" style="width: 25rem;">
+                <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="espacoprodutos card" style="width: 25rem;">
+                <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+          </section>
+            <section class="personalizavel" id="personalizavel">
+            <div class="espacoprodutos card" style="width: 25rem;">
+                <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="espacoprodutos card" style="width: 25rem;">
+                <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="espacoprodutos card" style="width: 25rem;">
+                <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            </section>       
+        </div>
         <!--fim do meus produtos-->
-        <footer>
+        <footer class="rodape" id="rodapé">
+
             <h1>Rodapé</h1>
         </footer>
-  </div>
+    </div>
+    <script src="./js/home.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
