@@ -112,7 +112,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
         <!--Meus produtos-->
         <div class="produtos">
           <section class="simples" id="simples">
-          <div class="espacoprodutos card" style="width: 25rem;">
+          <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -120,7 +120,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -128,7 +128,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -138,7 +138,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
             </div>
           </section>
           <sectio class="vegano" id="vegano">
-          <div class="espacoprodutos card" style="width: 25rem;">
+          <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -146,7 +146,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -154,7 +154,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -164,7 +164,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
             </div>
           </sectio>
           <section class="frango" id="frango">
-          <div class="espacoprodutos card" style="width: 25rem;">
+          <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -172,7 +172,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -180,7 +180,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -190,7 +190,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
             </div>
           </section>
           <section class="carne" id="carne">
-          <div class="espacoprodutos card" style="width: 25rem;">
+          <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -198,7 +198,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -206,7 +206,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -216,7 +216,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
             </div>
           </section>
           <section class="dieta" id="dieta">
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -224,7 +224,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -232,7 +232,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -242,7 +242,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
             </div>
           </section>
             <section class="personalizavel" id="personalizavel">
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -250,7 +250,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -258,7 +258,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="espacoprodutos card" style="width: 25rem;">
+            <div class="espacoprodutos card" style="width: 22rem;">
                 <img src="./img/Cuscuz_normal.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
