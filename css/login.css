@@ -139,14 +139,17 @@ body{
     transform: translateX(100%);
 }
 
-.sign-up form h1{
+.sign-up form{
     color: #ff5733;
     margin-bottom: 15px;
 }
-.sign-in form h1{
+.logotipo{
+    text-align: center;
+    align-items: center;
     color: #ff5733;
     margin-bottom: 15px;
 }
+
 .sign-up{
     left: 0;
     width: 50%;

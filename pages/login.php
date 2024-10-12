@@ -69,47 +69,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cadastrar'])) {
     }
     // Verifica se as senhas são as mesmas
     elseif ($senha !== $confirmarSenha) {
-        $mensagemErro = "Você digitou senhas diferentes.";
+        $mensagemErroSenha = "Você digitou senhas diferentes.";
     } else {
-        // Verifica se o e-mail já está cadastrado no banco de dados
-        $pdo = Conexao::getConexao();
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuario WHERE email = ?");
-        $stmt->execute([$email]);
-        $emailExiste = $stmt->fetchColumn();
+        try {
+            // Verifica se o e-mail já está cadastrado no banco de dados
+            $pdo = Conexao::getConexao();
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuario WHERE email = ?");
+            $stmt->execute([$email]);
+            $emailExiste = $stmt->fetchColumn();
 
-        // Verifica se o CPF já está cadastrado no banco de dados
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuario WHERE cpf = ?");
-        $stmt->execute([$cpf]);
-        $cpfExiste = $stmt->fetchColumn();
+            // Verifica se o CPF já está cadastrado no banco de dados
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuario WHERE cpf = ?");
+            $stmt->execute([$cpf]);
+            $cpfExiste = $stmt->fetchColumn();
 
-        if ($cpfExiste > 0) {
-            $mensagemErroCpf = "Esse CPF já está cadastrado. Tente outro!";
-        }
-
-        if ($emailExiste > 0) {
-            $mensagemErroEmail = "Esse e-mail já está cadastrado. Tente outro!";
-        } else {
-            // Valida a senha
-            $resultadoValidacao = validarSenha($senha);
-            if ($resultadoValidacao !== true) {
-                $mensagemErroSenha = $resultadoValidacao; // Armazena a mensagem de erro da senha
+            if ($cpfExiste > 0) {
+                $mensagemErroCpf = "Esse CPF já está cadastrado. Tente outro!";
+            } elseif ($emailExiste > 0) {
+                $mensagemErroEmail = "Esse e-mail já está cadastrado. Tente outro!";
             } else {
-                // Hash da senha e inserção no banco de dados
-                $hashedSenha = password_hash($senha, PASSWORD_DEFAULT);
-
-                // Insere os dados no banco de dados
-                $stmt = $pdo->prepare("INSERT INTO usuario (nome, sobrenome, email, telefone, cpf, senha) VALUES (?, ?, ?, ?, ?, ?)");
-                if ($stmt->execute([$nome, $sobrenome, $email, $telefone, $cpf, $hashedSenha])) {
-                    $_SESSION['mensagemSucesso'] = "Parabéns! Seu cadastro foi realizado com sucesso!";
-                    header('Location: ' . $_SERVER['PHP_SELF']);
-                    exit; // Redireciona para a mesma página
+                // Valida a senha
+                $resultadoValidacao = validarSenha($senha);
+                if ($resultadoValidacao !== true) {
+                    $mensagemErroSenha = $resultadoValidacao; // Armazena a mensagem de erro da senha
                 } else {
-                    $mensagemErro = "Erro ao cadastrar. Tente novamente.";
+                    // Hash da senha e inserção no banco de dados
+                    $hashedSenha = password_hash($senha, PASSWORD_DEFAULT);
+
+                    // Insere os dados no banco de dados
+                    $stmt = $pdo->prepare("INSERT INTO usuario (nome, sobrenome, email, telefone, cpf, senha) VALUES (?, ?, ?, ?, ?, ?)");
+                    if ($stmt->execute([$nome, $sobrenome, $email, $telefone, $cpf, $hashedSenha])) {
+                        $_SESSION['mensagemSucesso'] = "Parabéns! Seu cadastro foi realizado com sucesso!";
+                        header('Location: ' . $_SERVER['PHP_SELF']);
+                        exit; // Redireciona para a mesma página
+                    } else {
+                        $mensagemErro = "Erro ao cadastrar. Tente novamente.";
+                    }
                 }
+            }
+        } catch (PDOException $e) {
+            // Captura o erro de duplicidade e exibe uma mensagem amigável
+            if ($e->getCode() == 23000) {
+                $mensagemErroCpf = "Esse CPF já está cadastrado. Tente outro!";
+            } else {
+                $mensagemErro = "Erro no banco de dados. Tente novamente.";
             }
         }
     }
 }
+
 
 // Login de usuário
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
@@ -197,8 +205,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
                         <?= htmlspecialchars($mensagemSucesso) ?>
                     </span>
                 <?php endif; ?>
-
-                <h1>Serv+Cuscuz</h1>
+                <div class="logotipo">
+                    <h1>Serv+Cuscuz</h1>
+                    <h3>"Mais sabor, mais praticidade!"</h3>
+                </div>
                 <span>Seja bem-vindo</span>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="senha" placeholder="Senha" required>
