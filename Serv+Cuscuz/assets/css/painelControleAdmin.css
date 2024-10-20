@@ -1,0 +1,48 @@
+body{
+    text-align: center;
+}
+.container{
+    justify-content: center;
+    display: flex;
+}
+.funcionario{
+    color: #fff;
+    background-color: #f08218;
+    margin: 20px;
+    font-size: 25px;
+}
+.funcionario fieldset{
+    align-items: center;
+    text-align: center;
+}
+.funcionario ul {
+    margin-left: 0;
+    list-style: none;
+}
+.funcionario ul li a{
+    color: #fff;
+    text-decoration: none;
+}
+.funcionario a:hover{
+    color: black;
+}
+.cliente{
+    color: #fff;
+    background-color: #f08218;
+    margin: 20px;
+    font-size: 25px;
+}
+.cliente fieldset{
+    align-items: center;
+    text-align: center;
+}
+.cliente ul {
+    list-style: none;
+}
+.cliente ul li a{
+    color: #fff;
+    text-decoration: none;
+}
+.cliente a:hover{
+    color: black;
+}

@@ -1,0 +1,4 @@
+Marrom: #311E00
+Amarelo: #FFC80B
+Preto: #000000
+Branco: #FFFFFF
