@@ -2,39 +2,49 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/header.css">
-    <title>Serv+Cuscuz</title>
+    <title></title>
 </head>
-<body>   
-<header>
-    <div class="container">
-        <nav class="navbar">
+
+<body>
+    <header>
+        <nav class="nav-bar">
             <div class="logo">
                 <img src="../assets/img/logo-png-reduzida.png" alt="">
             </div>
             <div class="nav-list">
                 <ul>
-                    <li class="nav-item"><a href="#">Home</a></li>
-                    <li class="nav-item"><a href="#">Quem somos?</a></li>
-                    <li class="nav-item"><a href="">item</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Quem somos</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Alguma coisa</a></li>
                 </ul>
             </div>
-            <div class="vazio1">
-                <span></span>
+            <div class="login-button">
+                <button><a href="#">Entrar</a></button>
             </div>
-            <div class="vazio2">
-                <span></span>
-            </div>
-            <div class="login-logout">
-                <div class="login">
-                    <button href="../view/pages/login.php">login</button>
-                </div>
-                <div class="logout">
-                    <a href="../pages/logout.php"> Sair</a>
-                </div>
+
+            <div class="mobile-menu-icon">
+                <button onclick="menuShow()"><img class="icon" src="../assets/img/menu_white_36dp.svg" alt=""></button>
             </div>
         </nav>
-    </div>
-</header>       
-    
+        <div class="mobile-menu">
+            <ul>
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Quem somos</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Alguma coisa</a></li>
+            </ul>
+
+            <div class="login-button">
+                <button><a href="../pages/login.php">login</a></button>
+            </div>
+        </div>
+    </header>
+
+    <script src="../assets/js/header.js"></script>
+</body>
+
+</html>

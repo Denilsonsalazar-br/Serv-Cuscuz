@@ -1,0 +1,28 @@
+footer{
+    margin-top: 100%;
+}
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 0;
+    background-color: #e7e7e7;
+}
+.lista {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list ul li{
+    margin: 10px;
+    list-style: none;
+    align-items: center;
+}
+@media screen and (max-width: 730px) {
+    .container {
+        padding: 1.5rem 4rem;
+    }
+    .nav-list{
+        display: flex;
+    }
+}

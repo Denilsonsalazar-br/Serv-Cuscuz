@@ -1,12 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serv+Cuscuz</title>
+</head>
+<body>
+    
 <?php
 include '../includes/header.php';
 ?>
-<main>
+
+    <main>
 
 
+    <h1>pagina home</h1>
 
-<h1>Menu Principal</h1>
+    </main>
 
-</main>
 <?php 
 include '../includes/footer.php';
+?>  
+</body>
+</html>
+
