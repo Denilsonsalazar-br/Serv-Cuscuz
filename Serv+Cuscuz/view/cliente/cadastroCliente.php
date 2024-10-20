@@ -73,6 +73,6 @@ if (session_status() === PHP_SESSION_NONE) {
                 <?php endif; ?>
         </form>
     </fieldset>
-<a href="../../view/pages/login.php">Ops, já tenho cadastro</a>
+<a href="../../pages/login.php">Ops, já tenho cadastro</a>
 </body>
 </html>

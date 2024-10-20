@@ -12,5 +12,6 @@
         <button type="submit">Sim</button>
         <a href="../../controller/funcionario/readFuncionarioController.php">Não</a>
     </form>
+    <a href="../../controller/admin/adminPainelController.php">voltar</a>
 </body>
 </html>

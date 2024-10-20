@@ -3,6 +3,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+require_once'../../model/DTO/validacoes/validarCpf.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +39,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <input type="text" name="nome" required>
             <br><br>
             <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" required>
+            <input type="text" id="cpf" name="cpf" required>
                 <?php if (isset($_SESSION['cpf_error'])): ?>
                     <span style="color:red;"><?php echo $_SESSION['cpf_error']; ?></span>
                     <?php unset($_SESSION['cpf_error']); // Limpa a mensagem após exibi-la ?>

@@ -45,7 +45,7 @@ require_once "../../model/DTO/validacoes/validarCpf.php";
 
     // Validação do CPF
     if (!ValidadorCPF::validar($funcionario->getCpf())) {
-        $_SESSION['error'] = "CPF inválido.<br> Por favor, forneça um CPF verdadeiro!";
+        $_SESSION['cpf_error'] = "CPF inválido.<br> Por favor, forneça um CPF verdadeiro!";
         echo "Vai redirecionar..."; // Para verificar se essa linha é executada
         header("Location: ../../view/admin/cadastroFuncionarios.php");
         exit();

@@ -30,5 +30,6 @@
         <br>
         <button type="submit">Atualizar Funcionário</button>
     </form>
+    <a href="../../controller/admin/adminPainelController.php">voltar</a>
 </body>
 </html>

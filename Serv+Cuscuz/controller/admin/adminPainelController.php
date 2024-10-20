@@ -40,13 +40,13 @@ echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
             <nav>
                 <ul>
                     <li><a href="../../view/cliente/listaCliente.php">Lista de Clientes</a></li><br>
-                    <li><a href="../../views/cliente/deleteCliente.php">Excluir Cliente</a></li>
+                    <li><a href="../../view/cliente/excluirCliente.php">Excluir Cliente</a></li>
                 </ul>
             </nav>
             </fieldset>
         </div>   
     </div> 
     
-    <a href="../../view/pages/logout.php"> Sair</a>
+    <a href="../../pages/logout.php"> Sair</a>
 </body>
 </html>

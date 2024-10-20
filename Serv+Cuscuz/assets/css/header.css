@@ -1,9 +1,11 @@
 header{
     margin-top: 0;
-    flex-direction: row;
-    background-color: #FFFFFF;  
 }
-.nav-bar{
+.container{
+    margin-top: 0;
+    background-color: #e7e7e7;
+}
+.navbar{
     align-items: center;
     display: flex;
     justify-content: space-around;
@@ -13,6 +15,10 @@ header{
 .logo img{
     width: 100px;
     height: 65px;
+}
+.nav-list{
+    align-items: center;
+    color: #000000;
 }
 .nav-list ul{
     align-items: center;
@@ -24,12 +30,19 @@ header{
     margin-right: 30px;
     align-items: center;
 }
-.nav-list{
-    margin-left: 30px;
-}
+
 .nav-list a {
+    font-size: 25px;
     color: #000000;
     text-decoration: none;
     list-style: none;
+}
+.login-logout{
+    display: flex;
+    justify-content: space-around;
+}
+.login .logout{
+    margin: 10px;
+    align-items: center;
 }
 
