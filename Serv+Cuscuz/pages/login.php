@@ -10,7 +10,7 @@ require_once '../pages/private.php';
 </head>
 <body>
     <?php
-    include'../includes/header.php';
+    include'../includes/headerLogin.php';
     ?>
     <h1>Login</h1>
     <form method="POST" action="../pages/login.php"> 
