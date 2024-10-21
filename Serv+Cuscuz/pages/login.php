@@ -6,9 +6,12 @@ require_once '../pages/private.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Login</title>
+    <title>Login</title>
 </head>
 <body>
+    <?php
+    include'../includes/header.php';
+    ?>
     <h1>Login</h1>
     <form method="POST" action="../pages/login.php"> 
         <label for="email">Email:</label>

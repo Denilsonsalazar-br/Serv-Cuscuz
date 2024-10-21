@@ -23,11 +23,11 @@
                 </ul>
             </div>
             <div class="login-button">
-                <button><a href="#">Entrar</a></button>
+                <button><a href="../pages/login.php">login</a></button>
             </div>
 
             <div class="mobile-menu-icon">
-                <button onclick="menuShow()"><img class="icon" src="../assets/img/menu_white_36dp.svg" alt=""></button>
+                <button onclick="menuShow()"><img class="icon" src="../assets/img/abrirMenu.png" alt=""></button>
             </div>
         </nav>
         <div class="mobile-menu">

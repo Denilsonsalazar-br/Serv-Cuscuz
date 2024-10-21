@@ -13,6 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>Páginan de Cadastro</title>
 </head>
 <body>
+
     <h1>Pagina de cadastro do cliente</h1> 
     <!--Mensagem de sucesso-->
     <?php if (isset($_SESSION['sucesso'])): ?>
