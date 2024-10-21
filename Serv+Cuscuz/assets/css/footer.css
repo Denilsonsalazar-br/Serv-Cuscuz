@@ -1,26 +1,42 @@
-footer{
-    margin-top: 100%;
+.containerFooter{
+    border-top: 1px solid #FFC80B;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
-.container{
+.containerFooter{
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top: 0;
-    background-color: #e7e7e7;
+    background-color: #ffffff
+}
+.direitoAutoral h1{
+    font-size: 12px;
+}
+.suporte h1{
+    font-size: 12px;
+}
+.redes-social{
+    justify-content: center;
+    align-items: center;
+}
+.redes-social ul li{
+    list-style: none;
+    align-items: center;
 }
 .lista {
     display: flex;
     align-items: center;
 }
-
-.nav-list ul li{
-    margin: 10px;
-    list-style: none;
-    align-items: center;
+.item-list{
+    margin: 5px;
 }
+
+
 @media screen and (max-width: 730px) {
-    .container {
-        padding: 1.5rem 4rem;
+    .containerFooter {
+        padding: 1rem 2rem;
     }
     .nav-list{
         display: flex;

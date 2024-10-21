@@ -1,0 +1,37 @@
+body{
+    min-height: 100vh;
+}
+header{
+    width: 100%;
+}
+/*footer{
+    margin-top: 5%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}*/
+main{
+    margin-top: 3px;
+    background-color: #000000;
+    background: linear-gradient(to top, #ffffff, #A9CCE3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container{
+    margin-top: 70px;
+    display: flex;
+    background-color: #A9CCE3;
+    border-radius: 30px;
+    box-shadow: 0px 3px 10px 0px #FFC80B;
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
