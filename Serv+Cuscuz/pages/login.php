@@ -27,7 +27,7 @@
                     <br><br>
                     <button type="submit">Login</button>
 
-                    <p>Não tem conta? aproveite e <a href="../view/cliente/cadastroCliente.php">Cadastre-se</a></p>     
+                    <p>Não tem conta? <a href="../view/cliente/cadastroCliente.php">Cadastre-se</a></p>     
                 </form>
             </div>
         </main>
