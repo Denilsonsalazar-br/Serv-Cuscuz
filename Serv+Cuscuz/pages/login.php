@@ -1,6 +1,3 @@
-<?php
-require_once '../pages/private.php';
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,6 +14,9 @@ require_once '../pages/private.php';
         </header>
         <main>
             <div class="container"> 
+            <?php
+                require_once '../pages/private.php';
+            ?>
                 <h1>Login</h1>
                 <form method="POST" action="../pages/login.php"> 
                     <label for="email">Email:</label>

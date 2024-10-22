@@ -24,6 +24,7 @@ require_once "../../controller/funcionario/readFuncionarioController.php";
             <th>Email</th>
             <th>Telefone</th>
             <th>Senha</th>
+            <th>Tipo Perfil</th>
         </tr>
         <?php if (isset($funcionarios) && is_array($funcionarios)): ?>
             <?php foreach ($funcionarios as $funcionario): ?>
@@ -33,7 +34,8 @@ require_once "../../controller/funcionario/readFuncionarioController.php";
                 <td><?php echo htmlspecialchars($funcionario['cpf']); ?></td>
                 <td><?php echo htmlspecialchars($funcionario['email']); ?></td>
                 <td><?php echo htmlspecialchars($funcionario['telefone']); ?></td>
-                <td><?php echo htmlspecialchars($funcionario['senha']); ?></td>         
+                <td><?php echo htmlspecialchars($funcionario['senha']); ?></td>
+                <td><?php echo htmlspecialchars($funcionario['t_perfil_id']); ?></td>          
             </tr>
             <?php endforeach; ?>
         <?php else: ?>

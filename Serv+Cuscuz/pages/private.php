@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verifica se é um funcionário
     $sqlFuncionario = "SELECT f.id, f.nome, f.email, f.senha, p.tipo_perfil
                        FROM t_funcionario f
-                       JOIN t_perfil p ON f.T_Perfil_id = p.id
+                       JOIN t_perfil p ON f.t_perfil_id = p.id
                        WHERE f.email = :email";
     $stmtFuncionario = $conn->prepare($sqlFuncionario);
     $stmtFuncionario->bindParam(':email', $email);
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "Senha incorreta";
             }
         } else {
-            echo "Usuário não encontrado";
+            echo "Este email não está cadastrado no sistema!";
         }
     }
 }
