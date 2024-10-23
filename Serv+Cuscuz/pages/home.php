@@ -8,8 +8,11 @@
 <body>
     
 <?php
-include '../includes/header.php';
+    include '../includes/header.php';
+
+    include '../includes/carrossel.php';
 ?>
+
 
     <main>
 
@@ -18,9 +21,6 @@ include '../includes/header.php';
 
     </main>
 
-<?php 
-include '../includes/footer.php';
-?>  
+
 </body>
 </html>
-
