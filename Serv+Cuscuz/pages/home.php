@@ -12,15 +12,35 @@
 
     include '../includes/carrossel.php';
 ?>
-
-
-    <main>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <main style="text-align: center;">
 
 
     <h1>pagina home</h1>
 
     </main>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<?php
 
+include '../includes/footer.php'
+
+?>
 
 </body>
 </html>
