@@ -6,8 +6,8 @@
 }
 
 header {
-    background-color: #A9CCE3;
-    box-shadow: 0px 3px 10px #FFB900;
+    background-color: #ff5733;
+    box-shadow: 0px 3px 10px #000000;
 }
 
 .nav-bar {
@@ -45,7 +45,7 @@ header {
 .nav-link {
     text-decoration: none;
     font-size: 1.5rem;
-    color: #000000;
+    color: #ffffff;
     font-weight: 400;
 }
 
@@ -53,12 +53,15 @@ header {
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
+    background-color: #000000;
+}
+.login-button button:hover{
     background-color: #FFC80B;
 }
 
 .login-button button a {
     text-decoration: none;
-    color: #000000;
+    color: #ffffff;
     font-weight: 500;
     font-size: 1.5rem;
 }

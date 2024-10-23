@@ -18,12 +18,12 @@
                 <ul>
                 <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Quem somos</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
+                <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
                 <li class="nav-item"><a href="#" class="nav-link">Alguma coisa</a></li>
                 </ul>
             </div>
             <div class="login-button">
-                <button><a href="../pages/login.php">login</a></button>
+                <button><a href="../pages/login.php">Login</a></button>
             </div>
 
             <div class="mobile-menu-icon">
@@ -33,13 +33,13 @@
         <div class="mobile-menu">
             <ul>
                 <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Quem somos</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Quem somos?</a></li>
+                <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
                 <li class="nav-item"><a href="#" class="nav-link">Alguma coisa</a></li>
             </ul>
 
             <div class="login-button">
-                <button><a href="../pages/login.php">login</a></button>
+                <button><a href="../pages/login.php">Login</a></button>
             </div>
         </div>
     </header>
