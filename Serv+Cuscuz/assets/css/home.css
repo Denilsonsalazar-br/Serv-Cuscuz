@@ -1,0 +1,11 @@
+body{
+    background-color: #A9CCE3;
+}
+.containerHome{
+    width: 100%;
+}
+@media (max-width: 730px) {
+    header{
+        width: 100%;
+    }
+}

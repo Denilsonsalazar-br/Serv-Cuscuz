@@ -1,12 +1,13 @@
 .containerFooter{
+    margin-top: 3px;
     border-top: 1px solid #FFC80B;
-    position: absolute;
     bottom: 0;
     width: 100%;
 }
 .containerFooter{
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     margin-top: 0;
     background-color: #ffffff
@@ -36,9 +37,15 @@
 
 @media screen and (max-width: 730px) {
     .containerFooter {
-        padding: 1rem 2rem;
+        width: 100%;
     }
-    .nav-list{
-        display: flex;
+    .lista{
+        display: block;
+    }
+    .lista{
+        font-size: 12px;
+    }
+    .suporte .direitoAutoral h1{
+        font-size: 12px;
     }
 }

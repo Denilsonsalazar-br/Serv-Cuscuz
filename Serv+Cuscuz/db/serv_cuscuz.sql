@@ -49,7 +49,7 @@ CREATE TABLE `t_cliente` (
   `telefone` varchar(20) DEFAULT NULL,
   `data_criacao` timestamp NOT NULL DEFAULT current_timestamp(),
   `data_atualizacao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `senha` varchar(60) DEFAULT NULL
+  `senha` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -90,7 +90,7 @@ CREATE TABLE `t_funcionario` (
   `email` varchar(100) DEFAULT NULL,
   `telefone` varchar(20) DEFAULT NULL,
   `data_criacao` date DEFAULT NULL,
-  `senha` varchar(60) DEFAULT NULL,
+  `senha` varchar(100) DEFAULT NULL,
   `t_perfil_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
