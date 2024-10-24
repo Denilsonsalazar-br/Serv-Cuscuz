@@ -10,11 +10,20 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
+    <link rel="stylesheet" href="../../assets/css/cadastroCliente.css">
     <title>Páginan de Cadastro</title>
 </head>
 <body>
-
-    <h1>Pagina de cadastro do cliente</h1> 
+    <?php 
+        include '../../includes/headerCadastro.php';
+    ?>
+    <main>
+    <div class="tituloCadastroCliente">
+        <h1>Serv+Cuscuz</h1> 
+        <h3>"Mais sabor, mais praticidade!"</h3>
+    </div>
+    
     <!--Mensagem de sucesso-->
     <?php if (isset($_SESSION['sucesso'])): ?>
         <span style="color:green;">
@@ -30,50 +39,44 @@ if (session_status() === PHP_SESSION_NONE) {
         </span>
         <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
     <?php endif; ?>
-    <fieldset>
-        <legend>Cadastro</legend>
-        <form method="POST" action="../../controller/cliente/createClienteController.php">
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" required>
-            <br><br>
-            <label for="sobrenome">Sobrenome:</label>
-            <input type="text" name="sobrenome" required>
-            <br><br>
-            <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" required>
-                <?php if (isset($_SESSION['cpf_error'])): ?>
-                        <span style="color:red;">
-                            <?php echo $_SESSION['cpf_error']; ?>
-                        </span>
-                        <?php unset($_SESSION['cpf_error']); // Limpa a mensagem após exibi-la ?>
-                <?php endif; ?>
-            <br><br>
-            <label for="email">Email:</label>
-            <input type="email" name="email" required>
-            <br><br>
-            <label for="telefone">Telefone:</label>
-            <input type="text" name="telefone" required>
-            <br><br>
-            <label for="senha">Senha:</label>
-            <input type="password" name="senha" required>
-            <br><br>
 
-            <button type="submit">Cadastrar</button>
-            <?php if (isset($_SESSION['success'])): ?>
-                    <span style="color:green;">
-                        <?php echo $_SESSION['success']; ?>
-                    </span>
-                    <?php unset($_SESSION['success']); // Limpa a mensagem após exibi-la ?>
-                <?php endif; ?>
-
-                <?php if (isset($_SESSION['error'])): ?>
-                    <span style="color:red;">
-                        <?php echo $_SESSION['error']; ?>
-                    </span>
-                    <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
-                <?php endif; ?>
-        </form>
-    </fieldset>
-<a href="../../pages/login.php">Ops, já tenho cadastro</a>
+        <div class="containerCadastroCliente">
+            <div class="containerFormulario">
+                <form method="POST" action="../../controller/cliente/createClienteController.php">
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" placeholder=""  required>
+                    <br><br>
+                    <label for="sobrenome">Sobrenome:</label>
+                    <input type="text" name="sobrenome" placeholder=""  required>
+                    <br><br>
+                    <label for="cpf">CPF:</label>
+                    <input type="text" name="cpf" placeholder=""  required>
+                    <br><br>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" placeholder=""  required>
+                    <br><br>
+                    <label for="confirmarEmail">Confirme o Email:</label>
+                    <input type="email" name="confirmarEmail" placeholder=""  required>
+                    <br><br>
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" name="telefone" placeholder=""  required>
+                    <br><br>
+                    <label for="senha">Senha:</label>
+                    <input type="password" name="senha" placeholder=""  required>
+                    <br><br>
+                    <label for="confirmarSenha">Confirme a Senha:</label>
+                    <input type="password" name="confirmarSenha" placeholder=""  required>
+                    <br><br>
+                    <div class="termos">
+                        <input type="checkbox" id="termos" required>
+                        <label for="termos">Aceito os <a href="#">termos e condições</a></label>
+                    </div>
+                    <br><br>
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+            <button><a href="../../pages/login.php">Ops, já tenho cadastro</a></button>
+        </div>
+</main>
 </body>
 </html>

@@ -2,8 +2,8 @@
 Amarelo: #FFC80B
 Preto: #000000
 Branco: #FFFFFF
-*#A9CCE3
-*#ff5733
+Azul: #A9CCE3
+Laranja: #ff5733
 
 
 

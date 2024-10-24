@@ -11,8 +11,10 @@
 <body>
     <header>
         <nav class="nav-bar">
-            <div class="logo">
-                <img src="../assets/img/logo-png-reduzida.png" alt="">
+            <div class="logo" href="../pages/home.php">
+                <a href="../pages/home.php">
+                    <img src="../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
+                </a>
             </div>
             <div class="nav-list">
                 <ul>

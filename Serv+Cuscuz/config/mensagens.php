@@ -56,3 +56,46 @@ if ($mensagemSucesso) {
     </span>
 
 ----------------------------------------------------------------------------
+
+<!--Mensagem de sucesso-->
+<?php if (isset($_SESSION['sucesso'])): ?>
+        <span style="color:green;">
+            <?php echo $_SESSION['sucesso']; ?>
+        </span>
+        <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
+    <?php endif; ?>
+    <!--Mensagem de erro-->
+
+    <?php if (isset($_SESSION['error'])): ?>
+        <span style="color:red;">
+            <?php echo $_SESSION['error']; ?>
+        </span>
+        <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
+    <?php endif; ?>
+
+----------------------------------------------------------------------------
+    <?php if (isset($_SESSION['cpf_error'])): ?>
+        <span style="color:red;">
+            <?php echo $_SESSION['cpf_error']; ?>
+        </span>
+    <?php unset($_SESSION['cpf_error']); // Limpa a mensagem após exibi-la ?>
+    <?php endif; ?>
+----------------------------------------------------------------------------
+    <?php if (isset($_SESSION['success'])): ?>
+        <span style="color:green;">
+            <?php echo $_SESSION['success']; ?>
+        </span>
+    <?php unset($_SESSION['success']); // Limpa a mensagem após exibi-la ?>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['error'])): ?>
+        <span style="color:red;">
+            <?php echo $_SESSION['error']; ?>
+        </span>
+    <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
+    <?php endif; ?>
+----------------------------------------------------------------------------
+
+----------------------------------------------------------------------------
+
+----------------------------------------------------------------------------

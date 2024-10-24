@@ -89,6 +89,9 @@ button.next {
 }
 
 @media (max-width: 480px) {
+    .carrossel{
+        width: 450px;
+    }
     .carrossel-container{
         align-items: center;
     }

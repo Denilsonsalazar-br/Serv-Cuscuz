@@ -16,25 +16,31 @@
             <div class="container"> 
             <?php
                 require_once '../pages/private.php';
-            ?>
-                <h1>Login</h1>
-                <form method="POST" action="../pages/login.php"> 
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" required>
-                    <br><br>
-                    <label for="senha">Senha:</label>
-                    <input type="password" name="senha" required>
-                    <br><br>
-                    <button type="submit">Login</button>
-
-                    <p>Não tem conta? <a href="../view/cliente/cadastroCliente.php">Cadastre-se</a></p>     
-                </form>
+            ?>  
+                <div class="titulo">
+                    <!--<span class="loader"></span>-->
+                    <h1>Login</h1>
+                </div>
+                <div class="form-container">
+                    <form method="POST" action="../pages/login.php"> 
+                        <label for="email">Email</label>
+                        <input type="email" name="email" placeholder="Digite seu email" required>
+                        <br><br>
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" placeholder="Digite sua senha" required>
+                        <br><br>
+                        <button type="submit">Login</button>
+                        <div class="cadastre-se">
+                            <p>Não tem conta? <a href="../view/cliente/cadastroCliente.php">Cadastre-se</a></p>
+                        </div>    
+                    </form>
+                </div>
             </div>
         </main>
-        <!--<footer>
+        <footer>
             <?php
-            //require_once'../includes/footer.php';
+            include '../includes/footer.php';
             ?> 
-        </footer>-->
+        </footer>
 </body>
 </html>
