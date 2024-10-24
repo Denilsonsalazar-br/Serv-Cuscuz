@@ -16,6 +16,9 @@
                     <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
                 </a>
             </div>
+            <div class="botao">
+                <button><a href="../../pages/login.php">Ops, já tenho cadastro</a></button>
+            </div>
         </nav>
     </header>
 </body>

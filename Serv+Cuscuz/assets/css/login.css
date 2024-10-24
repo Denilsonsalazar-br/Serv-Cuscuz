@@ -5,7 +5,9 @@
     font-family: 'Montserrat', sans-serif;
 }
 body{
-    background: linear-gradient(to top, #ffa500, #ff5733);
+    background-image: url(../img/Cuscuz_Recheado.jpeg);
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
 }
 main{

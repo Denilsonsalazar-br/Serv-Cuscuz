@@ -13,7 +13,7 @@ header {
 .nav-bar {
     align-items: center;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 1.5rem 6rem;
 }
 
@@ -26,6 +26,26 @@ header {
     cursor: pointer;
     width: 130px;
     height: 75px;
+}
+.botao button{
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #000000;
+}
+.botao button:hover{
+    background-color: #FFC80B;
+    border-color: #ffffff;
+}
+.botao button a:hover{
+    color: #000000;
+}
+
+.botao button a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.5rem;
 }
 
 

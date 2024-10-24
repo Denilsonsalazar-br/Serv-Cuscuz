@@ -19,10 +19,10 @@ if (session_status() === PHP_SESSION_NONE) {
         include '../../includes/headerCadastro.php';
     ?>
     <main>
-    <div class="tituloCadastroCliente">
+    <!--<div class="tituloCadastroCliente">
         <h1>Serv+Cuscuz</h1> 
         <h3>"Mais sabor, mais praticidade!"</h3>
-    </div>
+    </div>-->
     
     <!--Mensagem de sucesso-->
     <?php if (isset($_SESSION['sucesso'])): ?>
@@ -41,16 +41,15 @@ if (session_status() === PHP_SESSION_NONE) {
     <?php endif; ?>
 
         <div class="containerCadastroCliente">
-            <div class="containerFormulario">
                 <form method="POST" action="../../controller/cliente/createClienteController.php">
                     <label for="nome">Nome:</label>
-                    <input type="text" name="nome" placeholder=""  required>
+                    <input type="text" name="nome" placeholder="Diegite seu nome."  required>
                     <br><br>
                     <label for="sobrenome">Sobrenome:</label>
-                    <input type="text" name="sobrenome" placeholder=""  required>
+                    <input type="text" name="sobrenome" placeholder="Digite seu sobrenome"  required>
                     <br><br>
                     <label for="cpf">CPF:</label>
-                    <input type="text" name="cpf" placeholder=""  required>
+                    <input type="text" name="cpf" placeholder="Digite seu CPF"  maxlength="11" required>
                     <br><br>
                     <label for="email">Email:</label>
                     <input type="email" name="email" placeholder=""  required>
@@ -68,15 +67,25 @@ if (session_status() === PHP_SESSION_NONE) {
                     <input type="password" name="confirmarSenha" placeholder=""  required>
                     <br><br>
                     <div class="termos">
-                        <input type="checkbox" id="termos" required>
-                        <label for="termos">Aceito os <a href="#">termos e condições</a></label>
+                        <div>
+                            <input type="checkbox" id="termos" required>
+                        </div>
+                        <div>
+                            <label for="termos">Aceito os <a href="#">termos e condições</a></label>
+                        </div>
                     </div>
-                    <br><br>
-                    <button type="submit">Cadastrar</button>
+                    <div class="botaoCadastrarCliente">
+                        <button type="submit">Cadastrar</button>
+                    </div> 
                 </form>
-            </div>
-            <button><a href="../../pages/login.php">Ops, já tenho cadastro</a></button>
         </div>
 </main>
+
+<footer>
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <?php 
+        include '../../includes/footer.php';
+    ?>
+</footer>
 </body>
 </html>
