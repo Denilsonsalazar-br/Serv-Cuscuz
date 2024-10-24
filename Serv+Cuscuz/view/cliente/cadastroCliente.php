@@ -25,21 +25,22 @@ if (session_status() === PHP_SESSION_NONE) {
     </div>-->
     
     <!--Mensagem de sucesso-->
-    <?php if (isset($_SESSION['sucesso'])): ?>
-        <span style="color:green;">
-            <?php echo $_SESSION['sucesso']; ?>
-        </span>
-        <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
-    <?php endif; ?>
-    <!--Mensagem de erro-->
+    <span class="msg">
+        <?php if (isset($_SESSION['sucesso'])): ?>
+            <span style="color:green;">
+                <?php echo $_SESSION['sucesso']; ?>
+            </span>
+            <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
+        <?php endif; ?>
+        <!--Mensagem de erro-->
 
-    <?php if (isset($_SESSION['error'])): ?>
-        <span style="color:red;">
-            <?php echo $_SESSION['error']; ?>
-        </span>
-        <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
-    <?php endif; ?>
-
+        <?php if (isset($_SESSION['error'])): ?>
+            <span style="color:red;">
+                <?php echo $_SESSION['error']; ?>
+            </span>
+            <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
+        <?php endif; ?>
+    </span>
         <div class="containerCadastroCliente">
             <form method="POST" action="../../controller/cliente/createClienteController.php" onsubmit="return validarFormulario()">
             <label for="nome">Nome:</label>
@@ -91,6 +92,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <button type="submit">Cadastrar</button>
             </div> 
         </form>
+
         </div>
 </main>
 
