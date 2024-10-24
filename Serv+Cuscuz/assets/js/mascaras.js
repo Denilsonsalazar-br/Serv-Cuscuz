@@ -3,52 +3,47 @@ document.addEventListener("DOMContentLoaded", function () {
     const telefoneInput = document.getElementById('telefone');
     const nomeInput = document.getElementById('nome');
     const sobrenomeInput = document.getElementById('sobrenome');
-  
+    const emailInput = document.getElementById('email');
+    const confirmarEmailInput = document.getElementById('confirmarEmail');
+    const senhaInput = document.getElementById('senha');
+    const confirmarSenhaInput = document.getElementById('confirmarSenha');
+
     const mensagemErroSobrenome = document.getElementById('mensagemErroSobrenome');
     const mensagemErroNome = document.getElementById('mensagemErroNome');
-  
-    // Função para aplicar a máscara de CPF no formato "###.###.###-##"
+    const mensagemErroEmailDiferente = document.getElementById('mensagemErroEmailDiferente');
+    const mensagemErroSenhaDiferente = document.getElementById('mensagemErroSenhaDiferente');
+
     function maskCPF(value) {
-        value = value.replace(/\D/g, ''); // Remove tudo que não é dígito
-        if (value.length > 11) {
-            value = value.slice(0, 11);
-        }
-        return value
-            .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        value = value.replace(/\D/g, '');
+        if (value.length > 11) value = value.slice(0, 11);
+        return value.replace(/(\d{3})(\d)/, '$1.$2')
+                    .replace(/(\d{3})(\d)/, '$1.$2')
+                    .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
     }
-  
-    // Função para aplicar a máscara de telefone
+
     function maskTelefone(value) {
-        return value
-            .replace(/\D/g, '')
-            .replace(/^(\d{2})(\d)/, '($1) $2')
-            .replace(/(\d{5})(\d)/, '$1-$2');
+        return value.replace(/\D/g, '')
+                    .replace(/^(\d{2})(\d)/, '($1) $2')
+                    .replace(/(\d{5})(\d)/, '$1-$2');
     }
-  
-    // Adiciona evento de input para aplicar a máscara ao CPF
+
     cpfInput.addEventListener('input', function () {
         this.value = maskCPF(this.value);
     });
-  
-    // Adiciona evento de input para aplicar a máscara ao telefone
+
     telefoneInput.addEventListener('input', function () {
         this.value = maskTelefone(this.value);
     });
-  
-    // Função para formatar texto para capitalização
+
     function capitalizeWords(text) {
         return text.replace(/\b\w/g, char => char.toUpperCase());
     }
-  
-    // Função para validar o campo nome
+
     function validarNome(nome) {
         const regex = /^[a-zA-Zà-úÀ-Ú]+$/;
         return regex.test(nome);
     }
-  
-    // Event listener para o campo nome
+
     nomeInput.addEventListener('input', function() {
         const nome = nomeInput.value.trim();
         if (!validarNome(nome)) {
@@ -58,58 +53,78 @@ document.addEventListener("DOMContentLoaded", function () {
             mensagemErroNome.textContent = '';
             nomeInput.setCustomValidity('');
         }
-        // Capitaliza a primeira letra de cada palavra
         nomeInput.value = capitalizeWords(nome);
     });
-  
-  // Função para validar o campo sobrenome
-  function validarSobrenome(sobrenome) {
-    const regex = /^[a-zA-Zà-úÀ-Ú]{2,}(?: [a-zA-Zà-úÀ-Ú]{2,})*$/;
-    return regex.test(sobrenome);
-  }
-  
-  // Event listener para o campo sobrenome
-  sobrenomeInput.addEventListener('input', function() {
-    const sobrenome = sobrenomeInput.value;
-  
-    // Permite que o usuário digite o espaço
-    if (sobrenome.endsWith(" ")) {
-        mensagemErroSobrenome.textContent = ''; // Limpa a mensagem de erro ao digitar espaço
-        sobrenomeInput.setCustomValidity('');
-        return; // Não valida enquanto o usuário não digitar a segunda palavra
+
+    function validarSobrenome(sobrenome) {
+        const regex = /^[a-zA-Zà-úÀ-Ú]{2,}(?: [a-zA-Zà-úÀ-Ú]{2,})*$/;
+        return regex.test(sobrenome);
     }
-  
-    // Após digitar uma palavra ou mais, valida o sobrenome
-    if (!validarSobrenome(sobrenome)) {
-        mensagemErroSobrenome.textContent = 'Sobrenome deve estar completo.';
-        sobrenomeInput.setCustomValidity('Escreva seu sobrenome completo.');
-    } else {
-        mensagemErroSobrenome.textContent = '';
-        sobrenomeInput.setCustomValidity('');
+
+    sobrenomeInput.addEventListener('input', function() {
+        const sobrenome = sobrenomeInput.value.trim();
+        if (sobrenome.endsWith(" ")) {
+            mensagemErroSobrenome.textContent = '';
+            sobrenomeInput.setCustomValidity('');
+            return;
+        }
+        if (!validarSobrenome(sobrenome)) {
+            mensagemErroSobrenome.textContent = 'Sobrenome deve estar completo.';
+            sobrenomeInput.setCustomValidity('Escreva seu sobrenome completo.');
+        } else {
+            mensagemErroSobrenome.textContent = '';
+            sobrenomeInput.setCustomValidity('');
+        }
+        sobrenomeInput.value = capitalizeWords(sobrenome);
+    });
+
+    function validarEmailsIguais() {
+        if (emailInput.value !== confirmarEmailInput.value) {
+            mensagemErroEmailDiferente.textContent = 'Os emails não coincidem.';
+            confirmarEmailInput.setCustomValidity('Os emails não coincidem.');
+        } else {
+            mensagemErroEmailDiferente.textContent = '';
+            confirmarEmailInput.setCustomValidity('');
+        }
     }
-  
-    // Capitaliza a primeira letra de cada palavra
-    sobrenomeInput.value = capitalizeWords(sobrenome.trim());
-  });
-  
-  });
-  
-  // Função para verificar se os emails estão iguais no formulário
-  function validarFormulario() {
-    const nomeInput = document.getElementById('nome');
-    const sobrenomeInput = document.getElementById('sobrenome');
-  
-    // Chamar as funções de validação diretamente aqui
-    if (!validarNome(nomeInput.value)) {
-        alert('Nome inválido.');
-        return false;
+
+    emailInput.addEventListener('input', validarEmailsIguais);
+    confirmarEmailInput.addEventListener('input', validarEmailsIguais);
+
+    function validarSenhasIguais() {
+        if (senhaInput.value !== confirmarSenhaInput.value) {
+            mensagemErroSenhaDiferente.textContent = 'As senhas não coincidem.';
+            confirmarSenhaInput.setCustomValidity('As senhas não coincidem.');
+        } else {
+            mensagemErroSenhaDiferente.textContent = '';
+            confirmarSenhaInput.setCustomValidity('');
+        }
     }
-  
-    if (!validarSobrenome(sobrenomeInput.value)) {
-        alert('Sobrenome inválido.');
-        return false;
+
+    senhaInput.addEventListener('input', validarSenhasIguais);
+    confirmarSenhaInput.addEventListener('input', validarSenhasIguais);
+
+    function validarFormulario() {
+        if (!validarNome(nomeInput.value)) {
+            alert('Nome inválido.');
+            return false;
+        }
+
+        if (!validarSobrenome(sobrenomeInput.value)) {
+            alert('Sobrenome inválido.');
+            return false;
+        }
+
+        if (emailInput.value !== confirmarEmailInput.value) {
+            alert('Os emails não coincidem.');
+            return false;
+        }
+
+        if (senhaInput.value !== confirmarSenhaInput.value) {
+            alert('As senhas não coincidem.');
+            return false;
+        }
+
+        return true;
     }
-  
-    // Se tudo estiver correto, o formulário pode ser enviado
-    return true;
-  }
+});

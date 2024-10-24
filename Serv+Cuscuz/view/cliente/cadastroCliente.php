@@ -41,43 +41,56 @@ if (session_status() === PHP_SESSION_NONE) {
     <?php endif; ?>
 
         <div class="containerCadastroCliente">
-                <form method="POST" action="../../controller/cliente/createClienteController.php">
-                    <label for="nome">Nome:</label>
-                    <input type="text" name="nome" placeholder="Diegite seu nome."  required>
-                    <br><br>
-                    <label for="sobrenome">Sobrenome:</label>
-                    <input type="text" name="sobrenome" placeholder="Digite seu sobrenome"  required>
-                    <br><br>
-                    <label for="cpf">CPF:</label>
-                    <input type="text" name="cpf" placeholder="Digite seu CPF"  maxlength="11" required>
-                    <br><br>
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" placeholder=""  required>
-                    <br><br>
-                    <label for="confirmarEmail">Confirme o Email:</label>
-                    <input type="email" name="confirmarEmail" placeholder=""  required>
-                    <br><br>
-                    <label for="telefone">Telefone:</label>
-                    <input type="text" name="telefone" placeholder=""  required>
-                    <br><br>
-                    <label for="senha">Senha:</label>
-                    <input type="password" name="senha" placeholder=""  required>
-                    <br><br>
-                    <label for="confirmarSenha">Confirme a Senha:</label>
-                    <input type="password" name="confirmarSenha" placeholder=""  required>
-                    <br><br>
-                    <div class="termos">
-                        <div>
-                            <input type="checkbox" id="termos" required>
-                        </div>
-                        <div>
-                            <label for="termos">Aceito os <a href="#">termos e condições</a></label>
-                        </div>
-                    </div>
-                    <div class="botaoCadastrarCliente">
-                        <button type="submit">Cadastrar</button>
-                    </div> 
-                </form>
+            <form method="POST" action="../../controller/cliente/createClienteController.php" onsubmit="return validarFormulario()">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome." required>
+            <span id="mensagemErroNome" class="erro"></span>
+            <br><br>
+
+            <label for="sobrenome">Sobrenome:</label>
+            <input type="text" id="sobrenome" name="sobrenome" placeholder="Digite seu sobrenome completo." required>
+            <span id="mensagemErroSobrenome" class="erro"></span>
+            <br><br>
+
+            <label for="cpf">Cpf:</label>
+            <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" maxlength="14" required>
+            <br><br>
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" name="telefone" placeholder="Digite seu telefone" required>
+            <br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu email." required>
+            <br><br>
+
+            <label for="confirmarEmail">Confirme o Email:</label>
+            <input type="email" id="confirmarEmail" name="confirmarEmail" placeholder="Por favor, confirme seu email" required>
+            <span id="mensagemErroEmailDiferente" class="erro"></span>
+            <br><br>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" placeholder="Insira sua senha" required>
+            <br><br>
+
+            <label for="confirmarSenha">Confirme a Senha:</label>
+            <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" required>
+            <span id="mensagemErroSenhaDiferente" class="erro"></span>
+            <br><br>
+
+            <div class="termos">
+                <div>
+                    <input type="checkbox" id="termos" required>
+                </div>
+                <div>
+                    <label for="termos">Aceito os <a href="#">termos e condições</a></label>
+                </div>
+            </div>
+            
+            <div class="botaoCadastrarCliente">
+                <button type="submit">Cadastrar</button>
+            </div> 
+        </form>
         </div>
 </main>
 
@@ -87,5 +100,6 @@ if (session_status() === PHP_SESSION_NONE) {
         include '../../includes/footer.php';
     ?>
 </footer>
+<script href="../../assets/js/mascaras.js"></script>
 </body>
 </html>

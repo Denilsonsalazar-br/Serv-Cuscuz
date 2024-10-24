@@ -5,7 +5,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 body{
-    background-image: url(../img/Cuscuz_Recheado.jpeg);
+    background-image: url(../img/Cuscuz_Recheado_jerked.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -18,11 +18,11 @@ main{
     display: flex;
 }
 
-.container{
+.container{ 
     margin: 40px 20px;
     border:  1px solid #000000;
     display: flex;
-    background-color: #ff5733;
+    background-color: transparent;
     border-radius: 20px;
     width: 768px;
     min-height: 580px;
@@ -107,6 +107,12 @@ main{
     width: 80%;
     outline: none;
 }
+.container input:focus {
+    background-color: #ff5733;
+    color: #fff;
+    outline: 2px solid #000000;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
 .container button{
     margin-top: 0;
     background-color: #000000;
@@ -122,9 +128,9 @@ main{
     cursor: pointer;
 }
 .container button:hover{
-    background-color: #FFC80B;
-    border-color: #fff;
-    color: #000000;
+    background-color: #ff5733;
+    border-color:#fff ;
+    color: #fff;
 }
 
 .cadastre-se{

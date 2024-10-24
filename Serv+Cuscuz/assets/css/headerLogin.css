@@ -58,10 +58,13 @@ header {
     border-radius: 5px;
     background-color: #000000;
 }
+
 .login-button button:hover{
-    background-color: #FFC80B;
-    border-color: #ffffff;
+    background-color: #ff5733;
+    border-color:#fff ;
+    color: #fff;
 }
+
 .login-button button a:hover{
     color: #000000;
 }
