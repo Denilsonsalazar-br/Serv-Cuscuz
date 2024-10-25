@@ -95,12 +95,12 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
 </main>
 
-<footer>
+<!--<footer>
     <link rel="stylesheet" href="../../assets/css/footer.css">
     <?php 
-        include '../../includes/footer.php';
+        //include '../../includes/footer.php';
     ?>
-</footer>
+</footer>-->
 <script href="../../assets/js/mascaras.js"></script>
 </body>
 </html>
