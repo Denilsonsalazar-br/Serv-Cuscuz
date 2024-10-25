@@ -17,7 +17,7 @@
                 include '../includes/carrossel.php';
             ?>
         </section>
-
+    <main>
     <br>
     <br>
     <br>
@@ -42,7 +42,7 @@
     <br>
     <br>
     <br>
-
+    </main>
     <footer>
         <?php
             include '../includes/footer.php'

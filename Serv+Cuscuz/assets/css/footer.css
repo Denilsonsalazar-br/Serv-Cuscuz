@@ -1,4 +1,4 @@
-.containerFooter{
+/*.containerFooter{
     margin-top: 3px;
     border-top: 1px solid #FFC80B;
     bottom: 0;
@@ -10,7 +10,8 @@
     justify-content: space-evenly;
     align-items: center;
     margin-top: 0;
-    background-color: #ffffff
+    background-color: #ff5733;
+    color: #ffffff;
 }
 .direitoAutoral h1{
     font-size: 12px;
@@ -47,5 +48,84 @@
     }
     .suporte .direitoAutoral h1{
         font-size: 12px;
+    }
+}*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer{
+    background-color: #ff5733;
+}
+.redes-sociais img{
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    
+}
+.redes-sociais{
+    display: flex;
+    margin-right: 10px;
+}
+footer .containerFooter{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    color: #ffffff;
+    justify-content: space-evenly;
+    
+}
+footer .containerFooter ul{
+    width: 25%;
+    list-style: none;
+}
+footer .containerFooter h2{
+    margin-top: 10px;
+    color: #ffffff;
+    margin-bottom: 18px;
+    font-weight: 500;
+}
+
+footer .redes-sociais{
+    margin-right: 10px;
+}
+footer .containerFooter ul > p{
+    color: #000000;
+    width: 100%;
+    margin-bottom: 15px;
+}
+footer .containerFooter ul > p:hover{
+    color: #ffffff;
+}
+footer.containerFooter li{
+    margin: 10px 5px;
+}
+footer .containerFooter li a{
+    color: #000000;
+    text-decoration: none;
+}
+footer .containerFooter li a:hover{
+    color: #ffffff;
+}
+footer .containerFooter li{
+    margin-top: 5px;
+}
+@media screen and (max-width: 730px) {
+    footer .containerFooter{
+        grid-template-columns: repeat(2,1fr);
+        gap: 1rem;
+    }
+    footer .containerFooter ul{
+        align-items: center;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+@media screen and (max-width: 426px){
+    footer .containerFooter{
+        grid-template-columns: repeat(1,1fr);
+        padding: 1rem 2rem;
     }
 }

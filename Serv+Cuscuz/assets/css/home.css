@@ -1,6 +1,14 @@
 body{
+
     background-color: #A9CCE3;
 }
+main{
+    height: 100vh;
+}
+footer{
+    margin-bottom: 0;
+}
+
 .containerHome{
     width: 100%;
 }
@@ -8,4 +16,7 @@ body{
     header{
         width: 100%;
     }
+}
+@media (max-width: 390px){
+    
 }

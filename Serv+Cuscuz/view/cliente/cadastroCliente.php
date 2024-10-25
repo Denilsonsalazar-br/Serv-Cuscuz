@@ -23,28 +23,27 @@ if (session_status() === PHP_SESSION_NONE) {
         <h1>Serv+Cuscuz</h1> 
         <h3>"Mais sabor, mais praticidade!"</h3>
     </div>-->
-    <div class="msg">
-        <span>
-            <!--Mensagem de sucesso-->
-            <?php if (isset($_SESSION['sucesso'])): ?>
-                <span style="color:green;">
-                    <?php echo $_SESSION['sucesso']; ?>
-                </span>
-                <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
-            <?php endif; ?>
-
-            <!--Mensagem de erro-->
-
-            <?php if (isset($_SESSION['error'])): ?>
-                <span style="color:red;">
-                    <?php echo $_SESSION['error']; ?>
-                </span>
-                <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
-            <?php endif; ?>
-        </span>
-    </div>
-    
         <div class="containerCadastroCliente">
+                <div class="msg">
+                <span>
+                    <!--Mensagem de sucesso-->
+                    <?php if (isset($_SESSION['sucesso'])): ?>
+                        <span style="color:green;">
+                            <?php echo $_SESSION['sucesso']; ?>
+                        </span>
+                        <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
+                    <?php endif; ?>
+
+                    <!--Mensagem de erro-->
+
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <span style="color:red;">
+                            <?php echo $_SESSION['error']; ?>
+                        </span>
+                        <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
+                    <?php endif; ?>
+                </span>
+            </div>
             <form method="POST" action="../../controller/cliente/createClienteController.php" onsubmit="return validarFormulario()">
 
                 <label for="nome">Nome:</label>

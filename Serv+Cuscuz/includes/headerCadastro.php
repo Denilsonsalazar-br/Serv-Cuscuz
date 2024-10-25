@@ -8,7 +8,6 @@
     <title></title>
 </head>
 
-<body>
     <header>
         <nav class="nav-bar">    
             <div class="logo">
@@ -21,6 +20,5 @@
             </div>
         </nav>
     </header>
-</body>
 
 </html>
