@@ -17,7 +17,7 @@
                 </a>
             </div>
             <div class="botao">
-                <button><a href="../../pages/login.php">Ops, já tenho cadastro</a></button>
+                <button><a href="../../pages/login.php">Login</a></button>
             </div>
         </nav>
     </header>

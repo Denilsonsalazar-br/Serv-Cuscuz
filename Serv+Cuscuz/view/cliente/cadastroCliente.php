@@ -23,76 +23,76 @@ if (session_status() === PHP_SESSION_NONE) {
         <h1>Serv+Cuscuz</h1> 
         <h3>"Mais sabor, mais praticidade!"</h3>
     </div>-->
-    
-    <!--Mensagem de sucesso-->
-    <span class="msg">
-        <?php if (isset($_SESSION['sucesso'])): ?>
-            <span style="color:green;">
-                <?php echo $_SESSION['sucesso']; ?>
-            </span>
-            <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
-        <?php endif; ?>
-        <!--Mensagem de erro-->
+    <div class="msg">
+        <span>
+            <!--Mensagem de sucesso-->
+            <?php if (isset($_SESSION['sucesso'])): ?>
+                <span style="color:green;">
+                    <?php echo $_SESSION['sucesso']; ?>
+                </span>
+                <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
+            <?php endif; ?>
 
-        <?php if (isset($_SESSION['error'])): ?>
-            <span style="color:red;">
-                <?php echo $_SESSION['error']; ?>
-            </span>
-            <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
-        <?php endif; ?>
-    </span>
+            <!--Mensagem de erro-->
+
+            <?php if (isset($_SESSION['error'])): ?>
+                <span style="color:red;">
+                    <?php echo $_SESSION['error']; ?>
+                </span>
+                <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
+            <?php endif; ?>
+        </span>
+    </div>
+    
         <div class="containerCadastroCliente">
             <form method="POST" action="../../controller/cliente/createClienteController.php" onsubmit="return validarFormulario()">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Digite seu nome." required>
-            <span id="mensagemErroNome" class="erro"></span>
-            <br><br>
 
-            <label for="sobrenome">Sobrenome:</label>
-            <input type="text" id="sobrenome" name="sobrenome" placeholder="Digite seu sobrenome completo." required>
-            <span id="mensagemErroSobrenome" class="erro"></span>
-            <br><br>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome." required>
+                <span id="mensagemErroNome" class="erro"></span>
+                <br>
+                <label for="sobrenome">Sobrenome:</label>
+                <input type="text" id="sobrenome" name="sobrenome" placeholder="Digite seu sobrenome completo." required>
+                <span id="mensagemErroSobrenome" class="erro"></span>
+                <br>
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" maxlength="14" required>
+                <span id="mensagemErroCpf" class="erro"></span>
+                <br>
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" placeholder="Digite seu telefone" required>
+                <span id="mensagemErroTelefone" class="erro"></span>
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email." required>
+                <span id="mensagemErroEmail" class="erro"></span>
+                <br>
+                <label for="confirmarEmail">Confirme o Email:</label>
+                <input type="email" id="confirmarEmail" name="confirmarEmail" placeholder="Por favor, confirme seu email" required>
+                <span id="mensagemErroEmailDiferente" class="erro"></span>
+                <br>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Insira sua senha" required>
+                <span id="mensagemErroSenha" class="erro"></span>
+                <br>
+                <label for="confirmarSenha">Confirme a Senha:</label>
+                <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" required>
+                <span id="mensagemErroSenhaDiferente" class="erro"></span>
+                <br><br>
 
-            <label for="cpf">Cpf:</label>
-            <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" maxlength="14" required>
-            <br><br>
-
-            <label for="telefone">Telefone:</label>
-            <input type="text" id="telefone" name="telefone" placeholder="Digite seu telefone" required>
-            <br><br>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Digite seu email." required>
-            <br><br>
-
-            <label for="confirmarEmail">Confirme o Email:</label>
-            <input type="email" id="confirmarEmail" name="confirmarEmail" placeholder="Por favor, confirme seu email" required>
-            <span id="mensagemErroEmailDiferente" class="erro"></span>
-            <br><br>
-
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" placeholder="Insira sua senha" required>
-            <br><br>
-
-            <label for="confirmarSenha">Confirme a Senha:</label>
-            <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" required>
-            <span id="mensagemErroSenhaDiferente" class="erro"></span>
-            <br><br>
-
-            <div class="termos">
-                <div>
-                    <input type="checkbox" id="termos" required>
+                <div class="termos">
+                    <div>
+                        <input type="checkbox" id="termos" required>
+                    </div>
+                    <div>
+                        <label for="termos">Aceito os <a href="#">termos e condições</a></label>
+                    </div>
                 </div>
-                <div>
-                    <label for="termos">Aceito os <a href="#">termos e condições</a></label>
-                </div>
-            </div>
-            
-            <div class="botaoCadastrarCliente">
-                <button type="submit">Cadastrar</button>
-            </div> 
-        </form>
-
+                
+                <div class="botaoCadastrarCliente">
+                    <button type="submit">Cadastrar</button>
+                </div> 
+            </form>
         </div>
 </main>
 

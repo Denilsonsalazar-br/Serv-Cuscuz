@@ -54,16 +54,17 @@ header {
 }
 
 .login-button button {
-    cursor: pointer;
     padding: 10px 15px;
     border-radius: 5px;
     background-color: #000000;
 }
 
 .login-button button:hover{
-    background-color: #FFC80B;
-    border-color: #ffffff;
+    background-color: #ff5733;
+    border-color:#fff ;
+    color: #fff;
 }
+
 .login-button button a:hover{
     color: #000000;
 }
@@ -116,7 +117,7 @@ header {
     }
     .mobile-menu .login-button {
         display: block;
-        padding: 1rem 2rem;
+        padding: 0.5rem 1rem;
     }
     .mobile-menu .login-button button {
         width: 100%;

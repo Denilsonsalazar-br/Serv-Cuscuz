@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const cpfInput = document.getElementById('cpf');
-    const telefoneInput = document.getElementById('telefone');
     const nomeInput = document.getElementById('nome');
     const sobrenomeInput = document.getElementById('sobrenome');
+    const cpfInput = document.getElementById('cpf');
+    const telefoneInput = document.getElementById('telefone');
     const emailInput = document.getElementById('email');
     const confirmarEmailInput = document.getElementById('confirmarEmail');
     const senhaInput = document.getElementById('senha');

@@ -27,17 +27,19 @@ header {
     width: 130px;
     height: 75px;
 }
-.botao button{
-    cursor: pointer;
+.botao button {
     padding: 10px 15px;
     border-radius: 5px;
     background-color: #000000;
 }
+
 .botao button:hover{
-    background-color: #FFC80B;
-    border-color: #ffffff;
+    background-color: #ff5733;
+    border-color:#fff ;
+    color: #fff;
 }
-.botao button a:hover{
+
+.botaon button a:hover{
     color: #000000;
 }
 
@@ -47,7 +49,6 @@ header {
     font-weight: 500;
     font-size: 1.5rem;
 }
-
 
 @media screen and (max-width: 730px) {
     header{

@@ -1,25 +1,31 @@
 <?Php
-function validarSenha($senha) {
-    // Define os requisitos mínimos para a senha
-    $minimoCaracteres = 8;
-    $requerMaiuscula = true;
-    $requerMinuscula = true;
-    $requerNumero = true;
-    $requerEspecial = true;
+function validarSenha($senha, $config = []) {
+    //  array com os tipos de dados que poderão ser inseridos
+    $config = array_merge([
+        'minimoCaracteres' => 8,
+        'requerMaiuscula' => true,
+        'requerMinuscula' => true,
+        'requerNumero' => true,
+        'requerEspecial' => true,
+        'caracteresEspeciais' => '@$!%*?&_-#+',
+    ], $config);
+
+    // Gerar a expressão regular com base nas configurações
+    $regex = '/^';
+    if ($config['requerMaiuscula']) $regex .= '(?=.*[A-Z])';
+    if ($config['requerMinuscula']) $regex .= '(?=.*[a-z])';
+    if ($config['requerNumero']) $regex .= '(?=.*\d)';
+    if ($config['requerEspecial']) $regex .= "(?=.*[$config[caracteresEspeciais]])";
+    $regex .= ".{$config['minimoCaracteres']},$/";
 
     // Verificar a complexidade da senha
-    $regex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%#*?&])[A-Za-z\d@$!%*?&]{' . $minimoCaracteres . ',}$/';
-
-    // Verifica se a senha atende à expressão regular
     if (!preg_match($regex, $senha)) {
-        return "A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas e minúsculas, números e um caractere especial.";
+        return 'A senha não atende aos requisitos de segurança.';
     }
 
-    // Verifica se a senha não contém o nome de usuario
+    // Verifica se a senha não contém o nome de usuário
     if (isset($_POST['nome']) && stripos($senha, $_POST['nome']) !== false) {
-        return "Para sua segurança! <br> Evite digitar o seu nome como senha.";
+        return 'A senha não pode conter o nome de usuário.';
     }
-
-    // Se todas as verificações passarem, a senha é válida
     return true;
 }

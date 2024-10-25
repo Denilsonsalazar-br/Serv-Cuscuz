@@ -24,8 +24,13 @@
                 <li class="nav-item"><a href="#" class="nav-link">Alguma coisa</a></li>
                 </ul>
             </div>
+            
             <div class="login-button">
-                <button><a href="../pages/login.php">Login</a></button>
+                <button>
+                    <?php 
+                        include '../pages/velificarLogin.php';
+                    ?>
+                </button> 
             </div>
 
             <div class="mobile-menu-icon">
@@ -39,9 +44,12 @@
                 <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
                 <li class="nav-item"><a href="#" class="nav-link">Alguma coisa</a></li>
             </ul>
-
             <div class="login-button">
-                <button><a href="../pages/login.php">Login</a></button>
+                <button>
+                    <?php 
+                        include '../pages/velificarLogin.php';
+                    ?>
+                </button>       
             </div>
         </div>
     </header>

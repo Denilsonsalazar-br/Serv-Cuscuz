@@ -11,5 +11,5 @@ session_destroy();
 echo "Você foi deslogado com sucesso!";
 
 // Redireciona para a página de login
-header("Location: ../pages/login.php");
+header("Location: ../pages/home.php");
 exit();
