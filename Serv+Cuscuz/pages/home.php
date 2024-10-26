@@ -28,7 +28,7 @@
     <br>
     <br>
     <br>
-        <main style="text-align: center;">
+        <main style="text-align: center; color: #ffffff">
 
 
         <h1>Conteudo home</h1>

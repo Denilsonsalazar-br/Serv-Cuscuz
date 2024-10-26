@@ -14,7 +14,7 @@ session_start();
     <header>
         <nav class="nav-bar">    
             <div class="logo">
-                <a href="#">
+                <a href="../../pages/home.php">
                     <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
                 </a>
             </div>

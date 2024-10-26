@@ -60,7 +60,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
         <main>
             <h1>Funcionários</h1>
             <section class="section__btn">
-                <a class="btnAdm" href="#">Novo</a>
+                <a class="btnAdm" href="../../view/admin/cadastroFuncionarios.php">Novo</a>
                 <a class="btnAdm" href="#" target="_blank">Imprimir</a>
             </section>
             <section>
@@ -72,6 +72,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
                         <th>Email</th>
                         <th>Telefone</th>
                         <th>Tipo Perfil</th>
+                        <th class="gerenciarAdm">Gerenciar</th>
                     </tr>
                     <?php if (isset($funcionarios) && is_array($funcionarios)): ?>
                         <?php foreach ($funcionarios as $funcionario): ?>
@@ -81,7 +82,13 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
                             <td><?php echo htmlspecialchars($funcionario['cpf']); ?></td>
                             <td><?php echo htmlspecialchars($funcionario['email']); ?></td>
                             <td><?php echo htmlspecialchars($funcionario['telefone']); ?></td>
-                            <td><?php echo htmlspecialchars($funcionario['t_perfil_id']); ?></td>          
+                            <td><?php echo htmlspecialchars($funcionario['t_perfil_id']); ?></td> 
+                            <td class="tdOperacao">
+                                <div class="alterarExcluir">
+                                <a class="btnalterar" href="edit.php?id=<?= $usuario['id']; ?>">Alterar</a>
+                                <a class="btnexcluir" href="delete.php?id=<?= $usuario['id']; ?>" onclick="return confirm('Deseja confirmar a operação?');">Excluir</a>
+                                </div>
+                            </td>         
                         </tr>
                         <?php endforeach; ?>
                     <?php else: ?>

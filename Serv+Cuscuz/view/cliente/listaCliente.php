@@ -50,7 +50,7 @@ require_once  "../../controller/cliente/readClienteController.php";
         <nav>
             <a href="#">Home</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
-            <a href="#">Clientes</a>
+            <a href="../../view/cliente/listaCliente.php">Clientes</a>
             <a href="#">Produtos</a>
             <a href="#">Pedidos</a>
             <a href="#">Relatórios</a>
@@ -59,6 +59,9 @@ require_once  "../../controller/cliente/readClienteController.php";
     <div class="homeAdm">
     <main>
         <h1>Clientes</h1>
+            <section class="section__btn">
+                <a class="btnAdm" href="#" target="_blank">Imprimir</a>
+            </section>
         <section>
             <table>
                 <tr>
@@ -68,6 +71,7 @@ require_once  "../../controller/cliente/readClienteController.php";
                     <th>Cpf</th>
                     <th>Email</th>
                     <th>Telefone</th>
+                    <th class="gerenciarAdm">Gerenciar</th>
                 </tr>
                 <?php if (isset($clientes) && is_array($clientes)): ?>
                     <?php foreach ($clientes as $cliente): ?>
@@ -77,7 +81,12 @@ require_once  "../../controller/cliente/readClienteController.php";
                         <td><?php echo htmlspecialchars($cliente['sobrenome']); ?></td>
                         <td><?php echo htmlspecialchars($cliente['cpf']); ?></td>
                         <td><?php echo htmlspecialchars($cliente['email']); ?></td>
-                        <td><?php echo htmlspecialchars($cliente['telefone']); ?></td>       
+                        <td><?php echo htmlspecialchars($cliente['telefone']); ?></td>
+                        <td class="tdOperacao">
+                                <div class="alterarExcluir">
+                                    <a class="btnexcluir" href="#?id=<?= $usuario['id']; ?>" onclick="return confirm('Deseja confirmar a operação?');">Excluir</a>
+                                </div>
+                        </td>       
                     </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
