@@ -24,7 +24,6 @@ require_once "../../controller/cliente/readClienteController.php";
             <th>Cpf</th>
             <th>Email</th>
             <th>Telefone</th>
-            <th>Senha</th>
         </tr>
         <?php if (isset($clientes) && is_array($clientes)): ?>
             <?php foreach ($clientes as $cliente): ?>
@@ -34,13 +33,12 @@ require_once "../../controller/cliente/readClienteController.php";
                 <td><?php echo htmlspecialchars($cliente['sobrenome']); ?></td>
                 <td><?php echo htmlspecialchars($cliente['cpf']); ?></td>
                 <td><?php echo htmlspecialchars($cliente['email']); ?></td>
-                <td><?php echo htmlspecialchars($cliente['telefone']); ?></td>
-                <td><?php echo htmlspecialchars($cliente['senha']); ?></td>         
+                <td><?php echo htmlspecialchars($cliente['telefone']); ?></td>       
             </tr>
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="7">Nenhum funcionário encontrado.</td>
+                <td colspan="6">Nenhum funcionário encontrado.</td>
             </tr>
         <?php endif; ?>
     </table>

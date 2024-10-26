@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "../../DAO/src/conexaobd.php";
 class FuncionarioDTO {
     private $id;
     private $nome;

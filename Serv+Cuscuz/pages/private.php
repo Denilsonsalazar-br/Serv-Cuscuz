@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include '../model/DAO/src/conexaobd.php';
+require_once __DIR__ . "../../model/DAO/src/conexaobd.php";
 
 $conn = Conexao::getInstance(); // Obter a instância de conexão
 

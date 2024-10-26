@@ -3,7 +3,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once'../../model/DTO/validacoes/validarCpf.php';
+require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

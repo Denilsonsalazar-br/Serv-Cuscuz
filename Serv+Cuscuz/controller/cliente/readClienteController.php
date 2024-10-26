@@ -8,11 +8,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Incluir os arquivos necessários "DAO"
-require_once "../../model/DAO/clienteDAO.php";
+require_once __DIR__ . "../../../model/DAO/clienteDAO.php";
 
 // Criar DAO e buscar Clientes
 $clienteDAO = new ClienteDAO();
 $clientes = $clienteDAO->listarCliente(); 
 
 // Exibir a lista de Clientes
-require_once '../../view/cliente/listaCliente.php';
+require_once __DIR__ . "../../../view/cliente/listaCliente.php";

@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Incluir os arquivos necessários
-require_once "../../model/DAO/funcionarioDAO.php";
+require_once __DIR__ . "../../../model/DAO/funcionarioDAO.php";
 
 // Verificar se o ID do funcionário foi passado
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {

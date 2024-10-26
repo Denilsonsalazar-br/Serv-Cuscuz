@@ -1,7 +1,7 @@
 <?php
 
 include "src/conexaobd.php";
-require_once '../../model/DTO/funcionarioDTO.php';
+require_once __DIR__ . '../../../model/DTO/funcionarioDTO.php';
 
 class FuncionarioDAO {
     public $pdo = null;

@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Incluir o controlador que carrega os funcionários
-require_once "../../controller/funcionario/readFuncionarioController.php";
+require_once __DIR__ . "../../../controller/funcionario/readFuncionarioController.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,7 +23,6 @@ require_once "../../controller/funcionario/readFuncionarioController.php";
             <th>Cpf</th>
             <th>Email</th>
             <th>Telefone</th>
-            <th>Senha</th>
             <th>Tipo Perfil</th>
         </tr>
         <?php if (isset($funcionarios) && is_array($funcionarios)): ?>
@@ -34,7 +33,6 @@ require_once "../../controller/funcionario/readFuncionarioController.php";
                 <td><?php echo htmlspecialchars($funcionario['cpf']); ?></td>
                 <td><?php echo htmlspecialchars($funcionario['email']); ?></td>
                 <td><?php echo htmlspecialchars($funcionario['telefone']); ?></td>
-                <td><?php echo htmlspecialchars($funcionario['senha']); ?></td>
                 <td><?php echo htmlspecialchars($funcionario['t_perfil_id']); ?></td>          
             </tr>
             <?php endforeach; ?>

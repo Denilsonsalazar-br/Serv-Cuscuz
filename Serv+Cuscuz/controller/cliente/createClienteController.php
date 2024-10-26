@@ -11,9 +11,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Incluir os arquivos necessários "DAO e DTO"
-require_once "../../model/DAO/clienteDAO.php";
-require_once "../../model/DTO/clienteDTO.php";
-require_once "../../model/DTO/validacoes/validarCpf.php";
+require_once __DIR__ . "../../../model/DAO/clienteDAO.php";
+require_once __DIR__ . "../../../model/DTO/clienteDTO.php";
+require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
 
     $nomeCliente = strip_tags($_POST["nome"]);
     $sobrenomeCliente = strip_tags($_POST["sobrenome"]);

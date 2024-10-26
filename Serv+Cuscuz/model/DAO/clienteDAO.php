@@ -1,7 +1,7 @@
 <?php
 
 include "src/conexaobd.php";
-require_once "../../model/DTO/clienteDTO.php";
+require_once __DIR__ . "../../../model/DTO/clienteDTO.php";
 
 class ClienteDAO{
     public $pdo = null;

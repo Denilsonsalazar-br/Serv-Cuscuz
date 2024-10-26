@@ -15,7 +15,7 @@
         <main>
             <div class="container"> 
             <?php
-                require_once '../pages/private.php';
+                require_once __DIR__ . "../../pages/private.php";
             ?>  
                 <div class="titulo">
                     <!--<span class="loader"></span>-->

@@ -19,6 +19,7 @@ echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
     <title>Administrador</title>
 </head>
 <body>
+    
     <h1>Painel de Controle do Administrador</h1>
     <div class="container">
         <div class="funcionario">

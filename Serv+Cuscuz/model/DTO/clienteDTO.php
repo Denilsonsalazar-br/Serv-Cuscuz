@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . "../../DAO/src/conexaobd.php";
+
 class ClienteDTO {
     private $id;
     private $nome;
