@@ -82,5 +82,56 @@
         flex-direction: column;
     }
 }
+.homeAdm{
+    justify-content: center;
+    align-items: center;
+}
+.homeAdm main h1 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+.homeAdm table {
+    font-family: 'Montserrat', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+.homeAdm td,
+  th {
+    border: 1px solid #ff5733;
+    text-align: left;
+    padding: 8px;
+  }
+  
+.homeAdm tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  
+.homeAdm td a1 {
+    color: #ff5733;
+  
+  }
+.section__btn {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+  }
 
-
+  .btnAdm {
+    align-items: center;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    width: 120px;
+    height: 35px;
+    background-color: #ff5733;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 3px;
+  }
+ 

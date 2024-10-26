@@ -14,7 +14,7 @@ session_start();
     <header>
         <nav class="nav-bar">    
             <div class="logo">
-                <a href="../../pages/home.php">
+                <a href="#">
                     <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
                 </a>
             </div>
@@ -44,7 +44,7 @@ session_start();
         <nav >
             <a href="#">Home</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
-            <a href="#">Clientes</a>
+            <a href="../../view/cliente/listaCliente.php">Clientes</a>
             <a href="#">Produtos</a>
             <a href="#">Pedidos</a>
             <a href="#">Relatórios</a>

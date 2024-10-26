@@ -50,41 +50,48 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
         <nav >
             <a href="../../controller/admin/adminPainelController.php">Home</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
-            <a href="#">Clientes</a>
+            <a href="../../view/cliente/listaCliente.php">Clientes</a>
             <a href="#">Produtos</a>
             <a href="#">Pedidos</a>
             <a href="#">Relatórios</a>
         </nav>
     </div> 
-    <main>
-    <h1>Lista de Funcionários</h1>
-    <table border="1px">
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Cpf</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th>Tipo Perfil</th>
-        </tr>
-        <?php if (isset($funcionarios) && is_array($funcionarios)): ?>
-            <?php foreach ($funcionarios as $funcionario): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($funcionario['id']); ?></td>
-                <td><?php echo htmlspecialchars($funcionario['nome']); ?></td>
-                <td><?php echo htmlspecialchars($funcionario['cpf']); ?></td>
-                <td><?php echo htmlspecialchars($funcionario['email']); ?></td>
-                <td><?php echo htmlspecialchars($funcionario['telefone']); ?></td>
-                <td><?php echo htmlspecialchars($funcionario['t_perfil_id']); ?></td>          
-            </tr>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <tr>
-                <td colspan="6">Nenhum funcionário encontrado.</td>
-            </tr>
-        <?php endif; ?>
-    </table>
-
-    </main>
+    <div class="homeAdm">
+        <main>
+            <h1>Funcionários</h1>
+            <section class="section__btn">
+                <a class="btnAdm" href="#">Novo</a>
+                <a class="btnAdm" href="#" target="_blank">Imprimir</a>
+            </section>
+            <section>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Cpf</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Tipo Perfil</th>
+                    </tr>
+                    <?php if (isset($funcionarios) && is_array($funcionarios)): ?>
+                        <?php foreach ($funcionarios as $funcionario): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($funcionario['id']); ?></td>
+                            <td><?php echo htmlspecialchars($funcionario['nome']); ?></td>
+                            <td><?php echo htmlspecialchars($funcionario['cpf']); ?></td>
+                            <td><?php echo htmlspecialchars($funcionario['email']); ?></td>
+                            <td><?php echo htmlspecialchars($funcionario['telefone']); ?></td>
+                            <td><?php echo htmlspecialchars($funcionario['t_perfil_id']); ?></td>          
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6">Nenhum funcionário encontrado.</td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
