@@ -12,12 +12,54 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Funcionarios</title>
+    <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
+    <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
+    <title>Administração</title>
 </head>
 <body>
+    <header>
+        <nav class="nav-bar">    
+            <div class="logo">
+                <a href="../../pages/home.php">
+                    <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
+                </a>
+            </div>
+            <div class="botao">
+                <button>
+                    <?php 
+                        include '../../pages/verificarLoginAdm.php';
+                    ?>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <section class="BemVindoAdm">
+        <?php 
+        // Verifica se o usuário é um administrador
+        if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'ADMINISTRADOR') {
+            header("Location: ../../controller/admin/adminPainelController.php");
+            exit;
+        }
+
+        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
+        
+        ?>
+    </section>
+    
+    <div class="painelAdm">
+        <nav >
+            <a href="../../controller/admin/adminPainelController.php">Home</a>
+            <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
+            <a href="#">Clientes</a>
+            <a href="#">Produtos</a>
+            <a href="#">Pedidos</a>
+            <a href="#">Relatórios</a>
+        </nav>
+    </div> 
+    <main>
     <h1>Lista de Funcionários</h1>
     <table border="1px">
-        <tr border="1px">
+        <tr>
             <th>ID</th>
             <th>Nome</th>
             <th>Cpf</th>
@@ -42,6 +84,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
             </tr>
         <?php endif; ?>
     </table>
-    <a href="../../controller/admin/adminPainelController.php">Voltar</a>
+
+    </main>
 </body>
 </html>

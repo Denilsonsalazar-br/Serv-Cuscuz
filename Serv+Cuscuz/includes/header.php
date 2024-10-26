@@ -28,7 +28,7 @@
             <div class="login-button">
                 <button>
                     <?php 
-                        include '../pages/velificarLogin.php';
+                        include '../pages/verificarLogin.php';
                     ?>
                 </button> 
             </div>
@@ -47,7 +47,7 @@
             <div class="login-button">
                 <button>
                     <?php 
-                        include '../pages/velificarLogin.php';
+                        include '../pages/verificarLogin.php';
                     ?>
                 </button>       
             </div>

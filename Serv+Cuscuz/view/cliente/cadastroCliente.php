@@ -15,10 +15,18 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>Páginan de Cadastro</title>
 </head>
 <body>
-    <?php 
-        include '../../includes/headerCadastro.php';
-    ?>
-    <main>
+    <header>
+        <nav class="nav-bar">    
+            <div class="logo">
+                <a href="../../pages/home.php">
+                    <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
+                </a>
+            </div>
+            <div class="botao">
+                <button><a href="../../pages/login.php">Login</a></button>
+            </div>
+        </nav>
+    </header>
     <!--<div class="tituloCadastroCliente">
         <h1>Serv+Cuscuz</h1> 
         <h3>"Mais sabor, mais praticidade!"</h3>

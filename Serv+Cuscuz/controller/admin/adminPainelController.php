@@ -1,26 +1,95 @@
 <?php
 session_start();
-
-// Verifica se o usuário é um administrador
-if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'ADMINISTRADOR') {
-    header("Location: ../../controller/admin/adminPainelController.php");
-    exit;
-}
-
-echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
-
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
-    <title>Administrador</title>
+    <title>Administração</title>
 </head>
 <body>
+    <header>
+        <nav class="nav-bar">    
+            <div class="logo">
+                <a href="../../pages/home.php">
+                    <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
+                </a>
+            </div>
+            <div class="botao">
+                <button>
+                    <?php 
+                        include '../../pages/verificarLoginAdm.php';
+                    ?>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <section class="BemVindoAdm">
+        <?php 
+        // Verifica se o usuário é um administrador
+        if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'ADMINISTRADOR') {
+            header("Location: ../../controller/admin/adminPainelController.php");
+            exit;
+        }
+
+        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
+        
+        ?>
+    </section>
     
-    <h1>Painel de Controle do Administrador</h1>
+    <div class="painelAdm">
+        <nav >
+            <a href="#">Home</a>
+            <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
+            <a href="#">Clientes</a>
+            <a href="#">Produtos</a>
+            <a href="#">Pedidos</a>
+            <a href="#">Relatórios</a>
+        </nav>
+    </div> 
+    <main>
+
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!--<h1>Painel de Controle do Administrador</h1>
     <div class="container">
         <div class="funcionario">
             <fieldset>
@@ -46,8 +115,7 @@ echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
             </nav>
             </fieldset>
         </div>   
-    </div> 
+    </div>-->
     
-    <a href="../../pages/logout.php"> Sair</a>
 </body>
 </html>
