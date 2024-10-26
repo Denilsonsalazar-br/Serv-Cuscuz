@@ -41,7 +41,7 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
             exit;
         }
 
-        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
+        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1> <h2>Hoje será um ótimo dia. </h2>";
         
         ?>
     </section>
@@ -55,13 +55,15 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
             <a href="#">Pedidos</a>
             <a href="#">Relatórios</a>
         </nav>
-    </div> 
+    </div>
     <main>
-    <h1>Cadastrar Funcionário</h1>
-    <!--Mensagem de sucesso-->
+     <div class="formCadastroFuncionario"> 
+
+     <h2>Cadastrar Funcionário</h2>
+        <!--Mensagem de sucesso-->
 
     <?php if (isset($_SESSION['sucesso'])): ?>
-        <span style="color:green;">
+        <span style=" width: 100%; color: #ffffff; text-align: center;">
             <?php echo $_SESSION['sucesso']; ?>
         </span>
         <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
@@ -70,14 +72,12 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
     <!--Mensagem de erro-->
 
     <?php if (isset($_SESSION['error'])): ?>
-        <span style="color:red;">
+        <span style=" width: 100%;  color: #ffffff; text-align: center;">
             <?php echo $_SESSION['error']; ?>
         </span>
         <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
     <?php endif; ?>
-     <section> 
-        <fieldset>
-            <legend style="text-align: center;" >Cadastro</legend>
+
             <form method="POST" action="../../controller/funcionario/createFuncionarioController.php">
                 <label for="nome">Nome:</label>
                 <input type="text" name="nome" required>
@@ -98,13 +98,15 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
                 <label for="senha">Senha:</label>
                 <input type="password" name="senha" required>
                 <br><br>
+                <div>
                 <label for="t_perfil_id">Perfil:</label>
-                <select name="t_perfil_id" required>
+                <br>
+                <select class="selecaoPerfil" name="t_perfil_id" required>
                     <option value="1">Administrador</option>
                     <option value="2">Funcionário</option>
                 </select>
                 <br><br>
-                <button type="submit">Cadastrar</button>
+                <button class="formButton" type="submit">Cadastrar Funcionário</button>
 
                     <?php if (isset($_SESSION['success'])): ?>
                         <span style="color:green;">
@@ -120,10 +122,8 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
                         <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
             </form>
-        </fieldset>
-    </section>
-    <a href="../../controller/admin/adminPainelController.php">voltar</a>
 
+    </div>
     </main>
 </body>
 </html>

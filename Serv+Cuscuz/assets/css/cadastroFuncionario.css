@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
 
+body{
+  background-image: url(../img/Cuscuz_Recheado_jerked.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+    
+}
 .BemVindoAdm{
     margin: 10px 0;
     align-items: center;
@@ -36,106 +43,64 @@
         flex-direction: column;
     }
 }
-.homeAdm{
-    justify-content: center;
-    align-items: center;
+main{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.homeAdm main h1 {
-    margin-top: 25px;
-    margin-bottom: 5px;
-    text-align: center;
-    font-size: 2rem;
-  }
-  
-.homeAdm table {
-    font-family: 'Montserrat', sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-.homeAdm td,
-  th {
-    border: 1px solid #ff5733;
-    text-align: left;
-    padding: 8px;
-  }
-  .homeAdm th{
-    font-weight: 400;
-  }
-  
-.homeAdm tr:nth-child(even) {
-    background-color: #dddddd;
-  }
-  
-.homeAdm td a1 {
-    color: #ff5733;
-  
-  }
-.section__btn {
-    align-items: center;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-  }
-.section__btn .btnAdm:hover{
-    background-color: #000000;
-    border-color: 1px solid #ff5733;
+.formCadastroFuncionario{
+  background-color: #ff5733;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  width: 730px;
 }
-  .btnAdm {
-    align-items: center;
-    border: none;
-    padding: 10px;
-    margin: 10px;
-    width: 120px;
-    height: 35px;
-    background-color: #ff5733;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-weight: 500;
-    border-radius: 3px;
-  }
-  .gerenciarAdm{
-    text-align: center;
-  }
- 
-  .tdOperacao {
-    border: 1px solid #ff5733;
-    border-color: none;
-    border: none;
-    display:flex; 
-    justify-content: center;
-    align-items: center;
-  }
+.formCadastroFuncionario span{
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+main h2{
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 30px;
+  font-weight: 500;
+}
+main form {
+  justify-content: center;
+  align-items: left;
+  margin-top: 20px;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+}
 
-  .btnalterar {
-    border: none;
-    width: 100px;
-    padding: 5px 0px;
-    background-color: rgb(1, 165, 42);
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-size: .8rem;
-    font-weight: 500;
-    border-radius: 3px;
-    display: inline-block;  
-  }
-  
-  .btnexcluir {
-    border: none;
-    width: 100px;
-    padding: 5px 0px;
-    background-color: rgb(182, 51, 46);
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-size: .8rem;
-    font-weight: 500;
-    border-radius: 3px;
-    display: inline-block;  
-    margin-left: 0px;
-  }
-  .alterarExcluir{
-    align-items: center;
-  }
+form input {
+  border: 0.5px solid;
+  border-radius: 5px;
+  width: 98%;
+  display: block;
+  padding: 5px;
+}
+form select{
+  text-align: center;
+  padding: 5px;
+}
+.formButton{
+  font-weight: 400;
+  margin: 0 0px;
+  width: 100%;
+  align-items: center;
+padding: 10px 18px;
+}
+.formButton:hover{
+  background-color: #000000;
+  color: #ffffff;
+  border-color: 1px solid #ffffff;
+}
+form label {
+  color: #ffffff;
+  text-align: left;
+  font-weight: 300;
+}
