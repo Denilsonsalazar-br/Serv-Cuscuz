@@ -64,15 +64,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function validarSobrenome(sobrenome) {
-        const regex = /^[a-zA-Zà-úÀ-Ú]+( [a-zA-Zà-úÀ-Ú]+)*$/; // Permite um ou mais nomes separados por espaços
+        const regex = /^[a-zA-Zà-úÀ-Ú]+(?: [a-zA-Zà-úÀ-Ú]+)*$/; // Permite uma ou mais palavras separadas por espaços
         return regex.test(sobrenome);
     }
     
     // Validação de sobrenome ao digitar
     sobrenomeInput.addEventListener('input', function() {
-        const sobrenome = sobrenomeInput.value.trim();
+        const sobrenome = sobrenomeInput.value;
     
-        // Remove a verificação que impede espaços no final
+        // Não interrompe o usuário ao digitar espaços entre palavras
         if (!validarSobrenome(sobrenome)) {
             mensagemErroSobrenome.textContent = 'Sobrenome deve estar completo e conter apenas letras e espaços.';
             sobrenomeInput.setCustomValidity('Escreva seu sobrenome completo.');
@@ -80,9 +80,31 @@ document.addEventListener("DOMContentLoaded", function () {
             mensagemErroSobrenome.textContent = '';
             sobrenomeInput.setCustomValidity('');
         }
+    });
     
-        // Capitaliza as palavras no sobrenome
-        sobrenomeInput.value = capitalizeWords(sobrenome);
+    // Capitalização das palavras após perder o foco no campo
+    sobrenomeInput.addEventListener('blur', function() {
+        sobrenomeInput.value = capitalizeWords(sobrenomeInput.value.trim());
+    });
+    
+    function capitalizeWords(text) {
+        return text.replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function removerEspacosEmail(email) {
+        return email.replace(/\s/g, ''); // Remove todos os espaços em branco
+    }
+    
+    // Validação do campo de email para não aceitar espaços
+    emailInput.addEventListener('input', function() {
+        emailInput.value = removerEspacosEmail(emailInput.value);
+        validarEmailsIguais(); // Chama a função de validação para verificar igualdade entre emails
+    });
+    
+    // Validação do campo de confirmar email para não aceitar espaços
+    confirmarEmailInput.addEventListener('input', function() {
+        confirmarEmailInput.value = removerEspacosEmail(confirmarEmailInput.value);
+        validarEmailsIguais(); // Chama a função de validação para verificar igualdade entre emails
     });
 
     // Validação de emails iguais
