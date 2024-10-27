@@ -5,10 +5,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 body{    
-    background-image: url(../img/Cuscuz_Recheado_jerked.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: #ff5733;
     height: 100%;
 }
 
@@ -75,7 +72,7 @@ footer{
 .containerCadastroCliente input:focus {
     background-color: #ff5733;
     color: #fff;
-    outline: 2px solid #000000;
+    outline: 1px solid #ffffff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
@@ -99,6 +96,7 @@ footer{
     color: #fff;
 }
 .termos{
+    font-style: italic;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -109,6 +107,16 @@ footer{
     width: 20px;
     height: 20px;
     outline: transparent;
+}
+.termos a{
+    margin-left: 2px;
+    color: #000000;
+    font-weight: 300;
+    font-style: italic;
+}
+.termos a:hover{
+    cursor: pointer;
+    color: #ffffff;
 }
 .botaoCadastrarCliente{
     margin-top: 15px;

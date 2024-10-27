@@ -83,7 +83,7 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
             </div>
 
     
-            <form method="POST" action="../../controller/funcionario/createFuncionarioController.php">
+            <form method="POST" action="../../controller/funcionario/createFuncionarioController.php" onsubmit="return validarFormulario()">
                 <label for="nome">Nome:</label>
                 <input type="text" name="nome" required>
                 <br>
@@ -103,7 +103,7 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
                     <?php endif; ?>
                 <br>
                 <label for="telefone">Telefone:</label>
-                <input type="text" name="telefone" required>
+                <input type="text" id="telefone" name="telefone" maxlength="15" required>
                 <br>
                 <label for="senha">Senha:</label>
                 <input type="password" name="senha" required>
@@ -139,5 +139,6 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
 
     </div>
     </main>
+    <script src="../../assets/js/mascaras.js"></script>
 </body>
 </html>

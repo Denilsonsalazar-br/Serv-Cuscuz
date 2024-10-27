@@ -72,7 +72,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <?php endif; ?>
                 <br>
                 <label for="telefone">Telefone:</label>
-                <input type="text" id="telefone" name="telefone" placeholder="Digite seu telefone" required>
+                <input type="text" id="telefone" name="telefone" placeholder="Digite seu telefone" maxlength="15" required>
                 <span id="mensagemErroTelefone" class="erro"></span>
                 <br>
                 <label for="email">Email:</label>
@@ -123,6 +123,6 @@ if (session_status() === PHP_SESSION_NONE) {
         //include '../../includes/footer.php';
     ?>
 </footer>-->
-<script href="../../assets/js/mascaras.js"></script>
+<script src="../../assets/js/mascaras.js"></script>
 </body>
 </html>

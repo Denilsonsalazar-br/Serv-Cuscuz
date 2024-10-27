@@ -63,27 +63,25 @@ document.addEventListener("DOMContentLoaded", function () {
         nomeInput.value = capitalizeWords(nome);
     });
 
-    // Validação de sobrenome
     function validarSobrenome(sobrenome) {
-        const regex = /^[a-zA-Zà-úÀ-Ú\s]{2,}(?: [a-zA-Zà-úÀ-Ú\s]{2,})*$/;
+        const regex = /^[a-zA-Zà-úÀ-Ú]+( [a-zA-Zà-úÀ-Ú]+)*$/; // Permite um ou mais nomes separados por espaços
         return regex.test(sobrenome);
     }
-
+    
     // Validação de sobrenome ao digitar
     sobrenomeInput.addEventListener('input', function() {
         const sobrenome = sobrenomeInput.value.trim();
-        if (sobrenome.endsWith(" ")) {
-            mensagemErroSobrenome.textContent = '';
-            sobrenomeInput.setCustomValidity('');
-            return;
-        }
+    
+        // Remove a verificação que impede espaços no final
         if (!validarSobrenome(sobrenome)) {
-            mensagemErroSobrenome.textContent = 'Sobrenome deve estar completo.';
+            mensagemErroSobrenome.textContent = 'Sobrenome deve estar completo e conter apenas letras e espaços.';
             sobrenomeInput.setCustomValidity('Escreva seu sobrenome completo.');
         } else {
             mensagemErroSobrenome.textContent = '';
             sobrenomeInput.setCustomValidity('');
         }
+    
+        // Capitaliza as palavras no sobrenome
         sobrenomeInput.value = capitalizeWords(sobrenome);
     });
 
@@ -92,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (emailInput.value !== confirmarEmailInput.value) {
             mensagemErroEmailDiferente.textContent = 'Os emails não coincidem.';
             confirmarEmailInput.setCustomValidity('Os emails não coincidem.');
-            confirmarEmailInput.focus(); // Focar no campo de confirmação
         } else {
             mensagemErroEmailDiferente.textContent = '';
             confirmarEmailInput.setCustomValidity('');
@@ -107,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (senhaInput.value !== confirmarSenhaInput.value) {
             mensagemErroSenhaDiferente.textContent = 'As senhas não coincidem.';
             confirmarSenhaInput.setCustomValidity('As senhas não coincidem.');
-            confirmarSenhaInput.focus(); // Focar no campo de confirmação
         } else {
             mensagemErroSenhaDiferente.textContent = '';
             confirmarSenhaInput.setCustomValidity('');
