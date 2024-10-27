@@ -12,6 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/cadastroCliente.css">
+    <link rel="stylesheet" href="../../assets/css/mensagens.css">
     <title>Páginan de Cadastro</title>
 </head>
 <body>
@@ -34,24 +35,24 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="containerCadastroCliente">
                 <div class="msg">
                 <span>
-                    <!--Mensagem de sucesso-->
-                    <?php if (isset($_SESSION['sucesso'])): ?>
-                        <span style="color:green;">
-                            <?php echo $_SESSION['sucesso']; ?>
-                        </span>
-                        <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
-                    <?php endif; ?>
+                <!-- Mensagem de sucesso -->
+                <?php if (isset($_SESSION['sucesso'])): ?>
+                    <div class="msgsucesso">
+                        <?php echo $_SESSION['sucesso']; ?>
+                    </div>
+                    <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
+                <?php endif; ?>
 
-                    <!--Mensagem de erro-->
-
-                    <?php if (isset($_SESSION['error'])): ?>
-                        <span style="color:red;">
-                            <?php echo $_SESSION['error']; ?>
-                        </span>
-                        <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
-                    <?php endif; ?>
+                <!-- Mensagem de erro -->
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="msgerro">
+                        <?php echo $_SESSION['error']; ?>
+                    </div>
+                    <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
+                <?php endif; ?>
                 </span>
             </div>
+
             <form method="POST" action="../../controller/cliente/createClienteController.php" onsubmit="return validarFormulario()">
 
                 <label for="nome">Nome:</label>
@@ -65,6 +66,10 @@ if (session_status() === PHP_SESSION_NONE) {
                 <label for="cpf">CPF:</label>
                 <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" maxlength="14" required>
                 <span id="mensagemErroCpf" class="erro"></span>
+                    <?php if (isset($_SESSION['cpf_error'])): ?>
+                        <span style="color:#ffffff;"><?php echo $_SESSION['cpf_error']; ?></span>
+                        <?php unset($_SESSION['cpf_error']); // Limpa a mensagem após exibi-la ?>
+                    <?php endif; ?>
                 <br>
                 <label for="telefone">Telefone:</label>
                 <input type="text" id="telefone" name="telefone" placeholder="Digite seu telefone" required>
@@ -73,6 +78,11 @@ if (session_status() === PHP_SESSION_NONE) {
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Digite seu email." required>
                 <span id="mensagemErroEmail" class="erro"></span>
+                <?php if (isset($_SESSION['email_error'])): ?>
+                        <span style="color:#ffffff;"><?php echo $_SESSION['email_error']; ?></span>
+                        <?php unset($_SESSION['email_error']); 
+                        // Limpa a mensagem após exibi-la ?>
+                    <?php endif; ?>
                 <br>
                 <label for="confirmarEmail">Confirme o Email:</label>
                 <input type="email" id="confirmarEmail" name="confirmarEmail" placeholder="Por favor, confirme seu email" required>
@@ -81,6 +91,10 @@ if (session_status() === PHP_SESSION_NONE) {
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" placeholder="Insira sua senha" required>
                 <span id="mensagemErroSenha" class="erro"></span>
+                    <?php if (isset($_SESSION['senha_error'])): ?>
+                        <span style="color: #ffffff;"><?php echo $_SESSION['senha_error']; ?></span>
+                        <?php unset($_SESSION['senha_error']); // Limpa a mensagem após exibi-la ?>
+                    <?php endif; ?>
                 <br>
                 <label for="confirmarSenha">Confirme a Senha:</label>
                 <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" required>

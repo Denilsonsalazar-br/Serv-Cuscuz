@@ -1,6 +1,6 @@
-<?php
-//var_dump($_POST);
+<!--pare aqui-->
 
+<?php
 // Habilitar exibição de erros
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -14,39 +14,81 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . "../../../model/DAO/funcionarioDAO.php";
 require_once __DIR__ . "../../../model/DTO/funcionarioDTO.php";
 require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
+require_once __DIR__ . "../../../model/DTO/validacoes/validarEmail.php";
+require_once __DIR__ . "../../../model/DTO/validacoes/validarSenha.php"; 
 
-    $nomeFuncionario = strip_tags($_POST["nome"]);
-    $cpfFuncionario = strip_tags($_POST["cpf"]);
-    $emailFuncionario = strip_tags($_POST["email"]);
-    $telefoneFuncionario = strip_tags($_POST["telefone"]);
-    $senhaFuncionario = password_hash($_POST["senha"],PASSWORD_DEFAULT);
-    $t_perfil_idFuncionario = strip_tags($_POST["t_perfil_id"]);
+// Função para coletar e sanitizar dados de entrada com strip_tags
+function getPostData($key) {
+    return isset($_POST[$key]) ? strip_tags($_POST[$key]) : null;
+}
 
-    $funcionarioDTO = new FuncionarioDTO();
-    $funcionarioDTO->setNome($nomeFuncionario);
-    $funcionarioDTO->setCpf($cpfFuncionario);
-    $funcionarioDTO->setEmail($emailFuncionario);
-    $funcionarioDTO->setTelefone($telefoneFuncionario);
-    $funcionarioDTO->setSenha($senhaFuncionario);
-    $funcionarioDTO->setPerfilId($t_perfil_idFuncionario);
+// Coletar os dados do formulário
+$nomeFuncionario = getPostData("nome");
+$cpfFuncionario = getPostData("cpf");
+$emailFuncionario = getPostData("email");
+$telefoneFuncionario = getPostData("telefone");
+$senhaFuncionario = isset($_POST["senha"]) ? $_POST["senha"] : null; // a senha só vai ser criptografada após a verificação.
+$t_perfil_idFuncionario = getPostData("t_perfil_id");
 
-    $funcionarioDAO = new FuncionarioDAO();
-    $sucesso = $funcionarioDAO->cadastrarFuncionario($funcionarioDTO);
-    //var_dump($funcionarioDTO);
-
-    if ($sucesso) {
-        $_SESSION['sucesso'] = "Funcionário cadastrado com sucesso!";
-    } else {
-        $_SESSION['error'] = "Aconteceu algum imprevisto no processo de cadastro. <br> tente novamente!";
-    }
-    // Redirecionar de volta para a página de criação do funcionário
+// Verificação para campos obrigatórios
+if (!$nomeFuncionario || !$cpfFuncionario || !$emailFuncionario || !$telefoneFuncionario || !$senhaFuncionario || !$t_perfil_idFuncionario) {
+    $_SESSION['error'] = "Todos os campos são obrigatórios.";
     header("Location: ../../view/admin/cadastroFuncionarios.php");
     exit();
+}
 
-    // Validação do CPF
-    if (!ValidadorCPF::validar($funcionario->getCpf())) {
-        $_SESSION['cpf_error'] = "CPF inválido.<br> Por favor, forneça um CPF verdadeiro!";
-        echo "Vai redirecionar..."; // Para verificar se essa linha é executada
-        header("Location: ../../view/admin/cadastroFuncionarios.php");
-        exit();
-    }
+// Validação do CPF
+//var_dump($cpfFuncionario); 
+if (!ValidadorCPF::validar($cpfFuncionario)) {
+    $_SESSION['cpf_error'] = "CPF inválido. Por favor, forneça um CPF verdadeiro!";
+    header("Location: ../../view/admin/cadastroFuncionarios.php");
+    exit();
+}
+
+// Verifica se o CPF já está cadastrado
+$funcionarioDAO = new FuncionarioDAO();
+if (ValidadorCPF::cpfJaCadastradoFuncionario($cpfFuncionario, $funcionarioDAO->pdo)) {
+    $_SESSION['cpf_error'] = "CPF já está cadastrado!";
+    header("Location: ../../view/admin/cadastroFuncionarios.php");
+    exit();
+}
+
+// Verifica se o e-mail já está cadastrado
+if (ValidadorEmail::emailJaCadastradoFuncionario($emailFuncionario, $funcionarioDAO->pdo)) {
+    $_SESSION['email_error'] = "E-mail já está cadastrado!";
+    header("Location: ../../view/admin/cadastroFuncionarios.php");
+    exit();
+}
+
+// Validação da senha
+$senhaValidacao = validarSenha($senhaFuncionario);
+if ($senhaValidacao !== true) {
+    $_SESSION['senha_error'] = $senhaValidacao;
+    header("Location: ../../view/admin/cadastroFuncionarios.php");
+    exit();
+}
+
+// Criptografa a senha após validação
+$senhaFuncionario = password_hash($senhaFuncionario, PASSWORD_DEFAULT);
+
+// Criar objeto FuncionarioDTO e definir os dados
+$funcionarioDTO = new FuncionarioDTO();
+$funcionarioDTO->setNome($nomeFuncionario);
+$funcionarioDTO->setCpf($cpfFuncionario);
+$funcionarioDTO->setEmail($emailFuncionario);
+$funcionarioDTO->setTelefone($telefoneFuncionario);
+$funcionarioDTO->setSenha($senhaFuncionario);
+$funcionarioDTO->setPerfilId($t_perfil_idFuncionario);
+
+// Salvar dados no banco de dados
+$sucesso = $funcionarioDAO->cadastrarFuncionario($funcionarioDTO);
+
+if ($sucesso) {
+    $_SESSION['sucesso'] = "Funcionário cadastrado com sucesso!";
+} else {
+    $_SESSION['error'] = "Aconteceu algum imprevisto no processo de cadastro.<br> Tente novamente!";
+}
+
+// Redirecionar de volta para a página de criação do funcionário
+header("Location: ../../view/admin/cadastroFuncionarios.php");
+exit();

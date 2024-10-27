@@ -1,0 +1,17 @@
+.msgsucesso {
+    color: #28a745; /* Verde */
+    background-color: #d4edda; /* Fundo verde-claro */
+    border: 1px solid #28a745; /* Borda verde mais escura */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.msgerro {
+    color: #dc3545; /* Vermelho */
+    background-color: #ffffff; /* Fundo vermelho-claro */
+    border: 1px solid #dc3545; /* Borda vermelha mais escura */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}

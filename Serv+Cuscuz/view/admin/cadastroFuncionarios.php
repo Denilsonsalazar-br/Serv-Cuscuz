@@ -14,6 +14,7 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/cadastroFuncionario.css">
+    <link rel="stylesheet" href="../../assets/css/mensagens.css">
     <title>Cadastro de Funcionário</title>
 </head>
 <body>
@@ -61,44 +62,56 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
      <div class="formCadastroFuncionario"> 
 
      <h2>Cadastrar Funcionário</h2>
-        <!--Mensagem de sucesso-->
+            <div class="msg">
+                <span>
+                <!-- Mensagem de sucesso -->
+                <?php if (isset($_SESSION['sucesso'])): ?>
+                    <div class="msgsucesso">
+                        <?php echo $_SESSION['sucesso']; ?>
+                    </div>
+                    <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
+                <?php endif; ?>
 
-    <?php if (isset($_SESSION['sucesso'])): ?>
-        <span style=" width: 100%; color: #ffffff; text-align: center;">
-            <?php echo $_SESSION['sucesso']; ?>
-        </span>
-        <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
-    <?php endif; ?>
+                <!-- Mensagem de erro -->
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="msgerro">
+                        <?php echo $_SESSION['error']; ?>
+                    </div>
+                    <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
+                <?php endif; ?>
+                </span>
+            </div>
 
-    <!--Mensagem de erro-->
-
-    <?php if (isset($_SESSION['error'])): ?>
-        <span style=" width: 100%;  color: #ffffff; text-align: center;">
-            <?php echo $_SESSION['error']; ?>
-        </span>
-        <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
-    <?php endif; ?>
-
+    
             <form method="POST" action="../../controller/funcionario/createFuncionarioController.php">
                 <label for="nome">Nome:</label>
                 <input type="text" name="nome" required>
-                <br><br>
+                <br>
                 <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" name="cpf" required>
+                <input type="text" id="cpf" name="cpf" maxlength="14" required>
                     <?php if (isset($_SESSION['cpf_error'])): ?>
-                        <span style="color:red;"><?php echo $_SESSION['cpf_error']; ?></span>
+                        <span style="color:#ffffff;"><?php echo $_SESSION['cpf_error']; ?></span>
                         <?php unset($_SESSION['cpf_error']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
-                <br><br>
+                <br>
                 <label for="email">Email:</label>
                 <input type="email" name="email" required>
-                <br><br>
+                    <?php if (isset($_SESSION['email_error'])): ?>
+                        <span style="color:#ffffff;"><?php echo $_SESSION['email_error']; ?></span>
+                        <?php unset($_SESSION['email_error']); 
+                        // Limpa a mensagem após exibi-la ?>
+                    <?php endif; ?>
+                <br>
                 <label for="telefone">Telefone:</label>
                 <input type="text" name="telefone" required>
-                <br><br>
+                <br>
                 <label for="senha">Senha:</label>
                 <input type="password" name="senha" required>
-                <br><br>
+                    <?php if (isset($_SESSION['senha_error'])): ?>
+                        <span style="color: #ffffff;"><?php echo $_SESSION['senha_error']; ?></span>
+                        <?php unset($_SESSION['senha_error']); // Limpa a mensagem após exibi-la ?>
+                    <?php endif; ?>
+                <br>
                 <div class="tipoPerfil">
                 <label for="t_perfil_id">Perfil:</label>
                     <select class="selecaoPerfil" name="t_perfil_id" required>
@@ -106,18 +119,18 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
                         <option value="2">Funcionário</option>
                     </select>
                 </div>
-                <br><br>
+                <br>
                 <button class="formButton" type="submit">Cadastrar Funcionário</button>
 
                     <?php if (isset($_SESSION['success'])): ?>
-                        <span style="color:green;">
+                        <span style="color:green; background-color: #ffffff;">
                             <?php echo $_SESSION['success']; ?>
                         </span>
                         <?php unset($_SESSION['success']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['error'])): ?>
-                        <span style="color:red;">
+                        <span style="color:red; background-color: #ffffff;">
                             <?php echo $_SESSION['error']; ?>
                         </span>
                         <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>

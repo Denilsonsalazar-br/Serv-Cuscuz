@@ -1,0 +1,29 @@
+- linha 20, creatFuncionarioController.php
+
+function getPostData($key):
+
+A função getPostData recebe um único parâmetro, $key, que representa o nome do dado que você deseja obter de $_POST.
+Por exemplo, se você quiser acessar o valor de $_POST["nome"], chamará getPostData("nome").
+isset($_POST[$key]):
+
+isset() verifica se o índice $key existe em $_POST.
+Isso evita os erros de "Undefined array key" quando o índice não existe, retornando false se $key não for encontrado.
+strip_tags($_POST[$key]):
+
+Se o índice $key existir, strip_tags() é aplicado ao valor de $_POST[$key] para remover quaisquer tags HTML que possam ter sido inseridas.
+Isso ajuda a proteger contra XSS (Cross-Site Scripting), impedindo que tags HTML ou scripts sejam processados na aplicação.
+null:
+
+Se $key não existe em $_POST, a função retorna null como valor padrão. Isso evita que o código gere um erro ao tentar acessar chaves não definidas e permite que você trate essas entradas como valores nulos.
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------

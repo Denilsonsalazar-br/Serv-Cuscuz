@@ -58,4 +58,5 @@ class EnderecoDTO{
     public function setComplemento($complemento) {
         $this->complemento = $complemento;
     }
+    
 }

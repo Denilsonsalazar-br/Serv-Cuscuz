@@ -54,7 +54,7 @@ main{
   border-radius: 10px;
   width: 650px;
 }
-.formCadastroFuncionario span{
+main .formCadastroFuncionario span{
   width: 100%;
   text-align: center;
   padding: 10px 0;
