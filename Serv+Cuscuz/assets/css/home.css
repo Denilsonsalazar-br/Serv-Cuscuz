@@ -1,22 +1,18 @@
 body{
-
-    background-color: #000000;
+    background-color: #ff5733;
 }
 main{
     height: 100vh;
-}
-footer{
-    margin-top: 100%;
 }
 
 .containerHome{
     width: 100%;
 }
-@media (max-width: 730px) {
+@media (max-width: 768px) {
     header{
         width: 100%;
     }
 }
-@media (max-width: 390px){
+@media (max-width: 320px){
     
 }

@@ -58,7 +58,8 @@
     width: 100%;
     display: flex;
 }
-.painelAdm nav {   
+.painelAdm nav {  
+    margin-top: 10px; 
     width: 100%;
     overflow: hidden;
     background-color: #ff5733;

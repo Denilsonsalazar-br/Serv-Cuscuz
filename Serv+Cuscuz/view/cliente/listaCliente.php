@@ -33,22 +33,10 @@ require_once  "../../controller/cliente/readClienteController.php";
             </div>
         </nav>
     </header>
-    <section class="BemVindoAdm">
-        <?php 
-        // Verifica se o usuário é um administrador
-        if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'ADMINISTRADOR') {
-            header("Location: ../../controller/admin/adminPainelController.php");
-            exit;
-        }
-
-        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
-        
-        ?>
-    </section>
     
     <div class="painelAdm">
         <nav>
-            <a href="#">Home</a>
+            <a href="../../controller/admin/adminPainelController.php">Home</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
             <a href="../../view/cliente/listaCliente.php">Clientes</a>
             <a href="#">Produtos</a>
@@ -56,6 +44,20 @@ require_once  "../../controller/cliente/readClienteController.php";
             <a href="#">Relatórios</a>
         </nav>
     </div> 
+
+    <!--<section class="BemVindoAdm">
+        <?php 
+        // Verifica se o usuário é um administrador
+        /*if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'ADMINISTRADOR') {
+            header("Location: ../../controller/admin/adminPainelController.php");
+            exit;
+        }
+
+        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";*/
+        
+        ?>
+    </section>-->
+
     <div class="homeAdm">
     <main>
         <h1>Clientes</h1>

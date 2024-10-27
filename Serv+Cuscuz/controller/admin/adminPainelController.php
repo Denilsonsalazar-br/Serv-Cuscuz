@@ -27,6 +27,16 @@ session_start();
             </div>
         </nav>
     </header>
+    <div class="painelAdm">
+        <nav >
+            <a href="#">Home</a>
+            <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
+            <a href="../../view/cliente/listaCliente.php">Clientes</a>
+            <a href="#">Produtos</a>
+            <a href="#">Pedidos</a>
+            <a href="#">Relatórios</a>
+        </nav>
+    </div>
     <section class="BemVindoAdm">
         <?php 
         // Verifica se o usuário é um administrador
@@ -39,17 +49,6 @@ session_start();
         
         ?>
     </section>
-    
-    <div class="painelAdm">
-        <nav >
-            <a href="#">Home</a>
-            <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
-            <a href="../../view/cliente/listaCliente.php">Clientes</a>
-            <a href="#">Produtos</a>
-            <a href="#">Pedidos</a>
-            <a href="#">Relatórios</a>
-        </nav>
-    </div> 
     <main>
 
 

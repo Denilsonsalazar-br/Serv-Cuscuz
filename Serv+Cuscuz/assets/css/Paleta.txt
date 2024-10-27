@@ -9,3 +9,9 @@ Laranja: #ff5733
 
 fontes:
 Montserrat
+
+Quebras de linha:
+
+Móvel: 320px; 
+Tablet: 768px;
+Desktop: 1025px;

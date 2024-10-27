@@ -33,19 +33,6 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
             </div>
         </nav>
     </header>
-    <section class="BemVindoAdm">
-        <?php 
-        // Verifica se o usuário é um administrador
-        if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'ADMINISTRADOR') {
-            header("Location: ../../controller/admin/adminPainelController.php");
-            exit;
-        }
-
-        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
-        
-        ?>
-    </section>
-    
     <div class="painelAdm">
         <nav >
             <a href="../../controller/admin/adminPainelController.php">Home</a>
@@ -55,7 +42,20 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
             <a href="#">Pedidos</a>
             <a href="#">Relatórios</a>
         </nav>
-    </div> 
+    </div>
+    <!--<section class="BemVindoAdm">
+        <?php 
+        // Verifica se o usuário é um administrador
+       /* if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'ADMINISTRADOR') {
+            header("Location: ../../controller/admin/adminPainelController.php");
+            exit;
+        }
+
+        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";*/
+        
+        ?>
+    </section>-->
+     
     <div class="homeAdm">
         <main>
             <h1>Funcionários</h1>
