@@ -13,6 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/cadastroCliente.css">
     <link rel="stylesheet" href="../../assets/css/mensagens.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
     <title>Páginan de Cadastro</title>
 </head>
 <body>
@@ -117,12 +118,38 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
 </main>
 
-<!--<footer>
-    <link rel="stylesheet" href="../../assets/css/footer.css">
-    <?php 
-        //include '../../includes/footer.php';
-    ?>
-</footer>-->
+<footer>
+        <div class="containerFooter">
+            <ul>
+                <h2>Serv+Cuscuz</h2>
+                <p>"Mais sabor, mais praticidade!"</p>
+                <div class="redes-sociais">
+                    <a href="#"><img src="../../assets/rede-social/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="../../assets/rede-social/whatsapp.png" alt="Whatsapp"></a>
+                    <a href="#"><img src="../../assets/rede-social/instagram.png" alt="Instagram"></a>
+                </div>
+            </ul>
+            <ul>
+                <h2>Link</h2>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Cardápio</a></li>
+                <li><a href="#">Sobre</a></li>
+            </ul>
+            <ul>
+                <h2>Suporte</h2>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Como funciona</a></li>
+                <li><a href="#">Comunicando</a></li>
+            </ul>
+            <ul>
+                <h2>Nossos contatos</h2>
+                <li><a href="#">+55(61)99268-9834</a></li>
+                <li><a href="#">servmaiscuscuz@gmail.com</a></li>
+                <li><a href="#">Brasil</a></li>
+            </ul>
+        </div>
+
+    </footer>
 <script src="../../assets/js/mascaras.js"></script>
 </body>
 </html>
