@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+
+.BemVindoAdm{
+    margin: 10px 0;
+    align-items: center;
+    text-align: center;
+}
+
+.painelAdm{
+    width: 100%;
+    display: flex;
+}
+.painelAdm nav {  
+    margin-top: 10px; 
+    width: 100%;
+    overflow: hidden;
+    background-color: #ff5733;
+  }
+  
+.painelAdm nav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 18px;
+    text-decoration: none;
+  }
+  
+.painelAdm nav a:hover {
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 500;
+  }
+@media screen and (max-width: 730px) {
+   .painelAdm{
+        display: flex;
+        flex-direction: column;
+    }
+}

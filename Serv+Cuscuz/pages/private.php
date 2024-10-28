@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($user['tipo_perfil'] == 'ADMINISTRADOR') {
                 header("Location: ../controller/admin/adminPainelController.php");
             } else {
-                header("Location: ../controller/funcionario/paginaHomeFuncionario.php");
+                header("Location: ../view/funcionario/paginaHomeFuncionario.php");
             }
             exit;
         } else {

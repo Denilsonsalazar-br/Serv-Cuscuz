@@ -1,3 +1,9 @@
+<?php
+// Iniciar a sessão se não estiver iniciada
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

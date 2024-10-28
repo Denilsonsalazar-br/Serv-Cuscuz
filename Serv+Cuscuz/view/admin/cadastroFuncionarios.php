@@ -1,4 +1,3 @@
-
 <?php
 // Iniciar a sessão se não estiver iniciada
 if (session_status() === PHP_SESSION_NONE) {
