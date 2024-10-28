@@ -7,26 +7,7 @@
     <title></title>
 </head>
 <body>
-    <!--<footer>
-    <div class="containerFooter">
-        <div class="direitoAutoral">
-            <h1>Direitos autorais</h1>
-        </div>
-        <div class="redes-social">
-                <ul class="lista">
-                    <li class="item-list">Facebook</li>
-                    <li class="item-list">Instagram</li>
-                    <li class="item-list">Tik Tok</li>
-                    <li class="item-list">Whatsapp</li>
-                </ul>
-        </div>
-        <div class="suporte">
-            <h1>Suporte</h1>
-        </div>
-    </div>
-    </footer>-->
-
-
+    
     <footer>
         <div class="containerFooter">
             <ul>
