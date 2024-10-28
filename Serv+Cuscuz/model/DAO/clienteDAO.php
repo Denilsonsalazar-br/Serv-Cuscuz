@@ -66,7 +66,7 @@ class ClienteDAO{
     }
 
     public function atualizarCliente(ClienteDTO $clienteDTO) {
-        $sql = "UPDATE t_cliente SET nome = ?, sobrenome = ?, cpf = ?, email = ?, telefone = ?, senha = ?, WHERE id = ?";
+        $sql = "UPDATE t_cliente SET nome = ?, sobrenome = ?, cpf = ?, email = ?, telefone = ?, senha = ? WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         
         $stmt->bindValue(1, $clienteDTO->getNome());
@@ -80,7 +80,7 @@ class ClienteDAO{
         return $stmt->execute();
          // Retorna verdadeiro se a atualização for bem-sucedida
     }
-    public function excluirCliente($id) {
+    public function deleteCliente($id) {
         $sql = "DELETE FROM t_cliente WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([$id]); 

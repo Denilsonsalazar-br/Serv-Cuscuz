@@ -62,7 +62,21 @@ require_once  "../../controller/cliente/readClienteController.php";
     <main>
         <h1>Clientes</h1>
             <section class="section__btn">
-                <a class="btnAdm" href="#" target="_blank">Imprimir</a>
+                <div class="alertaSucessoError">
+                    <?php if (isset($_SESSION['msg'])): ?>
+                        <div class="alerta success">
+                            <?php echo htmlspecialchars($_SESSION['msg']); ?>
+                        </div>
+                        <?php unset($_SESSION['msg']); // Remove a mensagem da sessão ?>
+                    <?php elseif (isset($_SESSION['error'])): ?>
+                        <div class="alerta error">
+                            <?php echo htmlspecialchars($_SESSION['error']); ?>
+                        </div>
+                        <?php unset($_SESSION['error']); // Remove a mensagem da sessão ?>
+                    <?php endif; ?>
+                </div>
+                    <a class="btnAdm" href="#" target="_blank">Imprimir</a>
+
             </section>
         <section>
             <table>
@@ -86,7 +100,7 @@ require_once  "../../controller/cliente/readClienteController.php";
                         <td><?php echo htmlspecialchars($cliente['telefone']); ?></td>
                         <td class="tdOperacao">
                                 <div class="alterarExcluir">
-                                    <a class="btnexcluir" href="#?id=<?= $usuario['id']; ?>" onclick="return confirm('Deseja confirmar a operação?');">Excluir</a>
+                                    <a class="btnexcluir" href="../../controller/cliente/deleteClienteController.php?id=<?= $cliente['id']; ?>" onclick="return confirm('Deseja confirmar a operação?');">Excluir</a>
                                 </div>
                         </td>       
                     </tr>

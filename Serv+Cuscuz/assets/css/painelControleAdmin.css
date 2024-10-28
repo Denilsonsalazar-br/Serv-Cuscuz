@@ -120,10 +120,17 @@
     color: #ff5733;
   
   }
+.section__btnFuncionario{
+  align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
 .section__btn {
     align-items: center;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-bottom: 10px;
   }
 .section__btn .btnAdm:hover{
@@ -187,4 +194,28 @@
   }
   .alterarExcluir{
     align-items: center;
+  }
+  .alertaSucessoError{
+    width: 100%;
+    align-items: left;
+  }
+  .alerta {
+    background-color: #ff5733;
+    width: 30%;
+    justify-content: left;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .alerta.success {
+      color: #ff5733;
+      background-color: #ffffff;
+  }
+
+  .alerta.error {
+      color: #ff5733;
+      background-color: #ffffff;
   }

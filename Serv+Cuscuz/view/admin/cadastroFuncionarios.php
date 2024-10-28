@@ -84,34 +84,46 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
 
     
             <form method="POST" action="../../controller/funcionario/createFuncionarioController.php" onsubmit="return validarFormulario()">
-                <label for="nome">Nome:</label>
-                <input type="text" name="nome" required>
-                <br>
+                <label for="nomeCompleto">Nome Completo:</label>
+                <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Digite o nome completo do funcionário." required>
+                <span id="mensagemErroNomeCompleto" class="erro"></span>
                 <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" name="cpf" maxlength="14" required>
+                <input type="text" id="cpf" name="cpf" placeholder="Digite o CPF do funcionário" maxlength="14" required>
+                <span id="mensagemErroCpf" class="erro"></span>
                     <?php if (isset($_SESSION['cpf_error'])): ?>
                         <span style="color:#ffffff;"><?php echo $_SESSION['cpf_error']; ?></span>
                         <?php unset($_SESSION['cpf_error']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
                 <br>
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" placeholder="Digite o telefone do funcionário" maxlength="15" required>
+                <span id="mensagemErroTelefone" class="erro"></span>
+                <br>
                 <label for="email">Email:</label>
-                <input type="email" name="email" required>
-                    <?php if (isset($_SESSION['email_error'])): ?>
+                <input type="email" id="email" name="email" placeholder="Digite o email do funcionário." required>
+                <span id="mensagemErroEmail" class="erro"></span>
+                <?php if (isset($_SESSION['email_error'])): ?>
                         <span style="color:#ffffff;"><?php echo $_SESSION['email_error']; ?></span>
                         <?php unset($_SESSION['email_error']); 
                         // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
                 <br>
-                <label for="telefone">Telefone:</label>
-                <input type="text" id="telefone" name="telefone" maxlength="15" required>
+                <label for="confirmarEmail">Confirme o Email:</label>
+                <input type="email" id="confirmarEmail" name="confirmarEmail" placeholder="Por favor, confirme o email" required>
+                <span id="mensagemErroEmailDiferente" class="erro"></span>
                 <br>
                 <label for="senha">Senha:</label>
-                <input type="password" name="senha" required>
+                <input type="password" id="senha" name="senha" placeholder="Insira a senha do funcionário" required>
+                <span id="mensagemErroSenha" class="erro"></span>
                     <?php if (isset($_SESSION['senha_error'])): ?>
                         <span style="color: #ffffff;"><?php echo $_SESSION['senha_error']; ?></span>
                         <?php unset($_SESSION['senha_error']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
                 <br>
+                <label for="confirmarSenha">Confirme a Senha:</label>
+                <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme a senha" required>
+                <span id="mensagemErroSenhaDiferente" class="erro"></span>
+                <br><br>
                 <div class="tipoPerfil">
                 <label for="t_perfil_id">Perfil:</label>
                     <select class="selecaoPerfil" name="t_perfil_id" required>
@@ -139,6 +151,6 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
 
     </div>
     </main>
-    <script src="../../assets/js/mascaras.js"></script>
+    <script src="../../assets/js/mascarasFuncionario.js"></script>
 </body>
 </html>

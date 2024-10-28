@@ -28,6 +28,9 @@ main{
     justify-content: center;
     flex-direction: column;
 }
+.container h1 {
+    text-transform: uppercase;
+}
 /*animação
 
 .loader {

@@ -59,7 +59,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
     <div class="homeAdm">
         <main>
             <h1>Funcionários</h1>
-            <section class="section__btn">
+            <section class="section__btnFuncionario">
                 <a class="btnAdm" href="../../view/admin/cadastroFuncionarios.php">Novo</a>
                 <a class="btnAdm" href="#" target="_blank">Imprimir</a>
             </section>
