@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             exit;
         } else {
-            echo "Senha incorreta";
+            echo "<div class='mensagem-erro'>Senha incorreta</div>";
         }
     } else {
         // Se não for funcionário, verifica se é um cliente
@@ -60,10 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 header("Location: ../pages/home.php");
                 exit;
             } else {
-                echo "Senha incorreta";
+                echo "<div class='mensagem-erro'>Senha incorreta</div>";
             }
         } else {
-            echo "Este email não está cadastrado no sistema!";
+            echo "<div class='mensagem-erro'>Este email não está cadastrado no sistema!</div>";
         }
     }
 }

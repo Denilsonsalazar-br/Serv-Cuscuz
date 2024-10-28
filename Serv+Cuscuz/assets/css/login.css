@@ -68,6 +68,18 @@ main{
       transform: translate( -100%, -50%) scale(0)
     }
   }*/
+  .mensagem-erro {
+    color: #ffffff;
+    background-color: transparent;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 300;
+}
+
 
 .container form{
     background-color: transparent;

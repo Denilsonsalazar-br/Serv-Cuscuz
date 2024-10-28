@@ -29,6 +29,11 @@ function getPostData($key) {
     $telefoneCliente = getPostData("telefone");
     $senhaCliente = isset($_POST["senha"]) ? $_POST["senha"] : null; // a senha só vai ser criptografada após a verificação.
 
+    // Normaliza o CPF removendo pontos e traços
+    $cpfCliente = str_replace(['.', '-'], '', $cpfCliente);
+
+    $telefoneCliente = str_replace(['(', ')',' ','-'], '', $telefoneCliente);
+
     //var_dump($nomeCliente, $sobrenomeCliente, $cpfCliente, $emailCliente, $telefoneCliente, $senhaCliente);
     //exit(); 
 

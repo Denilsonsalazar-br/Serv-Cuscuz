@@ -37,7 +37,7 @@ class ClienteDAO{
         
     }
     //Verifica se o CPF já está cadastrado
-    public function cpfJaCadastrado($cpf) {
+    public function cpfJaCadastradoCliente($cpf) {
         $sql = "SELECT COUNT(*) FROM t_cliente WHERE cpf = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$cpf]);

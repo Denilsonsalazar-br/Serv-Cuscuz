@@ -12,9 +12,9 @@ $result = $dao->deleteCliente($id);
 
 
 if ($result > 0) {
-    $_SESSION['msg'] = "Perfil excluído com sucesso!";
+    $_SESSION['msg'] = "Perfil do cliente excluído com sucesso!";
 } else {
-    $_SESSION['error'] = "Não foi possível excluir o perfil!";
+    $_SESSION['error'] = "Não foi possível excluir o perfil cliente!";
 }
 
 header('Location: ../../view/admin/listaCliente.php');
