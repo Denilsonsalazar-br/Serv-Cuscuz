@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function validarSobrenome(sobrenome) {
-        const regex = /^[a-zA-Zà-úÀ-Ú]+(?: [a-zA-Zà-úÀ-Ú]+)*$/; // Permite uma ou mais palavras separadas por espaços
+        const regex = /^[a-zA-Zà-úÀ-Ú\s]+$/; // Permitir letras e espaços
         return regex.test(sobrenome);
     }
     
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
         // Não interrompe o usuário ao digitar espaços entre palavras
         if (!validarSobrenome(sobrenome)) {
-            mensagemErroSobrenome.textContent = 'Sobrenome deve estar completo e conter apenas letras e espaços.';
+            mensagemErroSobrenome.textContent = 'Sobrenome deve estar completo e conter apenas letras e espaços entre palavras.';
             sobrenomeInput.setCustomValidity('Escreva seu sobrenome completo.');
         } else {
             mensagemErroSobrenome.textContent = '';

@@ -37,7 +37,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
         <nav >
             <a href="../../controller/admin/adminPainelController.php">Home</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
-            <a href="../../view/cliente/listaCliente.php">Clientes</a>
+            <a href="../../view/admin/listaCliente.php">Clientes</a>
             <a href="#">Produtos</a>
             <a href="#">Pedidos</a>
             <a href="#">Relatórios</a>
@@ -60,6 +60,19 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
         <main>
             <h1>Funcionários</h1>
             <section class="section__btnFuncionario">
+            <div class="alertaSucessoError">
+                    <?php if (isset($_SESSION['msgFuncionario'])): ?>
+                        <div class="alerta success">
+                            <?php echo htmlspecialchars($_SESSION['msgFuncionario']); ?>
+                        </div>
+                        <?php unset($_SESSION['msgFuncionario']); // Remove a mensagem da sessão ?>
+                    <?php elseif (isset($_SESSION['errorFuncionario'])): ?>
+                        <div class="alerta error">
+                            <?php echo htmlspecialchars($_SESSION['errorFuncionario']); ?>
+                        </div>
+                        <?php unset($_SESSION['errorFuncionario']); // Remove a mensagem da sessão ?>
+                    <?php endif; ?>
+                </div>
                 <a class="btnAdm" href="../../view/admin/cadastroFuncionarios.php">Novo</a>
                 <a class="btnAdm" href="#" target="_blank">Imprimir</a>
             </section>
@@ -85,8 +98,8 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
                             <td><?php echo htmlspecialchars($funcionario['t_perfil_id']); ?></td> 
                             <td class="tdOperacao">
                                 <div class="alterarExcluir">
-                                <a class="btnalterar" href="edit.php?id=<?= $usuario['id']; ?>">Alterar</a>
-                                <a class="btnexcluir" href="delete.php?id=<?= $usuario['id']; ?>" onclick="return confirm('Deseja confirmar a operação?');">Excluir</a>
+                                <a class="btnalterar" href="../../controller/funcionario/editFuncionarioController.php?id=<?= $funcionario['id']; ?>">Alterar</a>
+                                <a class="btnexcluir" href="../../controller/funcionario/deleteFuncionarioController.php?id=<?= $funcionario['id']; ?>" onclick="return confirm('Deseja confirmar a operação?');">Excluir</a>
                                 </div>
                             </td>         
                         </tr>

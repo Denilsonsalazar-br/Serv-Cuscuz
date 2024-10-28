@@ -93,9 +93,10 @@ if (session_status() === PHP_SESSION_NONE) {
                 <input type="password" id="senha" name="senha" placeholder="Insira sua senha" required>
                 <span id="mensagemErroSenha" class="erro"></span>
                     <?php if (isset($_SESSION['senha_error'])): ?>
-                        <span style="color: #ffffff;"><?php echo $_SESSION['senha_error']; ?></span>
+                        <span style="width: 100%; color: #000000;"><?php echo $_SESSION['senha_error']; ?></span>
                         <?php unset($_SESSION['senha_error']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
+                <br>
                 <br>
                 <label for="confirmarSenha">Confirme a Senha:</label>
                 <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" required>

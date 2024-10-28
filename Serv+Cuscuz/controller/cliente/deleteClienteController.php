@@ -17,4 +17,4 @@ if ($result > 0) {
     $_SESSION['error'] = "Não foi possível excluir o perfil!";
 }
 
-header('Location: ../../view/cliente/listaCliente.php');
+header('Location: ../../view/admin/listaCliente.php');

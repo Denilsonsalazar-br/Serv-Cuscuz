@@ -31,7 +31,7 @@ session_start();
         <nav >
             <a href="#">Home</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
-            <a href="../../view/cliente/listaCliente.php">Clientes</a>
+            <a href="../../view/admin/listaCliente.php">Clientes</a>
             <a href="#">Produtos</a>
             <a href="#">Pedidos</a>
             <a href="#">Relatórios</a>

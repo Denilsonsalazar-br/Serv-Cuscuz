@@ -15,4 +15,4 @@ $clienteDAO = new ClienteDAO();
 $clientes = $clienteDAO->listarCliente(); 
 
 // Exibir a lista de Clientes
-require_once __DIR__ . "../../../view/cliente/listaCliente.php";
+require_once __DIR__ . "../../../view/admin/listaCliente.php";

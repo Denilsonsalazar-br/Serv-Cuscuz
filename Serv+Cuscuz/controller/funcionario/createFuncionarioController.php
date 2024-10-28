@@ -30,12 +30,20 @@ $telefoneFuncionario = getPostData("telefone");
 $senhaFuncionario = isset($_POST["senha"]) ? $_POST["senha"] : null; // a senha só vai ser criptografada após a verificação.
 $t_perfil_idFuncionario = getPostData("t_perfil_id");
 
-// Verificação para campos obrigatórios
+/*Verificação para campos obrigatórios
+if (!$nomeFuncionario || !$cpfFuncionario || !$emailFuncionario || !$telefoneFuncionario || !$senhaFuncionario || !$t_perfil_idFuncionario) {
+    $_SESSION['error'] = "Todos os campos são obrigatórios.";
+    header("Location: ../../view/admin/cadastroFuncionarios.php");
+    exit();
+}*/
+
+// Verificação apenas dos campos obrigatórios para o banco de dados
 if (!$nomeFuncionario || !$cpfFuncionario || !$emailFuncionario || !$telefoneFuncionario || !$senhaFuncionario || !$t_perfil_idFuncionario) {
     $_SESSION['error'] = "Todos os campos são obrigatórios.";
     header("Location: ../../view/admin/cadastroFuncionarios.php");
     exit();
 }
+
 
 // Validação do CPF
 //var_dump($cpfFuncionario); 

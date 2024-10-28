@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const nomeCompletoInput = document.getElementById('nomeCompleto');
+    const nomeInput = document.getElementById('nome');
     const cpfInput = document.getElementById('cpf');
     const telefoneInput = document.getElementById('telefone');
     const emailInput = document.getElementById('email');
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const senhaInput = document.getElementById('senha');
     const confirmarSenhaInput = document.getElementById('confirmarSenha');
 
-    const mensagemErroNomeCompleto = document.getElementById('mensagemErroNomeCompleto');
+    const mensagemErroNome = document.getElementById('mensagemErroNome');
     const mensagemErroEmailDiferente = document.getElementById('mensagemErroEmailDiferente');
     const mensagemErroSenhaDiferente = document.getElementById('mensagemErroSenhaDiferente');
 
@@ -38,36 +38,32 @@ document.addEventListener("DOMContentLoaded", function () {
         this.value = maskTelefone(this.value);
     });
 
-    // Impedir entrada de números no campo de nome completo
-    nomeCompletoInput.addEventListener('keypress', function (event) {
-        const char = String.fromCharCode(event.which);
-        if (!/[a-zA-Zà-úÀ-Ú\s]/.test(char)) {
-            event.preventDefault();
-        }
-    });
-
-    // Validação e formatação do nome completo
-    function validarNomeCompleto(nomeCompleto) {
+    // Validação e formatação do nome
+    function validarNome(nome) {
         const regex = /^[a-zA-Zà-úÀ-Ú\s]+$/; // Permitir letras e espaços
-        return regex.test(nomeCompleto);
+        return regex.test(nome);
     }
 
     function capitalizeWords(text) {
         return text.replace(/\b\w/g, char => char.toUpperCase());
     }
 
-    nomeCompletoInput.addEventListener('input', function () {
-        const nomeCompleto = nomeCompletoInput.value.trim();
+    nomeInput.addEventListener('input', function () {
+        let nome = nomeInput.value;
 
-        if (!validarNomeCompleto(nomeCompleto)) {
-            mensagemErroNomeCompleto.textContent = 'O nome completo deve conter apenas letras e espaços.';
-            nomeCompletoInput.setCustomValidity('O nome completo deve conter apenas letras e espaços.');
+        // Remove caracteres inválidos, permitindo apenas letras e espaços
+        nome = nome.replace(/[^a-zA-Zà-úÀ-Ú\s]/g, '');
+
+        // Validação de erro
+        if (!validarNome(nome)) {
+            mensagemErroNome.textContent = 'O nome deve conter apenas letras e espaço entre palavras.';
+            nomeInput.setCustomValidity('O nome deve conter apenas letras e espaço entre palavras.');
         } else {
-            mensagemErroNomeCompleto.textContent = '';
-            nomeCompletoInput.setCustomValidity('');
+            mensagemErroNome.textContent = '';
+            nomeInput.setCustomValidity('');
         }
         
-        nomeCompletoInput.value = capitalizeWords(nomeCompleto);
+        nomeInput.value = capitalizeWords(nome);
     });
 
     // Validação para e-mails iguais
@@ -111,21 +107,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Validação final do formulário
     function validarFormulario() {
-        if (!validarNomeCompleto(nomeCompletoInput.value)) {
-            alert('Nome completo inválido.');
-            nomeCompletoInput.focus();
+        if (!validarNome(nomeInput.value)) {
+            alert('Nome inválido.');
             return false;
         }
 
         if (emailInput.value !== confirmarEmailInput.value) {
             alert('Os emails não coincidem.');
-            confirmarEmailInput.focus();
             return false;
         }
 
         if (senhaInput.value !== confirmarSenhaInput.value) {
             alert('As senhas não coincidem.');
-            confirmarSenhaInput.focus();
             return false;
         }
 

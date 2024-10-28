@@ -29,7 +29,7 @@ function validarSenha($senha, $config = []) {
 
     // Verificar a complexidade da senha
     if (!preg_match($regex, $senha)) {
-        return 'A senha não atende aos requisitos de segurança.';
+        return 'A senha não atende aos requisitos de segurança. "No minio 8 caracteres, entre eles uma letra maiúscula, uma minúscula, um número, e um caractere especial." ';
     }
 
     // Verificar se a senha não contém o nome de usuário

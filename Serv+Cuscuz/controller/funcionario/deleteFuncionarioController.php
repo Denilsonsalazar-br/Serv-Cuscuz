@@ -1,29 +1,20 @@
 <?php
-// Iniciar a sessão
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start(); 
 
-// Incluir os arquivos necessários
 require_once __DIR__ . "../../../model/DAO/funcionarioDAO.php";
 
-// Verificar se o ID do funcionário foi passado
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
-    $idFuncionario = $_POST['id'];
-    $funcionarioDAO = new FuncionarioDAO();
-    $sucesso = $funcionarioDAO->excluirFuncionario($idFuncionario); // Implemente esse método no DAO
+# cria a variavel $id com valor igual a 1. 
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT) ?? 0;
 
-    if ($sucesso) {
-        $_SESSION['success'] = "Funcionário excluído com sucesso!";
-    } else {
-        $_SESSION['error'] = "Aconteceu algum imprevisto no processo de exclusão.";
-    }
+$dao = new funcionarioDAO();
+$result = $dao->deleteFuncionario($id);
 
-    // Redirecionar para a lista de funcionários
-    header("Location: ../../controller/funcionario/readFuncionarioController.php");
-    exit();
+
+
+if ($result > 0) {
+    $_SESSION['msgFuncionario'] = "Funcionário excluído com sucesso!";
 } else {
-    $_SESSION['error'] = "Método inválido.";
-    header("Location: ../../controller/funcionario/readFuncionarioController.php");
-    exit();
+    $_SESSION['errorFuncionario'] = "Não foi possível excluir o funcionário!";
 }
+
+header('Location: ../../view/admin/listaFuncionarios.php');

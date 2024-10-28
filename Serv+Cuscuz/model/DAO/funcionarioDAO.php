@@ -83,7 +83,7 @@ class FuncionarioDAO {
          // Retorna verdadeiro se a atualização for bem-sucedida
     }
     
-    public function excluirFuncionario($id) {
+    public function deleteFuncionario($id) {
         $sql = "DELETE FROM t_funcionario WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([$id]); 
