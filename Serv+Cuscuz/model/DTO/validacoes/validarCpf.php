@@ -11,12 +11,16 @@ class ValidadorCPF
         return false;
     }
 
+    // Verifica se todos os dígitos são iguais, o que não é um CPF válido
+    if (preg_match('/^(\d)\1*$/', $cpf)) {
+        return false;
+    }
+
     // Calcula os dígitos verificadores
     for ($t = 9; $t < 11; $t++) {
         for ($d = 0, $p = 0; $p < $t; $p++) {
             $d += $cpf[$p] * (($t + 1) - $p);
         }
-        //cálculo dos dígitos verificadores de um CPF
         $d = ((10 * $d) % 11) % 10;
         if ($cpf[$t] != $d) {
             return false;
@@ -24,6 +28,7 @@ class ValidadorCPF
     }
     return true;
 }
+
 
 
     public static function cpfJaCadastradoFuncionario($cpf, $pdo)

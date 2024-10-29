@@ -57,7 +57,6 @@ function getPostData($key) {
         header("Location: ../../view/cliente/cadastroCliente.php");
         exit();
     }
-
     // Verifica se o e-mail já está cadastrado
     if (ValidadorEmail::emailJaCadastradoCliente($emailCliente, $clienteDAO->pdo)) {
         $_SESSION['email_error'] = "E-mail já está cadastrado!";
