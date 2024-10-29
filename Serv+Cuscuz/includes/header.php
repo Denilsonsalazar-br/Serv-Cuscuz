@@ -42,7 +42,7 @@
                 <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Quem somos?</a></li>
                 <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
-                <li class="nav-item"><a href="#" class="nav-link">Alguma coisa</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
             </ul>
             <div class="login-button">
                 <button>

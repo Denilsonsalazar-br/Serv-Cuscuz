@@ -13,8 +13,8 @@
             <div class="carrossel-item active">
                 <img src="../assets/img/Cuscuz_normal.jpg" alt="Cuscuz Normal">
                 <div class="carrossel-caption">
-                    <h2>Cuscuz Normal</h2>
-                    <p>Excelente opção para quem ama as raízes nordestinas.</p>
+                    <h2>Cuscuz Simples</h2>
+                    <p>Boa opção para quem ama as raízes nordestinas.</p>
                 </div>
             </div>
             <div class="carrossel-item">
@@ -27,7 +27,7 @@
             <div class="carrossel-item">
                 <img src="../assets/img/Cuscuz_Recheado_jerked.jpg" alt="Cuscuz recheado">
                 <div class="carrossel-caption">
-                    <h2>Cuscuz recheado</h2>
+                    <h2>Cuscuz com carne</h2>
                     <p>Esse serve como uma refeição.</p>
                 </div>
             </div>
