@@ -37,6 +37,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <a href="../../view/funcionario/paginaHomeFuncionario.php">Home</a>
             <a href="#">Produtos</a>
             <a href="#">Pedidos</a>
+            <a href="#">Estoque</a>
             <a href="#">Relatórios</a>
         </nav>
     </div> 

@@ -90,7 +90,7 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
                 <input type="text" id="cpf" name="cpf" placeholder="Digite o CPF do funcionário" maxlength="14" required>
                 <span id="mensagemErroCpf" class="erro"></span>
                     <?php if (isset($_SESSION['cpf_error'])): ?>
-                        <span style="color:#ffffff;"><?php echo $_SESSION['cpf_error']; ?></span>
+                        <span style="color:#000000;"><?php echo $_SESSION['cpf_error']; ?></span>
                         <?php unset($_SESSION['cpf_error']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
                 <label for="telefone">Telefone:</label>
@@ -100,7 +100,7 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
                 <input type="email" id="email" name="email" placeholder="Digite o email do funcionário." required>
                 <span id="mensagemErroEmail" class="erro"></span>
                 <?php if (isset($_SESSION['email_error'])): ?>
-                        <span style="color:#ffffff;"><?php echo $_SESSION['email_error']; ?></span>
+                        <span style="color:#000000;"><?php echo $_SESSION['email_error']; ?></span>
                         <?php unset($_SESSION['email_error']); 
                         // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
@@ -111,7 +111,7 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
                 <input type="password" id="senha" name="senha" placeholder="Insira a senha do funcionário" required>
                 <span id="mensagemErroSenha" class="erro"></span>
                     <?php if (isset($_SESSION['senha_error'])): ?>
-                        <span style="color: #ffffff;"><?php echo $_SESSION['senha_error']; ?></span>
+                        <span style="color: #000000;"><?php echo $_SESSION['senha_error']; ?></span>
                         <?php unset($_SESSION['senha_error']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
                 <label for="confirmarSenha">Confirme a Senha:</label>

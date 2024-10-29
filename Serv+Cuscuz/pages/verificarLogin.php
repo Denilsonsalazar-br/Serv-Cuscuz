@@ -1,18 +1,11 @@
 <?php
-// Verifica se a sessão está ativa e se o usuário está logado
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$isLoggedIn = isset($_SESSION['id']);
-?>
-
-<?php if ($isLoggedIn): ?>
-    <div class="login-button">
-        <a href="../pages/logout.php">Sair</a>
-    </div>
-<?php else: ?>
-    <div class="login-button">
-        <a href="../pages/login.php">Login</a>
-    </div>
-<?php endif; ?>
+if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
+    echo '<img src="../assets/img/usuario.png" alt="Ícone do usuário" class="user-icon">';
+    echo '<span class="user-name">' . htmlspecialchars($_SESSION['nome']) . '</span>';
+} else {
+    echo '<a href="../pages/login.php" class="login-link">Login</a>';
+}

@@ -24,13 +24,16 @@
                 <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
                 </ul>
             </div>
-            
-            <div class="login-button">
-                <button>
-                    <?php 
-                        include '../pages/verificarLogin.php';
-                    ?>
-                </button> 
+
+            <div class="containerPerfilNome">
+                <div class="nomeperfil">
+                    <?php include '../pages/verificarLogin.php'; ?>
+                </div>
+                <div class="login-button">
+                    <?php if (isset($_SESSION['id'])): ?>
+                        <button><a href="../pages/logout.php">Sair</a></button>
+                    <?php endif; ?>
+                </div>
             </div>
 
             <div class="mobile-menu-icon">
@@ -44,12 +47,13 @@
                 <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
                 <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
             </ul>
+            <div class="nomeperfil">
+                    <?php include '../pages/verificarLogin.php'; ?>
+            </div>
             <div class="login-button">
-                <button>
-                    <?php 
-                        include '../pages/verificarLogin.php';
-                    ?>
-                </button>       
+                    <?php if (isset($_SESSION['id'])): ?>
+                        <button><a href="../pages/logout.php">Sair</a></button>
+                    <?php endif; ?>
             </div>
         </div>
     </header>

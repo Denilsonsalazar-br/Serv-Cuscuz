@@ -68,7 +68,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" maxlength="14" required>
                 <span id="mensagemErroCpf" class="erro"></span>
                     <?php if (isset($_SESSION['cpf_error'])): ?>
-                        <span style="color:#ffffff;"><?php echo $_SESSION['cpf_error']; ?></span>
+                        <span style="color:#000000;"><?php echo $_SESSION['cpf_error']; ?></span>
                         <?php unset($_SESSION['cpf_error']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
                 <br>
@@ -80,7 +80,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <input type="email" id="email" name="email" placeholder="Digite seu email." required>
                 <span id="mensagemErroEmail" class="erro"></span>
                 <?php if (isset($_SESSION['email_error'])): ?>
-                        <span style="color:#ffffff;"><?php echo $_SESSION['email_error']; ?></span>
+                        <span style="color:#000000;"><?php echo $_SESSION['email_error']; ?></span>
                         <?php unset($_SESSION['email_error']); 
                         // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
