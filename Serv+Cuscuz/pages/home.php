@@ -23,31 +23,11 @@ if (session_status() === PHP_SESSION_NONE) {
                 include '../includes/carrossel.php';
             ?>
         </section>
-    <main>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-        <main style="text-align: center; color: #ffffff">
-
+        <main style="text-align: center; color: #000000">
 
         <h1>Conteudo home</h1>
 
         </main>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     </main>
     <footer>
         <?php
