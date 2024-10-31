@@ -86,6 +86,7 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
                 <label for="nome">Nome Completo:</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite o nome completo do funcionário." required>
                 <span id="mensagemErroNome" class="erro"></span>
+
                 <label for="cpf">CPF:</label>
                 <input type="text" id="cpf" name="cpf" placeholder="Digite o CPF do funcionário" maxlength="14" required>
                 <span id="mensagemErroCpf" class="erro"></span>
@@ -93,20 +94,24 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
                         <span style="color:#000000;"><?php echo $_SESSION['cpf_error']; ?></span>
                         <?php unset($_SESSION['cpf_error']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
+
                 <label for="telefone">Telefone:</label>
                 <input type="text" id="telefone" name="telefone" placeholder="Digite o telefone do funcionário" maxlength="15" required>
                 <span id="mensagemErroTelefone" class="erro"></span>
+
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Digite o email do funcionário." required>
                 <span id="mensagemErroEmail" class="erro"></span>
-                <?php if (isset($_SESSION['email_error'])): ?>
+                    <?php if (isset($_SESSION['email_error'])): ?>
                         <span style="color:#000000;"><?php echo $_SESSION['email_error']; ?></span>
                         <?php unset($_SESSION['email_error']); 
                         // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
+
                 <label for="confirmarEmail">Confirme o Email:</label>
                 <input type="email" id="confirmarEmail" name="confirmarEmail" placeholder="Por favor, confirme o email" required>
                 <span id="mensagemErroEmailDiferente" class="erro"></span>
+                
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" placeholder="Insira a senha do funcionário" required>
                 <span id="mensagemErroSenha" class="erro"></span>

@@ -59,28 +59,70 @@ class FuncionarioDAO {
         }
     }
 
-    public function buscarFuncionarioPorId($id) {
+    public function buscarFuncionarioPorId($idFuncionario) {
+        try {
+            $sql = "SELECT * FROM t_funcionario WHERE id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $idFuncionario);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($data) {
+                $funcionarioDTO = new FuncionarioDTO();
+                $funcionarioDTO->setId($data['id']);
+                $funcionarioDTO->setNome($data['nome']);
+                $funcionarioDTO->setCpf($data['cpf']);
+                $funcionarioDTO->setEmail($data['email']);
+                $funcionarioDTO->setTelefone($data['telefone']);
+                $funcionarioDTO->setPerfilId($data['t_perfil_id']);
+                return $funcionarioDTO;
+            }
+            
+            return null;
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+    
+    /*public function buscarFuncionarioPorId($id) {
         $sql = "SELECT * FROM t_funcionario WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetchObject(FuncionarioDTO::class);
          // Retorna um objeto FuncionarioDTO
-    }
+    }*/
     
     public function atualizarFuncionario(FuncionarioDTO $funcionarioDTO) {
-        $sql = "UPDATE t_funcionario SET nome = ?, cpf = ?, email = ?, telefone = ?, senha = ?, t_perfil_id = ? WHERE id = ?";
+        // Construir a parte da query de atualização
+        $sql = "UPDATE t_funcionario SET 
+                    nome = ?, 
+                    cpf = ?, 
+                    email = ?, 
+                    telefone = ?," . 
+                    ( !empty($funcionarioDTO->getSenha()) ? " senha = ?," : "") . 
+                    " t_perfil_id = ? 
+                WHERE id = ?";
+    
         $stmt = $this->pdo->prepare($sql);
         
+        // Bind dos parâmetros
         $stmt->bindValue(1, $funcionarioDTO->getNome());
         $stmt->bindValue(2, $funcionarioDTO->getCpf());
         $stmt->bindValue(3, $funcionarioDTO->getEmail());
         $stmt->bindValue(4, $funcionarioDTO->getTelefone());
-        $stmt->bindValue(5, $funcionarioDTO->getSenha());
-        $stmt->bindValue(6, $funcionarioDTO->getPerfilId());
-        $stmt->bindValue(7, $funcionarioDTO->getId());
+    
+        // Bind da senha somente se não estiver vazia
+        if (!empty($funcionarioDTO->getSenha())) {
+            $stmt->bindValue(5, $funcionarioDTO->getSenha());
+            $stmt->bindValue(6, $funcionarioDTO->getPerfilId());
+            $stmt->bindValue(7, $funcionarioDTO->getId());
+        } else {
+            $stmt->bindValue(5, $funcionarioDTO->getPerfilId());
+            $stmt->bindValue(6, $funcionarioDTO->getId());
+        }
     
         return $stmt->execute();
-         // Retorna verdadeiro se a atualização for bem-sucedida
+        // Retorna verdadeiro se a atualização for bem-sucedida
     }
     
     public function deleteFuncionario($id) {

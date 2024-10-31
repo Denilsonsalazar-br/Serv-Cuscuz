@@ -1,0 +1,40 @@
+/* Estilo base para as mensagens */
+.msg {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px; /* Bordas arredondadas */
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Fonte moderna */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Sombra leve */
+}
+
+/* Mensagem de sucesso */
+.msgsucesso {
+    background-color: #e8f5e9; /* Verde muito claro */
+    color: #2e7d32; /* Verde escuro */
+    border-left: 5px solid #388e3c; /* Borda lateral verde */
+}
+
+/* Mensagem de erro */
+.msgerro {
+    background-color: #ffebee; /* Vermelho muito claro */
+    color: #c62828; /* Vermelho escuro */
+    border-left: 5px solid #d32f2f; /* Borda lateral vermelha */
+}
+
+/* Mensagem em destaque, ao passar o mouse */
+.msgsucesso:hover, .msgerro:hover {
+    opacity: 0.9; /* Levemente transparente ao passar o mouse */
+}
+
+/* Estilo do texto */
+.msg h4 {
+    margin: 0; /* Remove margens do título */
+    font-size: 16px; /* Tamanho da fonte do título */
+    font-weight: bold; /* Título em negrito */
+}
+
+/* Texto do corpo */
+.msg p {
+    margin: 5px 0 0; /* Margem do texto */
+    font-size: 14px; /* Tamanho da fonte do corpo */
+}
