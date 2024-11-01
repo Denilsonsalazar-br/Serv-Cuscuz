@@ -1,9 +1,11 @@
-/* Estilo base para as mensagens */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+ /*Estilo base para as mensagens de sucesso e erro*/
 .msg {
-    padding: 15px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
     border-radius: 4px; /* Bordas arredondadas */
-    font-family: 'Helvetica Neue', Arial, sans-serif; /* Fonte moderna */
+    font-family: 'Montserrat', sans-serif; 
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Sombra leve */
 }
 

@@ -123,7 +123,7 @@
 .section__btnFuncionario{
   align-items: center;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     margin-bottom: 10px;
   }
 

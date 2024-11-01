@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
+require_once __DIR__ . "../../../model/DTO/validacoes/validarSenha.php";
 require_once __DIR__ . "../../../controller/funcionario/editFuncionarioController.php";
 ?>
 <!DOCTYPE html>
@@ -47,25 +48,6 @@ require_once __DIR__ . "../../../controller/funcionario/editFuncionarioControlle
     <div class="formCadastroFuncionario"> 
         <h2>Editar informações do funcionário</h2>
 
-            <!-- Mensagem de sucesso -->
-        <?php if (isset($_SESSION['successeditFun'])): ?>
-            <div class="msg msgsucesso">
-                <h4>Sucesso!</h4>
-                <p><?php echo $_SESSION['successeditFun']; ?></p>
-            </div>
-            <?php unset($_SESSION['successeditFun']); // Limpa a mensagem após exibi-la ?>
-        <?php endif; ?>
-
-        <!-- Mensagem de erro -->
-        <?php if (isset($_SESSION['erroreditFun'])): ?>
-            <div class="msg msgerro">
-                <h4>Erro!</h4>
-                <p><?php echo $_SESSION['erroreditFun']; ?></p>
-            </div>
-            <?php unset($_SESSION['erroreditFun']); // Limpa a mensagem após exibi-la ?>
-        <?php endif; ?>
-
-
         <form action="../../controller/funcionario/editFuncionarioController.php" method="POST" onsubmit="return validarFormulario()">
             <!--ID do funcionário oculto-->
             <input type="hidden" name="id" value="<?php echo $funcionario->getId(); ?>">
@@ -89,10 +71,12 @@ require_once __DIR__ . "../../../controller/funcionario/editFuncionarioControlle
             <label>Email:</label>
             <input type="email" id="email" name="email" value="<?php echo $funcionario->getEmail(); ?>" required>
             <span id="mensagemErroEmail" class="erro"></span>
-            <?php if (isset($_SESSION['email_error'])): ?>
-                <span class="erro"><?php echo $_SESSION['email_error']; ?></span>
-                <?php unset($_SESSION['email_error']); ?>
-            <?php endif; ?>
+                <?php if (isset($_SESSION['email_error'])): ?>
+                    <span class="erro">
+                        <?php echo $_SESSION['email_error']; ?>
+                    </span>
+                    <?php unset($_SESSION['email_error']); ?>
+                <?php endif; ?>
 
             <label>Confirme o Email:</label>
             <input type="email" id="confirmarEmail" name="confirmarEmail" placeholder="Por favor, confirme o email" required>

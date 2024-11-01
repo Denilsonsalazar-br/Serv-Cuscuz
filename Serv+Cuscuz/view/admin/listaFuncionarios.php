@@ -14,6 +14,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
+    <link rel="stylesheet" href="../../assets/css/mensagens/mensagens.css">
     <title>Administração</title>
 </head>
 <body>
@@ -72,6 +73,25 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
                         </div>
                         <?php unset($_SESSION['errorFuncionario']); // Remove a mensagem da sessão ?>
                     <?php endif; ?>
+
+                    <!--mensagens para o retono da edição do funcionario-->
+                    <?php if (isset($_SESSION['successeditFun'])): ?>
+                        <div class="msg msgsucesso">
+                            <h4>Sucesso!</h4>
+                            <p><?php echo $_SESSION['successeditFun']; ?></p>
+                        </div>
+                        <?php unset($_SESSION['successeditFun']); ?>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['erroreditFun'])): ?>
+                        <div class="msg msgerro">
+                            <h4>Erro!</h4>
+                            <p><?php echo $_SESSION['erroreditFun']; ?></p>
+                        </div>
+                        <?php unset($_SESSION['erroreditFun']); ?>
+                    <?php endif; ?>
+
+
                 </div>
                 <a class="btnAdm" href="../../view/admin/cadastroFuncionarios.php">Novo</a>
                 <a class="btnAdm" href="#" target="_blank">Imprimir</a>
@@ -98,7 +118,11 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
                             <td><?php echo htmlspecialchars($funcionario['t_perfil_id']); ?></td> 
                             <td class="tdOperacao">
                                 <div class="alterarExcluir">
-                                <a class="btnalterar" href="../../controller/funcionario/editFuncionarioController.php?id=<?= $funcionario['id']; ?>">Alterar</a>
+                                    
+                                <!--token usado para codificar o id na url-->
+
+                                <a class="btnalterar" href="../../controller/funcionario/editFuncionarioController.php?token=<?= base64_encode($funcionario['id']); ?>">Alterar</a>
+
                                 <a class="btnexcluir" href="../../controller/funcionario/deleteFuncionarioController.php?id=<?= $funcionario['id']; ?>" onclick="return confirm('Deseja confirmar a operação?');">Excluir</a>
                                 </div>
                             </td>         

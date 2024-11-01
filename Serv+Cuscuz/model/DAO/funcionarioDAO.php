@@ -21,7 +21,7 @@ class FuncionarioDAO {
             $cpfFuncionario = $funcionarioDTO->getCpf();
             $emailFuncionario = $funcionarioDTO->getEmail();
             $telefoneFuncionario =$funcionarioDTO->getTelefone();
-            $senhaFuncionario = $funcionarioDTO->getSenha();
+            $senhaFuncionario = password_hash($funcionarioDTO->getSenha(), PASSWORD_DEFAULT); // Use password_hash para segurança
             $t_perfil_idFuncionario = $funcionarioDTO->getPerfilId();
 
             $stmt->bindValue(1, $nomeFuncionario);
@@ -34,15 +34,22 @@ class FuncionarioDAO {
             $retorno = $stmt->execute();
             return $retorno;
         } catch (PDOException $exc) {
-            echo $exc->getMessage();
+            throw new Exception("Erro ao cadastrar funcionário: " . $exc->getMessage()); // Lança exceção em vez de ecoar
         }
     }  
+
     // Verificar se o CPF já está cadastrado
-     public function cpfJaCadastrado($cpf) {
-        $sql = "SELECT COUNT(*) FROM t_funcionario WHERE cpf = ?";
+    public function cpfJaCadastrado($cpf, $idFuncionario = null) {
+        $sql = "SELECT COUNT(*) FROM t_funcionario WHERE cpf = ?" . ($idFuncionario ? " AND id != ?" : "");
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$cpf]);
-            // Retorna verdadeiro se o CPF já existe
+        $stmt->execute($idFuncionario ? [$cpf, $idFuncionario] : [$cpf]);
+        return $stmt->fetchColumn() > 0; 
+    }
+    
+    public function verificarEmailExistente($email, $idFuncionario) {
+        $sql = "SELECT COUNT(*) FROM t_funcionario WHERE email = ? AND id != ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$email, $idFuncionario]);
         return $stmt->fetchColumn() > 0; 
     }
 
@@ -51,11 +58,10 @@ class FuncionarioDAO {
             $sql = "SELECT * FROM t_funcionario"; 
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna um array associativo
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); 
         } catch (PDOException $e) {
-            // Debug: Se houver um erro na consulta
             echo "Erro: " . $e->getMessage();
-            return []; // Retorna um array vazio em caso de erro
+            return []; 
         }
     }
 
@@ -83,52 +89,47 @@ class FuncionarioDAO {
             echo $exc->getMessage();
         }
     }
-    
-    /*public function buscarFuncionarioPorId($id) {
-        $sql = "SELECT * FROM t_funcionario WHERE id = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$id]);
-        return $stmt->fetchObject(FuncionarioDTO::class);
-         // Retorna um objeto FuncionarioDTO
-    }*/
-    
+
     public function atualizarFuncionario(FuncionarioDTO $funcionarioDTO) {
-        // Construir a parte da query de atualização
+        // Verifica se o e-mail já está em uso
+        if ($this->verificarEmailExistente($funcionarioDTO->getEmail(), $funcionarioDTO->getId())) {
+            throw new Exception("O e-mail já está em uso por outro funcionário.");
+        }
+    
+        // Monta a query de atualização
         $sql = "UPDATE t_funcionario SET 
                     nome = ?, 
                     cpf = ?, 
                     email = ?, 
                     telefone = ?," . 
-                    ( !empty($funcionarioDTO->getSenha()) ? " senha = ?," : "") . 
+                    (!empty($funcionarioDTO->getSenha()) ? " senha = ?," : "") . 
                     " t_perfil_id = ? 
                 WHERE id = ?";
-    
+        
         $stmt = $this->pdo->prepare($sql);
         
-        // Bind dos parâmetros
+        // Preenche os valores da query
         $stmt->bindValue(1, $funcionarioDTO->getNome());
         $stmt->bindValue(2, $funcionarioDTO->getCpf());
         $stmt->bindValue(3, $funcionarioDTO->getEmail());
         $stmt->bindValue(4, $funcionarioDTO->getTelefone());
     
-        // Bind da senha somente se não estiver vazia
+        // Se a senha não estiver vazia, adiciona a nova senha hashada
         if (!empty($funcionarioDTO->getSenha())) {
-            $stmt->bindValue(5, $funcionarioDTO->getSenha());
+            $stmt->bindValue(5, $funcionarioDTO->getSenha()); // Usa a senha já hashada
             $stmt->bindValue(6, $funcionarioDTO->getPerfilId());
             $stmt->bindValue(7, $funcionarioDTO->getId());
         } else {
             $stmt->bindValue(5, $funcionarioDTO->getPerfilId());
             $stmt->bindValue(6, $funcionarioDTO->getId());
         }
-    
+        
         return $stmt->execute();
-        // Retorna verdadeiro se a atualização for bem-sucedida
     }
-    
+     
     public function deleteFuncionario($id) {
         $sql = "DELETE FROM t_funcionario WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([$id]); 
-        // Retorna verdadeiro se a exclusão for bem-sucedida
     }
 }
