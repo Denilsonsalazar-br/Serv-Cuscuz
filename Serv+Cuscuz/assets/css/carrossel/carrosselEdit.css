@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+
+main {
+    margin-top: 10px;
+    background-color: #ff5733; /* Fundo vibrante */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Sombra para dar profundidade */
+}
+
+.carrossel-edit-container {
+    display: flex; /* Permite que os formulários fiquem lado a lado */
+    flex-wrap: wrap; /* Permite que os formulários se movam para a linha seguinte se necessário */
+    gap: 10px; /* Espaço entre os formulários */
+    margin: 0 auto; /* Centraliza o conteúdo */
+    max-width: 1200px; /* Largura máxima do container */
+}
+
+
+.carrossel-edit-form {
+    flex: 1 1 calc(30% - 15px); /* Tenta ocupar 30% da largura do container, subtraindo 15px para margem */
+    padding: 20px; /* Espaçamento interno do formulário */
+    border: 1px solid #e0e0e0; /* Borda mais suave */
+    border-radius: 8px; /* Bordas arredondadas */
+    background-color: #ffffff; /* Fundo branco para destaque */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s; /* Efeito de transição suave */
+}
+
+.carrossel-edit-form:hover {
+    transform: translateY(-3px); /* Eleva um pouco o formulário ao passar o mouse */
+}
+main h1 {
+    font-size: 2em; /* Aumenta o tamanho da fonte */
+    color: #ffffff; /* Cor vibrante */
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra sutil para dar profundidade */
+    font-family: 'Montserrat', sans-serif; /* Fonte mais moderna */
+}
+
+main h3 {
+    margin-top: 10px;
+    font-size: 1.5em; /* Aumenta o tamanho do cabeçalho do formulário */
+    color: #ff5733; /* Cor do texto */
+    margin-bottom: 20px; /* Espaçamento abaixo do cabeçalho */
+    font-family: 'Montserrat', sans-serif; /* Consistente com o título principal */
+    border-bottom: 2px solid #ff5733; /* Linha abaixo do cabeçalho para destaque */
+    padding-bottom: 5px; /* Espaço abaixo do texto */
+}
+
+
+h3 {
+    font-size: 1.25em; /* Tamanho da fonte para cabeçalhos */
+    color: #333; /* Cor do texto */
+    margin-bottom: 10px; /* Espaçamento abaixo do cabeçalho */
+}
+
+label {
+    margin-top: 10px;
+    font-weight: 500;
+    color: #444; /* Cor do texto mais escura */
+    margin-bottom: 10px; /* Espaçamento abaixo do label */
+    display: block; /* Para o label ocupar toda a largura */
+}
+
+input[type="text"],
+textarea,
+input[type="file"] {
+    font-weight: 300;
+    width: 80%; /* Faz os campos ocuparem a largura total do formulário */
+    padding: 12px; /* Espaçamento interno maior */
+    border: 1px solid #ddd; /* Borda mais clara */
+    border-radius: 4px; /* Bordas arredondadas */
+    font-size: 1em; /* Tamanho da fonte */
+    margin-bottom: 15px; /* Espaçamento abaixo do campo */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transições suaves */
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #ff5733; /* Cor da borda em foco */
+    box-shadow: 0 0 5px rgba(255, 87, 51, 0.5); /* Sombra ao focar */
+    outline: none; /* Remove contorno padrão */
+}
+
+.imagem-atual {
+    margin-top: 10px;
+    max-width: 100%;
+    border-radius: 4px; /* Bordas arredondadas */
+    border: 1px solid #ddd; /* Borda ao redor da imagem */
+}
+
+.btn-atualizar  {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.btn-atualizar button {
+    background-color: #28a745; /* Cor de fundo verde */
+    color: white; /* Cor do texto */
+    padding: 12px 20px; /* Mais espaço no botão */
+    border: none; /* Remove borda */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
+    font-size: 1em; /* Tamanho da fonte */
+    transition: background-color 0.3s, transform 0.2s; /* Transições suaves */
+}
+
+.btn-atualizar button:hover {
+    background-color: #ff5733; /* Cor do botão ao passar o mouse */
+    transform: scale(1.05); /* Aumenta levemente o botão ao passar o mouse */
+}

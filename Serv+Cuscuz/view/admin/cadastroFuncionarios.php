@@ -36,10 +36,11 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
     <div class="painelAdm">
         <nav >
             <a href="../../controller/admin/adminPainelController.php">Home</a>
-            <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
-            <a href="../../view/admin/listaCliente.php">Clientes</a>
             <a href="#">Produtos</a>
             <a href="#">Pedidos</a>
+            <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
+            <a href="../../view/admin/listaCliente.php">Clientes</a>
+            <a href="../../view/admin/carrosselHome.php">Carrossel Home</a>
             <a href="#">Relatórios</a>
         </nav>
     </div>
