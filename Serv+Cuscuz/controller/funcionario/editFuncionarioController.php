@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Iniciar a sessão
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -13,16 +13,21 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarSenha.php";
 // Instanciar o DAO
 $funcionarioDAO = new FuncionarioDAO();
 
+// Função auxiliar para redirecionamento com mensagem de erro
+function redirecionarComErro($sessaoErro, $mensagemErro, $idFuncionario) {
+    $_SESSION[$sessaoErro] = $mensagemErro;
+    header("Location: ../../view/admin/editarFuncionario.php?token=" . urlencode(base64_encode($idFuncionario)));
+    exit();
+}
+
 // Verificar se o ID foi passado (no GET) para carregar dados do funcionário
-$token = $_GET['token'] ?? null; 
+$token = $_GET['token'] ?? null;
 $idFuncionario = $token ? base64_decode($token) : null; // Decodifica o token
 
 if ($idFuncionario) {
     $funcionario = $funcionarioDAO->buscarFuncionarioPorId($idFuncionario);
     if (!$funcionario) {
-        $_SESSION['erroreditFun'] = "Funcionário não encontrado.";
-        header("Location: ../../view/admin/listaFuncionarios.php");
-        exit();
+        redirecionarComErro('erroreditFun', "Funcionário não encontrado.", $idFuncionario);
     }
 }
 
@@ -33,65 +38,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nomeFuncionario = strip_tags($_POST["nome"]);
     $cpfFuncionario = str_replace(['.', '-'], '', strip_tags($_POST["cpf"]));
     $emailFuncionario = strip_tags($_POST["email"]);
-    $telefoneFuncionario = str_replace(['(', ')',' ','-'], '', strip_tags($_POST["telefone"]));
-    $novaSenha = $_POST["senha"] ?? null; // Captura a nova senha (se fornecida)
+    $telefoneFuncionario = str_replace(['(', ')', ' ', '-'], '', strip_tags($_POST["telefone"]));
+    $novaSenha = $_POST["senha"] ?? null;
+    $confirmarSenha = $_POST["confirmarSenha"] ?? null;
     $t_perfil_idFuncionario = strip_tags($_POST["t_perfil_id"]);
 
-    // Validações
+    // Validação de CPF
     if (!ValidadorCPF::validar($cpfFuncionario)) {
-        $_SESSION['cpf_error'] = "CPF inválido.";
-        header("Location: ../../view/admin/editarFuncionario.php?token=" . urlencode(base64_encode($idFuncionario)));
-        exit();
+        redirecionarComErro('cpf_error', "CPF inválido.", $idFuncionario);
     }
 
     // Verifica se o CPF já está cadastrado, exceto para o próprio funcionário
     if ($funcionarioDAO->cpfJaCadastrado($cpfFuncionario, $idFuncionario)) {
-        $_SESSION['cpf_error'] = "O CPF já está cadastrado.";
-        header("Location: ../../view/admin/editarFuncionario.php?token=" . urlencode(base64_encode($idFuncionario)));
-        exit();
+        redirecionarComErro('cpf_error', "O CPF já está cadastrado.", $idFuncionario);
     }
 
-    // Se o usuário forneceu uma nova senha, valide-a
-    if ($novaSenha && !validarSenha($novaSenha)) {
-        $_SESSION['senha_error'] = "Nova senha inválida.";
-        header("Location: ../../view/admin/editarFuncionario.php?token=" . urlencode(base64_encode($idFuncionario)));
-        exit();
-    }
-
-    // Verifica se o e-mail já está cadastrado, exceto para o próprio funcionário
+    // Validação de e-mail
     if ($funcionarioDAO->verificarEmailExistente($emailFuncionario, $idFuncionario)) {
-        $_SESSION['email_error'] = "O e-mail já está cadastrado.";
-        header("Location: ../../view/admin/editarFuncionario.php?token=" . urlencode(base64_encode($idFuncionario)));
-        exit();
+        redirecionarComErro('email_error', "O e-mail já está cadastrado.", $idFuncionario);
     }
 
-    // Se tudo estiver correto, prosseguir com a atualização
+    // Validação de senha
+    if (!empty($novaSenha)) {
+        if ($novaSenha !== $confirmarSenha) {
+            redirecionarComErro('senha_error', "As senhas não coincidem.", $idFuncionario);
+        }
+
+        $senhaValidacao = validarSenha($novaSenha);
+        if ($senhaValidacao !== true) {
+            redirecionarComErro('senha_error', $senhaValidacao, $idFuncionario);
+        }
+    }
+
+    // Preparar DTO para atualização
     $funcionarioDTO = new FuncionarioDTO();
     $funcionarioDTO->setId($idFuncionario);
     $funcionarioDTO->setNome($nomeFuncionario);
     $funcionarioDTO->setCpf($cpfFuncionario);
     $funcionarioDTO->setEmail($emailFuncionario);
     $funcionarioDTO->setTelefone($telefoneFuncionario);
+    $funcionarioDTO->setPerfilId($t_perfil_idFuncionario);
 
-    // Atualizar a senha apenas se uma nova senha for fornecida
-    if ($novaSenha) {
-        // Aqui é onde garantimos que a nova senha é hashada corretamente
+    // Atualiza a senha apenas se uma nova senha for fornecida
+    if (!empty($novaSenha)) {
         $funcionarioDTO->setSenha(password_hash($novaSenha, PASSWORD_DEFAULT));
     }
-
-    $funcionarioDTO->setPerfilId($t_perfil_idFuncionario);
 
     try {
         // Atualiza o funcionário no banco de dados
         $funcionarioDAO->atualizarFuncionario($funcionarioDTO);
-        // Redireciona para a lista de funcionários após a edição
         $_SESSION['successeditFun'] = "Funcionário atualizado com sucesso!";
         header("Location: ../../view/admin/listaFuncionarios.php");
         exit();
     } catch (Exception $e) {
-        $_SESSION['email_error'] = $e->getMessage(); // Mensagem de erro para o usuário
-        header("Location: ../../view/admin/editarFuncionario.php?token=" . urlencode(base64_encode($idFuncionario)));
-        exit();
+        redirecionarComErro('email_error', $e->getMessage(), $idFuncionario);
     }
 }
 

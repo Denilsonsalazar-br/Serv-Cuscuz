@@ -79,8 +79,11 @@ if (session_status() === PHP_SESSION_NONE) {
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Digite seu email." required>
                 <span id="mensagemErroEmail" class="erro"></span>
+
                 <?php if (isset($_SESSION['email_error'])): ?>
-                        <span style="color:#000000;"><?php echo $_SESSION['email_error']; ?></span>
+                        <span style="color:#000000;">
+                            <?php echo $_SESSION['email_error']; ?>
+                        </span>
                         <?php unset($_SESSION['email_error']); 
                         // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
@@ -92,8 +95,11 @@ if (session_status() === PHP_SESSION_NONE) {
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" placeholder="Insira sua senha" required>
                 <span id="mensagemErroSenha" class="erro"></span>
+
                     <?php if (isset($_SESSION['senha_error'])): ?>
-                        <span style="width: 100%; color: #000000;"><?php echo $_SESSION['senha_error']; ?></span>
+                        <span style="width: 100%; color: #000000;">
+                            <?php echo $_SESSION['senha_error']; ?>
+                        </span>
                         <?php unset($_SESSION['senha_error']); // Limpa a mensagem após exibi-la ?>
                     <?php endif; ?>
                 <br>
@@ -108,7 +114,9 @@ if (session_status() === PHP_SESSION_NONE) {
                         <input type="checkbox" id="termos" required>
                     </div>
                     <div>
-                        <label for="termos">Aceito os <a href="#">termos e condições</a></label>
+                        <label for="termos">
+                            Aceito os <a href="#">termos e condições</a>
+                        </label>
                     </div>
                 </div>
                 

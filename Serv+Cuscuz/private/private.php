@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<div class='mensagem-erro'>Senha incorreta</div>";
         }
     } else {
-        // Se não for funcionário, verifica se é um cliente
+        // Se não for funcionário, vai verificar se é um cliente
         $sqlCliente = "SELECT id, nome, email, senha FROM t_cliente WHERE email = :email";
         $stmtCliente = $conn->prepare($sqlCliente);
         $stmtCliente->bindParam(':email', $email);

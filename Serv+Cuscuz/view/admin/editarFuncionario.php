@@ -59,8 +59,11 @@ require_once __DIR__ . "../../../controller/funcionario/editFuncionarioControlle
             <label>CPF:</label>
             <input type="text" id="cpf" maxlength="14" name="cpf" value="<?php echo $funcionario->getCpf(); ?>" required>
             <span id="mensagemErroCpf" class="erro"></span>
+
             <?php if (isset($_SESSION['cpf_error'])): ?>
-                <span class="erro"><?php echo $_SESSION['cpf_error']; ?></span>
+                <span class="erro">
+                    <?php echo $_SESSION['cpf_error']; ?>
+                </span>
                 <?php unset($_SESSION['cpf_error']); ?>
             <?php endif; ?>
 
@@ -71,6 +74,7 @@ require_once __DIR__ . "../../../controller/funcionario/editFuncionarioControlle
             <label>Email:</label>
             <input type="email" id="email" name="email" value="<?php echo $funcionario->getEmail(); ?>" required>
             <span id="mensagemErroEmail" class="erro"></span>
+
                 <?php if (isset($_SESSION['email_error'])): ?>
                     <span class="erro">
                         <?php echo $_SESSION['email_error']; ?>
@@ -85,8 +89,11 @@ require_once __DIR__ . "../../../controller/funcionario/editFuncionarioControlle
             <label>Senha:</label>
             <input type="password" id="senha" name="senha" placeholder="Nova senha ou (deixe em branco para não alterar)">
             <span id="mensagemErroSenha" class="erro"></span>
+            
             <?php if (isset($_SESSION['senha_error'])): ?>
-                <span class="erro"><?php echo $_SESSION['senha_error']; ?></span>
+                <span class="erro">
+                    <?php echo $_SESSION['senha_error']; ?>
+                </span>
                 <?php unset($_SESSION['senha_error']); ?>
             <?php endif; ?>
 

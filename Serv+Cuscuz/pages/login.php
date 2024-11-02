@@ -21,7 +21,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <main>
             <div class="container"> 
             <?php
-                require_once __DIR__ . "../../pages/private.php";
+                require_once __DIR__ . "../../private/private.php";
             ?>  
                 <div class="titulo">
                     <!--<span class="loader"></span>-->

@@ -45,13 +45,12 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php
             // Verifica se o usuário está logado e se é um funcionário
             if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'FUNCIONARIO') {
-            // Se não for funcionário, redireciona para a página de login ou outra página
+            // Se não for funcionário, redireciona para a página home 
             header("Location: ../../pages/home.php");
-    exit;
-}
+            exit;
+        }
 
-// Mensagem de boas-vindas
-echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
-// Aqui você pode adicionar mais conteúdo para a página do funcionário
-?>
+        // Mensagem de boas-vindas
+        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
+        ?>
     </section>

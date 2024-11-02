@@ -62,6 +62,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
             <h1>Funcionários</h1>
             <section class="section__btnFuncionario">
             <div class="alertaSucessoError">
+
                     <?php if (isset($_SESSION['msgFuncionario'])): ?>
                         <div class="alerta success">
                             <?php echo htmlspecialchars($_SESSION['msgFuncionario']); ?>
@@ -110,12 +111,24 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
                     <?php if (isset($funcionarios) && is_array($funcionarios)): ?>
                         <?php foreach ($funcionarios as $funcionario): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($funcionario['id']); ?></td>
-                            <td><?php echo htmlspecialchars($funcionario['nome']); ?></td>
-                            <td><?php echo htmlspecialchars($funcionario['cpf']); ?></td>
-                            <td><?php echo htmlspecialchars($funcionario['email']); ?></td>
-                            <td><?php echo htmlspecialchars($funcionario['telefone']); ?></td>
-                            <td><?php echo htmlspecialchars($funcionario['t_perfil_id']); ?></td> 
+                            <td>
+                                <?php echo htmlspecialchars($funcionario['id']); ?>
+                            </td>
+                            <td>
+                                <?php echo htmlspecialchars($funcionario['nome']); ?>
+                            </td>
+                            <td>
+                                <?php echo htmlspecialchars($funcionario['cpf']); ?>
+                            </td>
+                            <td>
+                                <?php echo htmlspecialchars($funcionario['email']); ?>
+                            </td>
+                            <td>
+                                <?php echo htmlspecialchars($funcionario['telefone']); ?>
+                            </td>
+                            <td>
+                                <?php echo htmlspecialchars($funcionario['t_perfil_id']); ?>
+                            </td> 
                             <td class="tdOperacao">
                                 <div class="alterarExcluir">
                                     

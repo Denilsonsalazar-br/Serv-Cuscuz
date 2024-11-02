@@ -92,12 +92,24 @@ require_once  "../../controller/cliente/readClienteController.php";
                 <?php if (isset($clientes) && is_array($clientes)): ?>
                     <?php foreach ($clientes as $cliente): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($cliente['id']); ?></td>
-                        <td><?php echo htmlspecialchars($cliente['nome']); ?></td>
-                        <td><?php echo htmlspecialchars($cliente['sobrenome']); ?></td>
-                        <td><?php echo htmlspecialchars($cliente['cpf']); ?></td>
-                        <td><?php echo htmlspecialchars($cliente['email']); ?></td>
-                        <td><?php echo htmlspecialchars($cliente['telefone']); ?></td>
+                        <td>
+                            <?php echo htmlspecialchars($cliente['id']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($cliente['nome']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($cliente['sobrenome']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($cliente['cpf']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($cliente['email']); ?>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($cliente['telefone']); ?>
+                        </td>
                         <td class="tdOperacao">
                                 <div class="alterarExcluir">
                                     <a class="btnexcluir" href="../../controller/cliente/deleteClienteController.php?id=<?= $cliente['id']; ?>" onclick="return confirm('Deseja confirmar a operação?');">Excluir</a>
