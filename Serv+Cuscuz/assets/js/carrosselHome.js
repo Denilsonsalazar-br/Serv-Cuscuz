@@ -2,24 +2,30 @@ let currentSlide = 0;
 const slides = document.querySelectorAll('.carrossel-item');
 const carrosselContainer = document.querySelector('.carrossel-container');
 
-function showSlide(index) {
-    const slideWidth = slides[0].clientWidth;
-    carrosselContainer.style.transform = `translateX(-${index * slideWidth}px)`;
-}
+if (slides.length > 0) {
+    // Adiciona uma transição suave ao container (caso não esteja no CSS)
+    carrosselContainer.style.transition = 'transform 0.5s ease';
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
+    function showSlide(index) {
+        // Garante que o índice do slide está dentro do intervalo
+        currentSlide = (index + slides.length) % slides.length;
+        const slideWidth = slides[0].clientWidth;
+        carrosselContainer.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    // Inicializa o primeiro slide
     showSlide(currentSlide);
+
+    // Ajusta o slide atual ao redimensionar a janela
+    window.addEventListener('resize', () => {
+        showSlide(currentSlide);
+    });
 }
-
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
-
-// Inicializa o primeiro slide
-showSlide(currentSlide);
-
-window.addEventListener('resize', () => {
-    showSlide(currentSlide);
-});

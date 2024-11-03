@@ -98,7 +98,7 @@ textarea:focus {
     text-align: center;
 }
 .btn-atualizar button {
-    background-color: #28a745; /* Cor de fundo verde */
+    background-color:  #ff5733; /* Cor de fundo verde */
     color: white; /* Cor do texto */
     padding: 12px 20px; /* Mais espaço no botão */
     border: none; /* Remove borda */
@@ -109,6 +109,6 @@ textarea:focus {
 }
 
 .btn-atualizar button:hover {
-    background-color: #ff5733; /* Cor do botão ao passar o mouse */
+    background-color: #28a745; /* Cor do botão ao passar o mouse */
     transform: scale(1.05); /* Aumenta levemente o botão ao passar o mouse */
 }

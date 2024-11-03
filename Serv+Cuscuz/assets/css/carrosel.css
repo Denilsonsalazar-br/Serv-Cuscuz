@@ -17,8 +17,8 @@ main{
 }
 
 .carrossel-container {
+    transition: transform 0.5s ease;
     display: flex;
-    transition: transform 0.5s ease-in-out;
 }
 
 .carrossel-item {

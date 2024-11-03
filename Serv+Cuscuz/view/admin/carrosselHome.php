@@ -6,6 +6,7 @@ $carrosselController = new CarrosselController();
 $itens = $carrosselController->listarItens();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,7 +14,8 @@ $itens = $carrosselController->listarItens();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
-    <link rel="stylesheet" href="../../assets/css/carrossel/carrosselEdit.css"> <!-- CSS específico -->
+    <link rel="stylesheet" href="../../assets/css/carrossel/carrosselEdit.css"> 
+    <link rel="stylesheet" href="../../assets/css/mensagens/mensagens.css">
     <title>Administração</title>
 </head>
 <body>
@@ -45,6 +47,17 @@ $itens = $carrosselController->listarItens();
     <main>
         <h1>Alterar imagens do carrossel</h1>
 
+        <?php 
+        if (isset($_SESSION['msg'])) {
+            $msgTipo = $_SESSION['msg']['tipo'] === 'sucesso' ? 'msgsucesso' : 'msgerro';
+            echo '<div class="msg ' . $msgTipo . '">
+                    <h4>' . ucfirst($_SESSION['msg']['tipo']) . '</h4>
+                    <p>' . $_SESSION['msg']['mensagem'] . '</p>
+                  </div>';
+            unset($_SESSION['msg']); // Limpa a mensagem após exibi-la
+        }  
+        ?>
+
         <?php if (empty($itens)): ?>
             <p>Nenhum item encontrado para editar.</p>
         <?php else: ?>
@@ -54,6 +67,10 @@ $itens = $carrosselController->listarItens();
                         <input type="hidden" name="id" value="<?php echo htmlspecialchars($item->getId()); ?>">
 
                         <h3>Imagem <?php echo $index + 1; ?></h3>
+
+                        <!--imagem atual-->
+                        <img src="<?php echo htmlspecialchars($item->getImagemUrl()); ?>" alt="Imagem atual" style="width: 150px; height: auto;">
+
                         <label for="titulo-<?php echo $item->getId(); ?>">Nome do Produto:</label>
                         <input type="text" id="titulo-<?php echo $item->getId(); ?>" name="titulo" value="<?php echo htmlspecialchars($item->getTitulo()); ?>" required>
 

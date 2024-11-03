@@ -1,6 +1,8 @@
 <?php
 
 require_once __DIR__ . "../../carrossel/carrosselHomeController.php";
+session_start(); // Inicie a sessão para poder usar $_SESSION
+
 $controller = new CarrosselController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -9,7 +11,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $descricao = $_POST['descricao'];
     $imagem = $_FILES['imagem'];
 
-    $controller->atualizarItem($id, $titulo, $descricao, $imagem);
+    // Tente atualizar o item e armazene a mensagem na sessão
+    if ($controller->atualizarItem($id, $titulo, $descricao, $imagem)) {
+        $_SESSION['msg'] = [
+            'tipo' => 'sucesso',
+            'mensagem' => 'Item atualizado com sucesso!'
+        ];
+    } else {
+        $_SESSION['msg'] = [
+            'tipo' => 'erro',
+            'mensagem' => 'Falha ao atualizar o item.'
+        ];
+    }
+
     header("Location: ../../view/admin/carrosselHome.php");
     exit();
 }

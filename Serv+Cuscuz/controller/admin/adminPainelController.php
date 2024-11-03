@@ -45,7 +45,7 @@ session_start();
             header("Location: ../../controller/admin/adminPainelController.php");
             exit;
         }
-
+        
         echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
         
         ?>
