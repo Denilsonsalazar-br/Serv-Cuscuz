@@ -68,8 +68,10 @@ $itens = $carrosselController->listarItens();
 
                         <h3>Imagem <?php echo $index + 1; ?></h3>
 
-                        <!--imagem atual-->
-                        <img src="<?php echo htmlspecialchars($item->getImagemUrl()); ?>" alt="Imagem atual" style="width: 150px; height: auto;">
+                        <div class="imgAtualCarrossel">
+                            <!--imagem atual-->
+                            <img src="<?php echo htmlspecialchars('../../assets/img/' . basename($item->getImagemUrl())); ?>" alt="Imagem atual">
+                        </div>
 
                         <label for="titulo-<?php echo $item->getId(); ?>">Nome do Produto:</label>
                         <input type="text" id="titulo-<?php echo $item->getId(); ?>" name="titulo" value="<?php echo htmlspecialchars($item->getTitulo()); ?>" required>

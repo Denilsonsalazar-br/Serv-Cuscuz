@@ -21,10 +21,16 @@ main {
     flex: 1 1 calc(30% - 15px); /* Tenta ocupar 30% da largura do container, subtraindo 15px para margem */
     padding: 20px; /* Espaçamento interno do formulário */
     border: 1px solid #e0e0e0; /* Borda mais suave */
-    border-radius: 8px; /* Bordas arredondadas */
-    background-color: #ffffff; /* Fundo branco para destaque */
+    border-radius: 8px; 
+    background-color: #ffffff; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: transform 0.2s; /* Efeito de transição suave */
+}
+.imgAtualCarrossel img{
+    border-radius: 8px;
+    width: 100%;
+    height: 200px;
+    border-color: 1px solid #000000;
 }
 
 .carrossel-edit-form:hover {
@@ -32,8 +38,8 @@ main {
 }
 main h1 {
     font-size: 2em; /* Aumenta o tamanho da fonte */
-    color: #ffffff; /* Cor vibrante */
-    text-align: center; /* Centraliza o título */
+    color: #ffffff; 
+    text-align: center; 
     margin-bottom: 20px; /* Espaço abaixo do título */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra sutil para dar profundidade */
     font-family: 'Montserrat', sans-serif; /* Fonte mais moderna */
