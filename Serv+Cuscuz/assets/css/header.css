@@ -20,6 +20,7 @@ header {
 }
 
 .nomeperfil {
+    cursor: pointer;
     text-align: center;
     border-radius: 5px;
     border: 1px solid #ffffff;
@@ -28,7 +29,7 @@ header {
     align-items: center;
 }
 .nomeperfil:hover{
-    background-color: #000000;
+    cursor: pointer;
     border-color:#fff ;
     color: #fff;
 }
@@ -42,19 +43,20 @@ header {
 .nomeperfil a:hover{
     align-items: center;
     text-align: center;
-    background-color: #000000;
     border-color:#fff ;
     color: #fff;
 }
 
-.user-icon {
-    width: 24px;
-    height: 24px;
+.iconeUsuario img {
+    cursor: pointer;
+    align-items: center;
+    width: 40px;
+    height: 40px;
     margin-right: 5px;
 }
 
 .user-name {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #ffffff;
 }
 
@@ -103,20 +105,21 @@ header {
     color: #000000;
 }
 
-.login-button button {
+.containerPerfilNome .login-button button {
     padding: 10px 15px;
     border-radius: 5px;
     background-color: #000000;
 }
 
-.login-button button:hover{
-    background-color: #ff5733;
+.containerPerfilNome .login-button button:hover{
+    background-color: #000000;
     border-color:#fff ;
     color: #fff;
 }
 
 .login-button button a:hover{
-    color: #000000;
+    background-color: transparent;
+    color: #ffffff;
 }
 
 .login-button button a {
@@ -139,7 +142,13 @@ header {
     header{
         width: 100%;
     }
+    .containerPerfilNome{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     .nomeperfil{
+        width: 60%;
         border: transparent;
         background-color: transparent;
         align-items: center;
@@ -149,10 +158,16 @@ header {
     .nomeperfil:hover{
         border: 1px solid #ffffff;
         cursor: pointer;
-        background-color: transparent;
+        background-color: #000000;
     }
     .nomeperfil a:hover{
         background-color: transparent;
+    }
+    .nomeperfil img{
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        margin-right: 5px;
     }
     .nav-bar .containerPerfilNome{
         display: none;

@@ -26,8 +26,13 @@
             </div>
 
             <div class="containerPerfilNome">
+                    <div class="iconeUsuario">
+                        <img src="../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                    </div>
                 <div class="nomeperfil">
-                    <?php include '../pages/verificarLogin.php'; ?>
+                    <div>
+                        <?php include '../pages/verificarLogin.php'; ?>
+                    </div>
                 </div>
                 <div class="login-button">
                     <?php if (isset($_SESSION['id'])): ?>
@@ -47,13 +52,21 @@
                 <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
                 <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
             </ul>
-            <div class="nomeperfil">
-                    <?php include '../pages/verificarLogin.php'; ?>
-            </div>
-            <div class="login-button">
+            <div class="containerPerfilNome">
+            <div class="nomeperfil" href="#">
+                    <div class="iconeUsuario">
+                        <img src="../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                    </div>
+                
+                    <div>
+                        <?php include '../pages/verificarLogin.php'; ?>
+                    </div>
+                </div>
+                <div class="login-button">
                     <?php if (isset($_SESSION['id'])): ?>
                         <button><a href="../pages/logout.php">Sair</a></button>
                     <?php endif; ?>
+                </div>
             </div>
         </div>
     </header>

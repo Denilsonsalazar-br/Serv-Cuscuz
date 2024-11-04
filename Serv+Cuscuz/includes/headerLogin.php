@@ -11,7 +11,7 @@
 <body>
     <header>
         <nav class="nav-bar">
-            <div class="logo" href="../pages/home.php">
+            <div class="logo">
                 <a href="../pages/home.php">
                     <img src="../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
                 </a>
