@@ -1,0 +1,100 @@
+<?php
+
+include "src/conexaobd.php";
+require_once __DIR__ . "../../DTO/produtoDTO.php";
+
+class ProdutoDAO {
+    private $pdo = null;
+
+    public function __construct() {
+        $this->pdo = Conexao::getInstance();
+    }
+
+    public function cadastrarProduto(ProdutoDTO $produto) {
+        try {
+            $sql = "INSERT INTO t_produto (nome, descricao, imagem, preco, tamanho, t_funcionario_id) 
+                    VALUES (:nome, :descricao, :imagem, :preco, :tamanho, :t_funcionario_id)";
+            $stmt = $this->pdo->prepare($sql);
+
+            $stmt->bindValue(":nome", $produto->getNome());
+            $stmt->bindValue(":descricao", $produto->getDescricao());
+            $stmt->bindValue(":imagem", $produto->getImagem());
+            $stmt->bindValue(":preco", $produto->getPreco());
+            $stmt->bindValue(":tamanho", $produto->getTamanho());
+            $stmt->bindValue(":t_funcionario_id", $produto->getFuncionarioId());
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Erro ao cadastrar produto: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function editarProduto(ProdutoDTO $produto) {
+        try {
+            $sql = "UPDATE t_produto SET 
+                        nome = :nome, 
+                        descricao = :descricao, 
+                        imagem = :imagem, 
+                        preco = :preco, 
+                        tamanho = :tamanho, 
+                        t_funcionario_id = :t_funcionario_id 
+                    WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+
+            $stmt->bindValue(":id", $produto->getId());
+            $stmt->bindValue(":nome", $produto->getNome());
+            $stmt->bindValue(":descricao", $produto->getDescricao());
+            $stmt->bindValue(":imagem", $produto->getImagem());
+            $stmt->bindValue(":preco", $produto->getPreco());
+            $stmt->bindValue(":tamanho", $produto->getTamanho());
+            $stmt->bindValue(":t_funcionario_id", $produto->getFuncionarioId());
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Erro ao atualizar produto: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function excluirProduto($id) {
+        try {
+            $sql = "DELETE FROM t_produto WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(":id", $id);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Erro ao excluir produto: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getProdutoById($id) {
+        try {
+            $sql = "SELECT * FROM t_produto WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(":id", $id);
+            $stmt->execute();
+            return $stmt->fetchObject("ProdutoDTO");
+        } catch (PDOException $e) {
+            echo "Erro ao buscar produto: " . $e->getMessage();
+            return null;
+        }
+    }
+
+    public function getAllProdutos() {
+        try {
+            $sql = "SELECT * FROM t_produto";
+            $stmt = $this->pdo->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_CLASS, "ProdutoDTO");
+        } catch (PDOException $e) {
+            echo "Erro ao buscar produtos: " . $e->getMessage();
+            return [];
+        }
+    }
+    public function listarTodosProdutos() {
+        $stmt = $this->pdo->query("SELECT * FROM t_produto");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+}

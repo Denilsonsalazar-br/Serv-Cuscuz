@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Incluir os arquivos necessários
+// os arquivos necessários
 require_once __DIR__ . "../../../model/DAO/funcionarioDAO.php";
 require_once __DIR__ . "../../../model/DTO/funcionarioDTO.php";
 require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";

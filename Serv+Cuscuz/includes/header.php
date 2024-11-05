@@ -27,7 +27,9 @@
 
             <div class="containerPerfilNome">
                     <div class="iconeUsuario">
-                        <img src="../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                        <a href="#">
+                            <img src="../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                        </a>
                     </div>
                 <div class="nomeperfil">
                     <div>

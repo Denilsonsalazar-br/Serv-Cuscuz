@@ -23,9 +23,9 @@ if (session_status() === PHP_SESSION_NONE) {
                 include '../includes/carrossel.php';
             ?>
         </section>
-        <main style="text-align: center; color: #000000">
+        <main>
 
-        <h1>Conteudo home</h1>
+
 
         </main>
     </main>
