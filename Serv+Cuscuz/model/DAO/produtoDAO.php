@@ -41,7 +41,7 @@ class ProdutoDAO {
                         t_funcionario_id = :t_funcionario_id 
                     WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
-
+    
             $stmt->bindValue(":id", $produto->getId());
             $stmt->bindValue(":nome", $produto->getNome());
             $stmt->bindValue(":descricao", $produto->getDescricao());
@@ -49,13 +49,19 @@ class ProdutoDAO {
             $stmt->bindValue(":preco", $produto->getPreco());
             $stmt->bindValue(":tamanho", $produto->getTamanho());
             $stmt->bindValue(":t_funcionario_id", $produto->getFuncionarioId());
-
-            return $stmt->execute();
+    
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                echo "Erro ao executar a atualização.";
+                return false;
+            }
         } catch (PDOException $e) {
             echo "Erro ao atualizar produto: " . $e->getMessage();
             return false;
         }
     }
+    
 
     public function excluirProduto($id) {
         try {

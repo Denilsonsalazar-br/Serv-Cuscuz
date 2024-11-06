@@ -1,14 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
 
+/* Definindo estilo para o layout principal */
 main {
     margin: 0;
-    padding: 20px;
-    background-color: #f7f9fc; 
+    padding: 30px;
+    background-color: #f4f6f9; /* Cor de fundo clara */
+    font-family: 'Montserrat', sans-serif;
 }
 
+/* Títulos */
 h1, h2 {
     text-align: center;
     color: #333;
+    margin-bottom: 20px;
+    font-weight: 500;
 }
 
 /* Estilização do formulário */
@@ -16,85 +21,139 @@ h1, h2 {
     max-width: 600px;
     margin: 0 auto;
     background: #fff;
-    padding: 30px;
-    border-radius: 10px;
+    padding: 40px;
+    border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
+/* Rótulos de campos */
 .label {
-    font-weight: bold;
+    font-weight: 500;
     color: #555;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: block;
 }
 
+/* Campos de entrada */
 .input-field {
     width: 100%;
-    padding: 12px;
-    margin: 8px 0;
+    padding: 14px;
+    margin-bottom: 20px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: border-color 0.3s;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
 }
 
+/* Foco nos campos de entrada */
 .input-field:focus {
-    border-color: #007bff; /* Mudança de cor ao focar */
+    border-color: #007bff;
     outline: none;
+    background-color: #fff;
 }
 
-.checkbox-group {
+/* Caixa de seleção de imagem */
+#imagePreviewContainer {
     display: flex;
-    align-items: center;
-    margin: 10px 0;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-.checkbox-input {
-    margin-left: 10px;
+/* Imagem pré-visualizada */
+#imagePreview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: block;
 }
 
-.personalizacao-fields {
-    display: none; /* Esconde os campos de personalização por padrão */
+/* Tamanho dos campos de seleção (dropdown) */
+select.input-field {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
 }
 
-.personalizacao-fields.active {
-    display: block; /* Mostra quando o checkbox está marcado */
-}
-
+/* Botão de envio */
 .btn-submit {
     width: 100%;
-    padding: 12px;
-    background-color: #007bff; /* Cor do botão */
-    color: white;
+    padding: 14px;
+    background-color: #007bff;
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 8px;
     font-size: 16px;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+/* Efeito ao passar o mouse sobre o botão */
 .btn-submit:hover {
-    background-color: #0056b3; /* Cor ao passar o mouse */
-}
-.img-container {
-    width: 100%;
-    display: flex;
-    justify-content: center; /* Centraliza a imagem na div */
-    margin: 10px 0; /* Margem superior e inferior */
+    background-color: #0056b3;
 }
 
-.img-atual {
-    max-width: 100%; /* A imagem não deve ultrapassar a largura da div */
-    height: auto; /* Mantém a proporção da imagem */
-    border: 1px solid #ddd; 
-    border-radius: 5px;
-}
-
-
-/* Responsividade */
+/* Responsividade - Ajuste para telas menores */
 @media (max-width: 768px) {
     .form-produto {
         padding: 20px;
     }
 
     .input-field, .btn-submit {
-        padding: 10px;
+        padding: 12px;
     }
+}
+
+/* Estilos para campos de personalização */
+.personalizacao-fields {
+    display: none; /* Escondido por padrão */
+    margin-top: 20px;
+}
+
+.personalizacao-fields.active {
+    display: block; /* Visível quando ativado */
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkbox-input {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+/* Estilização das imagens atuais */
+.img-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.img-atual {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+/* Estilo para o container do formulário */
+.form-produto {
+    background-color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    padding: 35px;
+    max-width: 650px;
+    margin: 0 auto;
 }

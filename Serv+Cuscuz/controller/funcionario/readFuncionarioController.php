@@ -12,7 +12,7 @@ require_once __DIR__ . "../../../model/DAO/funcionarioDAO.php";
 
 // Criar DAO e buscar funcionários
 $funcionarioDAO = new FuncionarioDAO();
-$funcionarios = $funcionarioDAO->listarFuncionarios(); // Você deve implementar esse método no DAO
+$funcionarios = $funcionarioDAO->listarFuncionarios(); //método no DAO
 
 // Exibir a lista de funcionários
 require_once __DIR__ . "../../../view/admin/listaFuncionarios.php";

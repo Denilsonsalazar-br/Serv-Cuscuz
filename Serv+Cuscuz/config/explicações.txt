@@ -1,4 +1,4 @@
-- linha 20, creatFuncionarioController.php
+// linha 20, creatFuncionarioController.php
 
 function getPostData($key):
 
@@ -29,7 +29,37 @@ CREATE TABLE t_produto (
     imagem_produto VARCHAR(255) NOT NULL            
 );
 --------------------------------------------------------------------------------
+// linha 12 arquivo de conexãobd.php
 
+O método getInstance() verifica se a conexão já foi criada através de if (!isset(self::$conexao)). Se a variável estática $conexao ainda não foi definida (ou seja, a conexão não foi criada), ele cria uma nova instância de conexão com o banco de dados.
+
+//arquivo antigo 
+
+<?php 
+class Conexao {
+    private static $conexao;
+
+    private function __construct() {
+        // Log para verificar quando a classe é instanciada
+        error_log("Classe Conexao instanciada");
+    }
+
+    public static function getInstance(){
+        if(!isset(self::$conexao)){
+            try {
+                $options = array(
+                    PDO::ATTR_PERSISTENT => true,
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4', // Melhor para UTF-8
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                );
+                self::$conexao = new PDO("mysql:host=localhost;dbname=Serv+Cuscuz", "root", "", $options);
+            } catch (PDOException $exc) {
+                echo "Erro ao conectar ao banco: ".$exc->getMessage();
+            }
+        }
+        return self::$conexao;
+    }
+} 
 --------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------

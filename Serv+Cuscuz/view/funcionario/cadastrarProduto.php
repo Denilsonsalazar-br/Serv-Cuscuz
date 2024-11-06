@@ -1,17 +1,18 @@
 <?php
-// Iniciar a sessão
+// Iniciar a sessão, caso ainda não tenha sido iniciada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-
+// Incluir os arquivos necessários
 require_once __DIR__ . "../../../controller/produto/readProdutoController.php";
+require_once __DIR__ . "../../../model/DAO/funcionarioDAO.php";
 
-$readProdutoController = new ReadProdutoController();
-$produtos = $readProdutoController->getAllProdutos(); // Obtém todos os produtos cadastrados
+// Carregar a lista de funcionários
+$funcionarioDAO = new FuncionarioDAO();
+$funcionarios = $funcionarioDAO->listarFuncionarios();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -66,7 +67,6 @@ $produtos = $readProdutoController->getAllProdutos(); // Obtém todos os produto
     <h1>Cadastrar Produto</h1>
 
         <form action="../../controller/produto/createProdutoController.php" method="POST" enctype="multipart/form-data" class="form-produto">
-            <h2>Detalhes do Produto</h2>
 
             <label for="nome">Nome do Produto:</label>
             <input type="text" id="nome" name="nome" required class="input-field">
@@ -75,23 +75,38 @@ $produtos = $readProdutoController->getAllProdutos(); // Obtém todos os produto
             <textarea id="descricao" name="descricao" required class="input-field"></textarea>
 
             <label for="imagem">Selecionar Nova Imagem:</label>
-            <input type="file" id="imagem" name="imagem" accept="image/*" class="input-field" required>
+            <input type="file" id="imagem" name="imagem" accept="image/*" class="input-field" required onchange="previewImage(event)">
+
+            <!-- Aqui a imagem será exibida após ser escolhida -->
+            <div id="imagePreviewContainer">
+                <img id="imagePreview" src="" alt="Pré-visualização da imagem" style="max-width: 300px; display: none;">
+            </div>
 
             <label for="preco">Preço:</label>
             <input type="text" id="preco" name="preco" required class="input-field">
 
             <label for="tamanho">Tamanho:</label>
-            <input type="text" id="tamanho" name="tamanho" placeholder="Tamanhos permitidos: P, M ou G" pattern="^[PMG]$" title="Por favor, insira apenas P, M ou G" class="input-field" required>
+            <select id="tamanho" name="tamanho" class="input-field" required>
+                <option value="P">P</option>
+                <option value="M">M</option>
+                <option value="G">G</option>
+            </select>
 
-
-            <label for="t_funcionario_id">ID do Funcionário:</label>
-            <input type="number" id="t_funcionario_id" name="t_funcionario_id" class="input-field" required>
+            <label for="t_funcionario_id">Funcionário Responsável:</label>
+            <select id="t_funcionario_id" name="t_funcionario_id" class="input-field" required>
+                <option value="">Selecione um funcionário</option>
+                <?php foreach ($funcionarios as $funcionario): ?>
+                    <option value="<?php echo $funcionario['id']; ?>">
+                        <?php echo htmlspecialchars($funcionario['nome']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
             <button type="submit" class="btn-submit">Cadastrar Produto</button>
         </form>
-    </main>
 
+</main>
 
-<script src="../../assets/js/produto.js"></script>
+<script src="../../assets/js/produto/cadastroProduto.js"></script>
 </body>
 </html>

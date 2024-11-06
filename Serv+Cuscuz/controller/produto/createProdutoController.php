@@ -1,5 +1,4 @@
 <?php 
-
 require_once __DIR__ . "../../../model/DTO/produtoDTO.php";
 require_once __DIR__ . "../../../model/DAO/produtoDAO.php";
 
@@ -38,12 +37,12 @@ class CreateProdutoController {
             $this->produtoDAO->cadastrarProduto($produtoDTO);
 
             // Redireciona para a página de listagem após o cadastro
-            header('Location: ../../view/funcionario/produtos.php'); // Ajuste o caminho conforme necessário
+            header('Location: ../../view/funcionario/produtos.php');
             exit();
         }
     }
-    
 }
+
 // Verifica se o arquivo foi acessado diretamente
 if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     $controller = new CreateProdutoController();
