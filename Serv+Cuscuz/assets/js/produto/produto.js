@@ -20,3 +20,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+function openTab(evt, tabName) {
+    // Esconde todas as abas
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Remove a classe 'active' de todas as abas
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+
+    // Exibe a aba clicada
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.classList.add("active");
+}
+
+// Exibe a aba "P" por padrão
+document.getElementsByClassName("tablink")[0].click();

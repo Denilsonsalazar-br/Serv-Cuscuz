@@ -49,113 +49,120 @@ $produtos = $readProdutoController->getAllProdutos(); // Obtém todos os produto
             <a href="#">Relatórios</a>
         </nav>
     </div> 
-    <section class="BemVindoAdm">
+    <!--<section class="BemVindoAdm">
         <?php
             // Verifica se o usuário está logado e se é um funcionário
-            if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'FUNCIONARIO') {
+            //if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'FUNCIONARIO') {
             // Se não for funcionário, redireciona para a página home 
-            header("Location: ../../pages/home.php");
-            exit;
-        }
+            //header("Location: ../../pages/home.php");
+            //exit;
+        //}
 
         // Mensagem de boas-vindas
-        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
+        //echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
         ?>
-    </section>
+    </section>-->
     <section class="section__btnFuncionario novoCuscuz">
         <h2>Produtos Cadastrados</h2>
         <a class="btnAdm" href="../../view/funcionario/cadastrarProduto.php">Novo</a>
     </section>
     
     <main>
-    
     <?php if (empty($produtos)): ?>
         <p>Nenhum produto cadastrado.</p>
     <?php else: ?>
-        <div class="tamanho-secao">
-            <h3>P</h3>
-            <div class="produto-container">
-                <?php foreach ($produtos as $produto): ?>
-                    <?php if ($produto->getTamanho() === 'P'): ?>
-                        <div class="produto-card">
-                            <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
-                            <h4><?php echo htmlspecialchars($produto->getNome()); ?></h4>
-                            <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
-                            <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
-                            
-                            <div class="actions">
-                                <form action="../../view/funcionario/editarProduto.php" method="GET" class="form-edit">
-                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                    <button type="submit" class="btn-edit">Editar</button>
-                                </form>
-                                <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
-                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                    <button type="submit" class="btn-delete">Excluir</button>
-                                </form>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
+        <!-- Abas de Tamanho -->
+        <div class="tabs">
+            <button class="tablink active" onclick="openTab(event, 'P')">P</button>
+            <button class="tablink" onclick="openTab(event, 'M')">M</button>
+            <button class="tablink" onclick="openTab(event, 'G')">G</button>
         </div>
 
-        <div class="tamanho-secao">
-            <h3>M</h3>
-            <div class="produto-container">
-                <?php foreach ($produtos as $produto): ?>
-                    <?php if ($produto->getTamanho() === 'M'): ?>
-                        <div class="produto-card">
-                            <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
-                            <h4><?php echo htmlspecialchars($produto->getNome()); ?></h4>
-                            <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
-                            <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
-                            
-                            <div class="actions">
-                                <form action="../../view/funcionario/editarProduto.php" method="GET" class="form-edit">
-                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                    <button type="submit" class="btn-edit">Editar</button>
-                                </form>
-                                <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
-                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                    <button type="submit" class="btn-delete">Excluir</button>
-                                </form>
+        <!-- Conteúdo das Abas -->
+        <div id="P" class="tabcontent">
+                <h3>P</h3>
+                <div class="produto-container">
+                    <?php foreach ($produtos as $produto): ?>
+                        <?php if ($produto->getTamanho() === 'P'): ?>
+                            <div class="produto-card">
+                                <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
+                                <h4><?php echo htmlspecialchars($produto->getNome()); ?></h4>
+                                <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
+                                <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
+                                
+                                <div class="actions">
+                                    <form action="../../view/funcionario/editarProduto.php" method="GET" class="form-edit">
+                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                        <button type="submit" class="btn-edit">Editar</button>
+                                    </form>
+                                    <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
+                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                        <button type="submit" class="btn-delete">Excluir</button>
+                                    </form>
+                                </div>
                             </div>
-
-                        </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
-        </div>
 
-        <div class="tamanho-secao">
-            <h3>G</h3>
-            <div class="produto-container">
-                <?php foreach ($produtos as $produto): ?>
-                    <?php if ($produto->getTamanho() === 'G'): ?>
-                        <div class="produto-card">
-                            <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
-                            <h4><?php echo htmlspecialchars($produto->getNome()); ?></h4>
-                            <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
-                            <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
-                            
-                            <div class="actions">
-                                <form action="../../view/funcionario/editarProduto.php" method="GET" class="form-edit">
-                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                    <button type="submit" class="btn-edit">Editar</button>
-                                </form>
-                                <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
-                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                    <button type="submit" class="btn-delete">Excluir</button>
-                                </form>
+            <div id="M" class="tabcontent">
+                <h3>M</h3>
+                <div class="produto-container">
+                    <?php foreach ($produtos as $produto): ?>
+                        <?php if ($produto->getTamanho() === 'M'): ?>
+                            <div class="produto-card">
+                                <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
+                                <h4><?php echo htmlspecialchars($produto->getNome()); ?></h4>
+                                <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
+                                <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
+                                
+                                <div class="actions">
+                                    <form action="../../view/funcionario/editarProduto.php" method="GET" class="form-edit">
+                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                        <button type="submit" class="btn-edit">Editar</button>
+                                    </form>
+                                    <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
+                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                        <button type="submit" class="btn-delete">Excluir</button>
+                                    </form>
+                                </div>
                             </div>
-
-                        </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
-        </div>
-    <?php endif; ?>
-</main>
 
+            <div id="G" class="tabcontent">
+                <h3>G</h3>
+                <div class="produto-container">
+                    <?php foreach ($produtos as $produto): ?>
+                        <?php if ($produto->getTamanho() === 'G'): ?>
+                            <div class="produto-card">
+                                <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
+                                <h4><?php echo htmlspecialchars($produto->getNome()); ?></h4>
+                                <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
+                                <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
+                                
+                                <div class="actions">
+                                    <form action="../../view/funcionario/editarProduto.php" method="GET" class="form-edit">
+                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                        <button type="submit" class="btn-edit">Editar</button>
+                                    </form>
+                                    <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
+                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                        <button type="submit" class="btn-delete">Excluir</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+        <?php endif; ?>
+    </main>
+
+<script src="../../assets/js/produto/produto.js"></script>
 </body>
 </html>

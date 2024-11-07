@@ -67,9 +67,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         </nav>
     </div> 
 
-    <section class="BemVindoAdm">
-        <h1>Bem-vindo, <?php echo $_SESSION['nome']; ?>!</h1>
-    </section>
+    <!--<section class="BemVindoAdm">
+        <h1>Bem-vindo, <?php //echo $_SESSION['nome']; ?>!</h1>
+    </section>-->
 
     <main>
         <h1>Editar Produto</h1>

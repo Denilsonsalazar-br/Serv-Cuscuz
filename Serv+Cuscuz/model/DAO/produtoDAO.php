@@ -103,4 +103,14 @@ class ProdutoDAO {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    // ProdutoDAO.php
+public function contarProdutosPorTamanho($tamanho) {
+    $conn = Conexao::getInstance();
+    $query = "SELECT COUNT(*) FROM t_produto WHERE tamanho = :tamanho";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':tamanho', $tamanho);
+    $stmt->execute();
+    return $stmt->fetchColumn();  // Retorna o número de produtos do tamanho específico
+}
+
 }

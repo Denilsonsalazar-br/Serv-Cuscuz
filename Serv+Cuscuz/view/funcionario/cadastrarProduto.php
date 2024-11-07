@@ -50,19 +50,19 @@ $funcionarios = $funcionarioDAO->listarFuncionarios();
             <a href="#">Relatórios</a>
         </nav>
     </div> 
-    <section class="BemVindoAdm">
+    <!--<section class="BemVindoAdm">
         <?php
             // Verifica se o usuário está logado e se é um funcionário
-            if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'FUNCIONARIO') {
+            //if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'FUNCIONARIO') {
             // Se não for funcionário, redireciona para a página home 
-            header("Location: ../../pages/home.php");
-            exit;
-        }
+            //header("Location: ../../pages/home.php");
+            //exit;
+        //}
 
         // Mensagem de boas-vindas
-        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
+        //echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
         ?>
-    </section>
+    </section>-->
     <main>
     <h1>Cadastrar Produto</h1>
 

@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+
+main{
+    align-items: center;
+    margin: 20px 10px;
+    border: 1px solid #ff5733;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+main h2{
+    padding: 10px 10px;
+    margin-top: 10px;
+    color: #ff5733;
+    text-align: center;
+    border-bottom: 1px solid #ff5733 ;
+}
+.dashboard-container {
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;  /*itens se movam para a próxima linha quando necessário*/
+}
+
+.dashboard-item {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 30%;  
+    box-sizing: border-box;
+}
+
+
+.dashboard-item h3 {
+    font-size: 1.2em;
+    color: #ff5733;
+}
+
+
+.dashboard-item p {
+    margin-top: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+.graficoProduto {
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    width: 60%;
+    max-width: 400px; 
+    margin: auto;
+}
+#graficoProdutos {
+    width: 100%;
+    height: auto; 
+}
+
+
+@media (max-width: 768px) {
+    .dashboard-item {
+        width: 100%;  
+        margin-bottom: 20px;  
+    }
+}
+
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .dashboard-item {
+        width: 45%;  
+    }
+}

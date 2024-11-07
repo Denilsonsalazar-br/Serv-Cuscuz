@@ -1,23 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
 
-.BemVindoAdm{
-    margin: 10px 0;
-    align-items: center;
-    text-align: center;
+.BemVindoAdmFun{
+    justify-content: left;
+    margin: 10px 10px;
+    align-items: left;
+    text-align: left;
 }
 
-.painelAdm{
+.painelAdmfun{
     width: 100%;
     display: flex;
 }
-.painelAdm nav {  
+.painelAdmFun nav {  
     margin-top: 10px; 
     width: 100%;
     overflow: hidden;
     background-color: #ff5733;
   }
   
-.painelAdm nav a {
+.painelAdmFun nav a {
     float: left;
     display: block;
     color: #f2f2f2;
@@ -26,13 +27,13 @@
     text-decoration: none;
   }
   
-.painelAdm nav a:hover {
+.painelAdmFun nav a:hover {
     background-color: #000000;
     color: #ffffff;
     font-weight: 500;
   }
 @media screen and (max-width: 730px) {
-   .painelAdm{
+   .painelAdmFun{
         display: flex;
         flex-direction: column;
     }
