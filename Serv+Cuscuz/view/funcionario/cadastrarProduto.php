@@ -21,6 +21,7 @@ $funcionarios = $funcionarioDAO->listarFuncionarios();
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
     <link rel="stylesheet" href="../../assets/css/produto/cadastrarProduto.css">
+    <link rel="stylesheet" href="../../assets/css/mensagens/mensagens.css">
     <title>Produtos</title>
 </head>
 <body>
@@ -64,6 +65,17 @@ $funcionarios = $funcionarioDAO->listarFuncionarios();
         ?>
     </section>-->
     <main>
+    <?php
+        if (isset($_SESSION['msg'])) {
+            $msgTipo = $_SESSION['msg']['tipo'] === 'sucesso' ? 'msgsucesso' : 'msgerro';
+            echo '<div class="msg ' . $msgTipo . '">
+                    <h4>' . ucfirst($_SESSION['msg']['tipo']) . '</h4>
+                    <p>' . $_SESSION['msg']['mensagem'] . '</p>
+                </div>';
+            unset($_SESSION['msg']); // Limpa a mensagem após exibi-la
+        }
+    ?>
+
     <h1>Cadastrar Produto</h1>
 
         <form action="../../controller/produto/createProdutoController.php" method="POST" enctype="multipart/form-data" class="form-produto">

@@ -20,6 +20,7 @@ $produtos = $readProdutoController->getAllProdutos(); // Obtém todos os produto
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
     <link rel="stylesheet" href="../../assets/css/produto/produto.css">
+    <link rel="stylesheet" href="../../assets/css/mensagens/mensagens.css">
     <title>Produtos</title>
 </head>
 <body>
@@ -77,6 +78,18 @@ $produtos = $readProdutoController->getAllProdutos(); // Obtém todos os produto
             <button class="tablink" onclick="openTab(event, 'M')">M</button>
             <button class="tablink" onclick="openTab(event, 'G')">G</button>
         </div>
+
+        <!--mensagens após a edição -->
+        <?php
+            if (isset($_SESSION['msg'])) {
+                $msgTipo = $_SESSION['msg']['tipo'] === 'sucesso' ? 'msgsucesso' : 'msgerro';
+                echo '<div class="msg ' . $msgTipo . '">
+                        <h4>' . ucfirst($_SESSION['msg']['tipo']) . '</h4>
+                        <p>' . $_SESSION['msg']['mensagem'] . '</p>
+                    </div>';
+                unset($_SESSION['msg']); 
+            }
+        ?>
 
         <!-- Conteúdo das Abas -->
         <div id="P" class="tabcontent">
