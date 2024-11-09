@@ -21,11 +21,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idProduto = $_POST['id'] ?? null;
     
     if ($idProduto) {
-        $controller = new DeleteProdutoController();
-        $controller->deleteProduto($idProduto);
+        try {
+            $controller = new DeleteProdutoController();
+            $controller->deleteProduto($idProduto);
+            
+            // Mensagem de sucesso
+            $_SESSION['msg'] = [
+                'tipo' => 'sucesso',
+                'mensagem' => 'Produto excluído com sucesso!'
+            ];
+        } catch (Exception $e) {
+            // Mensagem de erro
+            $_SESSION['msg'] = [
+                'tipo' => 'erro',
+                'mensagem' => $e->getMessage()
+            ];
+        }
         
         // Redirecionar de volta para a página de produtos após a exclusão
-        header("Location: ../../view/funcionario/produtos.php");
+        header("Location: ../../view/admin/produtos.php");
         exit;
     }
 }

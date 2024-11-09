@@ -22,7 +22,7 @@ $produtos = $readProdutoController->getAllProdutos();
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
     <link rel="stylesheet" href="../../assets/css/produto/produto.css">
     <link rel="stylesheet" href="../../assets/css/mensagens/mensagens.css">
-    <title>Produtos</title>
+    <title>Administração</title>
 </head>
 <body>
     <header>
@@ -41,34 +41,24 @@ $produtos = $readProdutoController->getAllProdutos();
             </div>
         </nav>
     </header>
+
     <!--abre navegação-->
     <div class="painelAdm">
-        <nav>
-            <a href="../../view/funcionario/paginaHomeFuncionario.php">Home</a>
-            <a href="../../view/funcionario/produtos.php">Produtos</a>
+        <nav >
+            <a href="../../view/admin/adminPainelController.php">Home</a>
+            <a href="../../view/admin/produtos.php">Produtos</a>
             <a href="#">Pedidos</a>
-            <a href="#">Estoque</a>
+            <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
+            <a href="../../view/admin/listaCliente.php">Clientes</a>
+            <a href="../../view/admin/carrosselHome.php">Carrossel Home</a>
             <a href="#">Relatórios</a>
         </nav>
-    </div> 
-    <!--Fecha navegação-->
+    </div>
+<!--Fecha navegação-->
 
-    <!--<section class="BemVindoAdm">
-        <?php
-            // Verifica se o usuário está logado e se é um funcionário
-            //if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'FUNCIONARIO') {
-            // Se não for funcionário, redireciona para a página home 
-            //header("Location: ../../pages/home.php");
-            //exit;
-        //}
-
-        // Mensagem de boas-vindas
-        //echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
-        ?>
-    </section>-->
-    <section class="section__btnFuncionario novoCuscuz">
+<section class="section__btnFuncionario novoCuscuz">
         <h2>Produtos Cadastrados</h2>
-        <a class="btnAdm" href="../../view/funcionario/cadastrarProduto.php">Novo</a>
+        <a class="btnAdm" href="../../view/admin/cadastrarProduto.php">Novo</a>
     </section>
     
     <main>
@@ -107,9 +97,13 @@ $produtos = $readProdutoController->getAllProdutos();
                                 <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
                                 
                                 <div class="actions">
-                                    <form action="../../view/funcionario/editarProduto.php" method="GET" class="form-edit">
+                                    <form action="../../view/admin/editarProduto.php" method="GET" class="form-edit">
                                         <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
                                         <button type="submit" class="btn-edit">Editar</button>
+                                    </form>
+                                    <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
+                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                        <button type="submit" class="btn-delete">Excluir</button>
                                     </form>
                                 </div>
                             </div>
@@ -130,9 +124,13 @@ $produtos = $readProdutoController->getAllProdutos();
                                 <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
                                 
                                 <div class="actions">
-                                    <form action="../../view/funcionario/editarProduto.php" method="GET" class="form-edit">
+                                    <form action="../../view/admin/editarProduto.php" method="GET" class="form-edit">
                                         <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
                                         <button type="submit" class="btn-edit">Editar</button>
+                                    </form>
+                                    <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
+                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                        <button type="submit" class="btn-delete">Excluir</button>
                                     </form>
                                 </div>
                             </div>
@@ -153,9 +151,13 @@ $produtos = $readProdutoController->getAllProdutos();
                                 <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
                                 
                                 <div class="actions">
-                                    <form action="../../view/funcionario/editarProduto.php" method="GET" class="form-edit">
+                                    <form action="../../view/admin/editarProduto.php" method="GET" class="form-edit">
                                         <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
                                         <button type="submit" class="btn-edit">Editar</button>
+                                    </form>
+                                    <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
+                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                        <button type="submit" class="btn-delete">Excluir</button>
                                     </form>
                                 </div>
                             </div>

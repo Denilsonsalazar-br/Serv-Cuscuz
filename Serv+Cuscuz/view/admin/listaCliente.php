@@ -37,7 +37,7 @@ require_once  "../../controller/cliente/readClienteController.php";
     <div class="painelAdm">
         <nav>
             <a href="../../view/admin/adminPainelController.php">Home</a>
-            <a href="#">Produtos</a>
+            <a href="../../view/admin/produtos.php">Produtos</a>
             <a href="#">Pedidos</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
             <a href="../../view/admin/listaCliente.php">Clientes</a>

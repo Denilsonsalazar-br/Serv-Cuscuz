@@ -81,15 +81,6 @@ $dashboardController->mostrarDashboard();
                 <p><?php echo $_SESSION['totalG']; ?> produtos</p>
             </div>
         </div>
-        <div class="graficoProduto">
-            <input type="hidden" id="totalP" value="<?php echo $_SESSION['totalP']; ?>">
-            <input type="hidden" id="totalM" value="<?php echo $_SESSION['totalM']; ?>">
-            <input type="hidden" id="totalG" value="<?php echo $_SESSION['totalG']; ?>">
-            <canvas id="graficoProdutos"></canvas>
-
-            <script src="../../assets/js/produto/graficoProdutos.js"></script>
-        </div>
-
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
