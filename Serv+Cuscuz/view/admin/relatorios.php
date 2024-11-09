@@ -5,4 +5,4 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 <h1>Relatorios</h1>
-<a href="../../controller/admin/adminPainelController.php">voltar</a>
+<a href="../../view/admin/adminPainelController.php">voltar</a>

@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redireciona com base no perfil
             if ($user['tipo_perfil'] == 'ADMINISTRADOR') {
-                header("Location: ../controller/admin/adminPainelController.php");
+                header("Location: ../view/admin/adminPainelController.php");
             } else {
                 header("Location: ../view/funcionario/paginaHomeFuncionario.php");
             }

@@ -35,7 +35,7 @@ require_once __DIR__ . "../../../controller/funcionario/editFuncionarioControlle
 </header>
 <div class="painelAdm">
     <nav>
-            <a href="../../controller/admin/adminPainelController.php">Home</a>
+            <a href="../../view/admin/adminPainelController.php">Home</a>
             <a href="#">Produtos</a>
             <a href="#">Pedidos</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>

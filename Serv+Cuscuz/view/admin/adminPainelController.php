@@ -1,0 +1,63 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
+    <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
+    <title>Administração</title>
+</head>
+<body>
+    <header>
+        <nav class="nav-bar">    
+            <div class="logo">
+                <a href="../../pages/home.php">
+                    <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
+                </a>
+            </div>
+            <div class="botao">
+                <button>
+                    <?php 
+                        include '../../pages/verificarLoginAdm.php';
+                    ?>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <div class="painelAdm">
+        <nav >
+        <a href="../../view/admin/adminPainelController.php">Home</a>
+            <a href="#">Produtos</a>
+            <a href="#">Pedidos</a>
+            <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
+            <a href="../../view/admin/listaCliente.php">Clientes</a>
+            <a href="../../view/admin/carrosselHome.php">Carrossel Home</a>
+            <a href="#">Relatórios</a>
+        </nav>
+    </div>
+    <section class="BemVindoAdm">
+        <?php 
+        // Verifica se o usuário é um administrador
+        if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 'ADMINISTRADOR') {
+            header("Location: ../../controller/admin/adminPainelController.php");
+            exit;
+        }
+        
+        echo "<h1>Bem-vindo, " . $_SESSION['nome'] . "!</h1>";
+        
+        ?>
+    </section>
+    <main>
+
+
+
+    </main>
+
+
+
+    
+</body>
+</html>
