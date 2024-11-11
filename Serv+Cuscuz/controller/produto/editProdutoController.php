@@ -38,6 +38,7 @@ class EditProdutoController {
             $produtoDTO->setPreco($dadosProduto['preco']);
             $produtoDTO->setTamanho($dadosProduto['tamanho']);
             $produtoDTO->setFuncionarioId($dadosProduto['t_funcionario_id']);
+            $produtoDTO->setCategoriaId($dadosProduto['t_categoria_id']);  // Atualizando categoria
 
             $this->produtoDAO->editarProduto($produtoDTO);
 
@@ -60,7 +61,6 @@ class EditProdutoController {
                 header("Location: ../../view/funcionario/produtos.php");
             }
         } else {
-            // Se o perfil não estiver definido, redireciona para uma página de login ou erro
             header("Location: ../../view/login.php");
         }
         exit();

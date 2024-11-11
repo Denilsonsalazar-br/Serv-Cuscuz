@@ -12,24 +12,25 @@ class ProdutoDAO {
 
     public function cadastrarProduto(ProdutoDTO $produto) {
         try {
-            $sql = "INSERT INTO t_produto (nome, descricao, imagem, preco, tamanho, t_funcionario_id) 
-                    VALUES (:nome, :descricao, :imagem, :preco, :tamanho, :t_funcionario_id)";
+            $sql = "INSERT INTO t_produto (nome, descricao, imagem, preco, tamanho, t_funcionario_id, t_categoria_id) 
+                    VALUES (:nome, :descricao, :imagem, :preco, :tamanho, :t_funcionario_id, :t_categoria_id)";
             $stmt = $this->pdo->prepare($sql);
-
+    
             $stmt->bindValue(":nome", $produto->getNome());
             $stmt->bindValue(":descricao", $produto->getDescricao());
             $stmt->bindValue(":imagem", $produto->getImagem());
             $stmt->bindValue(":preco", $produto->getPreco());
             $stmt->bindValue(":tamanho", $produto->getTamanho());
             $stmt->bindValue(":t_funcionario_id", $produto->getFuncionarioId());
-
+            $stmt->bindValue(":t_categoria_id", $produto->getCategoriaId()); // Associando categoria
+    
             return $stmt->execute();
         } catch (PDOException $e) {
             echo "Erro ao cadastrar produto: " . $e->getMessage();
             return false;
         }
     }
-
+    
     public function editarProduto(ProdutoDTO $produto) {
         try {
             $sql = "UPDATE t_produto SET 
@@ -38,7 +39,8 @@ class ProdutoDAO {
                         imagem = :imagem, 
                         preco = :preco, 
                         tamanho = :tamanho, 
-                        t_funcionario_id = :t_funcionario_id 
+                        t_funcionario_id = :t_funcionario_id,
+                        t_categoria_id = :t_categoria_id  -- Atualizando a categoria
                     WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
     
@@ -49,6 +51,7 @@ class ProdutoDAO {
             $stmt->bindValue(":preco", $produto->getPreco());
             $stmt->bindValue(":tamanho", $produto->getTamanho());
             $stmt->bindValue(":t_funcionario_id", $produto->getFuncionarioId());
+            $stmt->bindValue(":t_categoria_id", $produto->getCategoriaId()); // Atualizando categoria
     
             if ($stmt->execute()) {
                 return true;
@@ -62,7 +65,7 @@ class ProdutoDAO {
         }
     }
     
-
+    
     public function excluirProduto($id) {
         try {
             $sql = "DELETE FROM t_produto WHERE id = :id";
@@ -103,7 +106,7 @@ class ProdutoDAO {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    // ProdutoDAO.php
+
 public function contarProdutosPorTamanho($tamanho) {
     $conn = Conexao::getInstance();
     $query = "SELECT COUNT(*) FROM t_produto WHERE tamanho = :tamanho";
@@ -112,5 +115,17 @@ public function contarProdutosPorTamanho($tamanho) {
     $stmt->execute();
     return $stmt->fetchColumn();  // Retorna o número de produtos do tamanho específico
 }
+
+
+public function contarProdutosPorCategoriaETamanho($categoriaId, $tamanho) {
+    $query = "SELECT COUNT(*) as total FROM t_produto WHERE t_categoria_id = :categoria_id AND tamanho = :tamanho";
+    $stmt = $this->pdo->prepare($query);
+    $stmt->bindParam(':categoria_id', $categoriaId, PDO::PARAM_INT);
+    $stmt->bindParam(':tamanho', $tamanho, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] ?? 0;
+}
+
 
 }

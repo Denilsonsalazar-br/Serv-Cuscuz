@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+
+main {
+    align-items: center;
+    margin-top: 10px;
+    margin: 0;
+    padding: 30px;
+    background-color: #f4f6f9;
+    font-family: 'Montserrat', sans-serif;
+}
+.editarCategoria{
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.section__formCategoria {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.section__formCategoria label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.section__formCategoria input[type="text"] {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.section__formCategoria .btnSalvar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.section__formCategoria .btnCancelar {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    margin-left: 10px;
+}

@@ -7,6 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // Incluir os arquivos necessários
 require_once __DIR__ . "../../../controller/produto/readProdutoController.php";
 require_once __DIR__ . "../../../model/DAO/funcionarioDAO.php";
+require_once __DIR__ . "../../../model/DAO/categoriaDAO.php"; 
 
 // Verificar se o ID do produto foi passado pela URL
 if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -25,6 +26,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     // Carregar a lista de funcionários
     $funcionarioDAO = new FuncionarioDAO();
     $funcionarios = $funcionarioDAO->listarFuncionarios();
+
+    // Carregar a lista de categorias
+    $categoriaDAO = new CategoriaDAO(); 
+    $categorias = $categoriaDAO->list(); 
+    //var_dump($categorias);
+
 } else {
     echo "<p>ID do produto não foi especificado.</p>";
     exit;
@@ -45,7 +52,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <header>
         <nav class="nav-bar">    
             <div class="logo">
-                <a href="../../pages/home.php">
+                <a href="#">
                     <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
                 </a>
             </div>
@@ -76,6 +83,17 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
         <form action="../../controller/produto/editProdutoController.php" method="POST" enctype="multipart/form-data" class="form-produto">
             <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+
+            <label for="t_categoria_id">Categoria:</label>
+            <select id="t_categoria_id" name="t_categoria_id" class="input-field" required>
+                <option value="">Selecione uma categoria</option>
+                <?php foreach ($categorias as $categoria): ?>
+                    <option value="<?php echo $categoria['id']; ?>" 
+                        <?php echo ($produto->getCategoriaId() == $categoria['id']) ? 'selected' : ''; ?>>
+                        <?php echo htmlspecialchars($categoria['nome']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
             <label for="nome" class="label">Nome do Produto:</label>
             <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($produto->getNome()); ?>" required class="input-field">

@@ -7,12 +7,18 @@ if (session_status() === PHP_SESSION_NONE) {
 // Incluir os arquivos necessários
 require_once __DIR__ . "../../../controller/produto/readProdutoController.php";
 require_once __DIR__ . "../../../model/DAO/funcionarioDAO.php";
+require_once __DIR__ . "../../../model/DAO/categoriaDAO.php"; 
 
 // Carregar a lista de funcionários
 $funcionarioDAO = new FuncionarioDAO();
 $funcionarios = $funcionarioDAO->listarFuncionarios();
 
+// Carregar a lista de categorias
+$categoriaDAO = new CategoriaDAO();  
+$categorias = $categoriaDAO->list();  
+
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -46,6 +52,7 @@ $funcionarios = $funcionarioDAO->listarFuncionarios();
     <div class="painelAdm">
         <nav >
             <a href="../../view/admin/adminPainelController.php">Home</a>
+            <a href="../../view/admin/categoria.php">Categoria</a>
             <a href="../../view/admin/produtos.php">Produtos</a>
             <a href="#">Pedidos</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
@@ -70,6 +77,17 @@ $funcionarios = $funcionarioDAO->listarFuncionarios();
     <h1>Cadastrar Produto</h1>
 
         <form action="../../controller/produto/createProdutoController.php" method="POST" enctype="multipart/form-data" class="form-produto">
+
+            <label for="t_categoria_id">Categoria:</label>
+            <select id="t_categoria_id" name="t_categoria_id" class="input-field" required>
+                <option value="">Selecione uma categoria</option>
+                <?php foreach ($categorias as $categoria): ?>
+                    <option value="<?php echo $categoria['id']; ?>">
+                        <?php echo htmlspecialchars($categoria['nome']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+
 
             <label for="nome">Nome do Produto:</label>
             <input type="text" id="nome" name="nome" required class="input-field">

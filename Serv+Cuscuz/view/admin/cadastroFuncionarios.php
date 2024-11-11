@@ -36,6 +36,7 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
     <div class="painelAdm">
         <nav >
             <a href="../../view/admin/adminPainelController.php">Home</a>
+            <a href="../../view/admin/categoria.php">Categoria</a>
             <a href="../../view/admin/produtos.php">Produtos</a>
             <a href="#">Pedidos</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>

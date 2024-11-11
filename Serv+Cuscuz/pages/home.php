@@ -29,7 +29,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </section>
 
         <main>
-            <h2>Produtos Disponíveis</h2>
+            <!--<h2>Produtos</h2>-->
             <?php if (empty($produtos)): ?>
                 <p>Nenhum produto disponível no momento.</p>
             <?php else: ?>

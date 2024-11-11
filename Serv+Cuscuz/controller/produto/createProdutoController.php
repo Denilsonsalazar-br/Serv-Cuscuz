@@ -34,6 +34,7 @@ class CreateProdutoController {
                 $produtoDTO->setPreco($dadosProduto['preco']);
                 $produtoDTO->setTamanho($dadosProduto['tamanho']);
                 $produtoDTO->setFuncionarioId($dadosProduto['t_funcionario_id']);
+                $produtoDTO->setCategoriaId($dadosProduto['t_categoria_id']);  // Setando categoria
 
                 $this->produtoDAO->cadastrarProduto($produtoDTO);
 
@@ -58,8 +59,9 @@ class CreateProdutoController {
             }
             exit();
         }
-    }    
+    }
 }
+
 
 // Verifica se o arquivo foi acessado diretamente
 if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {

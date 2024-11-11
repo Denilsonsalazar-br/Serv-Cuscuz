@@ -1,35 +1,47 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var totalP = document.getElementById('totalP').value;
-    var totalM = document.getElementById('totalM').value;
-    var totalG = document.getElementById('totalG').value;
-
-    var ctx = document.getElementById('graficoProdutos').getContext('2d');
-    var graficoProdutos = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Pequeno (P)', 'Médio (M)', 'Grande (G)'],
-            datasets: [{
-                label: 'Quantidade de Produtos',
-                data: [totalP, totalM, totalG],
-                backgroundColor: ['#FF5733', '#33FF57', '#3357FF'],
-                borderColor: ['#C70039', '#28A745', '#003366'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            aspectRatio: 1.5,  // Ajuste a proporção do gráfico
-            plugins: {
-                legend: {
-                    position: 'top'  // Coloca a legenda no topo
-                }
+    function createChart(ctx, data) {
+        return new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Pequeno (P)', 'Médio (M)', 'Grande (G)'],
+                datasets: [{
+                    data: data,
+                    backgroundColor: ['#FF5733', '#33FF57', '#3357FF'],
+                    borderColor: ['#C70039', '#28A745', '#003366'],
+                    borderWidth: 1
+                }]
             },
-            scales: {
-                y: {
-                    display: false  // Remove as grades
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { position: 'top' }
                 }
             }
-        }
-    });
+        });
+    }
+
+    // Loop through each category and create a chart
+    for (const categoriaNome in dadosCategorias) {
+        const tamanhos = dadosCategorias[categoriaNome];
+        const data = [tamanhos['P'], tamanhos['M'], tamanhos['G']];
+        const ctx = document.getElementById(`grafico_${categoriaNome}`).getContext('2d');
+        createChart(ctx, data);
+    }
+});
+
+function openTab(evt, tabName) {
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    const tablinks = document.getElementsByClassName("tablink");
+
+    for (let content of tabcontent) content.style.display = "none";
+    for (let link of tablinks) link.className = link.className.replace(" active", "");
+
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Open the first tab by default
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementsByClassName("tablink")[0].click();
 });

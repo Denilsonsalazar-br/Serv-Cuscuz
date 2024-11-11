@@ -6,6 +6,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 require_once __DIR__ . "../../../controller/produto/readProdutoController.php";
+require_once __DIR__ . "../../../controller/categoria/listagemCategoriaController.php";
+
+$categoriaController = new CategoriaListController();
+$categorias = $categoriaController->execute();
 
 $readProdutoController = new ReadProdutoController();
 $produtos = $readProdutoController->getAllProdutos(); 
@@ -28,7 +32,7 @@ $produtos = $readProdutoController->getAllProdutos();
     <header>
         <nav class="nav-bar">    
             <div class="logo">
-                <a href="../../pages/home.php">
+                <a href="#">
                     <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
                 </a>
             </div>

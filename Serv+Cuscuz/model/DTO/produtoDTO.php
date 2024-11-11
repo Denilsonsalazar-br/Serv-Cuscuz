@@ -1,5 +1,4 @@
 <?php
-
 class ProdutoDTO {
     private $id;
     private $nome;
@@ -8,7 +7,7 @@ class ProdutoDTO {
     private $preco;
     private $tamanho;
     private $funcionarioId;
-    private $estoque;
+    private $categoriaId;  // Adicionando a categoria
 
     // Métodos get e set para cada atributo.
 
@@ -67,7 +66,13 @@ class ProdutoDTO {
     public function setFuncionarioId($funcionarioId) {
         $this->funcionarioId = $funcionarioId;
     }
-    public function getEstoque() { 
-        return $this->estoque;
+
+    // Getter e Setter para categoria
+    public function getCategoriaId() {
+        return $this->categoriaId;
+    }
+
+    public function setCategoriaId($categoriaId) {
+        $this->categoriaId = $categoriaId;
     }
 }

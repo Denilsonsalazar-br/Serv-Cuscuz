@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
- /*Estilo base para as mensagens de sucesso e erro*/
 .msg {
     margin-top: 10px;
     padding: 5px;
@@ -11,32 +10,32 @@
 
 /* Mensagem de sucesso */
 .msgsucesso {
-    background-color: #e8f5e9; /* Verde muito claro */
-    color: #2e7d32; /* Verde escuro */
-    border-left: 5px solid #388e3c; /* Borda lateral verde */
+    background-color: #e8f5e9; 
+    color: #2e7d32; 
+    border-left: 5px solid #388e3c; 
 }
 
 /* Mensagem de erro */
 .msgerro {
-    background-color: #ffebee; /* Vermelho muito claro */
-    color: #c62828; /* Vermelho escuro */
-    border-left: 5px solid #d32f2f; /* Borda lateral vermelha */
+    background-color: #ffebee; 
+    color: #c62828; 
+    border-left: 5px solid #d32f2f; 
 }
 
 /* Mensagem em destaque, ao passar o mouse */
 .msgsucesso:hover, .msgerro:hover {
-    opacity: 0.9; /* Levemente transparente ao passar o mouse */
+    opacity: 0.9; 
 }
 
 /* Estilo do texto */
 .msg h4 {
-    margin: 0; /* Remove margens do título */
-    font-size: 16px; /* Tamanho da fonte do título */
-    font-weight: bold; /* Título em negrito */
+    margin: 0; 
+    font-size: 16px; 
+    font-weight: bold; 
 }
 
 /* Texto do corpo */
 .msg p {
-    margin: 5px 0 0; /* Margem do texto */
-    font-size: 14px; /* Tamanho da fonte do corpo */
+    margin: 5px 0 0; 
+    font-size: 14px; 
 }

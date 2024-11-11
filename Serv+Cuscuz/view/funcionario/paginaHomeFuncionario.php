@@ -25,7 +25,7 @@ $dashboardController->mostrarDashboard();
     <header>
         <nav class="nav-bar">    
             <div class="logo">
-                <a href="../../pages/home.php">
+                <a href="#">
                     <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
                 </a>
             </div>
@@ -68,19 +68,19 @@ $dashboardController->mostrarDashboard();
     <main>
         <h2>Dashboard dos produtos cadastrados!</h2>
         <div class="dashboard-container">
-            <div class="dashboard-item">
-                <h3>Total de Produtos Pequenos (P)</h3>
-                <p><?php echo $_SESSION['totalP']; ?> produtos</p>
-            </div>
-            <div class="dashboard-item">
-                <h3>Total de Produtos Médios (M)</h3>
-                <p><?php echo $_SESSION['totalM']; ?> produtos</p>
-            </div>
-            <div class="dashboard-item">
-                <h3>Total de Produtos Grandes (G)</h3>
-                <p><?php echo $_SESSION['totalG']; ?> produtos</p>
-            </div>
-        </div>
+        <?php if (isset($_SESSION['dadosCategorias'])): ?>
+            <?php foreach ($_SESSION['dadosCategorias'] as $categoriaNome => $tamanhos): ?>
+                <div class="dashboard-item">
+                    <h3><?php echo htmlspecialchars($categoriaNome); ?></h3>
+                    <p>Pequeno (P): <?php echo $tamanhos['P']; ?> produtos</p>
+                    <p>Médio (M): <?php echo $tamanhos['M']; ?> produtos</p>
+                    <p>Grande (G): <?php echo $tamanhos['G']; ?> produtos</p>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Nenhuma categoria encontrada.</p>
+        <?php endif; ?>
+    </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

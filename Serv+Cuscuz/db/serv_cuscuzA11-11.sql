@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06/11/2024 às 16:33
+-- Tempo de geração: 11/11/2024 às 17:52
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -52,9 +52,33 @@ CREATE TABLE `t_carrossel` (
 --
 
 INSERT INTO `t_carrossel` (`id`, `imagem_url`, `titulo`, `descricao`) VALUES
-(1, 'assets/img/Cuscuz_Recheado_jerked.jpg', 'Cuscuz 1', 'Boa opção para quem ama as raízes nordestinas. '),
+(1, 'assets/img/CARROSEEL 01.jpg', 'Cuscuz 2', 'Boa opção para quem ama as raízes nordestinas. '),
 (2, 'assets/img/67268a324ab82-CARROSSEL 02.jpg', 'Cuscuz recheado ', 'Ótima opção para quem está seguindo uma boa dieta.'),
 (3, 'assets/img/Cuscuz_Recheado.jpeg', 'Cuscuz com carne', 'Esse serve como uma refeição.');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `t_categoria`
+--
+
+CREATE TABLE `t_categoria` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Despejando dados para a tabela `t_categoria`
+--
+
+INSERT INTO `t_categoria` (`id`, `nome`) VALUES
+(1, 'Cuscuz Nordestino'),
+(2, 'Cuscuz Paulista'),
+(3, 'Cuscuz Marroquino'),
+(4, 'Cuscuz de Coco'),
+(5, 'Cuscuz Caipira'),
+(6, 'Cuscuz Simples e facil'),
+(10, 'Cuscuz gostoso 2');
 
 -- --------------------------------------------------------
 
@@ -80,7 +104,7 @@ CREATE TABLE `t_cliente` (
 
 INSERT INTO `t_cliente` (`id`, `nome`, `sobrenome`, `cpf`, `email`, `telefone`, `data_criacao`, `data_atualizacao`, `senha`) VALUES
 (29, 'Tiago', 'Santos', '05398531271', 'tiago@gmail.com', '12345678978', '2024-10-28 16:09:58', '2024-10-28 16:09:58', '$2y$10$qfZaog6ftzPyHpP3lxQi8Om9uKx7hNoTlFGD6L5C3GyaPb9l460v.'),
-(31, 'Manoel', 'Alves Dos Santos', '66510066220', 'manoel@gmail.com', '14253698745', '2024-10-29 17:27:55', '2024-10-29 17:27:55', '$2y$10$Y8jpPdNWiHrMHDHqNZoeGOkBVod7BK4EruvivNNeRLOiAd1KpUQdC');
+(33, 'Neuzimar', 'Salazar', '71185402268', 'neuzimar@gmail.com', '11111111111', '2024-11-11 16:46:03', '2024-11-11 16:46:03', '$2y$10$KokbsA6ZyQvBeY26DHW08O0Ja.4LS3D81P3H35bBPrhOXmLxBm6ry');
 
 -- --------------------------------------------------------
 
@@ -125,8 +149,8 @@ INSERT INTO `t_funcionario` (`id`, `nome`, `cpf`, `email`, `telefone`, `data_cri
 (1, 'Administrador', '01234567891', 'administrador@gmail.com', '01234567890', NULL, '$2y$10$wOcJ2sJnt0u06j3CDBu0Iur/guqaFYbvPYsEl3CR1avH.KCAOg/7i', 1),
 (7, 'Funcionario', '12345678912', 'funcionario@gmail.com', '12345678912', NULL, '$2y$10$pPizy0yB1q1e8WzvNgBA5.9aNgzw4aBYL72GApAbgGixPIGg.pkbW', 2),
 (14, 'jonas', '14875982356', 'jonas@gmail.com', '12345475823', NULL, '$2y$10$Zh361/U/AwvPNhtEMsqr2u0fzGJxHsumAwY.yILMGNMu.7lpW29NG', 2),
-(32, 'Neuzimar Salazar', '71185402268', 'neuzimarsalazar@gmail.com', '94992785597', NULL, '$2y$10$ZCQpf7QZ4xgK9vwAIvvOTOj.JBL5gZwgHMzYeIE5r38so3JGSge7K', 2),
-(36, 'Denilson Salazar', '05398531271', 'denilson@gmail.com', '12345678945', NULL, '$2y$10$iU/HHt4VpwZBMYLtpbKLsePUo2ZvrCssSnLrCfVwcod6kHFKpuQZe', 2);
+(36, 'Denilson Salazar', '05398531271', 'denilson@gmail.com', '12345671111', NULL, '$2y$10$iU/HHt4VpwZBMYLtpbKLsePUo2ZvrCssSnLrCfVwcod6kHFKpuQZe', 2),
+(37, 'Neuzimar Salazar', '71185402268', 'funcionarioneuzimar@gmail.com', '11111111112', '2024-11-09', '$2y$10$rekoi.6PBkhV6tMqPy0Qbetfqo2Vh3pq4aO5l7kZWv68MiozyBi2W', 2);
 
 -- --------------------------------------------------------
 
@@ -265,25 +289,33 @@ CREATE TABLE `t_produto` (
   `descricao` text NOT NULL,
   `preco` decimal(10,2) NOT NULL,
   `tamanho` varchar(100) NOT NULL,
-  `imagem` varchar(255) NOT NULL
+  `imagem` varchar(255) NOT NULL,
+  `t_categoria_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `t_produto`
 --
 
-INSERT INTO `t_produto` (`id`, `t_funcionario_id`, `nome`, `descricao`, `preco`, `tamanho`, `imagem`) VALUES
-(1, 0, 'salazar', 'sasdsdfsd', 14.00, 'M', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/CARROSSEL 03.jpg'),
-(3, 1, 'cuscusz \\', '\\\\\\\\\\\\adssfsdf', 14.00, 'G', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/CARROSEEL 01.jpg'),
-(4, 1, 'cuscusz  bom', 'dassdfgfgdyf', 14.00, 'M', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_Recheado_frango.jpg'),
-(5, 1, 'cuscusz  otimo', 'sdsfdsfs', 14.00, 'p', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/teste3.jpg'),
-(6, 0, 'cuscusz  otim', 'ffsdafdf', 14.00, 'P', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/teste3.jpg'),
-(7, 36, 'cuscusz  delicia 0', 'fsdafsdgfdsag', 14.00, 'P', 'teste3.jpg'),
-(8, 1, 'cuscusz  padrao', 'fsfaddgafdg', 14.00, 'G', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_normal.jpg'),
-(9, 36, 'cuscusz  bley X', 'sfasdfdgdg', 14.00, 'P', 'Cuscuz_Recheado_jerked.jpg'),
-(10, 1, 'cuscusz  bla', 'fdgfdgs', 14.00, 'P', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_Recheado_jerked.jpg'),
-(11, 36, 'cuscusz  bley 456', 'ygtydfrtes', 14.00, 'P', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/CARROSEEL 01.jpg'),
-(12, 32, 'sadsfs', 'sddgdg', 10.00, 'G', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/teste3.jpg');
+INSERT INTO `t_produto` (`id`, `t_funcionario_id`, `nome`, `descricao`, `preco`, `tamanho`, `imagem`, `t_categoria_id`) VALUES
+(1, 1, 'salazar 01', 'sasdsdfsd', 14.00, 'M', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/CARROSSEL 03.jpg', 1),
+(3, 36, 'cuscusz ', 'adssfsdf', 14.00, 'G', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/CARROSEEL 01.jpg', 2),
+(4, 37, 'cuscusz  bondoso', 'dassdfgfgdyf', 14.00, 'M', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_Recheado_frango.jpg', 3),
+(6, 36, 'Denilson salazar 1456', 'denilsonffsdafdf', 15.00, 'P', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/teste3.jpg', 10),
+(7, 36, 'cuscusz  delicia 0', 'fsdafsdgfdsag', 14.00, 'P', 'teste3.jpg', 5),
+(8, 1, 'cuscusz  padrao', 'fsfaddgafdg', 14.00, 'G', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_normal.jpg', 6),
+(9, 36, 'cuscusz  bley X', 'sfasdfdgdg', 14.00, 'P', 'Cuscuz_Recheado_jerked.jpg', 1),
+(10, 1, 'cuscusz  bla', 'fdgfdgs', 14.00, 'P', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_Recheado_jerked.jpg', 2),
+(12, 1, 'sadsfs', 'sddgdg', 11.00, 'G', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/teste3.jpg', 3),
+(14, 36, 'fsfds', 'dsgasdgf', 12.00, 'M', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/CARROSSEL 03.jpg', 4),
+(15, 36, 'sfdfdg', 'fdsfgfdf', 15.00, 'M', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_Recheado_frango.jpg', 6),
+(16, 36, 'dsdasf', 'fsdafdsf', 14.00, 'P', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/CARROSSEL 03.jpg', 6),
+(17, 36, 'sfdffdg', 'fdsdfdg', 15.00, 'P', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/CARROSEEL 01.jpg', 1),
+(18, 37, 'ereeter477', 'srafrfgrg', 15.00, 'P', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/TESTE IMAGEM CANVA.jpg', 4),
+(26, 37, 'cuscusz  charmoso', 'asasfddfg', 18.00, 'G', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_Recheado.jpeg', 1),
+(27, 37, 'ereeter47788', 'gfsfasfdsf', 18.00, 'G', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_Recheado_jerked.jpg', 4),
+(28, 1, '147', 'sasdfdsf', 14.00, 'G', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_Recheado_jerked.jpg', 5),
+(29, 37, 'sfadgf123', 'sfdsgfdghf', 15.00, 'P', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/CARROSSEL 03.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -318,6 +350,12 @@ ALTER TABLE `t_alergia`
 -- Índices de tabela `t_carrossel`
 --
 ALTER TABLE `t_carrossel`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `t_categoria`
+--
+ALTER TABLE `t_categoria`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -408,7 +446,8 @@ ALTER TABLE `t_personalizacaoprodutoingrediente`
 --
 ALTER TABLE `t_produto`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_produto_funcionario_idx` (`t_funcionario_id`);
+  ADD KEY `fk_produto_funcionario_idx` (`t_funcionario_id`),
+  ADD KEY `fk_t_categoria` (`t_categoria_id`);
 
 --
 -- Índices de tabela `t_promocao`
@@ -434,10 +473,16 @@ ALTER TABLE `t_carrossel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de tabela `t_categoria`
+--
+ALTER TABLE `t_categoria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT de tabela `t_cliente`
 --
 ALTER TABLE `t_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de tabela `t_endereco`
@@ -449,7 +494,7 @@ ALTER TABLE `t_endereco`
 -- AUTO_INCREMENT de tabela `t_funcionario`
 --
 ALTER TABLE `t_funcionario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de tabela `t_ingrediente`
@@ -503,7 +548,7 @@ ALTER TABLE `t_personalizacaoprodutoingrediente`
 -- AUTO_INCREMENT de tabela `t_produto`
 --
 ALTER TABLE `t_produto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de tabela `t_promocao`
@@ -570,7 +615,8 @@ ALTER TABLE `t_personalizacaoprodutoingrediente`
 -- Restrições para tabelas `t_produto`
 --
 ALTER TABLE `t_produto`
-  ADD CONSTRAINT `fk_produto_funcionario` FOREIGN KEY (`t_funcionario_id`) REFERENCES `t_funcionario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_produto_funcionario` FOREIGN KEY (`t_funcionario_id`) REFERENCES `t_funcionario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_t_categoria` FOREIGN KEY (`t_categoria_id`) REFERENCES `t_categoria` (`id`) ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `t_promocao`
