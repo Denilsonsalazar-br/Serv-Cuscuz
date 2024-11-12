@@ -37,9 +37,13 @@ if (session_status() === PHP_SESSION_NONE) {
                     <?php foreach ($produtos as $produto): ?>
                         <div class="produto-card">
                             <img src="<?php echo '../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
+
                             <h4><?php echo htmlspecialchars($produto->getNome()); ?></h4>
+
                             <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
+
                             <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
+                            
                         </div>
                     <?php endforeach; ?>
                 </div>
