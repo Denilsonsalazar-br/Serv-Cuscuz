@@ -11,15 +11,17 @@ footer{
     background-color: #ff5733;
 }
 .redes-sociais img{
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     width: 35px;
-    height: 35px;
-    
+    height: 35px;  
 }
 .redes-sociais{
     display: flex;
     margin-right: 10px;
 }
+
 footer .containerFooter{
     margin-bottom: 0;
     display: grid;
@@ -73,10 +75,14 @@ footer .containerFooter li{
         width: 100%;
         margin-bottom: 30px;
     }
+    .redes-sociais {
+        align-items: center;
+    }
 }
 @media screen and (max-width: 426px){
     footer .containerFooter{
         grid-template-columns: repeat(1,1fr);
         padding: 1rem 2rem;
     }
+
 }

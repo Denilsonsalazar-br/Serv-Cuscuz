@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+
+/* Ocupa a altura total da tela */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Altura do container principal para ocupar o restante da tela */
+.containerHome {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Permite que o main ocupe o máximo possível do espaço, empurrando o footer para baixo */
+main {
+    flex: 1;
+    padding-bottom: 30px;
+}
+
+/* Estilos do footer */
+footer {
+    border-top: 1px solid #000;
+    background-color: #ff5733;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Container geral dos produtos */
+.produto-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Estilo para cada card de produto */
+.produto-card {
+    position: relative;
+    width: 300px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.produto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagem do produto */
+.produto-imagem {
+    width: 100%;
+    height: 250px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Nome do produto */
+.produto-card h4 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+/* Descrição */
+.produto-card .descricao {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* Preço */
+.produto-card .preco {
+    font-size: 1em;
+    color: #2a9d8f;
+    font-weight: 700;
+}
+
+/* Botão de adicionar ao carrinho */
+.add-carrinho-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 14px;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-carrinho-btn:hover {
+    background-color: #21867a;
+}
+
+/* Estilo do modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    justify-content: space-around;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    height: 400px;
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.modal-body{
+    display: flex;
+    margin: 5px;
+}
+
+.modal-imagem {
+    margin-left: 0;
+    height: 100%;
+    width: 50%;
+    border-radius: 8px
+}
+
+.modal-info {
+    background-color: #ffffff;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.modal-preco {
+    font-weight: bold;
+    color: #2a9d8f;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-adicionar, .btn-cancelar {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.btn-adicionar {
+    background-color: #48d05f;
+    color: white;
+}
+
+.btn-cancelar {
+    background-color: #d9534f;
+    color: white;
+}
+
+/* Botão fechar */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.productInfo--label {
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.productInfo--price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.productInfo--actualPrice {
+    font-size: 28px;
+    margin-right: 20px;
+    color: #2a9d8f;
+}
+
+.productInfo--quantityArea {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.productInfo--decreaseQuantity, .productInfo--increaseQuantity {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 720px) {
+    /* Modal layout em telas pequenas */
+    .modal-content {
+        flex-direction: column;
+        width: 80%;
+        height: auto;
+        padding: 20px;
+    }
+    .modal-body{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .modal-imagem {
+        width: 100%;
+        height: 200px;
+    }
+
+    .modal-info {
+        width: 100%;
+        text-align: center;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-adicionar, .btn-cancelar {
+        width: 100%;
+    }
+}
