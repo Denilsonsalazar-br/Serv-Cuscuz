@@ -15,6 +15,11 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
     <link rel="stylesheet" href="../../assets/css/mensagens/mensagens.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <script src="../../assets/js/CDNs/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/js/CDNs/dataTables.js"></script>
+
     <title>Administração</title>
 </head>
 <body>
@@ -100,16 +105,19 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
                 <a class="btnAdm" href="#" target="_blank">Imprimir</a>
             </section>
             <section>
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Cpf</th>
-                        <th>Email</th>
-                        <th>Telefone</th>
-                        <th>Tipo Perfil</th>
-                        <th class="gerenciarAdm">Gerenciar</th>
-                    </tr>
+                <table id="myTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Cpf</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Tipo Perfil</th>
+                            <th class="gerenciarAdm">Gerenciar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     <?php if (isset($funcionarios) && is_array($funcionarios)): ?>
                         <?php foreach ($funcionarios as $funcionario): ?>
                         <tr>
@@ -143,7 +151,8 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
                             </td>         
                         </tr>
                         <?php endforeach; ?>
-                    <?php else: ?>
+                        <?php else: ?>
+                        </tbody>
                         <tr>
                             <td colspan="6">Nenhum funcionário encontrado.</td>
                         </tr>
@@ -152,5 +161,16 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
             </section>
         </main>
     </div>
+
+<script>
+    $(document).ready( function () {
+        $('#myTable').DataTable( {
+            language: {
+                url: '../../assets/js/CDNs/dataTable-pt-BR.json',
+            }
+        } );
+        
+    } );
+</script>
 </body>
 </html>
