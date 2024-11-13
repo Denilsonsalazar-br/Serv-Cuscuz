@@ -2,29 +2,29 @@
 
 main {
     margin-top: 10px;
-    background-color: #ff5733; /* Fundo vibrante */
-    padding: 20px; /* Espaçamento interno */
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Sombra para dar profundidade */
+    background-color: #ff5733; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); 
 }
 
 .carrossel-edit-container {
-    display: flex; /* Permite que os formulários fiquem lado a lado */
-    flex-wrap: wrap; /* Permite que os formulários se movam para a linha seguinte se necessário */
-    gap: 10px; /* Espaço entre os formulários */
-    margin: 0 auto; /* Centraliza o conteúdo */
-    max-width: 1200px; /* Largura máxima do container */
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+    margin: 0 auto; 
+    max-width: 1200px; 
 }
 
 
 .carrossel-edit-form {
-    flex: 1 1 calc(30% - 15px); /* Tenta ocupar 30% da largura do container, subtraindo 15px para margem */
-    padding: 20px; /* Espaçamento interno do formulário */
-    border: 1px solid #e0e0e0; /* Borda mais suave */
+    flex: 1 1 calc(30% - 15px); 
+    padding: 20px; 
+    border: 1px solid #e0e0e0;
     border-radius: 8px; 
     background-color: #ffffff; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: transform 0.2s; /* Efeito de transição suave */
+    transition: transform 0.2s;
 }
 .imgAtualCarrossel img{
     border-radius: 8px;
@@ -34,67 +34,67 @@ main {
 }
 
 .carrossel-edit-form:hover {
-    transform: translateY(-3px); /* Eleva um pouco o formulário ao passar o mouse */
+    transform: translateY(-3px); 
 }
 main h1 {
-    font-size: 2em; /* Aumenta o tamanho da fonte */
+    font-size: 2em; 
     color: #ffffff; 
     text-align: center; 
-    margin-bottom: 20px; /* Espaço abaixo do título */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra sutil para dar profundidade */
-    font-family: 'Montserrat', sans-serif; /* Fonte mais moderna */
+    margin-bottom: 20px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
+    font-family: 'Montserrat', sans-serif; 
 }
 
 main h3 {
     margin-top: 10px;
-    font-size: 1.5em; /* Aumenta o tamanho do cabeçalho do formulário */
-    color: #ff5733; /* Cor do texto */
-    margin-bottom: 20px; /* Espaçamento abaixo do cabeçalho */
-    font-family: 'Montserrat', sans-serif; /* Consistente com o título principal */
-    border-bottom: 2px solid #ff5733; /* Linha abaixo do cabeçalho para destaque */
-    padding-bottom: 5px; /* Espaço abaixo do texto */
+    font-size: 1.5em; 
+    color: #ff5733; 
+    margin-bottom: 20px; 
+    font-family: 'Montserrat', sans-serif; 
+    border-bottom: 2px solid #ff5733; 
+    padding-bottom: 5px;
 }
 
 
 h3 {
-    font-size: 1.25em; /* Tamanho da fonte para cabeçalhos */
-    color: #333; /* Cor do texto */
-    margin-bottom: 10px; /* Espaçamento abaixo do cabeçalho */
+    font-size: 1.25em; 
+    color: #333; 
+    margin-bottom: 10px; 
 }
 
 label {
     margin-top: 10px;
     font-weight: 500;
-    color: #444; /* Cor do texto mais escura */
-    margin-bottom: 10px; /* Espaçamento abaixo do label */
-    display: block; /* Para o label ocupar toda a largura */
+    color: #444;
+    margin-bottom: 10px; 
+    display: block; 
 }
 
 input[type="text"],
 textarea,
 input[type="file"] {
     font-weight: 300;
-    width: 80%; /* Faz os campos ocuparem a largura total do formulário */
-    padding: 12px; /* Espaçamento interno maior */
-    border: 1px solid #ddd; /* Borda mais clara */
-    border-radius: 4px; /* Bordas arredondadas */
-    font-size: 1em; /* Tamanho da fonte */
-    margin-bottom: 15px; /* Espaçamento abaixo do campo */
+    width: 80%; 
+    padding: 12px; 
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+    font-size: 1em; 
+    margin-bottom: 15px; 
     transition: border-color 0.3s, box-shadow 0.3s; /* Transições suaves */
 }
 
 input[type="text"]:focus,
 textarea:focus {
-    border-color: #ff5733; /* Cor da borda em foco */
-    box-shadow: 0 0 5px rgba(255, 87, 51, 0.5); /* Sombra ao focar */
-    outline: none; /* Remove contorno padrão */
+    border-color: #ff5733; 
+    box-shadow: 0 0 5px rgba(255, 87, 51, 0.5); 
+    outline: none; 
 }
 
 .imagem-atual {
     margin-top: 10px;
     max-width: 100%;
-    border-radius: 4px; /* Bordas arredondadas */
-    border: 1px solid #ddd; /* Borda ao redor da imagem */
+    border-radius: 4px; 
+    border: 1px solid #ddd; 
 }
 
 .btn-atualizar  {
@@ -104,17 +104,17 @@ textarea:focus {
     text-align: center;
 }
 .btn-atualizar button {
-    background-color:  #ff5733; /* Cor de fundo verde */
-    color: white; /* Cor do texto */
-    padding: 12px 20px; /* Mais espaço no botão */
-    border: none; /* Remove borda */
-    border-radius: 4px; /* Bordas arredondadas */
-    cursor: pointer; /* Muda o cursor ao passar o mouse */
-    font-size: 1em; /* Tamanho da fonte */
-    transition: background-color 0.3s, transform 0.2s; /* Transições suaves */
+    background-color:  #ff5733; 
+    color: white; 
+    padding: 12px 20px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 1em; 
+    transition: background-color 0.3s, transform 0.2s; 
 }
 
 .btn-atualizar button:hover {
-    background-color: #28a745; /* Cor do botão ao passar o mouse */
-    transform: scale(1.05); /* Aumenta levemente o botão ao passar o mouse */
+    background-color: #28a745; 
+    transform: scale(1.05);
 }

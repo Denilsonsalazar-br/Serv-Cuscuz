@@ -26,6 +26,11 @@
             </div>
 
             <div class="containerPerfilNome">
+                    <div class="carrinhoCompra">
+                        <a href="#">
+                            <img src="../assets/img/carrinhoBranco.png" alt="Icone Carrinho">
+                        </a>
+                    </div>
                     <div class="iconeUsuario">
                         <a href="#">
                             <img src="../assets/img/usuarioBranco.png" alt="Icone Usuario">

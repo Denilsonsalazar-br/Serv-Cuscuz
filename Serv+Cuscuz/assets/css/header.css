@@ -46,8 +46,15 @@ header {
     border-color:#fff ;
     color: #fff;
 }
+.carrinhoCompra img {
+    cursor: pointer;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
 
-.iconeUsuario img {
+}
+.iconeUsuario  img {
     cursor: pointer;
     align-items: center;
     width: 40px;
@@ -162,6 +169,21 @@ header {
     }
     .nomeperfil a:hover{
         background-color: transparent;
+    }
+
+    .carrinhoCompra {
+        margin-right: 15px;
+        font-size: 26px;
+        background-color: #ef9a9a;
+        padding: 5px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .carrinhoCompra img{
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        margin-right: 5px;
     }
     .nomeperfil img{
         width: 25px;

@@ -12,6 +12,7 @@ html, body {
     display: flex;
     flex-direction: column;
     flex-grow: 1; 
+    padding: 0px 30px;
 }
 
 /* Permite que o main ocupe o máximo possível do espaço, empurrando o footer para baixo */

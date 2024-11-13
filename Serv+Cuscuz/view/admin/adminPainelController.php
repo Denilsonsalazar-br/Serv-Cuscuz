@@ -96,7 +96,8 @@ $dashboardController->mostrarDashboardAdmin();
 </main>
 
 <script src="../../assets/js/produto/dashboard.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+<script src="../../assets/js/CDNs/chart.js"></script>
 <script src="../../assets/js/produto/graficoProdutos.js"></script>
 
 
