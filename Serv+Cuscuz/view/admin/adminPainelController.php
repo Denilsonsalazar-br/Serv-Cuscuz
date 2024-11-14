@@ -65,7 +65,7 @@ $dashboardController->mostrarDashboardAdmin();
 
     <!-- dashboard-->
     <main>
-    <h2>Dashboard de Produtos Cadastrados</h2>
+    <h2>Categorias Cadastrados</h2>
 
     <!-- Incorporar dados PHP como um objeto JSON -->
     <script>

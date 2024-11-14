@@ -17,7 +17,10 @@ footer{
     width: 35px;
     height: 35px;  
 }
-.redes-sociais{
+.redes-sociais a{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     display: flex;
     margin-right: 10px;
 }
@@ -83,6 +86,19 @@ footer .containerFooter li{
     footer .containerFooter{
         grid-template-columns: repeat(1,1fr);
         padding: 1rem 2rem;
+    }
+    .redes-sociais-pai{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-left: 35%;
+
+    }
+    .redes-sociais-pai .redes-sociais {
+        justify-content: center;
+        display: flex;
+        width: 50%;
+        align-items: center;
     }
 
 }

@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+
+/* Container principal para os itens do carrinho e produtos */
+main {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+
+/* Carrinho fixo, mas apenas ao lado do main */
+.cart-aside {
+    border-radius: 10px;
+    position: fixed;
+    top: 130px;  /* Ajuste para começar logo abaixo do header */
+    right: 0; /* Coloca o carrinho à direita */
+    width: 320px; /* Largura ajustada */
+    height: 60%;
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1;
+    display: none; /* Inicia oculto */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+/* Exibe o carrinho quando a classe 'show' for adicionada */
+.cart-aside.show {
+    display: flex;
+}
+
+.iconeAsideCarrinho{
+    align-items: center;
+    width: 20px;
+    height: 20px;
+}
+
+.iconeAsideCarrinho img{
+    width: 20px;
+    height: 20px;
+}
+
+/* Ícone de abrir/fechar o carrinho */
+.open-cart-btn {
+    background-color: transparent;
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.open-cart-btn:hover {
+    color: #ff5733; /* Altere para a cor desejada */
+}
+
+/* Botão "X" para fechar o carrinho */
+.close-cart-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    position: absolute left;
+    top: 10px;
+    right: 10px;
+}
+
+.close-cart-btn:hover {
+    color: #ff5733; /* Altere para a cor desejada */
+}
+
+/* Cabeçalho do carrinho (com título e número de itens) */
+.cart-header {
+    padding-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-header h3 {
+    font-size: 1.6em;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+}
+.cart-item-count-number{
+    color: #ff5733;
+    font-weight: bold;
+}
+.cart-item-count {
+    font-size: 1.2em;
+    color: #888;
+}
+
+/* Lista de itens do carrinho */
+.cart-items-list {
+    list-style: none;
+    padding-top: 8px;
+    margin: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Cada item do carrinho */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.cart-item .item-name {
+    flex: 1;
+    color: #333;
+}
+
+.cart-item .item-price {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* Total do carrinho */
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Botão de finalizar compra */
+.checkout-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.checkout-btn:hover {
+    background-color: #45a049;
+}
+
+/* ajuste dos informações do carrinho */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Linha divisória */
+    margin-bottom: 10px;
+}
+
+/* Estilo para os detalhes do item (nome, quantidade, total) */
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 14px;
+    color: #333;
+    flex-grow: 1;
+}
+
+/* Nome do item */
+.item-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Quantidade do item */
+.item-quantity {
+    color: #555;
+    font-size: 14px;
+}
+.item-quantity-number{
+    color: #000000;
+    font-weight: bold;
+}
+
+/* Total do item */
+.item-total {
+    color: #ff5733;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Estilo do botão de remover */
+.remove-item-btn {
+    background: #e74c3c; 
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efeito de hover e foco no botão */
+.remove-item-btn:hover,
+.remove-item-btn:focus {
+    background-color: #c0392b; 
+    transform: scale(1.1);  
+    text-decoration: none;
+}
+
+/* Adiciona um efeito de sombra leve quando o botão é pressionado */
+.remove-item-btn:active {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Adiciona margem entre os itens para manter a lista limpa */
+.cart-items-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+/* Ajuste para telas pequenas */
+@media (max-width: 720px) {
+    .cart-aside {
+        width: 90%;
+        max-width: 400px;
+        height: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 3000;
+        padding-top: 150px;
+    }
+
+    .cart-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .cart-header img{
+        width: 30px;
+        height: 30px;
+    }
+
+    .cart-item-count {
+        margin-top: 10px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item img {
+        width: 40px;
+        height: 40px;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .open-cart-btn {
+        background-color: transparent;
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+
+    .carrinhoCompra {
+        height: 30px;
+        width: 30px;
+        background-color: transparent;
+    }
+
+    .carrinhoCompra img {
+        width: 30px;
+        height: 30px;
+    }
+}

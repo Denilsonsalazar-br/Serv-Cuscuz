@@ -2,26 +2,34 @@
 
 /* Ocupa a altura total da tela */
 html, body {
+
     height: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
 }
+body {
+    margin-top: 300px; /* Espaço para o conteúdo não ficar atrás do header */
+}
 
 /* Altura do container principal para ocupar o restante da tela */
 .containerHome {
+    position: relative;
+    z-index: 1; 
+    padding-top: 130px; 
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-/* Permite que o main ocupe o máximo possível do espaço, empurrando o footer para baixo */
+/* Layout geral da página */
 main {
-    flex: 0;
-    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;
+    position: relative;
 }
-
 /* Estilos do footer */
 footer {
     border-top: 1px solid #000;
