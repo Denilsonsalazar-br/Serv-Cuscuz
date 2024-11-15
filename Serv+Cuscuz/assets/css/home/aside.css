@@ -139,6 +139,7 @@ main {
 
 /* Total do carrinho */
 .cart-total {
+    padding-top: 30px;
     display: flex;
     justify-content: space-between;
     font-weight: bold;
