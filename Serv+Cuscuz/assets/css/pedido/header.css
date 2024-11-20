@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+    margin-top: 120px; /* Espaço para o conteúdo não ficar atrás do header */
+}
+
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: #ff5733;
+}
+
+.containerPerfilNome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.login-link{
+    text-align: center;
+}
+
+.nomeperfil {
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+}
+.nomeperfil:hover{
+    cursor: pointer;
+    border-color:#fff ;
+    color: #fff;
+}
+.nomeperfil a{
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+.nomeperfil a:hover{
+    align-items: center;
+    text-align: center;
+    border-color:#fff ;
+    color: #fff;
+}
+.carrinhoCompra {
+    position: relative;
+    display: inline-block;
+}
+
+.badge {
+    border: 2px solid #ffffff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 8px;
+    width: 8px;
+    height: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.carrinhoCompra img {
+    cursor: pointer;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+
+}
+.iconeUsuario  img {
+    cursor: pointer;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.user-name {
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+
+
+.nav-bar {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 6rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    cursor: pointer;
+    width: 130px;
+    height: 75px;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-weight: 400;
+}
+.nav-link:hover{
+    color: #000000;
+}
+
+.containerPerfilNome .login-button button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #000000;
+}
+
+.containerPerfilNome .login-button button:hover{
+    background-color: #000000;
+    border-color:#fff ;
+    color: #fff;
+}
+
+.login-button button a:hover{
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.login-button button a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.mobile-menu-icon {
+    display: none;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+
+@media screen and (max-width: 730px) {
+    header{
+        width: 100%;
+    }
+    .containerPerfilNome{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .nomeperfil{
+        width: 60%;
+        border: transparent;
+        background-color: transparent;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .nomeperfil:hover{
+        border: 1px solid #ffffff;
+        cursor: pointer;
+        background-color: #000000;
+    }
+    .nomeperfil a:hover{
+        background-color: transparent;
+    }
+
+    .carrinhoCompra {
+        margin-right: 15px;
+        font-size: 26px;
+        background-color: #ef9a9a;
+        padding: 5px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .carrinhoCompra img{
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+    .nomeperfil img{
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+    .nav-bar .containerPerfilNome{
+        display: none;
+    }
+    .nav-bar {
+        padding: 1.5rem 4rem;
+    }
+    .nav-item {
+        display: none;
+    }
+    .login-button {
+        display: none;
+    }
+    .mobile-menu-icon {
+        display: block;
+    }
+    .mobile-menu .nomeperfil{
+        text-align: center;
+    }
+    .mobile-menu-icon button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    .mobile-menu ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+    .mobile-menu .nav-item {
+        display: block;
+        padding-top: 1.2rem;
+    }
+    .mobile-menu .login-button {
+        display: block;
+        padding: 0.5rem 1rem;
+    }
+    .mobile-menu .login-button button {
+        width: 100%;
+    }
+    .open {
+        display: block;
+    }
+}

@@ -1,0 +1,304 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$exibirModal = false;
+
+// Verificar se o cliente está logado
+if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
+    $exibirModal = true; // Define que o modal deve ser exibido
+}
+
+
+// Verifica se o carrinho está na sessão
+if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+    echo '<ul id="cartItemsList" class="cart-items-list">';
+
+    $cartTotal = 0;
+    $cartItemCount = 0;
+
+    // Percorre os itens do carrinho e exibe na página
+    foreach ($_SESSION['cart'] as $item) {
+        $cartTotal += $item['total'];
+        $cartItemCount += $item['quantity'];
+
+        echo '<li class="cart-item">
+                <span class="cart-item-details">
+                    <span class="item-name">' . htmlspecialchars($item['name']) . '</span>
+                    <span class="item-quantity">Quantidade: ' . $item['quantity'] . '</span>
+                    <span class="item-total">Total: R$ ' . number_format($item['total'], 2, ',', '.') . '</span>
+                </span>
+                <button class="remove-item-btn" onclick="removeFromCart(this, ' . $item['total'] . ')">Remover</button>
+              </li>';
+    }
+
+    echo '</ul>';
+
+    // Exibe o total do carrinho
+    echo '<div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotalAmount">R$ ' . number_format($cartTotal, 2, ',', '.') . '</span>
+          </div>';
+    echo '<div class="cart-item-count">
+            <span class="cart-item-count-number" id="cartItemCount">' . $cartItemCount . '</span> itens
+          </div>';
+} else {
+    echo '<p>Seu carrinho está vazio.</p>';
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/pedido/header.css">
+    <link rel="stylesheet" href="../../assets/css/pedido/footer.css">
+    <link rel="stylesheet" href="../../assets/css/pedido/finalizarPedido.css">
+    <title>Finalizando Pedido</title>
+</head>
+<body>
+    
+    <header>
+    <nav class="nav-bar">
+            <div class="logo" href="../../pages/home.php">
+                <a href="../../pages/home.php">
+                    <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
+                </a>
+            </div>
+            <div class="nav-list">
+                <ul>
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Quem somos</a></li>
+                <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
+                <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
+                </ul>
+            </div>
+
+            <div class="containerPerfilNome">
+                    <div class="carrinhoCompra open-cart-bt">                      
+                            <img onclick="toggleCartVisibility()" src="../../assets/img/carrinhoBranco.png" alt="Icone Carrinho">  
+                            <span id="cartItemCountBadge" class="badge" style="display: none;">0</span>
+                    </div>
+                    <div class="iconeUsuario">
+                        <a href="#">
+                            <img src="../../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                        </a>
+                    </div>
+                <div class="nomeperfil">
+                    <div>
+                        <?php include '../../pages/verificarLogin.php'; ?>
+                    </div>
+                </div>
+                <div class="login-button">
+                    <?php if (isset($_SESSION['id'])): ?>
+                        <button><a href="../../pages/logout.php">Sair</a></button>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="mobile-menu-icon">
+                <button >
+                    <img onclick="menuShowPedido()" class="icon" src="../../assets/img/abrirMenu.png" alt="">
+                </button>
+            </div>
+            
+        </nav>
+        
+        <div class="mobile-menu">
+            <ul>
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Quem somos?</a></li>
+                <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
+                <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
+            </ul>
+            <div class="containerPerfilNome">
+                <div class="nomeperfil" href="#">
+                    
+                    <div class="iconeUsuario">
+                        <img src="../../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                    </div>
+                
+                    <div>
+                        <?php include '../../pages/verificarLogin.php'; ?>
+                    </div>
+                </div>
+                <div class="carrinhoCompra open-cart-bt">                      
+                            <img onclick="toggleCartVisibility()" src="../assets/img/carrinhoBranco.png" alt="Icone Carrinho">  
+                            <span id="cartItemCountBadge" class="badge">0</span>
+                    </div>
+                <div class="login-button">
+                    <?php if (isset($_SESSION['id'])): ?>
+                        <button><a href="../../pages/logout.php">Sair</a></button>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+
+<main>
+
+        <!-- Modal de login -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-content-img">
+                    <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
+                </div>
+                <a href="../../pages/home.php" id="closeModal" class="btn-close">X</a>
+                <br>
+                <p>Você precisa estar logado ou se cadastrar para adicionar produtos ao carrinho, e continuar a compra.</p>
+                <div class="modal-buttons">
+                    <a href="../../pages/login.php" class="btn">Login</a>
+                    <a href="../../view/cliente/cadastroCliente.php" class="btn">Cadastrar-se</a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Passa o controle de exibição do PHP para o JavaScript
+            const exibirModal = <?php echo json_encode($exibirModal); ?>;
+
+            // Exibe o modal se o cliente não estiver logado
+            if (exibirModal) {
+                document.getElementById('loginModal').style.display = 'block';
+            }
+
+            // Fecha o modal ao clicar no botão "Fechar"
+            document.getElementById('closeModal').onclick = function() {
+                document.getElementById('loginModal').style.display = 'none';
+            };
+        </script>
+
+    <!-- Carrinho de Compras-->
+    <div class="containerProdutos">
+        <div class="containerProdutosHeader">
+            <img src="../../assets/img/carrinhoBranco.png" alt="">
+            <h2> Meu Carrinho</h2>
+        </div>
+        <table class="carrinho-table">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php //if (!empty($carrinho)): ?>
+                    <?php // foreach ($carrinho as $produto): ?>
+                        <tr>
+                            <td><?php //echo htmlspecialchars($produto['name']); ?></td>
+                            <td>R$ <?php //echo number_format($produto['total'] / $produto['quantity'], 2, ',', '.'); ?></td>
+                            <td><?php //echo $produto['quantity']; ?></td>
+                            <td>R$ <?php //echo number_format($produto['total'], 2, ',', '.'); ?></td>
+                        </tr>
+                    <?php // endforeach; ?>
+                <?php //else: ?>
+                    <tr>
+                        <td colspan="4">Carrinho vazio</td>
+                    </tr>
+                <?php //endif; ?>
+            </tbody>
+        </table>
+
+        <div class="total-carrinho">
+            <span>Total: </span>
+            <span>
+                R$ <?php 
+                    //$totalCarrinho = 0;
+                    //foreach ($carrinho as $produto) {
+                        //$totalCarrinho += $produto['total'];
+                    //}
+                    //echo number_format($totalCarrinho, 2, ',', '.');
+                ?>
+            </span>
+        </div>
+    </div> 
+
+    <!-- Formulário de Endereço -->
+    <section class="formulario-endereco">
+        <h2>Informe o Endereço de Entrega</h2>
+        <form action="../../controller/pedido/createPedidoController.php" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="rua">Rua:</label>
+                    <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua" required>
+                </div>
+                <div class="form-group">
+                    <label for="numero">Número:</label>
+                    <input type="text" id="numero" name="numero" placeholder="Número" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" id="bairro" name="bairro" placeholder="Digite o bairro" required>
+                </div>
+                <div class="form-group">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" placeholder="Digite a cidade" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <input type="text" id="estado" name="estado" placeholder="Ex.: SP, RJ, MG" required>
+                </div>
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" placeholder="Digite o CEP" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="complemento">Complemento:</label>
+                <input type="text" id="complemento" name="complemento" placeholder="Ex.: Apto, Bloco, Casa" required>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="submit-btn">Avançar para o Pagamento</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<footer>
+<div class="containerFooter">
+            <ul>
+                <h2>Serv+Cuscuz</h2>
+                <p>"Mais sabor, mais praticidade!"</p>
+                <div class="redes-sociais-pai">
+                    <div class="redes-sociais">
+                        <a href="#"><img src="../../assets/rede-social/facebook.png" alt="Facebook"></a>
+                        <a href="#"><img src="../../assets/rede-social/whatsapp.png" alt="Whatsapp"></a>
+                        <a href="#"><img src="../../assets/rede-social/instagram.png" alt="Instagram"></a>
+                    </div>
+                </div>
+            </ul>
+            <ul>
+                <h2>Link</h2>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Cardápio</a></li>
+                <li><a href="#">Sobre</a></li>
+            </ul>
+            <ul>
+                <h2>Suporte</h2>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Como funciona</a></li>
+                <li><a href="#">Comunicando</a></li>
+            </ul>
+            <ul>
+                <h2>Nossos contatos</h2>
+                <li><a href="#">+55(61)99268-9834</a></li>
+                <li><a href="#">servmaiscuscuz@gmail.com</a></li>
+                <li><a href="#">Brasil</a></li>
+            </ul>
+        </div>
+</footer>
+
+    <!-- Atlternando desktop e mobile -->
+    <script src="/Serv-Cuscuz/Serv+Cuscuz/view/assets/js/pedido/headerPedido.js"></script>
+
+</body>
+</html>

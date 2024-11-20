@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+/* Layout Principal */
+main {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 30px 0;
+}
+/* Estilo para o fundo do modal */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    z-index: 1000; /* Fica acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Adiciona scroll se necessário */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro com transparência */
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #fff; /* Fundo branco */
+    margin: 10% auto; /* Centralizado verticalmente */
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%; /* Largura do modal */
+    max-width: 400px; /* Largura máxima */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative; /* Para posicionar o botão de fechar */
+}
+
+/* Imagem dentro do modal */
+.modal-content-img img {
+    width: 150px;
+    height: auto;
+    margin: 0 auto 20px;
+}
+
+/* Botão fechar no canto superior direito */
+.btn-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-close:hover {
+    color: red;
+}
+
+/* Texto dentro do modal */
+.modal p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Botões de login e cadastro */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.modal-buttons .btn {
+    display: inline-block;
+    background-color: #ff5703; /* Cor azul */
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    flex: 1;
+    text-align: center;
+}
+
+.modal-buttons .btn:hover {
+    background-color: #4CAF50;
+}
+
+/* Container do Carrinho */
+.containerProdutos {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+.containerProdutosHeader{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+.containerProdutosHeader img{
+    width: 30px;
+    height: 30px;
+    
+}
+/* Título */
+.containerProdutos h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Estilo da Tabela */
+.carrinho-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-bottom: 20px;
+}
+
+.carrinho-table th, .carrinho-table td {
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+    border-radius: 8px;
+}
+
+.carrinho-table th {
+    background-color: #ff5733;
+    color: white;
+    font-weight: bold;
+}
+
+.carrinho-table td {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.carrinho-table td:hover {
+    background-color: #f0f8ff;
+    transform: translateY(-2px);
+}
+
+/* Quando o carrinho estiver vazio */
+.carrinho-table td[colspan="4"] {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+/* Estilo do Total do Carrinho */
+.total-carrinho {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: right;
+    color: #333;
+    margin-top: 20px;
+    background-color: #ff5733;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulário de Endereço */
+.formulario-endereco {
+    flex: 1;
+    min-width: 300px;
+    padding: 25px;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.formulario-endereco h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #ff5703;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.form-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    background: #ff5733;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #4CAF50;
+    transform: translateY(-3px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .containerProdutos, .formulario-endereco {
+        width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .total-carrinho {
+        font-size: 1.2rem;
+    }
+}
+@media (max-width: 414px) {
+    main {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .containerProdutos, .formulario-endereco {
+        width: 95%;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .total-carrinho {
+        font-size: 1.2rem;
+    }
+}

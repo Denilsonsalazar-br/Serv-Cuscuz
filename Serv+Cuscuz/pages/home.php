@@ -3,6 +3,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+// Verificar se o cliente está logado
+if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
+    // Exibe o modal ou redireciona para a página de login
+    echo "<script>document.getElementById('loginModal').style.display = 'block';</script>";
+}
     require_once __DIR__ . "../../controller/produto/readProdutoController.php";
 
     $readProdutoController = new ReadProdutoController();
@@ -23,6 +28,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>Serv+Cuscuz</title>
 </head>
 <body>
+
 
     <header>
     <nav class="nav-bar">
@@ -132,24 +138,56 @@ if (session_status() === PHP_SESSION_NONE) {
                             <span>Total:</span>
                             <span id="cartTotalAmount">R$ 0,00</span>
                         </div>
-                        <button class="checkout-btn">Finalizar Compra</button>
+                        <form id="checkoutForm" action="../view/cliente/finalizarPedido.php" method="POST">
+                            <button type="submit" class="checkout-btn">Finalizar Compra</button>
+                        </form>
                     </aside>
-
                     </div>
                 <?php endif; ?>
 
-                <div class="produto-container">
-                    <?php foreach ($produtos as $produto): ?>
-                        <div class="produto-card">
-                            <img src="<?php echo '../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
-                            <h2><?php echo htmlspecialchars($produto->getNome()); ?></h2>
-                            <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
-                            <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
-                            <div>
-                                <button class="add-carrinho-btn" onclick="openModal('<?php echo htmlspecialchars($produto->getNome()); ?>', '<?php echo htmlspecialchars($produto->getDescricao()); ?>', '<?php echo number_format($produto->getPreco(), 2, ',', '.'); ?>', '../assets/img/<?php echo basename($produto->getImagem()); ?>')">+</button>
+                <!-- Modal de login -->
+                <div id="loginModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button" onclick="closeLoginModal()">×</span>
+                        <div class="modal-header">
+                            <img src="logo.png" alt="Logo" class="modal-logo">
+                            <h2>Precisa Fazer Login</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p>Você precisa estar logado para finalizar a compra. Caso não tenha uma conta, faça seu cadastro abaixo!</p>
+                            <div class="modal-buttons">
+                                <button onclick="redirectToLogin()">Fazer Login</button>
+                                <a href="../view/cliente/cadastroCliente.php" class="register-link">Não tem uma conta? Cadastre-se aqui!</a>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <!-- Produtos -->
+                <div class="produto-container">
+                <?php foreach ($produtos as $produto): ?>
+                    <div class="produto-card">
+                        <img src="<?php echo '../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
+                        <h2><?php echo htmlspecialchars($produto->getNome()); ?></h2>
+                        <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
+                        <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
+                        <div>
+                            <button 
+                                class="add-carrinho-btn" 
+                                data-id="<?php echo $produto->getId(); ?>" 
+                                onclick="openModal(
+                                    '<?php echo htmlspecialchars($produto->getNome()); ?>',
+                                    '<?php echo htmlspecialchars($produto->getDescricao()); ?>',
+                                    '<?php echo number_format($produto->getPreco(), 2, ',', '.'); ?>',
+                                    '../assets/img/<?php echo basename($produto->getImagem()); ?>',
+                                    '<?php echo $produto->getId(); ?>'
+                                )">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
                 </div>
             </main>
 
@@ -173,6 +211,9 @@ if (session_status() === PHP_SESSION_NONE) {
                                 </div>
                             </div>
 
+                            <!-- Campo oculto para armazenar o ID do produto -->
+                            <input type="hidden" id="modalId">
+
                             <div class="modal-buttons">
                                 <button class="btn-adicionar" onclick="addToCartFromModal()">Adicionar ao carrinho</button>
                                 <button class="btn-cancelar" onclick="closeModal()">Cancelar</button>
@@ -181,15 +222,9 @@ if (session_status() === PHP_SESSION_NONE) {
                     </div>
                 </div>
             </div>
-        <!--Aside-->
-        <script src="../assets/js/home/aside.js"></script>
-    </div>
 
-    <!-- Modal -->
-    <script src="../assets/js/home/modal.js"></script>
+        </div>
 
-    <!-- Atlternando desktop e mobile -->
-    <script src="../assets/js/header.js"></script>
 
 <footer>
 <div class="containerFooter">
@@ -224,6 +259,16 @@ if (session_status() === PHP_SESSION_NONE) {
             </ul>
         </div>
 </footer>
+
+    <!--JS do Aside-->
+    <script src="../assets/js/home/aside.js"></script>
+
+    <!--JS do Modal -->
+    <script src="../assets/js/home/modal.js"></script>
+
+    <!-- Atlternando desktop e mobile -->
+    <script src="../assets/js/header.js"></script>
+
 
 </body>
 </html>

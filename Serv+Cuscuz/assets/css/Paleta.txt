@@ -4,6 +4,7 @@ Preto: #000000
 Branco: #FFFFFF
 Azul: #A9CCE3
 Laranja: #ff5733
+verde: #4CAF50
 
 
 
