@@ -1,52 +1,33 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
 $exibirModal = false;
 
-// Verificar se o cliente está logado
+// Verifica se o cliente está logado
 if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
     $exibirModal = true; // Define que o modal deve ser exibido
 }
 
+// Verifica se o carrinho existe na sessão, caso contrário, inicializa-o
+if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
 
-// Verifica se o carrinho está na sessão
-if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-    echo '<ul id="cartItemsList" class="cart-items-list">';
+// Inicializa as variáveis para o total do carrinho e a contagem de itens
+$cartTotal = 0;
+$cartItemCount = 0;
 
-    $cartTotal = 0;
-    $cartItemCount = 0;
-
-    // Percorre os itens do carrinho e exibe na página
+// Calcula os totais do carrinho
+if (!empty($_SESSION['cart'])) {
     foreach ($_SESSION['cart'] as $item) {
         $cartTotal += $item['total'];
         $cartItemCount += $item['quantity'];
-
-        echo '<li class="cart-item">
-                <span class="cart-item-details">
-                    <span class="item-name">' . htmlspecialchars($item['name']) . '</span>
-                    <span class="item-quantity">Quantidade: ' . $item['quantity'] . '</span>
-                    <span class="item-total">Total: R$ ' . number_format($item['total'], 2, ',', '.') . '</span>
-                </span>
-                <button class="remove-item-btn" onclick="removeFromCart(this, ' . $item['total'] . ')">Remover</button>
-              </li>';
     }
-
-    echo '</ul>';
-
-    // Exibe o total do carrinho
-    echo '<div class="cart-total">
-            <span>Total:</span>
-            <span id="cartTotalAmount">R$ ' . number_format($cartTotal, 2, ',', '.') . '</span>
-          </div>';
-    echo '<div class="cart-item-count">
-            <span class="cart-item-count-number" id="cartItemCount">' . $cartItemCount . '</span> itens
-          </div>';
-} else {
-    echo '<p>Seu carrinho está vazio.</p>';
 }
+//var_dump($_SESSION['cart']);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -138,44 +119,41 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         
     </header>
 
-<main>
 
-        <!-- Modal de login -->
-        <div id="loginModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-content-img">
-                    <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
-                </div>
-                <a href="../../pages/home.php" id="closeModal" class="btn-close">X</a>
-                <br>
-                <p>Você precisa estar logado ou se cadastrar para adicionar produtos ao carrinho, e continuar a compra.</p>
-                <div class="modal-buttons">
-                    <a href="../../pages/login.php" class="btn">Login</a>
-                    <a href="../../view/cliente/cadastroCliente.php" class="btn">Cadastrar-se</a>
-                </div>
+    <main>
+    <!-- Modal de login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-content-img">
+                <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
+            </div>
+            <a href="../../pages/home.php" id="closeModal" class="btn-close">X</a>
+            <br>
+            <p>Você precisa estar logado ou se cadastrar para adicionar produtos ao carrinho, e continuar a compra.</p>
+            <div class="modal-buttons">
+                <a href="../../pages/login.php" class="btn">Login</a>
+                <a href="../../view/cliente/cadastroCliente.php" class="btn">Cadastrar-se</a>
             </div>
         </div>
+    </div>
 
-        <script>
-            // Passa o controle de exibição do PHP para o JavaScript
-            const exibirModal = <?php echo json_encode($exibirModal); ?>;
+    <script>
+        const exibirModal = <?php echo json_encode($exibirModal); ?>;
 
-            // Exibe o modal se o cliente não estiver logado
-            if (exibirModal) {
-                document.getElementById('loginModal').style.display = 'block';
-            }
+        if (exibirModal) {
+            document.getElementById('loginModal').style.display = 'block';
+        }
 
-            // Fecha o modal ao clicar no botão "Fechar"
-            document.getElementById('closeModal').onclick = function() {
-                document.getElementById('loginModal').style.display = 'none';
-            };
-        </script>
+        document.getElementById('closeModal').onclick = function() {
+            document.getElementById('loginModal').style.display = 'none';
+        };
+    </script>
 
     <!-- Carrinho de Compras-->
     <div class="containerProdutos">
         <div class="containerProdutosHeader">
             <img src="../../assets/img/carrinhoBranco.png" alt="">
-            <h2> Meu Carrinho</h2>
+            <h2>Meu Carrinho</h2>
         </div>
         <table class="carrinho-table">
             <thead>
@@ -187,20 +165,20 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php //if (!empty($carrinho)): ?>
-                    <?php // foreach ($carrinho as $produto): ?>
+                <?php if (!empty($_SESSION['cart'])): ?>
+                    <?php foreach ($_SESSION['cart'] as $produto): ?>
                         <tr>
-                            <td><?php //echo htmlspecialchars($produto['name']); ?></td>
-                            <td>R$ <?php //echo number_format($produto['total'] / $produto['quantity'], 2, ',', '.'); ?></td>
-                            <td><?php //echo $produto['quantity']; ?></td>
-                            <td>R$ <?php //echo number_format($produto['total'], 2, ',', '.'); ?></td>
+                            <td><?php echo htmlspecialchars($produto['name']); ?></td>
+                            <td>R$ <?php echo number_format($produto['price'], 2, ',', '.'); ?></td>
+                            <td><?php echo $produto['quantity']; ?></td>
+                            <td>R$ <?php echo number_format($produto['total'], 2, ',', '.'); ?></td>
                         </tr>
-                    <?php // endforeach; ?>
-                <?php //else: ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
                         <td colspan="4">Carrinho vazio</td>
                     </tr>
-                <?php //endif; ?>
+                <?php endif; ?>
             </tbody>
         </table>
 
@@ -208,11 +186,11 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
             <span>Total: </span>
             <span>
                 R$ <?php 
-                    //$totalCarrinho = 0;
-                    //foreach ($carrinho as $produto) {
-                        //$totalCarrinho += $produto['total'];
-                    //}
-                    //echo number_format($totalCarrinho, 2, ',', '.');
+                    $totalCarrinho = 0;
+                    foreach ($_SESSION['cart'] as $produto) {
+                        $totalCarrinho += $produto['total'];
+                    }
+                    echo number_format($totalCarrinho, 2, ',', '.');
                 ?>
             </span>
         </div>

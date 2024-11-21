@@ -178,6 +178,14 @@ main {
     margin-bottom: 10px;
 }
 
+.cart-item .item-id {
+    font-size: 0.9em;
+    color: #000;
+    margin-right: 10px;
+    display: flex;
+}
+
+
 /* Estilo para os detalhes do item (nome, quantidade, total) */
 .cart-item-details {
     display: flex;

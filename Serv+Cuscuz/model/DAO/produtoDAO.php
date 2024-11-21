@@ -19,17 +19,17 @@ class ProdutoDAO {
             $stmt->bindValue(":nome", $produto->getNome());
             $stmt->bindValue(":descricao", $produto->getDescricao());
             $stmt->bindValue(":imagem", $produto->getImagem());
-            $stmt->bindValue(":preco", $produto->getPreco());
+            $stmt->bindValue(":preco", number_format((float) $produto->getPreco(), 2, '.', ''));
             $stmt->bindValue(":tamanho", $produto->getTamanho());
             $stmt->bindValue(":t_funcionario_id", $produto->getFuncionarioId());
-            $stmt->bindValue(":t_categoria_id", $produto->getCategoriaId()); // Associando categoria
+            $stmt->bindValue(":t_categoria_id", $produto->getCategoriaId());
     
             return $stmt->execute();
         } catch (PDOException $e) {
-            echo "Erro ao cadastrar produto: " . $e->getMessage();
+            error_log("Erro ao cadastrar produto: " . $e->getMessage());
             return false;
         }
-    }
+    }    
     
     public function editarProduto(ProdutoDTO $produto) {
         try {

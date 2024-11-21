@@ -116,7 +116,6 @@ if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
                     <p>Nenhum produto disponível no momento.</p>
                 <?php else: ?>
                     <div class="main-container">
-
                         <!-- Carrinho de compras -->
                     <aside id="cartAside" class="cart-aside" style="display: none;">
                         <div class="botaoFecharCarrinho">

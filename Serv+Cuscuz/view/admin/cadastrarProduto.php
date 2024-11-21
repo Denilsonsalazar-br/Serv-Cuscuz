@@ -76,55 +76,52 @@ $categorias = $categoriaDAO->list();
 
     <h1>Cadastrar Produto</h1>
 
-        <form action="../../controller/produto/createProdutoController.php" method="POST" enctype="multipart/form-data" class="form-produto">
+    <form action="../../controller/produto/createProdutoController.php" method="POST" enctype="multipart/form-data" class="form-produto">
+    <label for="t_categoria_id">Categoria:</label>
+    <select id="t_categoria_id" name="t_categoria_id" class="input-field" required>
+        <option value="">Selecione uma categoria</option>
+        <?php foreach ($categorias as $categoria): ?>
+            <option value="<?php echo $categoria['id']; ?>">
+                <?php echo htmlspecialchars($categoria['nome']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
 
-            <label for="t_categoria_id">Categoria:</label>
-            <select id="t_categoria_id" name="t_categoria_id" class="input-field" required>
-                <option value="">Selecione uma categoria</option>
-                <?php foreach ($categorias as $categoria): ?>
-                    <option value="<?php echo $categoria['id']; ?>">
-                        <?php echo htmlspecialchars($categoria['nome']); ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+    <label for="nome">Nome do Produto:</label>
+    <input type="text" id="nome" name="nome" required class="input-field">
 
+    <label for="descricao">Descrição:</label>
+    <textarea id="descricao" name="descricao" required class="input-field" spellcheck="true"></textarea>
 
-            <label for="nome">Nome do Produto:</label>
-            <input type="text" id="nome" name="nome" required class="input-field">
+    <label for="imagem">Selecionar Nova Imagem:</label>
+    <input type="file" id="imagem" name="imagem" accept="image/*" class="input-field" required onchange="previewImage(event)">
 
-            <label for="descricao">Descrição:</label>
-            <textarea id="descricao" name="descricao" required class="input-field"></textarea>
+    <div id="imagePreviewContainer">
+        <img id="imagePreview" src="" alt="Pré-visualização da imagem" style="max-width: 300px; display: none;">
+    </div>
 
-            <label for="imagem">Selecionar Nova Imagem:</label>
-            <input type="file" id="imagem" name="imagem" accept="image/*" class="input-field" required onchange="previewImage(event)">
+    <label for="preco">Preço:</label>
+    <input type="number" id="preco" name="preco" step="0.01" min="0" required class="input-field">
 
-            <!-- Aqui a imagem será exibida após ser escolhida -->
-            <div id="imagePreviewContainer">
-                <img id="imagePreview" src="" alt="Pré-visualização da imagem" style="max-width: 300px; display: none;">
-            </div>
+    <label for="tamanho">Tamanho:</label>
+    <select id="tamanho" name="tamanho" class="input-field" required>
+        <option value="P">P</option>
+        <option value="M">M</option>
+        <option value="G">G</option>
+    </select>
 
-            <label for="preco">Preço:</label>
-            <input type="text" id="preco" name="preco" required class="input-field">
+    <label for="t_funcionario_id">Funcionário Responsável:</label>
+    <select id="t_funcionario_id" name="t_funcionario_id" class="input-field" required>
+        <option value="">Selecione um funcionário</option>
+        <?php foreach ($funcionarios as $funcionario): ?>
+            <option value="<?php echo $funcionario['id']; ?>">
+                <?php echo htmlspecialchars($funcionario['nome']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
 
-            <label for="tamanho">Tamanho:</label>
-            <select id="tamanho" name="tamanho" class="input-field" required>
-                <option value="P">P</option>
-                <option value="M">M</option>
-                <option value="G">G</option>
-            </select>
-
-            <label for="t_funcionario_id">Funcionário Responsável:</label>
-            <select id="t_funcionario_id" name="t_funcionario_id" class="input-field" required>
-                <option value="">Selecione um funcionário</option>
-                <?php foreach ($funcionarios as $funcionario): ?>
-                    <option value="<?php echo $funcionario['id']; ?>">
-                        <?php echo htmlspecialchars($funcionario['nome']); ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-
-            <button type="submit" class="btn-submit">Cadastrar Produto</button>
-        </form>
+    <button type="submit" class="btn-submit">Cadastrar Produto</button>
+</form>
 
 </main>
 
