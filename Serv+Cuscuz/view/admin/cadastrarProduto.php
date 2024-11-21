@@ -93,8 +93,8 @@ $categorias = $categoriaDAO->list();
     <label for="descricao">Descrição:</label>
     <textarea id="descricao" name="descricao" required class="input-field" spellcheck="true"></textarea>
 
-    <label for="imagem">Selecionar Nova Imagem:</label>
-    <input type="file" id="imagem" name="imagem" accept="image/*" class="input-field" required onchange="previewImage(event)">
+    <label for="imagem">Selecionar Imagem:</label>
+    <input placeholder="estensão aceita: .jpg, .jpeg, .png, webp" type="file" id="imagem" name="imagem" accept="image/*" class="input-field" required onchange="previewImage(event)">
 
     <div id="imagePreviewContainer">
         <img id="imagePreview" src="" alt="Pré-visualização da imagem" style="max-width: 300px; display: none;">

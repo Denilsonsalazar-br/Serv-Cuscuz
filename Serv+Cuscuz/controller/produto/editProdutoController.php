@@ -13,32 +13,33 @@ class EditProdutoController {
         $this->produtoDAO = new ProdutoDAO();
     }
 
-    public function editarProduto($dadosProduto) {
+    public function editarProduto($dadosProduto, $arquivoImagem) {
         try {
             $produtoDTO = new ProdutoDTO();
             $produtoDTO->setId($dadosProduto['id']);
             $produtoDTO->setNome($dadosProduto['nome']);
             $produtoDTO->setDescricao($dadosProduto['descricao']);
 
-            // Lógica de imagem
-            if (!empty($dadosProduto['imagem']['name'])) {
-                $nomeImagem = basename($dadosProduto['imagem']['name']);
+            // Lógica para lidar com a imagem
+            if (!empty($arquivoImagem['name'])) {
+                $nomeImagem = basename($arquivoImagem['name']);
                 $caminhoImagem = __DIR__ . "/../../assets/img/" . $nomeImagem;
 
-                if (move_uploaded_file($dadosProduto['imagem']['tmp_name'], $caminhoImagem)) {
+                if (move_uploaded_file($arquivoImagem['tmp_name'], $caminhoImagem)) {
                     $produtoDTO->setImagem($nomeImagem);
                 } else {
                     throw new Exception("Erro ao mover o arquivo da imagem.");
                 }
             } else {
-                $produtoDTO->setImagem($this->produtoDAO->getProdutoById($dadosProduto['id'])->getImagem());
+                // Mantém a imagem atual
+                $imagemAtual = $this->produtoDAO->getProdutoById($dadosProduto['id'])->getImagem();
+                $produtoDTO->setImagem($imagemAtual);
             }
 
-            // Configuração dos outros campos
-            $produtoDTO->setPreco($dadosProduto['preco']);
+            $produtoDTO->setPreco(floatval(str_replace(',', '.', $dadosProduto['preco'])));
             $produtoDTO->setTamanho($dadosProduto['tamanho']);
             $produtoDTO->setFuncionarioId($dadosProduto['t_funcionario_id']);
-            $produtoDTO->setCategoriaId($dadosProduto['t_categoria_id']);  // Atualizando categoria
+            $produtoDTO->setCategoriaId($dadosProduto['t_categoria_id']);
 
             $this->produtoDAO->editarProduto($produtoDTO);
 
@@ -52,27 +53,20 @@ class EditProdutoController {
                 'mensagem' => $e->getMessage()
             ];
         }
+            // Redirecionamento
+            $redirect = isset($_SESSION['perfil']) && $_SESSION['perfil'] == 'ADMINISTRADOR' 
+            ? '../../view/admin/produtos.php' 
+            : '../../view/funcionario/produtos.php';
+            header("Location: $redirect");
+            exit();
 
-        // Redirecionamento condicional com base no perfil
-        if (isset($_SESSION['perfil'])) {
-            if ($_SESSION['perfil'] === 'ADMINISTRADOR') {
-                header("Location: ../../view/admin/produtos.php");
-            } else {
-                header("Location: ../../view/funcionario/produtos.php");
-            }
-        } else {
-            header("Location: ../../view/login.php");
-        }
-        exit();
     }
 }
 
-// Processamento do formulário de edição
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Adicionando $_FILES para capturar os arquivos
-    $dadosProduto = $_POST;  // Dados do formulário
-    $dadosProduto['imagem'] = $_FILES['imagem'];  // Dados do arquivo de imagem
-    
+    $dadosProduto = $_POST;
+    $arquivoImagem = $_FILES['imagem'];
+
     $controller = new EditProdutoController();
-    $controller->editarProduto($dadosProduto);
+    $controller->editarProduto($dadosProduto, $arquivoImagem);
 }

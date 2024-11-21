@@ -40,7 +40,7 @@ class ProdutoDAO {
                         preco = :preco, 
                         tamanho = :tamanho, 
                         t_funcionario_id = :t_funcionario_id,
-                        t_categoria_id = :t_categoria_id  -- Atualizando a categoria
+                        t_categoria_id = :t_categoria_id
                     WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
     
@@ -51,19 +51,14 @@ class ProdutoDAO {
             $stmt->bindValue(":preco", $produto->getPreco());
             $stmt->bindValue(":tamanho", $produto->getTamanho());
             $stmt->bindValue(":t_funcionario_id", $produto->getFuncionarioId());
-            $stmt->bindValue(":t_categoria_id", $produto->getCategoriaId()); // Atualizando categoria
+            $stmt->bindValue(":t_categoria_id", $produto->getCategoriaId());
     
-            if ($stmt->execute()) {
-                return true;
-            } else {
-                echo "Erro ao executar a atualização.";
-                return false;
-            }
+            return $stmt->execute();
         } catch (PDOException $e) {
-            echo "Erro ao atualizar produto: " . $e->getMessage();
-            return false;
+            throw new Exception("Erro ao atualizar produto: " . $e->getMessage());
         }
     }
+    
     
     
     public function excluirProduto($id) {

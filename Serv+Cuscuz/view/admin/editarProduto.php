@@ -85,25 +85,24 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <h1>Editar Produto</h1>
 
         <form action="../../controller/produto/editProdutoController.php" method="POST" enctype="multipart/form-data" class="form-produto">
-            <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($produto->getId()); ?>">
 
             <label for="t_categoria_id">Categoria:</label>
             <select id="t_categoria_id" name="t_categoria_id" class="input-field" required>
                 <option value="">Selecione uma categoria</option>
                 <?php foreach ($categorias as $categoria): ?>
-                    <option value="<?php echo $categoria['id']; ?>" 
+                    <option value="<?php echo htmlspecialchars($categoria['id']); ?>"
                         <?php echo ($produto->getCategoriaId() == $categoria['id']) ? 'selected' : ''; ?>>
                         <?php echo htmlspecialchars($categoria['nome']); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
 
-
-            <label for="nome" class="label">Nome do Produto:</label>
+            <label for="nome">Nome do Produto:</label>
             <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($produto->getNome()); ?>" required class="input-field">
 
-            <label for="descricao" class="label">Descrição:</label>
-            <textarea id="descricao" name="descricao" required class="input-field"><?php echo htmlspecialchars($produto->getDescricao()); ?></textarea>
+            <label for="descricao">Descrição:</label>
+            <textarea spellcheck="true" id="descricao" name="descricao" required class="input-field"><?php echo htmlspecialchars($produto->getDescricao()); ?></textarea>
 
             <label for="imagem" class="label">Atualizar Imagem:</label>
             <input type="file" id="imagem" name="imagem" accept="image/*" class="input-field">
@@ -112,31 +111,30 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" alt="Imagem Atual do Produto" class="img-atual">
             </div>
 
-            <label for="preco" class="label">Preço:</label>
-            <input type="text" id="preco" name="preco" value="<?php echo number_format($produto->getPreco(), 2, ',', '.'); ?>" required class="input-field">
+            <label for="preco">Preço:</label>
+            <input type="number" id="preco" name="preco" step="0.01" min="0" required  value="<?php echo number_format($produto->getPreco(), 2, '.', ''); ?>" required class="input-field">
 
-            <label for="tamanho" class="label">Tamanho:</label>
-                <select id="tamanho" name="tamanho" class="input-field" required>
-                    <option value="P" <?php echo ($produto->getTamanho() == 'P') ? 'selected' : ''; ?>>P</option>
-                    <option value="M" <?php echo ($produto->getTamanho() == 'M') ? 'selected' : ''; ?>>M</option>
-                    <option value="G" <?php echo ($produto->getTamanho() == 'G') ? 'selected' : ''; ?>>G</option>
-                </select>
+            <label for="tamanho">Tamanho:</label>
+            <select id="tamanho" name="tamanho" class="input-field" required>
+                <option value="P" <?php echo ($produto->getTamanho() == 'P') ? 'selected' : ''; ?>>P</option>
+                <option value="M" <?php echo ($produto->getTamanho() == 'M') ? 'selected' : ''; ?>>M</option>
+                <option value="G" <?php echo ($produto->getTamanho() == 'G') ? 'selected' : ''; ?>>G</option>
+            </select>
 
-
-                <label for="funcionario" class="label">Funcionário Responsável:</label>
-                <select id="funcionario" name="t_funcionario_id" class="input-field" required>
-                    <option value="">Selecione um funcionário</option> <!-- Opção padrão -->
-                    <?php foreach ($funcionarios as $funcionario): ?>
-                        <option value="<?php echo $funcionario['id']; ?>" 
-                            <?php echo $produto->getFuncionarioId() == $funcionario['id'] ? 'selected' : ''; ?>>
-                            <?php echo htmlspecialchars($funcionario['nome']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-
+            <label for="funcionario">Funcionário Responsável:</label>
+            <select id="funcionario" name="t_funcionario_id" class="input-field" required>
+                <option value="">Selecione um funcionário</option>
+                <?php foreach ($funcionarios as $funcionario): ?>
+                    <option value="<?php echo htmlspecialchars($funcionario['id']); ?>"
+                        <?php echo ($produto->getFuncionarioId() == $funcionario['id']) ? 'selected' : ''; ?>>
+                        <?php echo htmlspecialchars($funcionario['nome']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
             <button type="submit" class="btn-submit">Salvar Alterações</button>
         </form>
+
     </main>
 </body>
 </html>
