@@ -1,11 +1,13 @@
-/* Container styling */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+
 main {
+    font-family: 'Montserrat', sans-serif;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    font-family: Arial, sans-serif;
     color: #333;
 }
+
 
 .tabs-container {
     display: flex;

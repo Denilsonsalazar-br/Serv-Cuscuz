@@ -10,7 +10,7 @@ html, body {
     font-family: 'Montserrat', sans-serif;
 }
 body {
-    margin-top: 300px; /* Espaço para o conteúdo não ficar atrás do header */
+    margin-top: 300px; 
 }
 
 /* Altura do container principal para ocupar o restante da tela */
@@ -177,7 +177,7 @@ footer {
 }
 /*Modal login*/
 .modal-login {
-    display: none; /* Oculta o modal por padrão */
+    display: none; /* Oculta o modal */
     position: fixed;
     top: 0;
     left: 0;
@@ -191,8 +191,8 @@ footer {
 /* Modal Content */
 .modal-content-login {
     position: absolute;
-    top: 50%; /* Centraliza verticalmente */
-    left: 50%; /* Centraliza horizontalmente */
+    top: 50%;
+    left: 50%; 
     transform: translate(-50%, -50%); /* Ajuste para o centro exato */
     background-color: #fff;
     padding: 30px;

@@ -1,87 +1,48 @@
 <?php
 session_start();
 
-//var_dump($_SESSION['cart']);
+header('Content-Type: application/json');
 
-
-// Verifica se a sessão está funcionando
-
-/*if (!session_id()) {
-    die("Sessão não iniciada. Verifique o 'session_start()'.");
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    echo json_encode(['success' => false, 'message' => 'A requisição está chegando como GET. Verifique o JavaScript.']);
+    exit;
 }
 
-// Loga detalhes da sessão
-echo "Sessão ativa: " . session_id() . PHP_EOL;
-echo "Conteúdo da sessão:" . PHP_EOL;
-var_dump($_SESSION);
-
-// Verifica se o carrinho está inicializado
-if (!isset($_SESSION['cart'])) {
-    echo "Carrinho não inicializado.";
-} else {
-    echo "Conteúdo do carrinho:";
-    var_dump($_SESSION['cart']);
+// Verifica o método HTTP
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(['success' => false, 'message' => 'Método inválido: ' . $_SERVER['REQUEST_METHOD']]);
+    exit;
 }
 
-exit;*/
+// Recebe os dados da requisição
+$data = json_decode(file_get_contents('php://input'), true);
 
-
-
-// Verifica se a requisição é POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    var_dump($_SESSION['cart']);
-    $data = json_decode(file_get_contents('php://input'), true);
-
-    // Verifica se o ID do produto foi enviado
-    if (isset($data['id']) && isset($data['quantity'])) {
-        $produto = [
-            'id' => $data['id'],
-            'name' => $data['name'],
-            'price' => $data['price'],
-            'quantity' => $data['quantity'],
-            'total' => $data['total'],
-        ];
-
-        // Inicializa o carrinho na sessão, se não existir
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
-
-        // Verifica se o produto já está no carrinho
-        $found = false;
-        foreach ($_SESSION['cart'] as &$item) {
-            if ($item['id'] === $produto['id']) {
-                // Produto encontrado, atualiza a quantidade e o total
-                $item['quantity'] += $produto['quantity'];
-                $item['total'] = $item['price'] * $item['quantity'];
-                $found = true;
-                break;
-            }
-        }
-
-        // Se o produto não foi encontrado, adiciona-o ao carrinho
-        if (!$found) {
-            $_SESSION['cart'][] = $produto;
-        }
-
-        // Calcula o total do carrinho e o número total de itens
-        $totalAmount = array_sum(array_map(function($item) {
-            return $item['total'];
-        }, $_SESSION['cart']));
-        $totalItems = array_sum(array_map(function($item) {
-            return $item['quantity'];
-        }, $_SESSION['cart']));
-
-        // Retorna uma resposta de sucesso
-        echo json_encode([
-            'success' => true,
-            'message' => 'Carrinho atualizado com sucesso',
-            'totalItems' => $totalItems,
-            'totalAmount' => $totalAmount
-        ]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Dados do produto inválidos']);
-    }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Método de requisição inválido']);
+// Valida o JSON recebido
+if (json_last_error() !== JSON_ERROR_NONE) {
+    echo json_encode(['success' => false, 'message' => 'Erro ao decodificar JSON: ' . json_last_error_msg()]);
+    exit;
 }
+
+if (!isset($data['cart']) || !is_array($data['cart'])) {
+    echo json_encode(['success' => false, 'message' => 'Estrutura do JSON inválida ou campo "cart" ausente.']);
+    exit;
+}
+
+// Salva o carrinho na sessão
+$_SESSION['cart'] = $data['cart'];
+
+// Calcula totais
+$totalItems = array_sum(array_column($_SESSION['cart'], 'quantity'));
+$totalAmount = array_sum(array_column($_SESSION['cart'], 'total'));
+
+// Resposta de sucesso
+echo json_encode([
+    'success' => true,
+    'totalItems' => $totalItems,
+    'totalAmount' => $totalAmount
+]);
+
+
+// Se não for uma requisição POST, retorna erro
+echo json_encode(['success' => false, 'message' => 'Método inválido.']);
+exit;

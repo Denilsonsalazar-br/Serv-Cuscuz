@@ -13,9 +13,12 @@ class EnderecoDAO {
     // Método para inserir um endereço no banco de dados
     public function create(EnderecoDTO $endereco) {
         try {
-            $sql = "INSERT INTO t_endereco (estado, cidade, cep, bairro, rua, numero, complemento) 
-                    VALUES (:estado, :cidade, :cep, :bairro, :rua, :numero, :complemento)";
+            // Modificado para incluir o cliente_id na consulta
+            $sql = "INSERT INTO t_endereco (estado, cidade, cep, bairro, rua, numero, complemento, t_cliente_id) 
+                    VALUES (:estado, :cidade, :cep, :bairro, :rua, :numero, :complemento, :cliente_id)";
             $stmt = $this->pdo->prepare($sql);
+
+            // Vincula os valores aos parâmetros SQL
             $stmt->bindValue(":estado", $endereco->getEstado());
             $stmt->bindValue(":cidade", $endereco->getCidade());
             $stmt->bindValue(":cep", $endereco->getCcep());
@@ -23,6 +26,8 @@ class EnderecoDAO {
             $stmt->bindValue(":rua", $endereco->getRua());
             $stmt->bindValue(":numero", $endereco->getNumero());
             $stmt->bindValue(":complemento", $endereco->getComplemento());
+            $stmt->bindValue(":cliente_id", $endereco->getClienteId()); // Novo parâmetro para o cliente_id
+
             return $stmt->execute();
         } catch (PDOException $e) {
             throw new Exception("Erro ao criar endereço: " . $e->getMessage());
@@ -52,6 +57,19 @@ class EnderecoDAO {
             throw new Exception("Erro ao listar endereços: " . $e->getMessage());
         }
     }
+
+    public function readByClienteId($clienteId) {
+        try {
+            $sql = "SELECT * FROM t_endereco WHERE t_cliente_id = :clienteId ORDER BY id DESC LIMIT 1";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(":clienteId", $clienteId);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erro ao buscar endereço do cliente: " . $e->getMessage());
+        }
+    }
+    
 
     // Método para atualizar um endereço
     public function update(EnderecoDTO $endereco) {

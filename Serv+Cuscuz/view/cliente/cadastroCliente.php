@@ -38,7 +38,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <span>
                 <!-- Mensagem de sucesso -->
                 <?php if (isset($_SESSION['sucesso'])): ?>
-                    <div class="msgsucesso">
+                    <div class="msgsucesso" id="msgsucesso">
                         <?php echo $_SESSION['sucesso']; ?>
                     </div>
                     <?php unset($_SESSION['sucesso']); // Limpa a mensagem após exibi-la ?>
@@ -46,7 +46,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
                 <!-- Mensagem de erro -->
                 <?php if (isset($_SESSION['error'])): ?>
-                    <div class="msgerro">
+                    <div class="msgerro" id="msgerro">
                         <?php echo $_SESSION['error']; ?>
                     </div>
                     <?php unset($_SESSION['error']); // Limpa a mensagem após exibi-la ?>
@@ -160,5 +160,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     </footer>
 <script src="../../assets/js/mascaras.js"></script>
+
+<script src="../../assets/js/mensagens/tempoMensagem.js"></script>
 </body>
 </html>

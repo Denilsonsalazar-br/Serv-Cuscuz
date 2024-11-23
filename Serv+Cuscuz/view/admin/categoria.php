@@ -69,7 +69,7 @@ $categorias = $categoriaController->execute();
 
             <!-- mensagem de sucessou ou erro da edição-->
             <?php if (isset($_SESSION['successeditCategoria'])): ?>
-                <div class="msg msgsucesso">
+                <div class="msg msgsucesso" id="msgSucesso">
                     <h4>Sucesso!</h4>
                     <p><?php echo htmlspecialchars($_SESSION['successeditCategoria']); ?></p>
                 </div>
@@ -77,7 +77,7 @@ $categorias = $categoriaController->execute();
             <?php endif; ?>
 
             <?php if (isset($_SESSION['erroreditCategoria'])): ?>
-                <div class="msg msgerro">
+                <div class="msg msgerro" id="msgErro">
                     <h4>Erro!</h4>
                     <p><?php echo htmlspecialchars($_SESSION['erroreditCategoria']); ?></p>
                 </div>
@@ -176,5 +176,7 @@ $categorias = $categoriaController->execute();
         
     } );
 </script>
+
+<script src="../../assets/js/mensagens/tempoMensagem.js"></script>
 </body>
 </html>

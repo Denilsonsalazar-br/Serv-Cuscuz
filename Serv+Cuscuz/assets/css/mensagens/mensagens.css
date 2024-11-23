@@ -3,9 +3,9 @@
     margin-top: 10px;
     padding: 5px;
     margin-bottom: 10px;
-    border-radius: 4px; /* Bordas arredondadas */
+    border-radius: 4px; 
     font-family: 'Montserrat', sans-serif; 
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Sombra leve */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
 }
 
 /* Mensagem de sucesso */

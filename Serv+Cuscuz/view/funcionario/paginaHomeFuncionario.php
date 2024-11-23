@@ -19,6 +19,7 @@ $dashboardController->mostrarDashboard();
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
     <link rel="stylesheet" href="../../assets/css/produto/dashboardProduto.css">
+    <link rel="stylesheet" href="../../assets/css/produto/abaDashboardProduto.css">
     <title>Administração</title>
 </head>
 <body>
@@ -64,25 +65,37 @@ $dashboardController->mostrarDashboard();
         </div>
     </section>
 
-    <!-- dashboard-->
-    <main>
-        <h2>Dashboard dos produtos cadastrados!</h2>
-        <div class="dashboard-container">
-        <?php if (isset($_SESSION['dadosCategorias'])): ?>
-            <?php foreach ($_SESSION['dadosCategorias'] as $categoriaNome => $tamanhos): ?>
-                <div class="dashboard-item">
-                    <h3><?php echo htmlspecialchars($categoriaNome); ?></h3>
-                    <p>Pequeno (P): <?php echo $tamanhos['P']; ?> produtos</p>
-                    <p>Médio (M): <?php echo $tamanhos['M']; ?> produtos</p>
-                    <p>Grande (G): <?php echo $tamanhos['G']; ?> produtos</p>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>Nenhuma categoria encontrada.</p>
-        <?php endif; ?>
-    </div>
-    </main>
+        <!-- dashboard-->
+<main>
+    <h2>Categorias Cadastrados</h2>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Incorporar dados PHP como um objeto JSON -->
+    <script>
+        const dadosCategorias = <?php echo json_encode($_SESSION['dadosCategorias']); ?>;
+    </script>
+
+
+        <div class="tabs">
+            <?php foreach ($_SESSION['dadosCategorias'] as $categoriaNome => $tamanhos): ?>
+                <button class="tablink" onclick="openTab(event, '<?php echo $categoriaNome; ?>')"><?php echo htmlspecialchars($categoriaNome); ?></button>
+            <?php endforeach; ?>
+        </div>
+        
+
+
+    <?php foreach ($_SESSION['dadosCategorias'] as $categoriaNome => $tamanhos): ?>
+        <div id="<?php echo $categoriaNome; ?>" class="tabcontent">
+            <h3><?php echo htmlspecialchars($categoriaNome); ?></h3>
+            <p>Pequeno (P): <?php echo $tamanhos['P']; ?> produtos</p>
+            <p>Médio (M): <?php echo $tamanhos['M']; ?> produtos</p>
+            <p>Grande (G): <?php echo $tamanhos['G']; ?> produtos</p>
+
+        </div>
+    <?php endforeach; ?>
+</main>
+
+    <script src="../../assets/js/produto/dashboard.js"></script>
+    <script src="../../assets/js/CDNs/chart.js"></script>
+    <script src="../../assets/js/produto/graficoProdutos.js"></script>
 </body>
 </html>

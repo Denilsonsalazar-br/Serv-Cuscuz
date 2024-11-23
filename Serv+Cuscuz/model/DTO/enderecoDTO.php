@@ -9,6 +9,7 @@ class EnderecoDTO{
     private $rua;
     private $numero;
     private $complemento;
+    private $cliente_id;
 
     public function getId() {
         return $this->id;
@@ -57,6 +58,13 @@ class EnderecoDTO{
     }
     public function setComplemento($complemento) {
         $this->complemento = $complemento;
+    }
+    public function setClienteId($cliente_id) {
+        $this->cliente_id = $cliente_id;
+    }
+
+    public function getClienteId() {
+        return $this->cliente_id;
     }
     
 }

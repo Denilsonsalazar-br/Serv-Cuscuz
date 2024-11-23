@@ -71,12 +71,12 @@ require_once  "../../controller/cliente/readClienteController.php";
             <section class="section__btn">
                 <div class="alertaSucessoError">
                     <?php if (isset($_SESSION['msg'])): ?>
-                        <div class="alerta success">
+                        <div class="alerta success" id="msgSucesso">
                             <?php echo htmlspecialchars($_SESSION['msg']); ?>
                         </div>
                         <?php unset($_SESSION['msg']); // Remove a mensagem da sessão ?>
                     <?php elseif (isset($_SESSION['error'])): ?>
-                        <div class="alerta error">
+                        <div class="alerta error" id="msgErro">
                             <?php echo htmlspecialchars($_SESSION['error']); ?>
                         </div>
                         <?php unset($_SESSION['error']); // Remove a mensagem da sessão ?>
@@ -147,5 +147,7 @@ require_once  "../../controller/cliente/readClienteController.php";
             
         } );
     </script>
+    
+    <script src="../../assets/js/mensagens/tempoMensagem.js"></script>
 </body>
 </html>

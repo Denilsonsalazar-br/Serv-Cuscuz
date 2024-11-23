@@ -51,7 +51,7 @@ $itens = $carrosselController->listarItens();
         <?php 
         if (isset($_SESSION['msg'])) {
             $msgTipo = $_SESSION['msg']['tipo'] === 'sucesso' ? 'msgsucesso' : 'msgerro';
-            echo '<div class="msg ' . $msgTipo . '">
+            echo '<div class="msg ' . $msgTipo . '" id="mensagemFlash">
                     <h4>' . ucfirst($_SESSION['msg']['tipo']) . '</h4>
                     <p>' . $_SESSION['msg']['mensagem'] . '</p>
                   </div>';
@@ -92,5 +92,7 @@ $itens = $carrosselController->listarItens();
             </div>
         <?php endif; ?>
     </main>
+
+    <script src="../../assets/js/mensagens/tempoMensagem.js"></script>
 </body>
 </html>

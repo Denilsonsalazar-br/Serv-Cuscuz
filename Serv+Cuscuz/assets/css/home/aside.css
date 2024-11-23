@@ -14,7 +14,7 @@ main {
     position: fixed;
     top: 130px;  /* Ajuste para começar logo abaixo do header */
     right: 0; /* Coloca o carrinho à direita */
-    width: 320px; /* Largura ajustada */
+    width: 320px; 
     height: 60%;
     background-color: #fff;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
@@ -54,7 +54,7 @@ main {
 }
 
 .open-cart-btn:hover {
-    color: #ff5733; /* Altere para a cor desejada */
+    color: #ff5733; 
 }
 
 /* Botão "X" para fechar o carrinho */
@@ -70,7 +70,7 @@ main {
 }
 
 .close-cart-btn:hover {
-    color: #ff5733; /* Altere para a cor desejada */
+    color: #ff5733; 
 }
 
 /* Cabeçalho do carrinho (com título e número de itens) */

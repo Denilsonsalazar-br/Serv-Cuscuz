@@ -24,6 +24,7 @@ if (!empty($_SESSION['cart'])) {
         $cartItemCount += $item['quantity'];
     }
 }
+
 //var_dump($_SESSION['cart']);
 ?>
 
@@ -81,7 +82,7 @@ if (!empty($_SESSION['cart'])) {
 
             <div class="mobile-menu-icon">
                 <button >
-                    <img onclick="menuShowPedido()" class="icon" src="../../assets/img/abrirMenu.png" alt="">
+                    <img onclick="menuShow()" class="icon" src="../../assets/img/abrirMenu.png" alt="">
                 </button>
             </div>
             
@@ -106,7 +107,7 @@ if (!empty($_SESSION['cart'])) {
                     </div>
                 </div>
                 <div class="carrinhoCompra open-cart-bt">                      
-                            <img onclick="toggleCartVisibility()" src="../assets/img/carrinhoBranco.png" alt="Icone Carrinho">  
+                            <img onclick="toggleCartVisibility()" src="../../assets/img/carrinhoBranco.png" alt="Icone Carrinho">  
                             <span id="cartItemCountBadge" class="badge">0</span>
                     </div>
                 <div class="login-button">
@@ -198,8 +199,9 @@ if (!empty($_SESSION['cart'])) {
 
     <!-- Formulário de Endereço -->
     <section class="formulario-endereco">
+
         <h2>Informe o Endereço de Entrega</h2>
-        <form action="../../controller/pedido/createPedidoController.php" method="POST">
+        <form action="../../controller/endereco/createEnderecoController.php" method="POST">
             <div class="form-row">
                 <div class="form-group">
                     <label for="rua">Rua:</label>
@@ -234,6 +236,8 @@ if (!empty($_SESSION['cart'])) {
                 <label for="complemento">Complemento:</label>
                 <input type="text" id="complemento" name="complemento" placeholder="Ex.: Apto, Bloco, Casa" required>
             </div>
+            <!-- Campo Hidden para o ID do Cliente -->
+            <input type="hidden" name="cliente_id" value="<?php echo $_SESSION['id']; ?>">
             <div class="form-buttons">
                 <button type="submit" class="submit-btn">Avançar para o Pagamento</button>
             </div>
@@ -276,7 +280,20 @@ if (!empty($_SESSION['cart'])) {
 </footer>
 
     <!-- Atlternando desktop e mobile -->
-    <script src="/Serv-Cuscuz/Serv+Cuscuz/view/assets/js/pedido/headerPedido.js"></script>
+    <script>
+        function menuShow() {
+            let menuMobile = document.querySelector('.mobile-menu');
+            if (menuMobile.classList.contains('open')) {
+                menuMobile.classList.remove('open');
+                document.querySelector('.icon').src = "../../assets/img/abrirMenu.png";
+            } else {
+                menuMobile.classList.add('open');
+                document.querySelector('.icon').src = "../../assets/img/fecharMenu.png";
+            }
+        }
+    </script>
+
+<script src="../../assets/js/CDNs/endereco.js"></script>
 
 </body>
 </html>

@@ -71,12 +71,12 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
             <div class="alertaSucessoError">
 
                     <?php if (isset($_SESSION['msgFuncionario'])): ?>
-                        <div class="alerta success">
+                        <div class="alerta success" id="msgSucesso">
                             <?php echo htmlspecialchars($_SESSION['msgFuncionario']); ?>
                         </div>
                         <?php unset($_SESSION['msgFuncionario']); // Remove a mensagem da sessão ?>
                     <?php elseif (isset($_SESSION['errorFuncionario'])): ?>
-                        <div class="alerta error">
+                        <div class="alerta error" id="msgErro">
                             <?php echo htmlspecialchars($_SESSION['errorFuncionario']); ?>
                         </div>
                         <?php unset($_SESSION['errorFuncionario']); // Remove a mensagem da sessão ?>
@@ -84,7 +84,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
 
                     <!--mensagens para o retono da edição do funcionario-->
                     <?php if (isset($_SESSION['successeditFun'])): ?>
-                        <div class="msg msgsucesso">
+                        <div class="msg msgsucesso" id="msgSucesso">
                             <h4>Sucesso!</h4>
                             <p><?php echo $_SESSION['successeditFun']; ?></p>
                         </div>
@@ -92,7 +92,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['erroreditFun'])): ?>
-                        <div class="msg msgerro">
+                        <div class="msg msgerro" id="msgErro">
                             <h4>Erro!</h4>
                             <p><?php echo $_SESSION['erroreditFun']; ?></p>
                         </div>
@@ -172,5 +172,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
         
     } );
 </script>
+
+<script src="../../assets/js/mensagens/tempoMensagem.js"></script>
 </body>
 </html>

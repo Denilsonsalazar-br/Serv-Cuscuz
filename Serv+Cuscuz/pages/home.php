@@ -138,7 +138,7 @@ if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
                             <span id="cartTotalAmount">R$ 0,00</span>
                         </div>
                         <form id="checkoutForm" action="../view/cliente/finalizarPedido.php" method="POST">
-                            <button type="submit" class="checkout-btn">Finalizar Compra</button>
+                            <button type="submit" class="checkout-btn">Finalizar Pedido</button>
                         </form>
                     </aside>
                     </div>
