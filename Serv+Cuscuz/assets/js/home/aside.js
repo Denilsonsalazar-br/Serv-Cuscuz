@@ -169,3 +169,186 @@ function toggleCartVisibility() {
         ? 'block' 
         : 'none';
 }
+function addToCartFromModal() {
+    const id = document.getElementById('modalId').value;  // Obtém o ID do produto do campo oculto
+    const name = document.getElementById('modalNome').textContent;
+    const quantity = parseInt(document.getElementById('modalQuantidade').textContent);
+    const price = originalPrice;
+    const totalAmount = price * quantity;
+
+    const cartItemsList = document.getElementById('cartItemsList');
+    const cartTotalAmount = document.getElementById('cartTotalAmount');
+    const cartItemCountElement = document.getElementById('cartItemCount');
+
+    // Verifica se o item já existe no carrinho
+    let existingCartItem = Array.from(cartItemsList.getElementsByClassName('cart-item'))
+        .find(item => item.dataset.id === id.toString());
+
+    if (existingCartItem) {
+        // Atualiza a quantidade e o total do item existente
+        const itemQuantityElement = existingCartItem.querySelector('.item-quantity-number');
+        const newQuantity = parseInt(itemQuantityElement.textContent) + quantity;
+        itemQuantityElement.textContent = newQuantity;
+
+        const itemTotalElement = existingCartItem.querySelector('.item-total');
+        const newTotal = price * newQuantity;
+        itemTotalElement.textContent = `Total: R$ ${newTotal.toFixed(2).replace('.', ',')}`;
+    } else {
+        // Cria o item do carrinho se ele ainda não existir
+        const cartItem = document.createElement('li');
+        cartItem.className = 'cart-item';
+        cartItem.dataset.id = id;  // Salva o ID no dataset do elemento
+        cartItem.innerHTML = `
+            <span class="cart-item-details">
+                <span class="item-name">${name}</span>
+                <span class="item-quantity">Quantidade: 
+                    <span class="item-quantity-number">${quantity}</span>
+                </span>
+                <span class="item-total">Total: R$ ${totalAmount.toFixed(2).replace('.', ',')}</span>
+            </span>
+            <button class="remove-item-btn" onclick="removeFromCart(this, ${price}, ${id})">Remover</button>
+        `;
+        cartItemsList.appendChild(cartItem);
+    }
+
+    // Atualiza o valor total do carrinho
+    let currentTotal = parseFloat(cartTotalAmount.textContent.replace('R$', '').replace(',', '.'));
+    currentTotal += totalAmount;
+    cartTotalAmount.textContent = `R$ ${currentTotal.toFixed(2).replace('.', ',')}`;
+
+    // Atualiza o contador de itens
+    let cartItemCount = parseInt(cartItemCountElement.textContent);
+    cartItemCount += quantity;
+    cartItemCountElement.textContent = cartItemCount;
+
+    // Atualiza o badge de contagem de itens
+    const cartItemCountBadge = document.getElementById('cartItemCountBadge');
+    cartItemCountBadge.textContent = cartItemCount;
+    cartItemCountBadge.style.display = cartItemCount > 0 ? 'flex' : 'none';
+
+    // Garante que o aside do carrinho fique visível
+    document.getElementById('cartAside').style.display = 'block';
+    closeModal();
+}
+
+function finalizarPedido() {
+    const cartItemsList = document.getElementById('cartItemsList');
+    const cartItems = [];
+    const cartTotalAmount = document.getElementById('cartTotalAmount').textContent;
+    
+    // Verifica se o carrinho está vazio
+    if (cartItemsList.children.length === 0) {
+        const modal = document.getElementById('customEmptyCartModal');
+        modal.style.display = 'flex'; // Exibe o modal
+        return; // Impede o avanço
+    }
+
+    // Coleta os dados do carrinho
+    Array.from(cartItemsList.getElementsByClassName('cart-item')).forEach(item => {
+        const id = item.dataset.id;
+        const name = item.querySelector('.item-name').textContent;
+        const price = originalPrice
+        const quantity = parseInt(item.querySelector('.item-quantity-number').textContent);
+        const total = parseFloat(item.querySelector('.item-total').textContent.replace('Total: R$', '').replace(',', '.'));
+
+        cartItems.push({
+            id,
+            name,
+            price,
+            quantity,
+            total
+        });
+    });
+
+    console.log("Dados do carrinho para envio:", { cartItems, cartTotalAmount });
+
+    // Envia os dados para o servidor via POST
+    fetch('http://localhost/Serv-Cuscuz/Serv+Cuscuz/view/cliente/finalizarPedido.php', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            cartItems,
+            cartTotalAmount,
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                console.log("Compra finalizada com sucesso:", data);
+                // Redireciona ou exibe mensagem de sucesso
+                window.location.href = 'http://localhost/Serv-Cuscuz/Serv+Cuscuz/view/cliente/finalizarPedido.php';
+            } else {
+                console.error("Erro ao finalizar a compra:", data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao enviar os dados para o servidor:", error);
+        });
+       
+}
+
+// Script para controlar o modal
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('customEmptyCartModal');
+    const closeButton = document.querySelector('.custom-close-button');
+    const closeModalBtn = document.querySelector('.custom-close-modal-btn');
+
+    // Fecha o modal ao clicar nos botões
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Fecha o modal ao clicar fora do conteúdo
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+
+// Atualiza o carrinho na interface
+function atualizarCarrinhoNaInterface(cart) {
+    const cartItemsList = document.getElementById('cartItemsList');
+    const cartTotalAmount = document.getElementById('cartTotalAmount');
+    const cartItemCountBadge = document.getElementById('cartItemCountBadge');
+
+    // Limpa o carrinho atual
+    cartItemsList.innerHTML = '';
+
+    let totalItems = 0;
+    let totalAmount = 0;
+
+    // Adiciona os produtos do carrinho
+    for (const produtoId in cart) {
+        const produto = cart[produtoId];
+        totalItems += produto.quantity;
+        totalAmount += produto.total;
+
+        const itemHTML = `
+            <li class="cart-item" data-id="${produto.id}">
+                <span>${produto.name}</span>
+                <span>R$ ${produto.price.toFixed(2).replace('.', ',')}</span>
+                <span>Qtd: ${produto.quantity}</span>
+                <span>Total: R$ ${produto.total.toFixed(2).replace('.', ',')}</span>
+            </li>
+        `;
+        cartItemsList.insertAdjacentHTML('beforeend', itemHTML);
+    }
+
+    // Atualiza os totais
+    cartTotalAmount.textContent = `R$ ${totalAmount.toFixed(2).replace('.', ',')}`;
+    cartItemCountBadge.textContent = totalItems;
+    cartItemCountBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+}

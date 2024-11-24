@@ -67,7 +67,7 @@ $dashboardController->mostrarDashboard();
 
         <!-- dashboard-->
 <main>
-    <h2>Categorias Cadastrados</h2>
+    <h2>Categorias</h2>
 
     <!-- Incorporar dados PHP como um objeto JSON -->
     <script>
@@ -82,20 +82,21 @@ $dashboardController->mostrarDashboard();
         </div>
         
 
+            <!-- Conteúdo dentro de cada aba da categoria -->
 
-    <?php foreach ($_SESSION['dadosCategorias'] as $categoriaNome => $tamanhos): ?>
-        <div id="<?php echo $categoriaNome; ?>" class="tabcontent">
-            <h3><?php echo htmlspecialchars($categoriaNome); ?></h3>
-            <p>Pequeno (P): <?php echo $tamanhos['P']; ?> produtos</p>
-            <p>Médio (M): <?php echo $tamanhos['M']; ?> produtos</p>
-            <p>Grande (G): <?php echo $tamanhos['G']; ?> produtos</p>
+        <?php foreach ($_SESSION['dadosCategorias'] as $categoriaNome => $tamanhos): ?>
+            <div id="<?php echo $categoriaNome; ?>" class="tabcontent">
+                <h3><?php echo htmlspecialchars($categoriaNome); ?></h3>
+                <p>Pequeno (P):<span class="tabcontent-p"> <?php echo $tamanhos['P']; ?> </span>produtos</p>
+                <p>Médio (M):<span class="tabcontent-p"><?php echo $tamanhos['M']; ?> </span> produtos</p>
+                <p>Grande (G): <span class="tabcontent-p"><?php echo $tamanhos['G']; ?> </span>produtos</p>
+            </div>
+        <?php endforeach; ?>
 
-        </div>
-    <?php endforeach; ?>
 </main>
 
     <script src="../../assets/js/produto/dashboard.js"></script>
     <script src="../../assets/js/CDNs/chart.js"></script>
-    <script src="../../assets/js/produto/graficoProdutos.js"></script>
+    <script src="../../assets/js/graficos/graficoProdutos.js"></script>
 </body>
 </html>

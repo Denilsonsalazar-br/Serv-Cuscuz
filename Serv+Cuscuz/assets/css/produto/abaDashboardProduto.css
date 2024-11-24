@@ -48,9 +48,11 @@ main {
     border-color: #ff5733;
 }
 
-/* Tab content styling */
+
 .tabcontent {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre as linhas */
     padding: 30px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -58,6 +60,28 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.4s ease-in-out;
 }
+
+.tabcontent h3 {
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Estilo para o texto dentro das abas */
+.tabcontent p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+}
+
+.tabcontent-p {
+    font-weight: bold;
+    color: #000;
+    margin-right: 5px; 
+    margin-left: 5px;
+}
+
 
 /* Animation */
 @keyframes fadeIn {

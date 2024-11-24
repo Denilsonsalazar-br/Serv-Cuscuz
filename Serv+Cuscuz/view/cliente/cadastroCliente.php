@@ -1,4 +1,4 @@
-<?php
+<p?php
 // Iniciar a sessão se não estiver iniciada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -14,6 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../../assets/css/cadastroCliente.css">
     <link rel="stylesheet" href="../../assets/css/mensagens.css">
     <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/cliente/termos.css">
     <title>Páginan de Cadastro</title>
 </head>
 <body>
@@ -115,10 +116,107 @@ if (session_status() === PHP_SESSION_NONE) {
                     </div>
                     <div>
                         <label for="termos">
-                            Aceito os <a href="#">termos e condições</a>
+                            Aceito os <a href="#" id="abrirModalTermos">termos e condições</a>
                         </label>
                     </div>
                 </div>
+
+                <!-- Modal de Termos e Condições -->
+                <div id="modalTermos" class="modal-termos">
+                    <div class="modal-termos-content">
+                        <span class="modal-termos-close">&times;</span>
+                        <h2>Termos e Condições de Uso - Serv+Cuscuz</h2>
+                        <div class="conteudo-termos">
+                        <p>Bem-vindo(a) ao Serv+Cuscuz! Somos uma plataforma especializada em oferecer o melhor do cuscuz diretamente na sua mesa, com praticidade e rapidez. Ao utilizar nossos serviços, você concorda com os termos e condições descritos abaixo.</p>
+
+                        <ol>
+                        <li><span class="numero">1.</span> Aceitação dos Termos</li>
+                        Ao acessar e utilizar a plataforma Serv+Cuscuz, você declara ter lido, entendido e aceitado integralmente estes <strong>Termos e Condições</strong>. Caso não concorde com algum ponto, solicitamos que não utilize nossos serviços.
+                        <li><span class="numero">2.</span> Funcionamento da Plataforma</li>
+                        <ul>
+                            <li><span class="numero">2.1.</span> O Serv+Cuscuz é uma plataforma de delivery onde você pode realizar pedidos de cuscuz e acompanhar seu status.</li>
+                            <li><span class="numero"></span>2.2. Para efetuar um pedido, você deve fornecer informações pessoais verdadeiras, incluindo:</li>
+                            <ul class="Informacao">
+                                <li>Nome completo;</li>
+                                <li>Sobrenome;</li>
+                                <li>CPF;</li>
+                                <li>Endereço de entrega;</li>
+                                <li>E-mail;</li>
+                                <li>Número de telefone.</li>
+                            </ul>
+                            <li><span class="numero">2.3.</span> A entrega será realizada no endereço informado pelo usuário no momento do pedido. Certifique-se de que os dados estejam corretos e atualizados.</li>
+                        </ul>
+
+                        <li><span class="numero">3.</span> Cadastro do Usuário</li>
+                        <ul>
+                            <li><span class="numero">3.1.</span>Para utilizar nossos serviços, é necessário que você realize um cadastro fornecendo as informações solicitadas.</li>
+                            <li><span class="numero">3.2.</span> Você é responsável por manter os dados atualizados e por qualquer atividade realizada por meio de sua conta.</li>
+                            <li><span class="numero">3.3.</span> Dados fornecidos incorretamente ou incompletos podem impossibilitar a entrega do pedido.</li>
+                        </ul>
+                        
+                        <li><span class="numero">4.</span>Pagamentos </li>
+                        <ul> 
+                            <li><span class="numero">4.1</span>. O Serv+Cuscuz aceita exclusivamente pagamentos via Pix, por meio de um QR Code gerado automaticamente após a confirmação do pedido.</li>
+                            <li><span class="numero">4.2</span>. O processamento do pagamento é realizado por uma API externa, de forma segura e protegida. Não armazenamos seus dados financeiros.</li>
+                            <li><span class="numero">4.3</span>. O pedido será considerado confirmado somente após a validação do pagamento.</li>
+                        </ul>
+
+                        <li><span class="numero">5.</span>Responsabilidade do Usuário</li>
+                        <ul>
+                            <li> <span class="numero">5.1.</span> O usuário é responsável por:
+                            Garantir que as informações fornecidas na plataforma são verdadeiras e completas.
+                            Conferir o pedido antes de confirmá-lo.
+                            Estar disponível para receber o pedido no endereço informado.</li>
+                            <li><span class="numero">5.2.</span> Qualquer erro decorrente de informações incorretas ou ausência do usuário no momento da entrega será de responsabilidade exclusiva do usuário.</li>
+                        </ul>
+                        <li><span class="numero">6.</span>Política de Entrega</li>
+                        <ul>
+                            <li>6.1. As entregas serão realizadas no endereço fornecido pelo usuário, dentro do horário de funcionamento da plataforma.</li>
+                            <li> <span>6.2.</span> Caso o endereço seja inacessível ou o cliente esteja ausente, tentaremos contato via telefone. Não sendo possível a entrega, o pedido será cancelado sem reembolso do valor pago.</li>                                   
+                        </ul> 
+                        <li><span class="numero">7.</span>Política de Cancelamento</li>
+                        <ul>
+                            <li><span class="numero">7.1.</span>
+                             Pedidos podem ser cancelados antes da confirmação do pagamento via Pix.</li>
+                            <li><span class="numero">7.2.</span> Após a confirmação do pagamento, não será possível realizar o cancelamento ou reembolso.</li>                                    
+                        </ul> 
+                        <li><span class="numero">8.</span>Privacidade e Proteção de Dados <strong>(LGPD) </strong> </li>
+                        <ul>
+                            <li><span class="numero">8.1.</span> O Serv+Cuscuz respeita a sua privacidade e garante a proteção de seus dados pessoais, conforme previsto na Lei Geral de Proteção de Dados (LGPD).</li>
+                            <li><span class="numero">8.2. </span>Os dados fornecidos serão utilizados apenas para:
+
+                            Processamento e entrega de pedidos;
+                            Emissão de notas fiscais;
+                            Contato, se necessário, para questões relacionadas ao pedido.</li>
+                            <li><span class="numero">8.3.</span> Seus dados não serão vendidos, compartilhados ou utilizados para fins não relacionados ao serviço.</li>
+                            <li><span class="numero">8.4.</span> O usuário pode, a qualquer momento, solicitar:
+
+                            Acesso aos dados armazenados;
+                            Correção ou atualização de informações;
+                            Exclusão de dados (exceto aqueles necessários para cumprir obrigações legais).</li>
+                        </ul>
+                        <li><span class="numero">9.</span>Uso de API Externa</li>
+                        <ul>
+                            <li><span class="numero">9.1</span>. O processamento do pagamento via Pix é realizado por uma API externa. Apesar de garantirmos o uso de parceiros confiáveis, não nos responsabilizamos por problemas técnicos ou erros ocorridos na plataforma de pagamento.</li>
+                        </ul>
+                        <li><span class="numero">10.</span>Alterações nos Termos</li>
+                        <ul>
+                            <li><span class="numero">10.1.</span> O Serv+Cuscuz reserva-se o direito de alterar os Termos e Condições a qualquer momento, com aviso prévio aos usuários.</li>
+                            <li><span class="numero">10.2.</span> É responsabilidade do usuário revisar regularmente os termos atualizados.</li>
+                        </ul>
+                        <li><span class="numero">11.</span>Contato</li>
+                        
+                        <p>Em caso de dúvidas, reclamações ou solicitações, entre em contato conosco pelo e-mail: <a href="mailto:servmaiscuscuz@gmail.com">servmaiscuscuz@gmail.com</a> ou pelo telefone: <a href="tel:+5561992689834">+55 (61) 99268-9834</a>.</p>
+
+                        <p>Obrigado por escolher o Serv+Cuscuz! Nosso objetivo é garantir praticidade e sabor na sua mesa.</p>
+                        </ol>
+                        </div>
+                        <div class="modal-termos-footer">
+                            <button id="aceitarTermos" class="modal-termos-btn">Aceitar</button>
+                        </div>
+                    </div>
+                </div>
+
                 
                 <div class="botaoCadastrarCliente">
                     <button type="submit">Cadastrar</button>
@@ -162,5 +260,6 @@ if (session_status() === PHP_SESSION_NONE) {
 <script src="../../assets/js/mascaras.js"></script>
 
 <script src="../../assets/js/mensagens/tempoMensagem.js"></script>
+<script src="../../assets/js/cliente/cadastroCliente.js" ></script>
 </body>
 </html>

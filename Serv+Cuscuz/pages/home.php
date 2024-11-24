@@ -1,4 +1,7 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    error_log(print_r($_POST, true)); // Depuração
+}
 // Iniciar a sessão se não estiver iniciada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -111,6 +114,23 @@ if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
                 <?php include '../includes/carrossel.php'; ?>
             </section>
 
+            <!-- Modal -->
+            <div id="customEmptyCartModal" class="custom-modal">
+                <div class="custom-modal-content">
+                    <span class="custom-close-button">&times;</span>
+                    <div class="custom-modal-header">
+                        <h2>Carrinho Vazio</h2>
+                    </div>
+                    <div class="custom-modal-body">
+                        <p>O seu carrinho está vazio. Adicione produtos para continuar.</p>
+                    </div>
+                    <div class="custom-modal-footer">
+                        <button class="custom-close-modal-btn">OK</button>
+                    </div>
+                </div>
+            </div>
+
+
             <main>
                 <?php if (empty($produtos)): ?>
                     <p>Nenhum produto disponível no momento.</p>
@@ -137,8 +157,8 @@ if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
                             <span>Total:</span>
                             <span id="cartTotalAmount">R$ 0,00</span>
                         </div>
-                        <form id="checkoutForm" action="../view/cliente/finalizarPedido.php" method="POST">
-                            <button type="submit" class="checkout-btn">Finalizar Pedido</button>
+                        <form id="checkoutForm" action="javascript:void(0);">
+                            <button type="button" class="checkout-btn" onclick="finalizarPedido()">Finalizar Pedido</button>
                         </form>
                     </aside>
                     </div>

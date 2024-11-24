@@ -1,5 +1,43 @@
 <?php
+session_set_cookie_params([
+    'path' => '/',
+    'httponly' => true,
+    'secure' => false,
+    'samesite' => 'Lax',
+]);
 session_start();
+
+error_log('Sessão atual: ' . print_r($_SESSION, true));
+
+// Verifica se os dados foram enviados via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Decodifica os dados JSON enviados pelo cliente
+    $inputData = json_decode(file_get_contents('php://input'), true);
+
+    if (isset($inputData['cartItems']) && isset($inputData['cartTotalAmount'])) {
+        // Processa os dados recebidos
+        $_SESSION['cart'] = $inputData['cartItems'];
+        $_SESSION['cartTotalAmount'] = $inputData['cartTotalAmount'];
+
+        // Depuração no servidor
+        error_log("Total do Carrinho: R$ " . $_SESSION['cartTotalAmount']);
+
+        echo json_encode(["success" => true, "message" => "Pedido processado com sucesso!"]);
+        exit;
+    } else {
+        echo json_encode(["success" => false, "message" => "Dados do carrinho inválidos!"]);
+        exit;
+    }
+}
+
+// Verifica se há itens no carrinho da sessão
+$carrinho = $_SESSION['cart'] ?? [];
+$cartTotalAmount = $_SESSION['cartTotalAmount'] ?? 0;
+
+if (empty($carrinho)) {
+    echo "<p>O carrinho está vazio!</p>";
+    exit;
+}
 
 $exibirModal = false;
 
@@ -237,7 +275,7 @@ if (!empty($_SESSION['cart'])) {
                 <input type="text" id="complemento" name="complemento" placeholder="Ex.: Apto, Bloco, Casa" required>
             </div>
             <!-- Campo Hidden para o ID do Cliente -->
-            <input type="hidden" name="cliente_id" value="<?php echo $_SESSION['id']; ?>">
+            <!-- <input type="hidden" name="cliente_id" value="<?php //echo $_SESSION['id']; ?>"> -->
             <div class="form-buttons">
                 <button type="submit" class="submit-btn">Avançar para o Pagamento</button>
             </div>

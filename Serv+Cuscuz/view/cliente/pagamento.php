@@ -9,6 +9,11 @@ if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
     exit();
 }
 
+// Gerar um token CSRF se ainda não existir
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // Instancia o DAO para buscar o endereço do cliente
 $clienteId = $_SESSION['id'];
 $enderecoDAO = new EnderecoDAO();
@@ -18,6 +23,20 @@ try {
     $endereco = $enderecoDAO->readByClienteId($clienteId);
 } catch (Exception $e) {
     $endereco = null; // Caso ocorra algum erro
+}
+
+// Verifica se o carrinho existe na sessão
+if (isset($_SESSION['cart'])) {
+    $carrinho = $_SESSION['cart'];
+    $totalCarrinho = 0;
+
+    // Calcula o total do carrinho
+    foreach ($carrinho as $produto) {
+        $totalCarrinho += $produto['total'];
+    }
+} else {
+    $carrinho = [];
+    $totalCarrinho = 0;
 }
 ?>
 
@@ -115,6 +134,10 @@ try {
         
     </header>
 
+    <div class="form-buttons">
+        <a href="../../view/cliente/finalizarPedido.php" class="back-button">← Voltar ao Carrinho</a>
+    </div>
+
     <main>
     <!-- Seção de Endereço -->
     <section class="formulario-endereco">
@@ -151,29 +174,38 @@ try {
             <?php else: ?>
                 <p class="no-address">Endereço não encontrado.</p>
             <?php endif; ?>
+            <div>
+                <a href="../../view/cliente/editarEndereco.php" class="back-button">Editar Endereço</a>
+            </div>
         </div>
+        
     </section>
 
     <!-- Seção do Pedido -->
     <section class="containerProdutos">
-        <h2>Meu Pedido</h2>
-        <div class="info">
-            <?php if (!empty($carrinho)): ?>
-                <?php foreach ($carrinho as $produto): ?>
-                    <div>
-                        <span><?php echo htmlspecialchars($produto['name']); ?>:</span> R$ <?php echo number_format($produto['total'], 2, ',', '.'); ?>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <div>Carrinho vazio</div>
-            <?php endif; ?>
-        </div>
+    <h2>Meu Pedido</h2>
+    <div class="info">
+        <?php if (!empty($carrinho)): ?>
+            <?php foreach ($carrinho as $produto): ?>
+                <div class="produto">
+                    <span class="produto-nome"><?php echo htmlspecialchars($produto['name']); ?></span>
+                    <span class="produto-quantidade">Quantidade: <?php echo htmlspecialchars($produto['quantity']); ?></span>
+                    <span class="produto-valor">Valor: R$ <?php echo number_format($produto['total'], 2, ',', '.'); ?></span>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="carrinho-vazio">Carrinho vazio</div>
+        <?php endif; ?>
+    </div>
 
-        <div class="total-carrinho">
-            <span>Total: </span>
-            <span>R$ <?php echo number_format($totalCarrinho, 2, ',', '.'); ?></span>
-        </div>
-    </section>
+    <div class="total-carrinho">
+        <span class="total-titulo">Total: </span>
+        <span class="total-valor">
+        <?php echo 'R$ ' . number_format($totalCarrinho, 2, ',', '.'); ?>
+    </span>
+    </div>
+</section>
+
 
     <!-- Seção de Formas de Pagamento -->
     <section class="formas-pagamento">
@@ -195,6 +227,9 @@ try {
         <div id="pix" class="tab-content">
             <p>Escolha a opção de PIX para realizar o pagamento.</p>
         </div>
+
+        <!-- Token CSRF -->
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
         <form action="processarPagamento.php" method="POST">
             <div class="form-buttons">

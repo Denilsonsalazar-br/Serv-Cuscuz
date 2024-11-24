@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+
+/* Reset e Fonte Padrão */
 * {
     padding: 0;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
 }
-/* Estilos Gerais */
+
+/* ============================
+   Estilos Gerais
+============================ */
 body {
     background-color: #f4f4f4;
     color: #333;
@@ -13,7 +18,6 @@ body {
 }
 
 main {
-padding-top: 8%;
     display: flex;
     gap: 30px;
     justify-content: space-between;
@@ -28,24 +32,89 @@ section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+/* ============================
+   Seção "Meu Pedido"
+============================ */
+.containerProdutos {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
     color: #333;
 }
 
-.info {
+.containerProdutos h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #ff5733;
+    padding-bottom: 10px;
+}
+
+.containerProdutos .info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.containerProdutos .produto {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.containerProdutos .produto-nome {
     font-size: 1rem;
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.info span {
     font-weight: bold;
+    color: #333;
 }
 
-/* Estilos de Formas de Pagamento */
+.containerProdutos .produto-quantidade {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.containerProdutos .produto-valor {
+    text-align: right;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #ff5733;
+}
+
+.containerProdutos .carrinho-vazio {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #dc3545;
+}
+
+.total-carrinho {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ff5733;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.total-carrinho .total-titulo,
+.total-carrinho .total-valor {
+    color: #ffffff;
+}
+
+/* ============================
+   Seção de Formas de Pagamento
+============================ */
 .formas-pagamento {
     background-color: #ffffff;
     padding: 20px;
@@ -70,7 +139,8 @@ h2 {
     transition: color 0.3s;
 }
 
-.tab-button:hover, .tab-button.active {
+.tab-button:hover,
+.tab-button.active {
     color: #ff5733;
 }
 
@@ -83,7 +153,7 @@ h2 {
 }
 
 .submit-btn {
-    background-color: #ff5733;
+    background-color: #4CAF50;
     color: white;
     padding: 12px 20px;
     font-size: 16px;
@@ -96,7 +166,7 @@ h2 {
 }
 
 .submit-btn:hover {
-    background-color: #4CAF50;
+    background-color: #ff5733;
     transform: translateY(-3px);
 }
 
@@ -104,8 +174,10 @@ h2 {
     transform: translateY(0);
 }
 
-/* Seção de Endereço */
- section .formulario-endereco {
+/* ============================
+   Seção de Endereço
+============================ */
+.formulario-endereco {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -118,7 +190,7 @@ h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
     color: #333;
-    border-bottom: 2px solid #ff5733; /* Linha decorativa */
+    border-bottom: 2px solid #ff5733;
     padding-bottom: 10px;
     text-align: center;
 }
@@ -137,18 +209,55 @@ h2 {
 
 .formulario-endereco .info p span {
     font-weight: bold;
-    color: #ff5733; /* Destaque na cor primária */
+    color: #ff5733;
 }
 
 .formulario-endereco .no-address {
     text-align: center;
-    color: #dc3545; /* Vermelho de erro */
+    color: #dc3545;
     font-size: 1.1rem;
     font-weight: bold;
     margin-top: 20px;
 }
 
-/* Responsividade */
+/* ============================
+   Botões de Navegação
+============================ */
+.form-buttons {
+    background-color: blue;
+    margin-top: 140px;
+    padding-left: 5px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.back-button {
+    display: inline-block;
+    background-color: #f4f4f4;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    border: 2px solid #ff5733;
+    transition: all 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    background-color: #ff5733;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.back-button:active {
+    transform: translateY(0);
+}
+
+/* ============================
+   Responsividade
+============================ */
 @media (max-width: 768px) {
     main {
         flex-direction: column;
@@ -158,13 +267,35 @@ h2 {
     section {
         width: 100%;
     }
+
+    .containerProdutos .produto {
+        grid-template-columns: 1fr;
+        text-align: left;
+        gap: 8px;
+    }
+
+    .containerProdutos .produto-quantidade,
+    .containerProdutos .produto-valor {
+        text-align: left;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .back-button {
+        width: 100%;
+        text-align: center;
+    }
+
     .formulario-endereco {
         margin: 20px;
         padding: 15px;
     }
 
     .formulario-endereco .info p {
-        flex-direction: column; 
+        flex-direction: column;
         text-align: left;
     }
 
