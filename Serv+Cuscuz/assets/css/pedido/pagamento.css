@@ -21,7 +21,7 @@ main {
     display: flex;
     gap: 30px;
     justify-content: space-between;
-    margin: 40px;
+    margin-top: 0;
 }
 
 section {
@@ -102,16 +102,19 @@ section {
     font-size: 1.2rem;
     font-weight: bold;
     padding: 10px;
-    background-color: #ff5733;
+    background-color: #f4f4f4;
+    border: solid 2px#ff5733 ;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.total-carrinho .total-titulo,
-.total-carrinho .total-valor {
-    color: #ffffff;
+.total-carrinho .total-titulo {
+    color: #000000;
+    font-weight: 400;
 }
-
+.total-carrinho .total-valor{
+    color: #ff5733;
+}
 /* ============================
    Seção de Formas de Pagamento
 ============================ */
@@ -121,10 +124,14 @@ section {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.formas-pagamento h2{
+    align-items: center;
+    text-align: center;
+}
 
 .tabs {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     border-bottom: 2px solid #ff5733;
     margin-bottom: 20px;
 }
@@ -177,7 +184,7 @@ section {
 /* ============================
    Seção de Endereço
 ============================ */
-.formulario-endereco {
+section .formulario-endereco {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -219,12 +226,18 @@ section {
     font-weight: bold;
     margin-top: 20px;
 }
+.info-botao-endereco button {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
 /* ============================
    Botões de Navegação
 ============================ */
 .form-buttons {
-    background-color: blue;
     margin-top: 140px;
     padding-left: 5px;
     display: flex;
@@ -254,7 +267,190 @@ section {
 .back-button:active {
     transform: translateY(0);
 }
+/* ============================
+   footer
+============================ */
+footer{
+    margin-bottom: 0;
+    border-top: 1px solid #000000;
+    background-color: #ff5733;
+}
+.redes-sociais{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.redes-sociais img{
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;  
+}
+.redes-sociais a{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-right: 10px;
+}
 
+footer .containerFooter{
+    margin-bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    color: #ffffff;
+    justify-content: space-evenly;
+    
+}
+footer .containerFooter ul{
+    width: 100%;
+    list-style: none;
+}
+footer .containerFooter h2{
+    margin-top: 10px;
+    color: #ffffff;
+    margin-bottom: 18px;
+    font-weight: 500;
+}
+
+footer .redes-sociais{
+    margin-right: 10px;
+}
+footer .containerFooter ul > p{
+    color: #000000;
+    width: 100%;
+    margin-bottom: 15px;
+}
+footer .containerFooter ul > p:hover{
+    color: #ffffff;
+}
+footer.containerFooter li{
+    margin: 10px 5px;
+}
+footer .containerFooter li a{
+    color: #000000;
+    text-decoration: none;
+}
+footer .containerFooter li a:hover{
+    color: #ffffff;
+}
+footer .containerFooter li{
+    margin-top: 5px;
+}
+/* ============================ Modal formulario ============================ */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+/* Estilização geral do modal */
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    height: 400px; /* Altura fixa */
+    overflow-y: auto; /* Habilitar scroll caso o conteúdo exceda */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Reduz o espaçamento geral */
+}
+
+/* Título do modal */
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Botão de Fechar no canto superior direito */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #ff0000; /* Mudando cor do botão de fechar ao passar o mouse */
+}
+
+/* Estilização do formulário */
+#formEditarEndereco {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Menor espaçamento entre os campos */
+    flex-grow: 1; /* Faz o formulário ocupar o espaço restante */
+}
+
+/* Agrupamento dos campos em linhas */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Reduzido o espaçamento entre as colunas */
+}
+
+/* Cada grupo de formulário */
+.form-group {
+    flex: 1 1 calc(50% - 10px); /* Reduz a largura dos campos */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+    text-align: left; /* Garante o alinhamento à esquerda */
+}
+
+/* Inputs */
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%; /* Garante que os inputs ocupem toda a largura */
+}
+/* Botões do formulário */
+.form-buttons-formulario {
+    text-align: center;
+    margin-top: 20px;
+}
+.form-buttons-formulario .submit-btn-formulario {
+    background-color: #ff5733;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-buttons-formulario .submit-btn-formulario:hover {
+    background-color: #4CAF50;
+}
 /* ============================
    Responsividade
 ============================ */
@@ -301,5 +497,16 @@ section {
 
     .formulario-endereco .info p span {
         margin-bottom: 5px;
+    }
+    .form-group {
+        flex: 1 1 100%; /* Campos ocupam 100% da largura */
+    }
+
+    .form-row {
+        gap: 15px; /* Reduz o espaçamento em telas menores */
+    }
+
+    .modal-content {
+        padding: 20px;
     }
 }

@@ -21,7 +21,7 @@ class EnderecoDAO {
             // Vincula os valores aos parâmetros SQL
             $stmt->bindValue(":estado", $endereco->getEstado());
             $stmt->bindValue(":cidade", $endereco->getCidade());
-            $stmt->bindValue(":cep", $endereco->getCcep());
+            $stmt->bindValue(":cep", $endereco->getCep());
             $stmt->bindValue(":bairro", $endereco->getBairro());
             $stmt->bindValue(":rua", $endereco->getRua());
             $stmt->bindValue(":numero", $endereco->getNumero());
@@ -79,7 +79,7 @@ class EnderecoDAO {
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(":estado", $endereco->getEstado());
             $stmt->bindValue(":cidade", $endereco->getCidade());
-            $stmt->bindValue(":cep", $endereco->getCcep());
+            $stmt->bindValue(":cep", $endereco->getCep());
             $stmt->bindValue(":bairro", $endereco->getBairro());
             $stmt->bindValue(":rua", $endereco->getRua());
             $stmt->bindValue(":numero", $endereco->getNumero());

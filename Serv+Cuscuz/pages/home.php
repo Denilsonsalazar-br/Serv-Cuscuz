@@ -6,10 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 // Verificar se o cliente está logado
 if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
     // Exibe o modal ou redireciona para a página de login
-    echo "<script>document.getElementById('loginModal').style.display = 'block';</script>";
+    //echo "<script>document.getElementById('loginModal').style.display = 'block';</script>";
 }
     require_once __DIR__ . "../../controller/produto/readProdutoController.php";
 
@@ -31,7 +32,10 @@ if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
     <title>Serv+Cuscuz</title>
 </head>
 <body>
-
+<!--Abrir o modal, caso o cliente não esteja logado-->
+<script>
+    document.getElementById('loginModal').style.display = 'block';
+</script>
 
     <header>
     <nav class="nav-bar">
@@ -114,7 +118,7 @@ if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
                 <?php include '../includes/carrossel.php'; ?>
             </section>
 
-            <!-- Modal -->
+            <!-- Modal para carrinho vazio -->
             <div id="customEmptyCartModal" class="custom-modal">
                 <div class="custom-modal-content">
                     <span class="custom-close-button">&times;</span>
@@ -163,24 +167,6 @@ if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
                     </aside>
                     </div>
                 <?php endif; ?>
-
-                <!-- Modal de login -->
-                <div id="loginModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close-button" onclick="closeLoginModal()">×</span>
-                        <div class="modal-header">
-                            <img src="logo.png" alt="Logo" class="modal-logo">
-                            <h2>Precisa Fazer Login</h2>
-                        </div>
-                        <div class="modal-body">
-                            <p>Você precisa estar logado para finalizar a compra. Caso não tenha uma conta, faça seu cadastro abaixo!</p>
-                            <div class="modal-buttons">
-                                <button onclick="redirectToLogin()">Fazer Login</button>
-                                <a href="../view/cliente/cadastroCliente.php" class="register-link">Não tem uma conta? Cadastre-se aqui!</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Produtos -->
                 <div class="produto-container">

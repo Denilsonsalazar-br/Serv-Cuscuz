@@ -135,7 +135,7 @@ if (isset($_SESSION['cart'])) {
     </header>
 
     <div class="form-buttons">
-        <a href="../../view/cliente/finalizarPedido.php" class="back-button">← Voltar ao Carrinho</a>
+        <a href="../../view/cliente/finalizarPedido.php" class="back-button">← Voltar</a>
     </div>
 
     <main>
@@ -159,6 +159,15 @@ if (isset($_SESSION['cart'])) {
                     <?php unset($_SESSION['msg']); // Limpa a mensagem após exibi-la ?>
                 <?php endif; ?>
                 </span>
+
+                <span>
+                <?php if (isset($_SESSION['msg'])): ?>
+                    <div class="<?php echo $_SESSION['msg']['tipo'] === 'sucesso' ? 'msgsucesso' : 'msgerro'; ?>" id="msg">
+                        <?php echo $_SESSION['msg']['mensagem']; ?>
+                    </div>
+                    <?php unset($_SESSION['msg']);  ?>
+                <?php endif; ?>
+                </span>
             </div>
 
         <h2>Endereço de Entrega</h2>
@@ -174,12 +183,83 @@ if (isset($_SESSION['cart'])) {
             <?php else: ?>
                 <p class="no-address">Endereço não encontrado.</p>
             <?php endif; ?>
-            <div>
-                <a href="../../view/cliente/editarEndereco.php" class="back-button">Editar Endereço</a>
+            <div class="info-botao-endereco">
+                <button id="editarEnderecoBtn" class="back-button">Editar Endereço</button>
             </div>
-        </div>
-        
+        </div>      
     </section>
+
+     <!-- Modal de Edição de Endereço -->
+     <div id="modalEditarEndereco" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Editar Endereço</h2>
+            <form id="formEditarEndereco" action="../../controller/endereco/editEnderecoController.php" method="POST">
+
+            <input type="hidden" name="endereco_id" value="<?php echo htmlspecialchars($endereco['id'], ENT_QUOTES, 'UTF-8'); ?>">
+
+                <div class="form-group">
+                    <label for="rua">Rua:</label>
+                    <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua" value="<?php echo htmlspecialchars($endereco['rua'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="numero">Número:</label>
+                    <input type="text" id="numero" name="numero" placeholder="Número" value="<?php echo htmlspecialchars($endereco['numero'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" id="bairro" name="bairro" placeholder="Digite o bairro" value="<?php echo htmlspecialchars($endereco['bairro'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" placeholder="Digite a cidade" value="<?php echo htmlspecialchars($endereco['cidade'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <input type="text" id="estado" name="estado" placeholder="Ex.: SP, RJ, MG" value="<?php echo htmlspecialchars($endereco['estado'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" placeholder="Digite o CEP" value="<?php echo htmlspecialchars($endereco['cep'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="complemento">Complemento:</label>
+                    <input type="text" id="complemento" name="complemento" placeholder="Ex.: Apto, Bloco, Casa" value="<?php echo htmlspecialchars($endereco['complemento'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+                </div>
+                <!-- Campo Hidden para o ID do Cliente -->
+                <input type="hidden" name="cliente_id" value="<?php echo $_SESSION['id']; ?>">
+                <div class="form-buttons-formulario">
+                    <button type="submit" class="submit-btn-formulario">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+            <!--script do modal de editar endereço-->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("modalEditarEndereco");
+        const openModalButton = document.getElementById("editarEnderecoBtn");
+        const closeModalButton = document.querySelector(".close-modal");
+
+        // Abrir modal
+        openModalButton.addEventListener("click", () => {
+            modal.classList.add("show");
+        });
+
+        // Fechar modal ao clicar no botão "x"
+        closeModalButton.addEventListener("click", () => {
+            modal.classList.remove("show");
+        });
+
+        // Fechar modal ao clicar fora do conteúdo
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.classList.remove("show");
+            }
+        });
+    });
+
+    </script>
 
     <!-- Seção do Pedido -->
     <section class="containerProdutos">
@@ -209,36 +289,73 @@ if (isset($_SESSION['cart'])) {
 
     <!-- Seção de Formas de Pagamento -->
     <section class="formas-pagamento">
-        <h2>Escolha a Forma de Pagamento</h2>
+        <h2>Forma de Pagamento</h2>
         <div class="tabs">
-            <button class="tab-button active" data-target="cartao">Cartão de Crédito</button>
+            <!--<button class="tab-button active" data-target="cartao">Cartão de Crédito</button>-->
             <button class="tab-button" data-target="pix">PIX</button>
         </div>
 
-        <div id="cartao" class="tab-content active">
+        <!--<div id="cartao" class="tab-content active">
             <p>Preencha os dados do seu cartão de crédito.</p>
-            <!-- Formulário de Cartão de Crédito -->
+            //Formulário de Cartão de Crédito
             <input type="text" placeholder="Número do Cartão" required><br>
             <input type="text" placeholder="Nome no Cartão" required><br>
             <input type="text" placeholder="Data de Validade" required><br>
             <input type="text" placeholder="CVV" required><br>
-        </div>
+        </div>-->
 
         <div id="pix" class="tab-content">
             <p>Escolha a opção de PIX para realizar o pagamento.</p>
+            <div class="form-buttons">
+                <button type="submit" class="submit-btn">Gerar  QR Code</button>
+            </div>
         </div>
+        
+
 
         <!-- Token CSRF -->
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
-        <form action="processarPagamento.php" method="POST">
+        <form action="../../private/processarPagamento.php" method="POST">
             <div class="form-buttons">
                 <button type="submit" class="submit-btn">Confirmar Pagamento</button>
             </div>
         </form>
     </section>
-</main>
-
+    </main>
+<footer>
+<div class="containerFooter">
+            <ul>
+                <h2>Serv+Cuscuz</h2>
+                <p>"Mais sabor, mais praticidade!"</p>
+                <div class="redes-sociais-pai">
+                    <div class="redes-sociais">
+                        <a href="#"><img src="../../assets/rede-social/facebook.png" alt="Facebook"></a>
+                        <a href="#"><img src="../../assets/rede-social/whatsapp.png" alt="Whatsapp"></a>
+                        <a href="#"><img src="../../assets/rede-social/instagram.png" alt="Instagram"></a>
+                    </div>
+                </div>
+            </ul>
+            <ul>
+                <h2>Link</h2>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Cardápio</a></li>
+                <li><a href="#">Sobre</a></li>
+            </ul>
+            <ul>
+                <h2>Suporte</h2>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Como funciona</a></li>
+                <li><a href="#">Comunicando</a></li>
+            </ul>
+            <ul>
+                <h2>Nossos contatos</h2>
+                <li><a href="#">+55(61)99268-9834</a></li>
+                <li><a href="#">servmaiscuscuz@gmail.com</a></li>
+                <li><a href="#">Brasil</a></li>
+            </ul>
+        </div>
+</footer>
 <script>
     // Gerenciamento das abas de forma de pagamento
     document.querySelectorAll('.tab-button').forEach(button => {

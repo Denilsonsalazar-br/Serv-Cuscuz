@@ -5,41 +5,42 @@ require_once __DIR__ . "../../../model/DAO/enderecoDAO.php";
 require_once __DIR__ . "../../../model/DTO/enderecoDTO.php";
 
 try {
-    // Verifica se o ID do cliente está na sessão
-    if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
-        throw new Exception("ID do cliente não encontrado.");
-    }
-
-    // Recebe os dados do formulário
+    // Recebe os dados do formulário e valida
     $dados = [
-        'estado' => $_POST['estado'],
-        'cidade' => $_POST['cidade'],
-        'cep' => $_POST['cep'],
-        'bairro' => $_POST['bairro'],
-        'rua' => $_POST['rua'],
-        'numero' => $_POST['numero'],
-        'complemento' => $_POST['complemento']
+        'estado' => htmlspecialchars($_POST['estado']),
+        'cidade' => htmlspecialchars($_POST['cidade']),
+        'cep' => htmlspecialchars($_POST['cep']),
+        'bairro' => htmlspecialchars($_POST['bairro']),
+        'rua' => htmlspecialchars($_POST['rua']),
+        'numero' => htmlspecialchars($_POST['numero']),
+        'complemento' => htmlspecialchars($_POST['complemento']),
     ];
 
-    // Instancia o DTO e popula os dados
+    if (!preg_match('/^[0-9]{5}-?[0-9]{3}$/', $dados['cep'])) {
+        throw new Exception("CEP inválido.");
+    }
+
+    // Verifica se o ID do endereço foi enviado
+    if (!isset($_POST['endereco_id']) || !is_numeric($_POST['endereco_id'])) {
+        throw new Exception("ID do endereço não encontrado.");
+    }
+
+    // Preenche o DTO com os dados
     $endereco = new EnderecoDTO();
     $endereco->setEstado($dados['estado']);
     $endereco->setCidade($dados['cidade']);
-    $endereco->setCcep($dados['cep']);
+    $endereco->setCep($dados['cep']);
     $endereco->setBairro($dados['bairro']);
     $endereco->setRua($dados['rua']);
     $endereco->setNumero($dados['numero']);
     $endereco->setComplemento($dados['complemento']);
+    $endereco->setId($_POST['endereco_id']);
 
-    // Define o ID do cliente no DTO
-    $endereco->setClienteId($_SESSION['id']); // Passa o ID do cliente da sessão
-
-    // Atualiza o endereço usando o DAO
+    // Atualiza o endereço no banco
     $enderecoDAO = new EnderecoDAO();
     $resultado = $enderecoDAO->update($endereco);
 
     if ($resultado) {
-        // Mensagem de sucesso
         $_SESSION['msg'] = [
             'tipo' => 'sucesso',
             'mensagem' => 'Endereço atualizado com sucesso!'
@@ -48,17 +49,17 @@ try {
         throw new Exception('Erro ao atualizar o endereço.');
     }
 
-    // Redireciona para a página desejada
-    header('Location: ../../view/cliente/perfil.php');
+    // Redireciona para a página de pagamento
+    header('Location: ../../view/cliente/pagamento.php');
     exit();
 } catch (Exception $e) {
-    // Mensagem de erro
+    // Salva mensagem de erro na sessão
     $_SESSION['msg'] = [
         'tipo' => 'erro',
         'mensagem' => $e->getMessage()
     ];
 
-    // Redireciona para a página de perfil
-    header('Location: ../../view/cliente/perfil.php');
+    // Redireciona para a página de pagamento
+    header('Location: ../../view/cliente/pagamento.php');
     exit();
 }

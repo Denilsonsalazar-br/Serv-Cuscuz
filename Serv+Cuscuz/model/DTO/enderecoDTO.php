@@ -29,10 +29,10 @@ class EnderecoDTO{
     public function setCidade($cidade) {
         $this->cidade = $cidade;
     }
-    public function getCcep() {
+    public function getCep() {
         return $this->cep;
     }
-    public function setCcep($cep) {
+    public function setCep($cep) {
         $this->cep = $cep;
     }
     public function getBairro() {

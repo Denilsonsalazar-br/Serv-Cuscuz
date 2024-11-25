@@ -19,7 +19,7 @@ try {
     $endereco = new EnderecoDTO();
     $endereco->setEstado($dados['estado']);
     $endereco->setCidade($dados['cidade']);
-    $endereco->setCcep($dados['cep']);
+    $endereco->setCep($dados['cep']);
     $endereco->setBairro($dados['bairro']);
     $endereco->setRua($dados['rua']);
     $endereco->setNumero($dados['numero']);

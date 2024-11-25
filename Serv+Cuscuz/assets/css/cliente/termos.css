@@ -34,9 +34,15 @@
 /* Título do modal */
 .modal-termos-content h2 {
     font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #ff5733;
+    margin-bottom: 10px;
+    color: #000000;
 }
+.modal-termos-content h3 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
 
 /* Botão de fechar */
 .modal-termos-close {

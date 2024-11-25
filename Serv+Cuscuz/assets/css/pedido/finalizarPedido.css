@@ -88,9 +88,54 @@ main {
     flex: 1;
     text-align: center;
 }
+.modal-buttons .btn-login{
+        display: inline-block;
+        background-color: #4CAF50; 
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        transition: background-color 0.3s;
+        flex: 1;
+        text-align: center;    
+}
+.modal-buttons .btn-login:hover{
+    background-color:  #ff5703;
+}
 
 .modal-buttons .btn:hover {
     background-color: #4CAF50;
+}
+
+/*botão voltar*/
+.butonVoltarHome{
+    display: flex;
+    width: 100%;
+    margin-top: 140px;
+}
+.butonVoltarHome button{
+    display: inline-block;
+    background-color: #f4f4f4;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    border: 2px solid #ff5733;
+    transition: all 0.3s ease-in-out;
+}
+
+.butonVoltarHome button:hover {
+    background-color: #ff5733;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.butonVoltarHome button:active {
+    transform: translateY(0);
 }
 
 /* Container do Carrinho */

@@ -7,7 +7,8 @@ session_set_cookie_params([
 ]);
 session_start();
 
-error_log('Sessão atual: ' . print_r($_SESSION, true));
+//error_log('Sessão atual: ' . print_r($_SESSION, true));
+
 
 // Verifica se os dados foram enviados via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -158,7 +159,9 @@ if (!empty($_SESSION['cart'])) {
         
     </header>
 
-
+    <div class="butonVoltarHome">
+        <button type="button" onclick="window.location.href='../../pages/home.php'" class="back-button"> ← Voltar</button>
+    </div>
     <main>
     <!-- Modal de login -->
     <div id="loginModal" class="modal">
@@ -170,7 +173,7 @@ if (!empty($_SESSION['cart'])) {
             <br>
             <p>Você precisa estar logado ou se cadastrar para adicionar produtos ao carrinho, e continuar a compra.</p>
             <div class="modal-buttons">
-                <a href="../../pages/login.php" class="btn">Login</a>
+                <a href="../../pages/login.php" class="btn-login">Login</a>
                 <a href="../../view/cliente/cadastroCliente.php" class="btn">Cadastrar-se</a>
             </div>
         </div>
@@ -276,7 +279,7 @@ if (!empty($_SESSION['cart'])) {
             </div>
             <!-- Campo Hidden para o ID do Cliente -->
             <!-- <input type="hidden" name="cliente_id" value="<?php //echo $_SESSION['id']; ?>"> -->
-            <div class="form-buttons">
+            <div class="form-buttons">                        
                 <button type="submit" class="submit-btn">Avançar para o Pagamento</button>
             </div>
         </form>
