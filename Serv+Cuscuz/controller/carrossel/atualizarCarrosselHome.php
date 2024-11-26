@@ -15,12 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($controller->atualizarItem($id, $titulo, $descricao, $imagem)) {
         $_SESSION['msg'] = [
             'tipo' => 'sucesso',
-            'mensagem' => 'Produto atualizado com sucesso!'
+            'mensagem' => 'Imagem do carrossel atualizada com sucesso!'
         ];
     } else {
         $_SESSION['msg'] = [
             'tipo' => 'erro',
-            'mensagem' => 'Falha ao atualizar o produto.'
+            'mensagem' => 'Falha ao atualizar o imagem do carrossel.'
         ];
     }
 

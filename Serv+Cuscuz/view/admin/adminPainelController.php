@@ -52,11 +52,11 @@ $clienteDashboardController->mostrarDashboardCliente();
         </nav>
     </header>
     <div class="painelAdm">
-        <nav >
-            <a href="../../view/admin/adminPainelController.php">Home</a>
+        <nav class="navbar">
+            <a href="../../view/admin/adminPainelController.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'adminPainelController.php') ? 'ativo' : ''; ?>">Home</a>
             <a href="../../view/admin/categoria.php">Categoria</a>
             <a href="../../view/admin/produtos.php">Produtos</a>
-            <a href="#">Pedidos</a>
+            <a href="../../view/admin/pedidos.php">Pedidos</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
             <a href="../../view/admin/listaCliente.php">Clientes</a>
             <a href="../../view/admin/carrosselHome.php">Carrossel Home</a>

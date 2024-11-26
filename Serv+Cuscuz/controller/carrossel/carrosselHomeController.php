@@ -46,6 +46,6 @@ class CarrosselController {
     }    
     // Método para recuperar os itens do banco de dados
     public function recuperarItensDoBanco() {
-        return $this->carrosselDAO->listarItens(); // Supondo que a DAO tenha esse método
+        return $this->carrosselDAO->listarItens(); 
     }
 }

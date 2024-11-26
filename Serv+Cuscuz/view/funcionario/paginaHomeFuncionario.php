@@ -41,12 +41,12 @@ $dashboardController->mostrarDashboard();
     </header>
     
     <div class="painelAdmFun">
-        <nav>
-            <a href="../../view/funcionario/paginaHomeFuncionario.php">Home</a>
+        <nav class="navbar">
+            <a href="../../view/funcionario/paginaHomeFuncionario.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'paginaHomeFuncionario.php') ? 'ativo' : ''; ?>">Home</a>
             <a href="../../view/funcionario/produtos.php">Produtos</a>
-            <a href="#">Pedidos</a>
-            <a href="#">Estoque</a>
-            <a href="#">Relatórios</a>
+            <a href="../../view/funcionario/pedidos.php">Pedidos</a>
+            <a href="../../view/funcionario/estoque.php">Estoque</a>
+            <a href="../../view/funcionario/relatorio.php">Relatórios</a>
         </nav>
     </div> 
     <section>

@@ -37,15 +37,15 @@ require_once __DIR__ . "../../../controller/categoria/editCategoriaController.ph
         </nav>
     </header>
     <div class="painelAdm">
-        <nav >
+        <nav class="navbar" >
             <a href="../../view/admin/adminPainelController.php">Home</a>
             <a href="../../view/admin/categoria.php">Categoria</a>
             <a href="../../view/admin/produtos.php">Produtos</a>
-            <a href="#">Pedidos</a>
-            <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
+            <a href="../../view/admin/pedidos.php">Pedidos</a>
+            <a href="../../view/admin/listaFuncionarios.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'listaFuncionarios.php   ') ? 'ativo' : ''; ?>">Funcionários</a>
             <a href="../../view/admin/listaCliente.php">Clientes</a>
             <a href="../../view/admin/carrosselHome.php">Carrossel Home</a>
-            <a href="#">Relatórios</a>
+            <a href="../../view/admin/relatorios.php">Relatórios</a>
         </nav>
     </div>
 

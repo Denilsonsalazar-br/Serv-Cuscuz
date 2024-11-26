@@ -2,9 +2,9 @@
 // Iniciar a sessão
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-} 
-?>
+}
 
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,15 +12,14 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
-    <link rel="stylesheet" href="../../assets/css/produto/produto.css">
     <link rel="stylesheet" href="../../assets/css/mensagens/mensagens.css">
-    <title>Produtos</title>
+    <title>Administração</title>
 </head>
 <body>
     <header>
         <nav class="nav-bar">    
             <div class="logo">
-                <a href="#">
+                <a href="../../pages/home.php">
                     <img src="../../assets/img/logo-png-reduzida.png" alt="Serv+Cuscuz">
                 </a>
             </div>
@@ -33,16 +32,18 @@ if (session_status() === PHP_SESSION_NONE) {
             </div>
         </nav>
     </header>
-    <!--abre navegação-->
     <div class="painelAdm">
-        <nav class="navbar">
-            <a href="../../view/funcionario/paginaHomeFuncionario.php">Home</a>
-            <a href="../../view/funcionario/produtos.php">Produtos</a>
-            <a href="../../view/funcionario/pedidos.php">Pedidos</a>
-            <a href="../../view/funcionario/estoque.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'estoque.php') ? 'ativo' : ''; ?>">Estoque</a>
-            <a href="../../view/funcionario/relatorio.php">Relatórios</a>
+        <nav class="navbar" >
+        <a href="../../view/admin/adminPainelController.php">Home</a>
+            <a href="../../view/admin/categoria.php">Categoria</a>
+            <a href="../../view/admin/produtos.php">Produtos</a>
+            <a href="../../view/admin/pedidos.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'pedidos.php') ? 'ativo' : ''; ?>">Pedidos</a>
+            <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
+            <a href="../../view/admin/listaCliente.php">Clientes</a>
+            <a href="../../view/admin/carrosselHome.php">Carrossel Home</a>
+            <a href="../../view/admin/relatorios.php">Relatórios</a>
         </nav>
-    </div> 
+    </div>
 
 </body>
 </html>
