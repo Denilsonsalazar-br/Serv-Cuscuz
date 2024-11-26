@@ -17,12 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'tipo' => 'sucesso',
             'mensagem' => 'Imagem do carrossel atualizada com sucesso!'
         ];
-    } else {
-        $_SESSION['msg'] = [
-            'tipo' => 'erro',
-            'mensagem' => 'Falha ao atualizar o imagem do carrossel.'
-        ];
-    }
+    } 
 
     header("Location: ../../view/admin/carrosselHome.php");
     exit();

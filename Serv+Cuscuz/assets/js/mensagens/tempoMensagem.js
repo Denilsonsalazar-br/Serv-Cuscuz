@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Função para remover mensagens automaticamente
     const removerMensagem = (elemento) => {
-        const tempoExibicao = 4000; // Define o tempo de exibição em milissegundos
+        const tempoExibicao = 5000; // Define o tempo de exibição em milissegundos
 
         if (elemento) {
             setTimeout(() => {
