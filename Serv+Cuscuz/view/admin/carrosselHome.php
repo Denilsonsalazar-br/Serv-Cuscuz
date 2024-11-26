@@ -75,10 +75,10 @@ $itens = $carrosselController->listarItens();
                         </div>
 
                         <label for="titulo-<?php echo $item->getId(); ?>">Nome do Produto:</label>
-                        <input type="text" id="titulo-<?php echo $item->getId(); ?>" name="titulo" value="<?php echo htmlspecialchars($item->getTitulo()); ?>" required>
+                        <input type="text" id="titulo-<?php echo $item->getId(); ?>" name="titulo" value="<?php echo htmlspecialchars($item->getTitulo()); ?>" >
 
                         <label for="descricao-<?php echo $item->getId(); ?>">Descrição:</label>
-                        <textarea id="descricao-<?php echo $item->getId(); ?>" name="descricao" required><?php echo htmlspecialchars($item->getDescricao()); ?></textarea>
+                        <textarea id="descricao-<?php echo $item->getId(); ?>" name="descricao" ><?php echo htmlspecialchars($item->getDescricao()); ?></textarea>
 
                         <label for="imagem-<?php echo $item->getId(); ?>">Imagem:</label>
                         <input type="file" id="imagem-<?php echo $item->getId(); ?>" name="imagem" accept="image/*">

@@ -30,11 +30,25 @@ class CategoriaDAO {
 
     // Deletar uma categoria
     public function delete($id) {
+        // Verifica se há produtos associados
+        $checkSql = "SELECT COUNT(*) AS total FROM t_produto WHERE t_categoria_id = :id";
+        $checkStmt = $this->pdo->prepare($checkSql);
+        $checkStmt->bindValue(":id", $id);
+        $checkStmt->execute();
+        $result = $checkStmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($result['total'] > 0) {
+            // Impede a exclusão se houver produtos associados
+            return false;
+        }
+    
+        // Caso não haja associações, realiza a exclusão
         $sql = "DELETE FROM t_categoria WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":id", $id);
         return $stmt->execute();
     }
+    
 
     // Listar todas as categorias
     public function list() {

@@ -15,11 +15,9 @@ class CategoriaDeleteController {
     public function execute($id) {
         // Verifique se o ID é válido
         if ($this->categoriaDAO->delete($id)) {
-            // Mensagem de sucesso na sessão
             $_SESSION['successDeleteCategoria'] = "Categoria deletada com sucesso!";
         } else {
-            // Mensagem de erro na sessão
-            $_SESSION['errorDeleteCategoria'] = "Erro ao deletar categoria!";
+            $_SESSION['errorDeleteCategoria'] = "Não é possível deletar a categoria porque há produtos associados a ela!";
         }
 
         // Redireciona para a página de categorias

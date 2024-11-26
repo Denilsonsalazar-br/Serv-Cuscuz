@@ -21,7 +21,7 @@
                 <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Quem somos</a></li>
                 <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
-                <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Cardápio</a></li>
                 </ul>
             </div>
 
@@ -57,7 +57,7 @@
                 <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Quem somos?</a></li>
                 <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
-                <li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Cardápio</a></li>
             </ul>
             <div class="containerPerfilNome">
             <div class="nomeperfil" href="#">
