@@ -5,7 +5,6 @@ main {
     margin-top: 10px;
     margin: 0;
     padding: 30px;
-    background-color: #f4f6f9;
     font-family: 'Montserrat', sans-serif;
 }
 .editarCategoria{
@@ -17,7 +16,6 @@ main {
     max-width: 500px;
     margin: auto;
     padding: 20px;
-    background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
@@ -26,6 +24,14 @@ main {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
+}
+.navbar a.ativo {
+    background-color: #f9f9f9;
+    color: #000000;
+    border: 1px solid #ff5733;
+    font-weight: 500;
+    /*background-color: rgb(78, 74, 74); 
+    color: #ffffff;*/
 }
 
 .section__formCategoria input[type="text"] {

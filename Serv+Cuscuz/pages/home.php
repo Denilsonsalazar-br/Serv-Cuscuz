@@ -12,6 +12,11 @@ if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
     // Exibe o modal ou redireciona para a página de login
     //echo "<script>document.getElementById('loginModal').style.display = 'block';</script>";
 }
+
+if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    $_SESSION['cart'] = []; // Inicializa o carrinho vazio, se necessário
+}
+
     require_once __DIR__ . "../../controller/produto/readProdutoController.php";
 
     $readProdutoController = new ReadProdutoController();

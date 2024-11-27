@@ -79,7 +79,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <a href="../../view/funcionario/produtos.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'produtos.php') ? 'ativo' : ''; ?>">Produtos</a>
             <a href="#">Pedidos</a>
             <a href="#">Estoque</a>
-            <a href="#">Relatórios</a>
+            <a href="#"></a>
         </nav>
     </div> 
 

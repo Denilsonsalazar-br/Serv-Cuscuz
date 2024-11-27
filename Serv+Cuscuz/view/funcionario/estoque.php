@@ -50,7 +50,7 @@ if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] !== 'FUNCIONARIO') {
             <a href="../../view/funcionario/produtos.php">Produtos</a>
             <a href="../../view/funcionario/pedidos.php">Pedidos</a>
             <a href="../../view/funcionario/estoque.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'estoque.php') ? 'ativo' : ''; ?>">Estoque</a>
-            <a href="../../view/funcionario/relatorio.php">Relatórios</a>
+            <a href="../../view/funcionario/relatorio.php"></a>
         </nav>
     </div> 
 

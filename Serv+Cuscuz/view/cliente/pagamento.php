@@ -275,28 +275,28 @@ if (isset($_SESSION['cart'])) {
 
     <!-- Seção do Pedido -->
     <section class="containerProdutos">
-    <h2>Meu Pedido</h2>
-    <div class="info">
-        <?php if (!empty($carrinho)): ?>
-            <?php foreach ($carrinho as $produto): ?>
-                <div class="produto">
-                    <span class="produto-nome"><?php echo htmlspecialchars($produto['name']); ?></span>
-                    <span class="produto-quantidade">Quantidade: <?php echo htmlspecialchars($produto['quantity']); ?></span>
-                    <span class="produto-valor">Valor: R$ <?php echo number_format($produto['total'], 2, ',', '.'); ?></span>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <div class="carrinho-vazio">Carrinho vazio</div>
-        <?php endif; ?>
-    </div>
+        <h2>Meu Pedido</h2>
+        <div class="info">
+            <?php if (!empty($carrinho)): ?>
+                <?php foreach ($carrinho as $produto): ?>
+                    <div class="produto">
+                        <span class="produto-nome"><?php echo htmlspecialchars($produto['name']); ?></span>
+                        <span class="produto-quantidade">Quantidade: <?php echo htmlspecialchars($produto['quantity']); ?></span>
+                        <span class="produto-valor">Valor: R$ <?php echo number_format($produto['total'], 2, ',', '.'); ?></span>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="carrinho-vazio">Carrinho vazio</div>
+            <?php endif; ?>
+        </div>
 
-    <div class="total-carrinho">
-        <span class="total-titulo">Total: </span>
-        <span class="total-valor">
-        <?php echo 'R$ ' . number_format($totalCarrinho, 2, ',', '.'); ?>
-    </span>
-    </div>
-</section>
+        <div class="total-carrinho">
+            <span class="total-titulo">Total: </span>
+            <span class="total-valor">
+            <?php echo 'R$ ' . number_format($totalCarrinho, 2, ',', '.'); ?>
+        </span>
+        </div>
+    </section>
 
 
     <!-- Seção de Formas de Pagamento -->

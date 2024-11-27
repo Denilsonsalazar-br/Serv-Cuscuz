@@ -55,7 +55,7 @@ $dashboardController->mostrarDashboard();
             <a href="../../view/funcionario/produtos.php">Produtos</a>
             <a href="../../view/funcionario/pedidos.php">Pedidos</a>
             <a href="../../view/funcionario/estoque.php">Estoque</a>
-            <a href="../../view/funcionario/relatorio.php">Relatórios</a>
+            <a href="../../view/funcionario/relatorio.php"></a>
         </nav>
     </div> 
     <section>

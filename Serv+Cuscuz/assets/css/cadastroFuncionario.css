@@ -10,6 +10,14 @@ body{
     align-items: center;
     text-align: center;
 }
+.navbar a.ativo {
+  background-color: #f9f9f9;
+  color: #000000;
+  border: 1px solid #ff5733;
+  font-weight: 500;
+  /*background-color: rgb(78, 74, 74); 
+  color: #ffffff;*/
+}
 
 .painelAdm{
   margin-top: 10px; 

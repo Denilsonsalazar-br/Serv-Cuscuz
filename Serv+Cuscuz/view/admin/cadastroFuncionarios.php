@@ -24,6 +24,8 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/cadastroFuncionario.css">
     <link rel="stylesheet" href="../../assets/css/mensagens.css">
+    <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
+
     <title>Cadastro de Funcionário</title>
 </head>
 <body>
@@ -49,7 +51,7 @@ require_once __DIR__ . "../../../model/DTO/validacoes/validarCpf.php";
             <a href="../../view/admin/categoria.php">Categoria</a>
             <a href="../../view/admin/produtos.php">Produtos</a>
             <a href="../../view/admin/pedidos.php">Pedidos</a>
-            <a href="../../view/admin/listaFuncionarios.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'listaFuncionarios.php') ? 'ativo' : ''; ?>">Funcionários</a>
+            <a href="../../view/admin/listaFuncionarios.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'cadastroFuncionarios.php') ? 'ativo' : ''; ?>">Funcionários</a>
             <a href="../../view/admin/listaCliente.php">Clientes</a>
             <a href="../../view/admin/carrosselHome.php">Carrossel Home</a>
             <a href="../../view/admin/relatorios.php">Relatórios</a>

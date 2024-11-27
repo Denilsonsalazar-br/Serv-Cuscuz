@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="painelAdm">
         <nav class="navbar">
             <a href="../../view/admin/adminPainelController.php">Home</a>
-            <a href="../../view/admin/categoria.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'categoria.php') ? 'ativo' : ''; ?>">Categoria</a>
+            <a href="../../view/admin/categoria.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'cadastroCategoria.php') ? 'ativo' : ''; ?>">Categoria</a>
             <a href="../../view/admin/produtos.php">Produtos</a>
             <a href="../../view/admin/pedidos.php">Pedidos</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>

@@ -62,7 +62,7 @@ $categorias = $categoriaDAO->list();
         <nav class="navbar" >
             <a href="../../view/admin/adminPainelController.php">Home</a>
             <a href="../../view/admin/categoria.php">Categoria</a>
-            <a href="../../view/admin/produtos.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'produtos.php') ? 'ativo' : ''; ?>">Produtos</a>
+            <a href="../../view/admin/produtos.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'cadastrarProduto.php') ? 'ativo' : ''; ?>">Produtos</a>
             <a href="../../view/admin/pedidos.php">Pedidos</a>
             <a href="../../view/admin/listaFuncionarios.php">Funcionários</a>
             <a href="../../view/admin/listaCliente.php">Clientes</a>

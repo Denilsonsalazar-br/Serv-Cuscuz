@@ -27,6 +27,15 @@ require_once __DIR__ . "../../../controller/categoria/editCategoriaController.ph
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
     <link rel="stylesheet" href="../../assets/css/categoria/editarCategoria.css">
     <title>Administração</title>
+
+    <style>
+        .navbar a.ativo {
+            background-color: #f9f9f9;
+            color: #000000;
+            border: 1px solid #ff5733;
+            font-weight: 500;
+            }
+    </style>
 </head>
 <body>
     <header>
@@ -48,10 +57,10 @@ require_once __DIR__ . "../../../controller/categoria/editCategoriaController.ph
     <div class="painelAdm">
         <nav class="navbar" >
             <a href="../../view/admin/adminPainelController.php">Home</a>
-            <a href="../../view/admin/categoria.php">Categoria</a>
+            <a href="../../view/admin/categoria.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'editarCategoria.php') ? 'ativo' : ''; ?>">Categoria</a>
             <a href="../../view/admin/produtos.php">Produtos</a>
             <a href="../../view/admin/pedidos.php">Pedidos</a>
-            <a href="../../view/admin/listaFuncionarios.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'listaFuncionarios.php   ') ? 'ativo' : ''; ?>">Funcionários</a>
+            <a href="../../view/admin/listaFuncionarios.php" >Funcionários</a>
             <a href="../../view/admin/listaCliente.php">Clientes</a>
             <a href="../../view/admin/carrosselHome.php">Carrossel Home</a>
             <a href="../../view/admin/relatorios.php">Relatórios</a>

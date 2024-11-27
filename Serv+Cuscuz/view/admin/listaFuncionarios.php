@@ -24,10 +24,13 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
     <link rel="stylesheet" href="../../assets/css/mensagens/mensagens.css">
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="../../assets/css/funcionario/dataTable.css">
     <script src="../../assets/js/CDNs/jquery-3.7.1.min.js"></script>
     <script src="../../assets/js/CDNs/dataTables.js"></script>
+
+    <!-- Incluir jsPDF -->
+    <script src="../../assets/js/CDNs/geradorPDF.js"></script>
+
 
     <title>Administração</title>
 </head>
@@ -111,8 +114,72 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
 
                 </div>
                 <a class="btnAdm" href="../../view/admin/cadastroFuncionarios.php">Novo</a>
-                <a class="btnAdm" href="#" target="_blank">Imprimir</a>
+                <a class="btnAdm" href="#" id="printBtn" target="_blank">Imprimir</a>
             </section>
+
+            <script>
+                document.getElementById('printBtn').addEventListener('click', function(e) {
+                    e.preventDefault();  // Previne o comportamento padrão do link
+
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF();
+
+                    // Título do PDF
+                    doc.setFont("helvetica", "bold");
+                    doc.setFontSize(16);
+                    doc.text("Lista de Funcionários", 14, 10);
+
+                    // Configuração para adicionar a tabela
+                    const table = document.getElementById('myTable');
+                    const rows = table.rows;
+                    let y = 20;  // Posição inicial Y para os dados da tabela
+                    const rowHeight = 12;  // Altura de cada linha da tabela (aumentada para espaçamento entre linhas)
+                    const padding = 2; // Espaço entre o texto e as bordas
+
+                    // Definindo as larguras das colunas (excluindo a última coluna)
+                    const columnWidths = [8, 40, 25, 60, 30, 25]; // Ajustando para 6 colunas
+
+                    // Cabeçalho da tabela
+                    doc.setFont("helvetica", "normal");
+                    doc.setFontSize(12);
+                    const header = rows[0].cells;
+                    let x = 14;  // Posição X inicial para as células
+                    for (let i = 0; i < header.length - 1; i++) { // Exclui a última coluna
+                        doc.text(header[i].innerText, x + padding, y + rowHeight - 2); // Ajusta o texto para subir
+                        x += columnWidths[i];  // Ajusta a largura das colunas
+                    }
+
+                    // Adicionando as bordas para as células do cabeçalho
+                    x = 14;
+                    for (let i = 0; i < header.length - 1; i++) { // Exclui a última coluna
+                        doc.rect(x, y, columnWidths[i], rowHeight);  // Borda do cabeçalho
+                        x += columnWidths[i];
+                    }
+                    y += rowHeight;  // Aumenta a posição Y para a próxima linha
+
+                    // Corpo da tabela (dados dos funcionários)
+                    doc.setFontSize(10);
+                    for (let i = 1; i < rows.length; i++) {  // Começa da segunda linha, pois a primeira é o cabeçalho
+                        const cells = rows[i].cells;
+                        x = 14;  // Resetando o X para a próxima linha de dados
+                        for (let j = 0; j < cells.length - 1; j++) { // Exclui a última coluna
+                            doc.text(cells[j].innerText, x + padding, y + rowHeight - 2); // Ajusta o texto para subir
+                            x += columnWidths[j];  // Ajusta a largura das colunas conforme necessário
+                        }
+                        // Adicionando as bordas para as células do corpo da tabela
+                        x = 14;
+                        for (let j = 0; j < cells.length - 1; j++) { // Exclui a última coluna
+                            doc.rect(x, y, columnWidths[j], rowHeight);  // Borda de cada célula
+                            x += columnWidths[j];
+                        }
+                        y += rowHeight;  // Aumenta a posição Y para a próxima linha
+                    }
+
+                    // Salva o PDF gerado
+                    doc.save('lista_funcionarios.pdf');
+                });
+            </script>
+
             <section>
                 <table id="myTable">
                     <thead>
@@ -172,14 +239,15 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
     </div>
 
 <script>
-    $(document).ready( function () {
-        $('#myTable').DataTable( {
-            language: {
-                url: '../../assets/js/CDNs/dataTable-pt-BR.json',
-            }
-        } );
-        
-    } );
+    $(document).ready(function() {
+        if (!$.fn.dataTable.isDataTable('#myTable')) {
+            $('#myTable').DataTable({
+                language: {
+                    url: '../../assets/js/CDNs/dataTable-pt-BR.json'
+                }
+            });
+        }
+    });
 </script>
 
 <script src="../../assets/js/mensagens/tempoMensagem.js"></script>

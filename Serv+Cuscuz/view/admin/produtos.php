@@ -106,7 +106,7 @@ $produtos = $readProdutoController->getAllProdutos();
                                 <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
                                 
                                 <div class="actions">
-                                    <form action="../../view/admin/editarProduto.php" method="GET" class="form-edit">
+                                    <form action="../../view/admin/editarProduto.php" method="POST" class="form-edit">
                                         <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
                                         <button type="submit" class="btn-edit">Editar</button>
                                     </form>
@@ -133,7 +133,7 @@ $produtos = $readProdutoController->getAllProdutos();
                                 <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
                                 
                                 <div class="actions">
-                                    <form action="../../view/admin/editarProduto.php" method="GET" class="form-edit">
+                                    <form action="../../view/admin/editarProduto.php" method="POST" class="form-edit">
                                         <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
                                         <button type="submit" class="btn-edit">Editar</button>
                                     </form>
@@ -160,7 +160,7 @@ $produtos = $readProdutoController->getAllProdutos();
                                 <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
                                 
                                 <div class="actions">
-                                    <form action="../../view/admin/editarProduto.php" method="GET" class="form-edit">
+                                    <form action="../../view/admin/editarProduto.php" method="POST" class="form-edit">
                                         <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
                                         <button type="submit" class="btn-edit">Editar</button>
                                     </form>
