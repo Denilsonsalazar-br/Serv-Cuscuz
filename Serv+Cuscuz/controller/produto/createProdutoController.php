@@ -28,7 +28,7 @@ class CreateProdutoController {
 
                 // Lógica para lidar com a imagem
                 if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == UPLOAD_ERR_OK) {
-                    $extensaoPermitida = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+                    $extensaoPermitida = ['jpg', 'jpeg', 'png', 'gif' ];
                     $extensao = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
                     if (!in_array($extensao, $extensaoPermitida)) {
                         throw new Exception("Formato de imagem não permitido.");

@@ -22,9 +22,9 @@ if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
 }
 
 // Gerar um token CSRF se ainda não existir
-if (empty($_SESSION['csrf_token'])) {
+/*if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
+}*/
 
 // Instancia o DAO para buscar o endereço do cliente
 $clienteId = $_SESSION['id'];
@@ -148,6 +148,26 @@ if (isset($_SESSION['cart'])) {
 
     <div class="form-buttons">
         <a href="../../view/cliente/finalizarPedido.php" class="back-button">← Voltar</a>
+
+        <div class="msg">
+                <span>
+                <!-- Mensagem de sucesso -->
+                <?php if (isset($_SESSION['msg']) && $_SESSION['msg']['tipo'] == 'sucessoPedido'): ?>
+                    <div class="msgsucesso" id="msgSucesso">
+                        <?php echo $_SESSION['msg']['mensagem']; ?>
+                    </div>
+                    <?php unset($_SESSION['msg']); // Limpa a mensagem após exibi-la ?>
+                <?php endif; ?>
+
+                <!-- Mensagem de erro -->
+                <?php if (isset($_SESSION['msg']) && $_SESSION['msg']['tipo'] == 'erroPedido'): ?>
+                    <div class="msgerro" id="msgErro">
+                        <?php echo $_SESSION['msg']['mensagem']; ?>
+                    </div>
+                    <?php unset($_SESSION['msg']); // Limpa a mensagem após exibi-la ?>
+                <?php endif; ?>
+                </span>
+            </div>
     </div>
 
     <main>
@@ -296,25 +316,30 @@ if (isset($_SESSION['cart'])) {
             <?php echo 'R$ ' . number_format($totalCarrinho, 2, ',', '.'); ?>
         </span>
         </div>
-    </section>
+        <form action="../../controller/itemPedido/processarPedido.php" method="POST">
+            <div class="form-buttons">
+                <button type="submit" class="submit-btn">Confirmar pedido</button>
+            </div>
+        </form>
+   </section>
 
 
-    <!-- Seção de Formas de Pagamento -->
-    <section class="formas-pagamento">
+    <!--Seção de Formas de Pagamento -->
+     <!--<section class="formas-pagamento">
         <h2>Forma de Pagamento</h2>
         <div class="tabs">
-            <!--<button class="tab-button active" data-target="cartao">Cartão de Crédito</button>-->
+            <button class="tab-button active" data-target="cartao">Cartão de Crédito</button>
             <button class="tab-button" data-target="pix">PIX</button>
         </div>
 
-        <!--<div id="cartao" class="tab-content active">
+        <div id="cartao" class="tab-content active">
             <p>Preencha os dados do seu cartão de crédito.</p>
             //Formulário de Cartão de Crédito
             <input type="text" placeholder="Número do Cartão" required><br>
             <input type="text" placeholder="Nome no Cartão" required><br>
             <input type="text" placeholder="Data de Validade" required><br>
             <input type="text" placeholder="CVV" required><br>
-        </div>-->
+        </div>
 
         <div id="pix" class="tab-content">
             <p>Escolha a opção de PIX para realizar o pagamento.</p>
@@ -325,15 +350,11 @@ if (isset($_SESSION['cart'])) {
         
 
 
-        <!-- Token CSRF -->
-        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+         Token CSRF -->
+        <!--<input type="hidden" name="csrf_token" value="<?php //echo $_SESSION['csrf_token']; ?>">
 
-        <form action="../../private/processarPagamento.php" method="POST">
-            <div class="form-buttons">
-                <button type="submit" class="submit-btn">Confirmar Pagamento</button>
-            </div>
-        </form>
-    </section>
+
+    </section>-->
     </main>
 <footer>
 <div class="containerFooter">
@@ -368,7 +389,7 @@ if (isset($_SESSION['cart'])) {
             </ul>
         </div>
 </footer>
-<script>
+<!--<script>
     // Gerenciamento das abas de forma de pagamento
     document.querySelectorAll('.tab-button').forEach(button => {
         button.addEventListener('click', function () {
@@ -381,7 +402,7 @@ if (isset($_SESSION['cart'])) {
             document.getElementById(this.getAttribute('data-target')).classList.add('active');
         });
     });
-</script>
+</script>-->
 
 <script src="../../assets/js/mensagens/tempoMensagem.js"></script>
 </body>
