@@ -13,6 +13,9 @@ if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] !== 'FUNCIONARIO') {
     exit();
 }
 
+
+require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -84,20 +87,88 @@ if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] !== 'FUNCIONARIO') {
         </nav>
     </div>
 
-    <!-- Div para o conteúdo -->
-    <div class="perfil-conteudo">
-        <!-- Seção Pedidos -->
-        <div id="pedidos" class="secao" style="display: none;">
-            <h1>Pedidos</h1>
-            <p>Aqui estão seus pedidos recentes.</p>
-        </div>
+<!-- Div para o conteúdo -->
+<div class="perfil-conteudo">
 
-        <!-- Seção Suporte -->
-        <div id="suporte" class="secao" style="display: none;">
-            <h1>Suporte</h1>
-            <p>Entre em contato com nosso suporte para obter ajuda.</p>
+            <!-- Seção Pedidos -->
+    <div id="pedidos" class="secao" style="display: none;">
+
+        <!--mensagens após a edição -->
+        <?php
+            if (isset($_SESSION['msg'])) {
+                $msgTipo = $_SESSION['msg']['tipo'] === 'sucesso' ? 'msgsucesso' : 'msgerro';
+                echo '<div class="msg ' . $msgTipo . '" id="mensagemFlash">
+                        <h4>' . ucfirst($_SESSION['msg']['tipo']) . '</h4>
+                        <p>' . $_SESSION['msg']['mensagem'] . '</p>
+                    </div>';
+                unset($_SESSION['msg']); 
+            }
+        ?>
+
+        <h1>Gerenciar Pedidos</h1>
+        <p>Abaixo estão os pedidos disponíveis. Você pode alterar o status de cada pedido.</p>
+
+        <?php if (isset($erro)) : ?>
+            <p class="erro"><?= htmlspecialchars($erro); ?></p>
+        <?php else : ?>
+            <?php if (!empty($pedidos)) : ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Status</th>
+                            <th>Entrega</th>
+                            <th>Preço Total</th>
+                            <th>Alterar Status</th> <!-- Nova coluna para alteração -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($pedidos as $pedido) : ?>
+                            <tr>
+                                <td><?= date('d/m/Y H:i', strtotime($pedido['data'])); ?></td>
+                                <td><?= ucfirst(strtolower($pedido['status'])); ?></td>
+                                <td><?= $pedido['entrega_domicilio'] ? 'Sim' : 'Não'; ?></td>
+                                <td>R$ <?= number_format($pedido['preco_total'], 2, ',', '.'); ?></td>
+                                <td>
+                                    <!-- Formulário de alteração de status -->
+                                    <form action="../../controller/funcionario/updateStatusPedidoController.php" method="POST">
+                                        <input type="hidden" name="pedido_id" value="<?= $pedido['id']; ?>">
+                                        <select name="novo_status">
+                                            <option value="PENDENTE" <?= ($pedido['status'] == 'PENDENTE') ? 'selected' : ''; ?>>Pendente</option>
+                                            <option value="PREPARANDO" <?= ($pedido['status'] == 'EM_PREPARO') ? 'selected' : ''; ?>>Em Preparação</option>
+                                            <option value="A_CAMINHO" <?= ($pedido['status'] == 'A_CAMINHO') ? 'selected' : ''; ?>>A Caminho</option>
+                                            <option value="ENTREGUE" <?= ($pedido['status'] == 'ENTREGUE') ? 'selected' : ''; ?>>Entregue</option>
+                                            <option value="CANCELADO" <?= ($pedido['status'] == 'CANCELADO') ? 'selected' : ''; ?>>Cancelado</option>
+                                        </select>
+                                        <button type="submit">Alterar Status</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+            <?php else : ?>
+                <p>Nenhum pedido encontrado.</p>
+            <?php endif; ?>
+        <?php endif; ?>
+
+
+
+            <!--<h1>Detalhes do Pedido</h1>
+            <div class="detalhes-pedido">
+                <?//php if (!empty($pedido)) : ?>
+                    <p><strong>Data:</strong> <?//php echo date('d/m/Y H:i', strtotime($pedido['data'])); ?></p>
+                    <p><strong>Status:</strong> <?//php echo ucfirst(strtolower($pedido['status'])); ?></p>
+                    <p><strong>Entrega Domicílio:</strong> <?//php echo ($pedido['entrega_domicilio'] == 1 ? 'Sim' : 'Não'); ?></p>
+                    <p><strong>Preço Total:</strong> R$ <?//php echo number_format($pedido['preco_total'], 2, ',', '.'); ?></p>
+                <?//php else : ?>
+                    <p>Nenhum detalhe disponível para o pedido.</p>
+                <?//php endif; ?>
+            </div>-->
+
         </div>
-    </div>
+</div>
 </main>
 <footer>
 <div class="containerFooter">

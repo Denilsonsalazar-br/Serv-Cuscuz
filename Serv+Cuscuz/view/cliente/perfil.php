@@ -3,7 +3,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
+//cabeçalhos HTTP controlam o cache das páginas
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
@@ -13,7 +13,8 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
-
+// Inclui o controlador que recupera os pedidos
+require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +26,6 @@ if (!isset($_SESSION['id'])) {
     <link rel="stylesheet" href="../../assets/css/pedido/footer.css">
     <link rel="stylesheet" href="../../assets/css/cliente/perfil.css">
 
-
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 
     <title>Perfil</title>
 </head>
@@ -171,75 +170,62 @@ if (!isset($_SESSION['id'])) {
         <!-- Seção Pedidos -->
         <div id="pedidos" class="secao" style="display: none;">
             <h1>Pedidos</h1>
-            <p>Aqui estão seus pedidos recentes.</p>
+            <p>Aqui estão seus pedidos recentes:</p>
+            <table class="table-pedidos">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Status</th>
+                        <th>Entrega Domicílio</th>
+                        <th>Preço Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        // Exibe os pedidos do cliente
+                        if (isset($_SESSION['pedidos']) && !empty($_SESSION['pedidos'])) {
+                            foreach ($_SESSION['pedidos'] as $pedido) {
+                                echo "<tr>";
+                                echo "<td>" . date('d/m/Y H:i', strtotime($pedido['data'])) . "</td>";
+                                echo "<td>" . ucfirst(strtolower($pedido['status'])) . "</td>";
+                                echo "<td>" . ($pedido['entrega_domicilio'] == 1 ? 'Sim' : 'Não') . "</td>";
+                                echo "<td>R$ " . number_format($pedido['preco_total'], 2, ',', '.') . "</td>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='5'>Você ainda não fez nenhum pedido.</td></tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
         </div>
 
-<!-- Seção Suporte -->
- <!--https://dashboard.emailjs.com/admin/templates-->
- <div id="suporte" class="secao" style="display: none;">
-    <h1>Suporte Serv+Cuscuz</h1>
-    <p>Preencha o formulário abaixo para entrar em contato conosco:</p>
-    <form id="form-suporte" action="javascript:void(0);" method="POST">
-        <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
-        </div>
-        <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
-        </div>
-        <div class="form-group">
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn-enviar">Enviar</button>
-    </form>
-</div>
 
-<div id="suporte" class="secao" style="display: none;">
-    <h1>Suporte Serv+Cuscuz</h1>
-    <p>Preencha o formulário abaixo para entrar em contato conosco:</p>
-    <form id="form-suporte" action="javascript:void(0);" method="POST">
-        <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+        <!-- Seção Suporte -->
+        <div id="suporte" class="secao" style="display: none;">
+            <h1>Suporte Serv+Cuscuz</h1>
+            <p>Preencha o formulário abaixo para entrar em contato conosco:</p>
+            <form id="form-suporte" action="javascript:void(0);" method="POST">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-enviar">Enviar</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
-        </div>
-        <div class="form-group">
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn-enviar">Enviar</button>
-    </form>
-</div>
 
-<div id="suporte" class="secao" style="display: none;">
-    <h1>Suporte Serv+Cuscuz</h1>
-    <p>Preencha o formulário abaixo para entrar em contato conosco:</p>
-    <form id="form-suporte" action="#" method="POST">
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
-            </div>
-            <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
-            </div>
-            <div class="form-group">
-                <label for="mensagem">Mensagem:</label>
-                <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn-enviar">Enviar</button>
-        </form>
-</div>
 
-    <!-- Seção Mensagens -->
-    <!--<div id="mensagens" class="secao" style="display: none;">
- 
-    </div>-->
+        <!-- Seção Mensagens -->
+        <!--<div id="mensagens" class="secao" style="display: none;">
+    
+        </div>-->
 
 
 </div>

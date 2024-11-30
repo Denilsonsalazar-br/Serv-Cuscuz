@@ -8,6 +8,7 @@ class PedidoDTO {
     private $precoTotal;
     private $tClienteId;
 
+
     // Getters e Setters
     public function getId() {
         return $this->id;

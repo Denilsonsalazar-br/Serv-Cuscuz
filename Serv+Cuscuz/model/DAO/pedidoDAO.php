@@ -24,17 +24,29 @@ class PedidoDAO {
     }
 
     public function update(PedidoDTO $pedido) {
+        // Verifique o que está sendo passado para a query
         $sql = "UPDATE t_pedido SET status = :status, entrega_domicilio = :entrega_domicilio, preco_total = :preco_total WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
-
+    
+        // Debug: verifique os valores que estão sendo usados
+        var_dump($pedido->getId(), $pedido->getStatus(), $pedido->getEntregaDomicilio(), $pedido->getPrecoTotal());
+    
+        // Bind dos parâmetros
         $stmt->bindParam(':status', $pedido->getStatus());
         $stmt->bindParam(':entrega_domicilio', $pedido->getEntregaDomicilio(), PDO::PARAM_INT);
         $stmt->bindParam(':preco_total', $pedido->getPrecoTotal(), PDO::PARAM_STR);
         $stmt->bindParam(':id', $pedido->getId(), PDO::PARAM_INT);
-
-        return $stmt->execute();
+    
+        // Execute e verifique o retorno
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            // Se falhar, capture e mostre o erro
+            $errorInfo = $stmt->errorInfo();
+            throw new Exception("Erro ao atualizar o status: " . $errorInfo[2]);
+        }
     }
-
+    
     public function delete($id) {
         $sql = "DELETE FROM t_pedido WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
@@ -101,4 +113,11 @@ class PedidoDAO {
     
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+        public function getAll() {
+            $sql = "SELECT * FROM t_pedido";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
 }

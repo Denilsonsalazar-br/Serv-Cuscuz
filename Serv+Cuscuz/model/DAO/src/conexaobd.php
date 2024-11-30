@@ -14,7 +14,7 @@ if (!class_exists('Conexao')) {
                 try {
                     $options = array(
                         PDO::ATTR_PERSISTENT => true,
-                        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4', // Melhor para UTF-8
+                        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4',
                         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
                     );
                     self::$conexao = new PDO("mysql:host=localhost;dbname=Serv+Cuscuz", "root", "", $options);
@@ -23,6 +23,6 @@ if (!class_exists('Conexao')) {
                 }
             }
             return self::$conexao;
-        }
+        }        
     }
 }

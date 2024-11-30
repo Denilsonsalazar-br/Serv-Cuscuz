@@ -92,8 +92,45 @@ main{
     height: 20px;
     width: 20px;
 } 
+/*tabela d pedido*/
+/* Estilo da tabela de pedidos */
+.table-pedidos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
+.table-pedidos th, .table-pedidos td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
 
+.table-pedidos th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.table-pedidos td {
+    background-color: #fff;
+}
+
+.table-pedidos tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-pedidos .btn-detalhes {
+    background-color: #28a745;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.table-pedidos .btn-detalhes:hover {
+    background-color: #218838;
+}
 
 .perfil-aside nav ul li a:hover {
     border-bottom: 1px solid #fff;

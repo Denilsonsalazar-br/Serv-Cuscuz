@@ -1,20 +1,28 @@
 <?php
-session_start();
 
+// Iniciar a sessão se não estiver iniciada
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . "../../../model/DAO/PedidoDAO.php";
 require_once __DIR__ . "../../../model/DTO/PedidoDTO.php";
+include '../../model/DAO/src/conexaobd.php';
 
 try {
-    // Verifica se o ID do cliente está na sessão
-    if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
-        throw new Exception("ID do cliente não encontrado.");
+    // Verifica o perfil do usuário
+    if (isset($_SESSION['perfil']) && $_SESSION['perfil'] === 'FUNCIONARIO') {
+        // Se for um funcionário, não há necessidade de verificar o ID do cliente
+        $pdo = Conexao::getInstance();
+        $pedidoDAO = new PedidoDAO($pdo);
+        $pedidos = $pedidoDAO->getAll(); // Aqui você pode usar getAll para todos os pedidos, não filtrando por cliente
+    } elseif (isset($_SESSION['id']) && is_numeric($_SESSION['id'])) {
+        // Se for um cliente, pega os pedidos dele
+        $pdo = Conexao::getInstance();
+        $pedidoDAO = new PedidoDAO($pdo);
+        $pedidos = $pedidoDAO->getAllByClienteId($_SESSION['id']);
+    } else {
+        throw new Exception("ID do cliente ou perfil não encontrado.");
     }
-
-    // Instancia o DAO
-    $pedidoDAO = new PedidoDAO($pdo);
-
-    // Recupera todos os pedidos do cliente
-    $pedidos = $pedidoDAO->getAllByClienteId($_SESSION['id']);
 
     if ($pedidos) {
         // Exibe os pedidos na página
@@ -23,9 +31,6 @@ try {
         throw new Exception('Nenhum pedido encontrado.');
     }
 
-    // Redireciona para a página de pedidos ou outra página de sua escolha
-    header('Location: ../../view/cliente/meusPedidos.php');
-    exit();
 } catch (Exception $e) {
     // Mensagem de erro
     $_SESSION['msg'] = [
@@ -34,6 +39,10 @@ try {
     ];
 
     // Redireciona para a página de erro ou para a página anterior
-    header('Location: ../../view/cliente/meusPedidos.php');
+    if ($_SESSION['perfil'] === 'FUNCIONARIO') {
+        header('Location: ../../view/funcionario/pedidos.php');
+    } else {
+        header('Location: ../../view/cliente/perfil.php');
+    }
     exit();
 }
