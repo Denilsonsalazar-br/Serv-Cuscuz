@@ -117,7 +117,7 @@ if (!empty($_SESSION['cart'])) {
                             <span id="cartItemCountBadge" class="badge" style="display: none;">0</span>
                     </div>
                     <div class="iconeUsuario">
-                        <a href="#">
+                        <a href="http://localhost/Serv-Cuscuz/Serv+Cuscuz/view/cliente/perfil.php">
                             <img src="../../assets/img/usuarioBranco.png" alt="Icone Usuario">
                         </a>
                     </div>
@@ -152,7 +152,9 @@ if (!empty($_SESSION['cart'])) {
                 <div class="nomeperfil" href="#">
                     
                     <div class="iconeUsuario">
-                        <img src="../../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                        <a href="http://localhost/Serv-Cuscuz/Serv+Cuscuz/view/cliente/perfil.php">
+                            <img src="../../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                        </a>
                     </div>
                 
                     <div>

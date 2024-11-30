@@ -5,7 +5,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once __DIR__ . "../../model/DAO/src/conexaobd.php";
 
-$conn = Conexao::getInstance(); // Obter a instância de conexão
+// Supondo que a instância de conexão seja $pdo
+$pdo = Conexao::getInstance(); // Obter a instância de conexão
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -16,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                        FROM t_funcionario f
                        JOIN t_perfil p ON f.t_perfil_id = p.id
                        WHERE f.email = :email";
-    $stmtFuncionario = $conn->prepare($sqlFuncionario);
+    $stmtFuncionario = $pdo->prepare($sqlFuncionario);
     $stmtFuncionario->bindParam(':email', $email);
     $stmtFuncionario->execute();
 
@@ -28,7 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($senha, $user['senha'])) {
             $_SESSION['id'] = $user['id'];
             $_SESSION['nome'] = $user['nome'];
-            $_SESSION['perfil'] = $user['tipo_perfil'];
+            $_SESSION['perfil'] = $user['tipo_perfil'];  // Guarda o tipo de perfil para controle de acesso
+
+            // Mensagem de sucesso na sessão
+            $_SESSION['msg'] = [
+                'tipo' => 'sucessoFuncionario',
+                'mensagem' => 'Login realizado com sucesso!'
+            ];
 
             // Redireciona com base no perfil
             if ($user['tipo_perfil'] == 'ADMINISTRADOR') {
@@ -38,12 +45,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             exit;
         } else {
-            echo "<div class='mensagem-erro'>Senha incorreta</div>";
+            // Mensagem de erro para senha incorreta
+            $_SESSION['msg'] = [
+                'tipo' => 'erroFuncionario',
+                'mensagem' => 'Senha incorreta'
+            ];
         }
     } else {
         // Se não for funcionário, vai verificar se é um cliente
         $sqlCliente = "SELECT id, nome, email, senha FROM t_cliente WHERE email = :email";
-        $stmtCliente = $conn->prepare($sqlCliente);
+        $stmtCliente = $pdo->prepare($sqlCliente);
         $stmtCliente->bindParam(':email', $email);
         $stmtCliente->execute();
 
@@ -56,14 +67,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['id'] = $cliente['id'];
                 $_SESSION['nome'] = $cliente['nome'];
 
+                // Mensagem de sucesso na sessão
+                $_SESSION['msg'] = [
+                    'tipo' => 'sucessoCliente',
+                    'mensagem' => 'Login realizado com sucesso!'
+                ];
+
                 // Redireciona para a página do cliente
                 header("Location: ../pages/home.php");
                 exit;
             } else {
-                echo "<div class='mensagem-erro'>Senha incorreta</div>";
+                // Mensagem de erro para senha incorreta
+                $_SESSION['msg'] = [
+                    'tipo' => 'erroCliente',
+                    'mensagem' => 'Senha incorreta'
+                ];
             }
         } else {
-            echo "<div class='mensagem-erro'>Este email não está cadastrado no sistema!</div>";
+            // Mensagem de erro para email não cadastrado
+            $_SESSION['msg'] = [
+                'tipo' => 'erroCliente',
+                'mensagem' => 'Este email não está cadastrado no sistema!'
+            ];
         }
     }
 }

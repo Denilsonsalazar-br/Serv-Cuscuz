@@ -57,7 +57,7 @@ $_SESSION['pedido']['nome_cliente'];
                             <span id="cartItemCountBadge" class="badge" style="display: none;">0</span>
                     </div>
                     <div class="iconeUsuario">
-                        <a href="#">
+                        <a href="http://localhost/Serv-Cuscuz/Serv+Cuscuz/view/cliente/perfil.php">
                             <img src="../../assets/img/usuarioBranco.png" alt="Icone Usuario">
                         </a>
                     </div>
@@ -92,7 +92,9 @@ $_SESSION['pedido']['nome_cliente'];
                 <div class="nomeperfil" href="#">
                     
                     <div class="iconeUsuario">
-                        <img src="../../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                        <a href="http://localhost/Serv-Cuscuz/Serv+Cuscuz/view/cliente/perfil.php">
+                            <img src="../../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                        </a>
                     </div>
                 
                     <div>
@@ -144,11 +146,12 @@ $_SESSION['pedido']['nome_cliente'];
      <section class="formas-pagamento">
         <h2>Forma de Pagamento</h2>
         <div class="tabs">
-            <button class="tab-button active" data-target="pix">PIX</button>
-            <button class="tab-button " data-target="cartao">Cartão de Crédito</button>    
+            <button class="tab-button active" data-target="cartao">Cartão de Crédito</button> 
+            <button class="tab-button " data-target="pix">PIX</button>
+               
         </div>
 
-        <div id="cartao" class="tab-content">
+        <div id="cartao" class="tab-content active">
             <p>Preencha os dados do seu cartão de crédito.</p>
             <form id="form-cartao">
                 <div class="input-group">

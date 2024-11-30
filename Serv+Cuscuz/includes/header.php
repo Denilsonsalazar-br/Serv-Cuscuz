@@ -32,7 +32,7 @@
                         </a>
                     </div>
                     <div class="iconeUsuario">
-                        <a href="#">
+                        <a href="http://localhost/Serv-Cuscuz/Serv+Cuscuz/view/cliente/perfil.php">
                             <img src="../assets/img/usuarioBranco.png" alt="Icone Usuario">
                         </a>
                     </div>
@@ -62,7 +62,10 @@
             <div class="containerPerfilNome">
             <div class="nomeperfil" href="#">
                     <div class="iconeUsuario">
-                        <img src="../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                        <a href="http://localhost/Serv-Cuscuz/Serv+Cuscuz/view/cliente/perfil.php">
+                            <img src="../assets/img/usuarioBranco.png" alt="Icone Usuario">
+                        </a>
+                        
                     </div>
                 
                     <div>

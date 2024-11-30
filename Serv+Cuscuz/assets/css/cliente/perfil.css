@@ -1,0 +1,206 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap');
+
+/* Definindo estilo para o layout principal */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f4;
+}
+main{
+    margin-top: 280px;
+}
+
+/* Estrutura principal */
+.perfil-container {
+    display: flex;
+    margin-top: 60px;
+    height: calc(100vh - 60px); 
+    overflow: hidden;
+}
+
+/* Aside */
+.perfil-aside {
+    margin-top: 10px;
+    border-top: 1px solid #000;
+    width: 200px;
+    background-color: #ff5733;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    height: 98%;
+}
+
+.perfil-aside nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.perfil-aside nav ul li {
+    margin-bottom: 20px;
+}
+
+.perfil-aside nav ul li a {
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+.imagemUsuario {
+    display: flex;
+    margin-left: 0;
+    align-items: center;
+    justify-content: left;
+}
+.imagemPedido{
+    display: flex;
+    margin-left: 0;
+    align-items: center;
+    justify-content: left;
+}
+.imagemSuporte{
+    display: flex;
+    margin-left: 0;
+    align-items: center;
+    justify-content: left;
+}
+.imagemUsuario  img{
+    align-items: center;
+    margin-bottom: 0;
+    height: 20px;
+    width: 20px;
+} 
+.imagemPedido  img{
+    align-items: center;
+    margin-bottom: 0;
+    height: 20px;
+    width: 20px;
+} 
+.imagemSuporte  img{
+    align-items: center;
+    margin-bottom: 0;
+    height: 20px;
+    width: 20px;
+} 
+
+
+
+.perfil-aside nav ul li a:hover {
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+
+/* Conteúdo */
+.perfil-conteudo {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.secao {
+    display: none;
+}
+
+.secao.active {
+    display: block;
+}
+
+/* Estilo da seção de suporte */
+#suporte {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#suporte h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+#suporte p {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+/* Formulário */
+#form-suporte {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+.btn-enviar {
+    background-color: #ff5733;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: #4CAF50;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #suporte {
+        padding: 10px;
+    }
+
+    #suporte h1 {
+        font-size: 1.5rem;
+    }
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .perfil-container {
+        flex-direction: column;
+    }
+
+    .perfil-aside {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+    }
+
+    .perfil-conteudo {
+        flex: none;
+        padding: 10px;
+    }
+}
