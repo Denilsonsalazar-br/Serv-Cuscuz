@@ -1,4 +1,10 @@
 <?php
+
+// Iniciar a sessão se não estiver iniciada
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 function traduzirStatusCliente($status) {
     $mapaStatusCliente = [
         'PENDENTE' => '<span><i class="fas fa-clock"></i> Pedido feito, aguardando preparo</span>',

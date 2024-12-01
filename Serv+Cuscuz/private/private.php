@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['perfil'] = $user['tipo_perfil'];  // Guarda o tipo de perfil para controle de acesso
 
             // Mensagem de sucesso na sessão
-            $_SESSION['msg'] = [
+            $_SESSION['msgLogin'] = [
                 'tipo' => 'sucessoFuncionario',
                 'mensagem' => 'Login realizado com sucesso!'
             ];
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['nome'] = $cliente['nome'];
 
                 // Mensagem de sucesso na sessão
-                $_SESSION['msg'] = [
+                $_SESSION['msgLogin'] = [
                     'tipo' => 'sucessoCliente',
                     'mensagem' => 'Login realizado com sucesso!'
                 ];

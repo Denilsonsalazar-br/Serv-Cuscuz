@@ -8,15 +8,17 @@
 </head>
 <body>
     
-    <footer>
-        <div class="containerFooter">
+<footer>
+<div class="containerFooter">
             <ul>
                 <h2>Serv+Cuscuz</h2>
                 <p>"Mais sabor, mais praticidade!"</p>
-                <div class="redes-sociais">
-                    <a href="#"><img src="../assets/rede-social/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="../assets/rede-social/whatsapp.png" alt="Whatsapp"></a>
-                    <a href="#"><img src="../assets/rede-social/instagram.png" alt="Instagram"></a>
+                <div class="redes-sociais-pai">
+                    <div class="redes-sociais">
+                        <a href="#"><img src="../assets/rede-social/facebook.png" alt="Facebook"></a>
+                        <a href="#"><img src="../assets/rede-social/whatsapp.png" alt="Whatsapp"></a>
+                        <a href="#"><img src="../assets/rede-social/instagram.png" alt="Instagram"></a>
+                    </div>
                 </div>
             </ul>
             <ul>
@@ -38,7 +40,13 @@
                 <li><a href="#">Brasil</a></li>
             </ul>
         </div>
-
-    </footer>
+        <div class="direitosReservados">
+            <p>
+                <div>© 2024 Serv+Cuscuz</div>
+                 - 
+                 <div>Todos os direitos reservados.</div>
+            </p>
+        </div>
+</footer>
 </body>
 </html>

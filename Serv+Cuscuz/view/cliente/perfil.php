@@ -13,6 +13,11 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
+// Garantir que a lista de pedidos esteja inicializada
+if (!isset($_SESSION['pedidos'])) {
+    $_SESSION['pedidos'] = [];
+}
+
 // Inclui o controlador que recupera os pedidos
 require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
 require_once __DIR__ . "../../../controller/pedido/traduzirStatus.php";

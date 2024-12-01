@@ -4,7 +4,6 @@
     margin: 0;
     font-family: 'Montserrat', sans-serif;
 }
-
 footer{
     margin-bottom: 0;
     border-top: 1px solid #000000;
@@ -72,6 +71,18 @@ footer .containerFooter li a:hover{
 }
 footer .containerFooter li{
     margin-top: 5px;
+}
+.direitosReservados{
+    padding: 10px;
+    color: #000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+.direitosReservados:hover{
+    color: #ffffff;
 }
 @media screen and (max-width: 730px) {
     footer .containerFooter{
