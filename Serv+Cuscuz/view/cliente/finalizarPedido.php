@@ -91,6 +91,8 @@ if (!empty($_SESSION['cart'])) {
     <link rel="stylesheet" href="../../assets/css/pedido/header.css">
     <link rel="stylesheet" href="../../assets/css/pedido/footer.css">
     <link rel="stylesheet" href="../../assets/css/pedido/finalizarPedido.css">
+
+
     <title>Finalizando Pedido</title>
 </head>
 <body>
@@ -256,50 +258,103 @@ if (!empty($_SESSION['cart'])) {
 
     <!-- Formulário de Endereço -->
     <section class="formulario-endereco">
-
-        <h2>Informe o Endereço de Entrega</h2>
-        <form action="../../controller/endereco/createEnderecoController.php" method="POST">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="rua">Rua:</label>
-                    <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua" required>
-                </div>
-                <div class="form-group">
-                    <label for="numero">Número:</label>
-                    <input type="text" id="numero" name="numero" placeholder="Número" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="bairro">Bairro:</label>
-                    <input type="text" id="bairro" name="bairro" placeholder="Digite o bairro" required>
-                </div>
-                <div class="form-group">
-                    <label for="cidade">Cidade:</label>
-                    <input type="text" id="cidade" name="cidade" placeholder="Digite a cidade" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="estado">Estado:</label>
-                    <input type="text" id="estado" name="estado" placeholder="Ex.: SP, RJ, MG" required>
-                </div>
-                <div class="form-group">
-                    <label for="cep">CEP:</label>
-                    <input type="text" id="cep" name="cep" placeholder="Digite o CEP" required>
-                </div>
+    <h2>Informe o Endereço de Entrega</h2>
+    <form action="../../controller/endereco/createEnderecoController.php" method="POST" onsubmit="return validarFormulario()">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="rua">Rua:</label>
+                <input type="text" id="rua" name="rua" placeholder="Digite o nome da rua" required>
             </div>
             <div class="form-group">
-                <label for="complemento">Complemento:</label>
-                <input type="text" id="complemento" name="complemento" placeholder="Ex.: Apto, Bloco, Casa" required>
+                <label for="numero">Número:</label>
+                <input type="text" id="numero" name="numero" placeholder="Número" required>
             </div>
-            <!-- Campo Hidden para o ID do Cliente -->
-            <!-- <input type="hidden" name="cliente_id" value="<?php //echo $_SESSION['id']; ?>"> -->
-            <div class="form-buttons">                        
-                <button type="submit" class="submit-btn">Avançar para o Pagamento</button>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" placeholder="Digite o bairro" required>
             </div>
-        </form>
-    </section>
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" placeholder="Digite a cidade" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" placeholder="Ex.: SP, RJ, MG" required>
+            </div>
+            <div class="form-group">
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" placeholder="Digite o CEP" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="complemento">Complemento:</label>
+            <input type="text" id="complemento" name="complemento" placeholder="Ex.: Apto, Bloco, Casa" required>
+        </div>
+        <!-- Campo Hidden para o ID do Cliente -->
+        <!-- <input type="hidden" name="cliente_id" value="<?php //echo $_SESSION['id']; ?>"> -->
+        <div class="form-buttons">
+            <button type="submit" class="submit-btn">Avançar para o Pagamento</button>
+        </div>
+    </form>
+</section>
+
+    <!--script para mascara e valicação do endereco-->
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.7/dist/inputmask.min.js"></script>
+
+    <script>
+        // Máscaras de entrada
+    Inputmask({"mask": "99999-999"}).mask("#cep");  // Máscara para o CEP
+    Inputmask({"mask": "a{1,10}9{0,3}"}).mask("#numero");  // Máscara para o número
+    Inputmask({"mask": "a{1,50}"}).mask("#rua, #bairro, #cidade, #complemento");  // Máscaras para os outros campos de texto
+    
+    // Lista de estados brasileiros
+    const estadosBrasileiros = [
+        "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", 
+        "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+    ];
+
+    // Validação do Formulário
+    function validarFormulario() {
+        // Validação de CEP (precisa ser um formato válido)
+        const cep = document.getElementById('cep').value;
+        const regexCep = /^[0-9]{5}-[0-9]{3}$/; // Regex para validar o formato 99999-999
+        if (!regexCep.test(cep)) {
+            alert("Por favor, insira um CEP válido no formato 99999-999.");
+            return false;
+        }
+
+        // Validação de Estado (precisa ser um estado brasileiro válido)
+        const estado = document.getElementById('estado').value.toUpperCase(); // Transforma para maiúsculas
+        if (!estadosBrasileiros.includes(estado)) {
+            alert("Por favor, insira um estado válido (ex.: SP, RJ, MG).");
+            return false;
+        }
+
+        // Validação de Número (pode ter números e letras)
+        const numero = document.getElementById('numero').value;
+        const regexNumero = /^[0-9a-zA-Z]{1,10}$/; // Regex para permitir números e letras
+        if (!regexNumero.test(numero)) {
+            alert("Por favor, insira um número válido (pode incluir letras e números).");
+            return false;
+        }
+
+        // Validação de outros campos (se necessário)
+        const rua = document.getElementById('rua').value;
+        const regexRua = /^[0-9a-zA-Z]{1,10}$/; 
+        if (!regexRua.test(rua)) {
+            alert("O campo 'Rua' é obrigatório.");
+        return false;
+        }
+        
+
+        return true;
+    }
+    </script>
+
 </main>
 
 <footer>
@@ -350,7 +405,7 @@ if (!empty($_SESSION['cart'])) {
         }
     </script>
 
-<script src="../../assets/js/CDNs/endereco.js"></script>
 
+        
 </body>
 </html>

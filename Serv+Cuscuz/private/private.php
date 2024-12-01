@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Mensagem de erro para email não cadastrado
             $_SESSION['msg'] = [
                 'tipo' => 'erroCliente',
-                'mensagem' => 'Este email não está cadastrado no sistema!'
+                'mensagem' => 'Email inocorreto ou não cadastrado!'
             ];
         }
     }
