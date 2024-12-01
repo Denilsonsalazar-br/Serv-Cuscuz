@@ -15,6 +15,8 @@ if (!isset($_SESSION['id'])) {
 
 // Inclui o controlador que recupera os pedidos
 require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
+require_once __DIR__ . "../../../controller/pedido/traduzirStatus.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +27,9 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
     <link rel="stylesheet" href="../../assets/css/pedido/header.css">
     <link rel="stylesheet" href="../../assets/css/pedido/footer.css">
     <link rel="stylesheet" href="../../assets/css/cliente/perfil.css">
+    <!--emoji-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
 
     <title>Perfil</title>
@@ -40,7 +45,7 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
             </div>
             <div class="nav-list">
                 <ul>
-                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../../pages/home.php" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Quem somos</a></li>
                 <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
                 <li class="nav-item"><a href="#" class="nav-link">Cardápio</a></li>
@@ -135,6 +140,18 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
                         </div> 
                     </div>   
                 </li>
+                
+                <li>
+                    <div class="imagemSuporte">
+                        <div>
+                            <img src="../../assets/img/historico.png" alt="">
+                        </div>
+                        <div>
+                            <a href="#" onclick="mostrarSecao('historicoPedidoCliente')">Histórico de Pedidos</a>
+                        </div> 
+                    </div>   
+                </li>
+
                 <li>
                     <div class="imagemSuporte">
                         <div>
@@ -145,21 +162,11 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
                         </div> 
                     </div>   
                 </li>
-                <!--<li>
-                    <div class="imagemSuporte">
-                        <div>
-                            <img src="../../assets/img/mensagem.png" alt="">
-                        </div>
-                        <div>
-                            <a href="#" onclick="mostrarSecao('mensagens')">Mensagem</a>
-                        </div> 
-                    </div>   
-                </li>-->
             </ul>
         </nav>
     </div>
 
-    <!-- Div para o conteúdo -->
+<!-- Div para o conteúdo -->
 <div class="perfil-conteudo">
         <!-- Seção Perfil -->
         <div id="perfil" class="secao">
@@ -169,56 +176,111 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
 
         <!-- Seção Pedidos -->
         <div id="pedidos" class="secao" style="display: none;">
-            <h1>Pedidos</h1>
-            <p>Aqui estão seus pedidos recentes:</p>
+            <h1>Pedidos Recentes</h1>
+            <p>Aqui estão seus pedidos que ainda não foram entregues:</p>
             <table class="table-pedidos">
                 <thead>
                     <tr>
                         <th>Data</th>
                         <th>Status</th>
-                        <th>Entrega Domicílio</th>
+                        <!--<th>Entrega Domicílio</th>-->
                         <th>Preço Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        // Exibe os pedidos do cliente
-                        if (isset($_SESSION['pedidos']) && !empty($_SESSION['pedidos'])) {
-                            foreach ($_SESSION['pedidos'] as $pedido) {
+                    // Exibe os pedidos que não foram entregues
+                    if (isset($_SESSION['pedidos']) && !empty($_SESSION['pedidos'])) {
+                        $temPedidosNaoEntregues = false;
+                        foreach ($_SESSION['pedidos'] as $pedido) {
+                            if ($pedido['status'] !== 'ENTREGUE') { // Filtra apenas os pedidos não entregues
+                                $temPedidosNaoEntregues = true;
                                 echo "<tr>";
                                 echo "<td>" . date('d/m/Y H:i', strtotime($pedido['data'])) . "</td>";
-                                echo "<td>" . ucfirst(strtolower($pedido['status'])) . "</td>";
-                                echo "<td>" . ($pedido['entrega_domicilio'] == 1 ? 'Sim' : 'Não') . "</td>";
+                                // Chama a função traduzirStatus para exibir o status legível com emojis
+                                echo "<td>" . traduzirStatusCliente($pedido['status']) . "</td>";
+                                // <td>" . ($pedido['entrega_domicilio'] == 1 ? 'Sim' : 'Não') . "</td> Comentado
                                 echo "<td>R$ " . number_format($pedido['preco_total'], 2, ',', '.') . "</td>";
+                                echo "</tr>";
                             }
-                        } else {
-                            echo "<tr><td colspan='5'>Você ainda não fez nenhum pedido.</td></tr>";
                         }
+
+                        // Se não houver pedidos não entregues
+                        if (!$temPedidosNaoEntregues) {
+                            echo "<tr><td colspan='3'>Todos os seus pedidos foram entregues.</td></tr>";
+                        }
+                    } else {
+                        // Se não houver nenhum pedido na sessão
+                        echo "<tr><td colspan='3'>Você ainda não fez nenhum pedido.</td></tr>";
+                    }
                     ?>
                 </tbody>
             </table>
         </div>
 
+        </div>
+
+        <!-- Seção Histórico de Pedidos Entregues -->
+        <div id="historicoPedidoCliente" class="secao" style="display: none;">
+            <div class="historicoPedidoCliente">
+                <h1>Histórico de Pedidos Entregues</h1>
+                <p>Aqui estão seus pedidos que já foram entregues:</p>
+                <table class="table-pedidos">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Status</th>
+                            <!--<th>Entrega Domicílio</th>-->
+                            <th>Preço Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Exibe os pedidos que já foram entregues
+                        if (isset($_SESSION['pedidos']) && !empty($_SESSION['pedidos'])) {
+                            foreach ($_SESSION['pedidos'] as $pedido) {
+                                if ($pedido['status'] === 'ENTREGUE') { // Filtra apenas os pedidos entregues
+                                    echo "<tr>";
+                                    echo "<td>" . date('d/m/Y H:i', strtotime($pedido['data'])) . "</td>";
+                                    // Chama a função traduzirStatus para exibir o status legível com emojis
+                                    echo "<td>" . traduzirStatusCliente($pedido['status']) . "</td>";
+                                    // <td>" . ($pedido['entrega_domicilio'] == 1 ? 'Sim' : 'Não') . "</td> Comentado
+                                    echo "<td>R$ " . number_format($pedido['preco_total'], 2, ',', '.') . "</td>";
+                                    echo "</tr>";
+                                }
+                            }
+                        } else {
+                            echo "<tr><td colspan='3'>Você ainda não tem pedidos entregues.</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
 
         <!-- Seção Suporte -->
         <div id="suporte" class="secao" style="display: none;">
-            <h1>Suporte Serv+Cuscuz</h1>
-            <p>Preencha o formulário abaixo para entrar em contato conosco:</p>
-            <form id="form-suporte" action="javascript:void(0);" method="POST">
-                <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
-                </div>
-                <div class="form-group">
-                    <label for="mensagem">Mensagem:</label>
-                    <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn-enviar">Enviar</button>
-            </form>
+            <div class="suporte">
+                <h1>Suporte Serv+Cuscuz</h1>
+                <p>Preencha o formulário abaixo para entrar em contato conosco:</p>
+                <form id="form-suporte" action="javascript:void(0);" method="POST">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem:</label>
+                        <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-enviar">Enviar</button>
+                </form>
+            </div>
         </div>
 
 
@@ -281,6 +343,18 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
         mostrarSecao('perfil');
     });
 </script>
-
+   <!-- Atlternando desktop e mobile -->
+   <script>
+        function menuShow() {
+            let menuMobile = document.querySelector('.mobile-menu');
+            if (menuMobile.classList.contains('open')) {
+                menuMobile.classList.remove('open');
+                document.querySelector('.icon').src = "../../assets/img/abrirMenu.png";
+            } else {
+                menuMobile.classList.add('open');
+                document.querySelector('.icon').src = "../../assets/img/fecharMenu.png";
+            }
+        }
+    </script>
 </body>
 </html>

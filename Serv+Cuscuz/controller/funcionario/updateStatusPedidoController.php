@@ -7,6 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . "../../../model/DAO/PedidoDAO.php";
 require_once __DIR__ . "../../../model/DTO/PedidoDTO.php";
 require_once __DIR__ . "../../../model/DAO/src/conexaobd.php";
+require_once __DIR__ . "../../../controller/pedido/traduzirStatus.php"; // Inclui a função de tradução
 
 try {
     // Verifica se os dados foram enviados
@@ -36,17 +37,27 @@ try {
         throw new Exception("Pedido não encontrado.");
     }
 
-    // Cria o DTO e atualiza o status e preço
+    // Cria o DTO e atualiza o status
     $pedidoDTO = new PedidoDTO();
     $pedidoDTO->setId($pedidoId);
     $pedidoDTO->setStatus($novoStatus);
-    $pedidoDTO->setPrecoTotal($pedido['preco_total']);  // Manter o preço atual do pedido
+    $pedidoDTO->setPrecoTotal($pedido['preco_total']);  // Mantém o preço atual do pedido
 
     // Atualiza no banco
     $atualizado = $pedidoDAO->update($pedidoDTO);
 
     if ($atualizado) {
-        $_SESSION['msg'] = ['tipo' => 'sucesso', 'mensagem' => 'Status do pedido atualizado com sucesso.'];
+        // Verifica o tipo de usuário para usar a função de tradução adequada
+        if (isset($_SESSION['perfil']) && $_SESSION['perfil'] === 'FUNCIONARIO') {
+            // Para o funcionário
+            $statusLegivel = traduzirStatusFuncionario($novoStatus);
+        } else {
+            // Para o cliente
+            $statusLegivel = traduzirStatusCliente($novoStatus);
+        }
+
+        $_SESSION['msg'] = ['tipo' => 'sucesso', 'mensagem' => "Status atualizado para: {$statusLegivel}."];
+
     } else {
         throw new Exception("Falha ao atualizar o status do pedido.");
     }

@@ -51,7 +51,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
             </div>
             <div class="nav-list">
                 <ul>
-                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../pages/home.php" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Quem somos</a></li>
                 <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
                 <li class="nav-item"><a href="#" class="nav-link">Cardápio</a></li>

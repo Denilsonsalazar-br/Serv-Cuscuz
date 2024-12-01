@@ -40,7 +40,7 @@ class PedidoDAO {
         // Execute e verifique o retorno
         if ($stmt->execute()) {
             return true;
-        } else {
+        } else {  
             // Se falhar, capture e mostre o erro
             $errorInfo = $stmt->errorInfo();
             throw new Exception("Erro ao atualizar o status: " . $errorInfo[2]);

@@ -15,6 +15,7 @@ if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] !== 'FUNCIONARIO') {
 
 
 require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
+require_once __DIR__ . "../../../controller/pedido/traduzirStatus.php";
 
 ?>
 
@@ -29,6 +30,10 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
     <link rel="stylesheet" href="../../assets/css/mensagens/mensagens.css">
     <link rel="stylesheet" href="../../assets/css/pedido/footer.css">
     <link rel="stylesheet" href="../../assets/css/funcionario/funcionario.css">
+
+    <!--emoji-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <title>Produtos</title>
 </head>
 <body>
@@ -83,6 +88,17 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
                         </div> 
                     </div>   
                 </li>
+                
+                <li>
+                <div class="imagemSuporte">
+                        <div>
+                            <img src="../../assets/img/historico.png" alt="">
+                        </div>
+                        <div>
+                            <a href="#" onclick="mostrarSecao('historicoPedidoFuncionario')">Histórico de Pedidos</a>
+                        </div> 
+                    </div>   
+                </li>
             </ul>
         </nav>
     </div>
@@ -90,10 +106,10 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
 <!-- Div para o conteúdo -->
 <div class="perfil-conteudo">
 
-            <!-- Seção Pedidos -->
+    <!-- Seção Pedidos -->
     <div id="pedidos" class="secao" style="display: none;">
 
-        <!--mensagens após a edição -->
+        <!-- Mensagens após a edição -->
         <?php
             if (isset($_SESSION['msg'])) {
                 $msgTipo = $_SESSION['msg']['tipo'] === 'sucesso' ? 'msgsucesso' : 'msgerro';
@@ -105,54 +121,108 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
             }
         ?>
 
+        <!-- Seção Gerenciar Pedidos -->
         <h1>Gerenciar Pedidos</h1>
         <p>Abaixo estão os pedidos disponíveis. Você pode alterar o status de cada pedido.</p>
 
-        <?php if (isset($erro)) : ?>
-            <p class="erro"><?= htmlspecialchars($erro); ?></p>
-        <?php else : ?>
-            <?php if (!empty($pedidos)) : ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Status</th>
-                            <th>Entrega</th>
-                            <th>Preço Total</th>
-                            <th>Alterar Status</th> <!-- Nova coluna para alteração -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($pedidos as $pedido) : ?>
-                            <tr>
-                                <td><?= date('d/m/Y H:i', strtotime($pedido['data'])); ?></td>
-                                <td><?= ucfirst(strtolower($pedido['status'])); ?></td>
-                                <td><?= $pedido['entrega_domicilio'] ? 'Sim' : 'Não'; ?></td>
-                                <td>R$ <?= number_format($pedido['preco_total'], 2, ',', '.'); ?></td>
-                                <td>
+    <!-- Tabela de Pedidos não confirmados -->
+    <p>Pedidos pendentes ou em andamento:</p>
+        <table class="table-pedidos">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <!--<th>Entrega Domicílio</th>--> <!-- Coluna comentada -->
+                    <th>Preço Total</th>
+                    <th>Alterar Status</th> <!-- Nova coluna para alteração -->
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Verifica se a sessão de pedidos existe e não está vazia
+                if (isset($_SESSION['pedidos']) && !empty($_SESSION['pedidos'])) {
+                    $temPedidosPendentes = false;
+                    foreach ($_SESSION['pedidos'] as $pedido) {
+                        // Verifica se o pedido está em algum dos status desejados
+                        if (in_array($pedido['status'], ['PENDENTE', 'PREPARANDO', 'A_CAMINHO'])) {
+                            $temPedidosPendentes = true;
+                            echo "<tr>";
+                            echo "<td>" . date('d/m/Y H:i', strtotime($pedido['data'])) . "</td>";
+                            echo "<td>" . ucfirst(strtolower($pedido['status'])) . "</td>";
+                            // echo "<td>" . ($pedido['entrega_domicilio'] == 1 ? 'Sim' : 'Não') . "</td>"; <!-- Coluna comentada -->
+                            echo "<td>R$ " . number_format($pedido['preco_total'], 2, ',', '.') . "</td>";
+                            echo "<td>
                                     <!-- Formulário de alteração de status -->
-                                    <form action="../../controller/funcionario/updateStatusPedidoController.php" method="POST">
-                                        <input type="hidden" name="pedido_id" value="<?= $pedido['id']; ?>">
-                                        <select name="novo_status">
-                                            <option value="PENDENTE" <?= ($pedido['status'] == 'PENDENTE') ? 'selected' : ''; ?>>Pendente</option>
-                                            <option value="PREPARANDO" <?= ($pedido['status'] == 'EM_PREPARO') ? 'selected' : ''; ?>>Em Preparação</option>
-                                            <option value="A_CAMINHO" <?= ($pedido['status'] == 'A_CAMINHO') ? 'selected' : ''; ?>>A Caminho</option>
-                                            <option value="ENTREGUE" <?= ($pedido['status'] == 'ENTREGUE') ? 'selected' : ''; ?>>Entregue</option>
-                                            <option value="CANCELADO" <?= ($pedido['status'] == 'CANCELADO') ? 'selected' : ''; ?>>Cancelado</option>
-                                        </select>
-                                        <button type="submit">Alterar Status</button>
+                                    <form action='../../controller/funcionario/updateStatusPedidoController.php' method='POST'>
+                                        <input type='hidden' name='pedido_id' value='" . $pedido['id'] . "'>
+                                        <div class='input-group'>
+                                            <div class='select-container'>
+                                                <select name='novo_status'>
+                                                    <option value='PENDENTE' " . ($pedido['status'] == 'PENDENTE' ? 'selected' : '') . ">Pendente</option>
+                                                    <option value='PREPARANDO' " . ($pedido['status'] == 'PREPARANDO' ? 'selected' : '') . ">Em Preparação</option>
+                                                    <option value='A_CAMINHO' " . ($pedido['status'] == 'A_CAMINHO' ? 'selected' : '') . ">A Caminho</option>
+                                                    <option value='ENTREGUE' " . ($pedido['status'] == 'ENTREGUE' ? 'selected' : '') . ">Entregue</option>
+                                                    <option value='CANCELADO' " . ($pedido['status'] == 'CANCELADO' ? 'selected' : '') . ">Cancelado</option>
+                                                </select>
+                                            </div>
+                                            <button type='submit' class='btn-alterar-status'>
+                                                Alterar Status
+                                            </button>
+                                        </div>
                                     </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                                </td>";
+                            echo "</tr>";
+                        }
+                    }
 
-            <?php else : ?>
-                <p>Nenhum pedido encontrado.</p>
-            <?php endif; ?>
-        <?php endif; ?>
+                    // Se não houver pedidos pendentes ou em andamento
+                    if (!$temPedidosPendentes) {
+                        echo "<tr><td colspan='4'>Atualize a pagina para ver se tem pedidos pendentes.</td></tr>";
+                    }
+                } else {
+                    // Se não houver nenhum pedido na sessão
+                    echo "<tr><td colspan='4'>Nenhum pedido foi encontrado.</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
 
+
+    </div>
+
+    <!-- Histórico de Pedidos Confirmados -->
+    <div id="historicoPedidoFuncionario" class="secao" style="display: none;">
+        <h1>Entregas realizadas:</h1>
+        <table class="table-pedidos">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <!--<th>Entrega Domicílio</th>--> <!-- Coluna comentada -->
+                    <th>Preço Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Exibe os pedidos confirmados
+                if (isset($_SESSION['pedidos']) && !empty($_SESSION['pedidos'])) {
+                    foreach ($_SESSION['pedidos'] as $pedido) {
+                        if (in_array($pedido['status'], ['ENTREGUE', 'CANCELADO'])) {
+                            echo "<tr>";
+                            echo "<td>" . date('d/m/Y H:i', strtotime($pedido['data'])) . "</td>";
+                            echo "<td>" . ucfirst(strtolower($pedido['status'])) . "</td>";
+                            // echo "<td>" . ($pedido['entrega_domicilio'] == 1 ? 'Sim' : 'Não') . "</td>"; <!-- Coluna comentada -->
+                            echo "<td>R$ " . number_format($pedido['preco_total'], 2, ',', '.') . "</td>";
+                            echo "</tr>";
+                        }
+                    }
+                } else {
+                    echo "<tr><td colspan='3'>Nenhum pedido confirmado.</td></tr>"; 
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 
 
             <!--<h1>Detalhes do Pedido</h1>
@@ -167,7 +237,7 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
                 <?//php endif; ?>
             </div>-->
 
-        </div>
+        
 </div>
 </main>
 <footer>
@@ -220,7 +290,19 @@ require_once __DIR__ . "../../../controller/pedido/readPedidoController.php";
     document.addEventListener('DOMContentLoaded', () => {
         mostrarSecao('pedidos');
     });
-</script>  
+</script>
+
+<!-- Script para esconder a mensagem flash depois de 5 segundos -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const mensagemFlash = document.getElementById('mensagemFlash');
+    if (mensagemFlash) {
+        setTimeout(() => {
+            mensagemFlash.style.display = 'none';
+        }, 5000); // Esconde após 5 segundos
+    }
+});
+</script>
 
 </body>
 </html>

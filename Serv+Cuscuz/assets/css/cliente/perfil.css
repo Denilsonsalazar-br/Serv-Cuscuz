@@ -10,7 +10,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #fff;
 }
 main{
     margin-top: 280px;
@@ -155,8 +155,17 @@ main{
 
 /* Estilo da seção de suporte */
 #suporte {
-    max-width: 600px;
+    width: 100%;
+    background-color: #fff;
     margin: 0 auto;
+}
+.suporte{
+    margin-top: 20px;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
 }
 
 #suporte h1 {
@@ -221,8 +230,81 @@ main{
     #suporte h1 {
         font-size: 1.5rem;
     }
+    .suporte{
+        margin-left: 0;
+    }
+}
+.secao {
+    margin: 20px 0;
+}
+#historicoPedidoCliente{
+    width: 100%;
+    background-color: #fff;
 }
 
+.table-pedidos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table-pedidos th,
+.table-pedidos td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table-pedidos th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.table-pedidos tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-pedidos tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-pedidos td {
+    font-size: 14px;
+    color: #333;
+}
+
+.table-pedidos th {
+    font-size: 16px;
+}
+
+.table-pedidos td[colspan="3"] {
+    text-align: center;
+    font-weight: bold;
+    color: #777;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .table-pedidos {
+        font-size: 12px;
+    }
+
+    .table-pedidos th,
+    .table-pedidos td {
+        padding: 8px;
+    }
+}
+
+/* Cabeçalhos e textos */
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+}
 
 /* Responsividade */
 @media (max-width: 768px) {
