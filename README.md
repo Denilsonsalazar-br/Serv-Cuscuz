@@ -20,3 +20,6 @@ Cadastro de produtos!
 
 formulario de edição do produto.
 ![Formulario de edição do produtos](https://github.com/user-attachments/assets/3879aef9-9c78-46a8-9968-8c91468ab2ce)
+
+pagina de cadastro ou alteração de imagens do carrossel 
+![pagina de cadastro ou alteração de imagens no carroessel](https://github.com/user-attachments/assets/fbc05255-9536-49ba-b590-f9c516cd9cd7)
