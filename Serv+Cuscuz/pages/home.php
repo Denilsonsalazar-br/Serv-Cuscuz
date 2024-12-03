@@ -1,26 +1,32 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    error_log(print_r($_POST, true)); // Depuração
-}
 // Iniciar a sessão se não estiver iniciada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Adiciona cabeçalhos para evitar cache
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 // Verificar se o cliente está logado
 if (!isset($_SESSION['id']) || !is_numeric($_SESSION['id'])) {
-    // Exibe o modal ou redireciona para a página de login
-    //echo "<script>document.getElementById('loginModal').style.display = 'block';</script>";
+    //redireciona para a página de login
+    //error_log("Cliente não logado. Redirecionando para login.php");
+    //header("Location: ../pages/login.php");
+    //exit(); // Para evitar que o restante do código seja executado
 }
 
+// Inicializa o carrinho, se necessário
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    $_SESSION['cart'] = []; // Inicializa o carrinho vazio, se necessário
+    $_SESSION['cart'] = []; // Inicializa o carrinho vazio
 }
 
-    require_once __DIR__ . "../../controller/produto/readProdutoController.php";
+// Carrega os produtos
+require_once __DIR__ . "../../controller/produto/readProdutoController.php";
 
-    $readProdutoController = new ReadProdutoController();
-    $produtos = $readProdutoController->getAllProdutos(); 
+$readProdutoController = new ReadProdutoController();
+$produtos = $readProdutoController->getAllProdutos();
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +45,15 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
 <body>
 <!--Abrir o modal, caso o cliente não esteja logado-->
 <script>
-    document.getElementById('loginModal').style.display = 'block';
+    // document.getElementById('loginModal').style.display = 'block';
+
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.style.display = 'block';
+    }
+
+    const cartItems = <?php echo json_encode($_SESSION['cart'] ?? []); ?>;
+    const cartTotalAmount = "<?php echo $_SESSION['cartTotalAmount'] ?? 'R$ 0,00'; ?>";
 </script>
 
     <header>
@@ -51,7 +65,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
             </div>
             <div class="nav-list">
                 <ul>
-                <li class="nav-item"><a href="../pages/home.php" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Quem somos</a></li>
                 <!--<li class="nav-item"><a href="#" class="nav-link">Promoções</a></li>-->
                 <li class="nav-item"><a href="#" class="nav-link">Cardápio</a></li>
@@ -97,10 +111,9 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                 <div class="nomeperfil" href="#">
                     
                     <div class="iconeUsuario">
-                        <a href="http://localhost/Serv-Cuscuz/Serv+Cuscuz/view/cliente/perfil.php">
+                    <a href="http://localhost/Serv-Cuscuz/Serv+Cuscuz/view/cliente/perfil.php">
                             <img src="../assets/img/usuarioBranco.png" alt="Icone Usuario">
                         </a>
-                        
                     </div>
                 
                     <div>
@@ -175,6 +188,24 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
                     </aside>
                     </div>
                 <?php endif; ?>
+
+                <!-- Modal de login -->
+                <div id="loginModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button" onclick="closeLoginModal()">×</span>
+                        <div class="modal-header">
+                            <img src="logo.png" alt="Logo" class="modal-logo">
+                            <h2>Precisa Fazer Login</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p>Você precisa estar logado para finalizar a compra. Caso não tenha uma conta, faça seu cadastro abaixo!</p>
+                            <div class="modal-buttons">
+                                <button onclick="redirectToLogin()">Fazer Login</button>
+                                <a href="../view/cliente/cadastroCliente.php" class="register-link">Não tem uma conta? Cadastre-se aqui!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Produtos -->
                 <div class="produto-container">

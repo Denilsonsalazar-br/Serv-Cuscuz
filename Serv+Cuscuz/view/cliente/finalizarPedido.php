@@ -256,8 +256,8 @@ if (!empty($_SESSION['cart'])) {
         </div>
     </div> 
 
-    <!-- Formulário de Endereço -->
-    <section class="formulario-endereco">
+<!-- Formulário de Endereço -->
+<section class="formulario-endereco">
     <h2>Informe o Endereço de Entrega</h2>
     <form action="../../controller/endereco/createEnderecoController.php" method="POST" onsubmit="return validarFormulario()">
         <div class="form-row">
@@ -267,7 +267,7 @@ if (!empty($_SESSION['cart'])) {
             </div>
             <div class="form-group">
                 <label for="numero">Número:</label>
-                <input type="text" id="numero" name="numero" placeholder="Número" required>
+                <input type="number" id="numero" name="numero" placeholder="Número" required>
             </div>
         </div>
         <div class="form-row">
@@ -294,23 +294,20 @@ if (!empty($_SESSION['cart'])) {
             <label for="complemento">Complemento:</label>
             <input type="text" id="complemento" name="complemento" placeholder="Ex.: Apto, Bloco, Casa" required>
         </div>
-        <!-- Campo Hidden para o ID do Cliente -->
-        <!-- <input type="hidden" name="cliente_id" value="<?php //echo $_SESSION['id']; ?>"> -->
         <div class="form-buttons">
             <button type="submit" class="submit-btn">Avançar para o Pagamento</button>
         </div>
     </form>
 </section>
 
-    <!--script para mascara e valicação do endereco-->
-    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.7/dist/inputmask.min.js"></script>
+<!--script para mascara e valicação do endereco-->
+<script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.7/dist/inputmask.min.js"></script>
 
-    <script>
-        // Máscaras de entrada
+<script>
+    // Máscaras de entrada
     Inputmask({"mask": "99999-999"}).mask("#cep");  // Máscara para o CEP
     Inputmask({"mask": "a{1,10}9{0,3}"}).mask("#numero");  // Máscara para o número
-    Inputmask({"mask": "a{1,50}"}).mask("#rua, #bairro, #cidade, #complemento");  // Máscaras para os outros campos de texto
-    
+
     // Lista de estados brasileiros
     const estadosBrasileiros = [
         "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", 
@@ -336,24 +333,40 @@ if (!empty($_SESSION['cart'])) {
 
         // Validação de Número (pode ter números e letras)
         const numero = document.getElementById('numero').value;
-        const regexNumero = /^[0-9a-zA-Z]{1,10}$/; // Regex para permitir números e letras
+        const regexNumero = /^[0-9]{1,5}$/; // Regex para permitir números
         if (!regexNumero.test(numero)) {
-            alert("Por favor, insira um número válido (pode incluir letras e números).");
+            alert("Por favor, insira um número válido (apenas números, até 5 dígitos).");
             return false;
         }
 
         // Validação de outros campos (se necessário)
         const rua = document.getElementById('rua').value;
-        const regexRua = /^[0-9a-zA-Z]{1,10}$/; 
-        if (!regexRua.test(rua)) {
-            alert("O campo 'Rua' é obrigatório.");
-        return false;
+        const bairro = document.getElementById('bairro').value;
+        const cidade = document.getElementById('cidade').value;
+        const complemento = document.getElementById('complemento').value;
+
+        // Regex para permitir letras, números e espaços (no máximo 50 caracteres)
+        const regexTexto = /^[a-z A-Z0-9\s]{1,50}$/;
+        if (!regexTexto.test(rua)) {
+            alert("O campo 'Rua' é obrigatório e deve ter entre 1 e 50 caracteres (permitindo espaços).");
+            return false;
         }
-        
+        if (!regexTexto.test(bairro)) {
+            alert("O campo 'Bairro' é obrigatório e deve ter entre 1 e 50 caracteres (permitindo espaços).");
+            return false;
+        }
+        if (!regexTexto.test(cidade)) {
+            alert("O campo 'Cidade' é obrigatório e deve ter entre 1 e 50 caracteres (permitindo espaços).");
+            return false;
+        }
+        if (!regexTexto.test(complemento)) {
+            alert("O campo 'Complemento' é obrigatório e deve ter entre 1 e 50 caracteres (permitindo espaços).");
+            return false;
+        }
 
         return true;
     }
-    </script>
+</script>
 
 </main>
 
