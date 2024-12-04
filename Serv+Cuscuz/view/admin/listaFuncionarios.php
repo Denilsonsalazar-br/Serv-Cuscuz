@@ -81,7 +81,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
             <h1>Funcionários</h1>
             <section class="section__btnFuncionario">
             <div class="alertaSucessoError">
-
+                    <div id="mensagemFlash">
                     <?php if (isset($_SESSION['msgFuncionario'])): ?>
                         <div class="alerta success" id="msgSucesso">
                             <?php echo htmlspecialchars($_SESSION['msgFuncionario']); ?>
@@ -110,8 +110,7 @@ require_once __DIR__ . "../../../controller/funcionario/readFuncionarioControlle
                         </div>
                         <?php unset($_SESSION['erroreditFun']); ?>
                     <?php endif; ?>
-
-
+                    </div>
                 </div>
                 <a class="btnAdm" href="../../view/admin/cadastroFuncionarios.php">Novo</a>
                 <a class="btnAdm" href="#" id="printBtn" target="_blank">Imprimir</a>

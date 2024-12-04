@@ -24,6 +24,7 @@ require_once  "../../controller/cliente/readClienteController.php";
     <link rel="stylesheet" href="../../assets/css/headerCadastro.css">
     <link rel="stylesheet" href="../../assets/css/painelControleAdmin.css">
     <link rel="stylesheet" href="../../assets/css/funcionario/dataTable.css">
+    <link rel="stylesheet" href="../../assets/css/mensagens/mensagens.css">
     
     <script src="../../assets/js/CDNs/jquery-3.7.1.min.js"></script>
     <script src="../../assets/js/CDNs/dataTables.js"></script>
@@ -81,7 +82,7 @@ require_once  "../../controller/cliente/readClienteController.php";
     <main>
         <h1>Clientes</h1>
             <section class="section__btn">
-                <div class="alertaSucessoError">
+                <div class="alertaSucessoError" id="mensagemFlash">
                     <?php if (isset($_SESSION['msg'])): ?>
                         <div class="alerta success" id="msgSucesso">
                             <?php echo htmlspecialchars($_SESSION['msg']); ?>

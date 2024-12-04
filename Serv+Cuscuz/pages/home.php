@@ -211,19 +211,21 @@ $produtos = $readProdutoController->getAllProdutos();
                 <div class="produto-container">
                 <?php foreach ($produtos as $produto): ?>
                     <div class="produto-card">
-                        <img src="<?php echo '../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
-                        <h2><?php echo htmlspecialchars($produto->getNome()); ?></h2>
-                        <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
+                        <img src="<?php echo '../assets/img/' . basename($produto->getImagem()); ?>" 
+                            alt="<?php echo htmlspecialchars($produto->getNome(), ENT_NOQUOTES, 'UTF-8'); ?>" 
+                            class="produto-imagem">
+                        <h2><?php echo htmlspecialchars($produto->getNome(), ENT_NOQUOTES, 'UTF-8'); ?></h2>
+                        <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao(), ENT_NOQUOTES, 'UTF-8'); ?></p>
                         <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
                         <div>
                             <button 
                                 class="add-carrinho-btn" 
                                 data-id="<?php echo $produto->getId(); ?>" 
                                 onclick="openModal(
-                                    '<?php echo htmlspecialchars($produto->getNome()); ?>',
-                                    '<?php echo htmlspecialchars($produto->getDescricao()); ?>',
+                                    '<?php echo addslashes(htmlspecialchars($produto->getNome(), ENT_QUOTES, 'UTF-8')); ?>',
+                                    `<?php echo addslashes(htmlspecialchars($produto->getDescricao(), ENT_QUOTES, 'UTF-8')); ?>`,
                                     '<?php echo number_format($produto->getPreco(), 2, ',', '.'); ?>',
-                                    '../assets/img/<?php echo basename($produto->getImagem()); ?>',
+                                    '../assets/img/<?php echo addslashes(basename($produto->getImagem())); ?>',
                                     '<?php echo $produto->getId(); ?>'
                                 )">
                                 +
@@ -231,7 +233,6 @@ $produtos = $readProdutoController->getAllProdutos();
                         </div>
                     </div>
                 <?php endforeach; ?>
-
                 </div>
             </main>
 

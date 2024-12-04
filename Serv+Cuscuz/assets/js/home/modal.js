@@ -10,7 +10,7 @@ function openModal(nome, descricao, preco, imagemSrc, id) {
 
     // Define os valores no modal
     document.getElementById('modalNome').textContent = nome;
-    document.getElementById('modalDescricao').textContent = descricao;
+    document.getElementById('modalDescricao').innerHTML = descricao;
     document.getElementById('modalImagem').src = imagemSrc;
 
     // Armazena o ID do produto no modal

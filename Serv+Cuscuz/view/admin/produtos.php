@@ -95,85 +95,94 @@ $produtos = $readProdutoController->getAllProdutos();
 
         <!-- Conteúdo das Abas -->
         <div id="P" class="tabcontent">
-                <h3>P</h3>
-                <div class="produto-container">
-                    <?php foreach ($produtos as $produto): ?>
-                        <?php if ($produto->getTamanho() === 'P'): ?>
-                            <div class="produto-card">
-                                <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
-                                <h4><?php echo htmlspecialchars($produto->getNome()); ?></h4>
-                                <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
-                                <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
-                                
-                                <div class="actions">
-                                    <form action="../../view/admin/editarProduto.php" method="POST" class="form-edit">
-                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                        <button type="submit" class="btn-edit">Editar</button>
-                                    </form>
-                                    <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
-                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                        <button type="submit" class="btn-delete">Excluir</button>
-                                    </form>
-                                </div>
+            <h3>P</h3>
+            <div class="produto-container">
+                <?php foreach ($produtos as $produto): ?>
+                    <?php if ($produto->getTamanho() === 'P'): ?>
+                        <div class="produto-card">
+                            <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" 
+                                alt="<?php echo htmlspecialchars($produto->getNome(), ENT_NOQUOTES, 'UTF-8'); ?>" 
+                                class="produto-imagem">
+                            <h4><?php echo htmlspecialchars($produto->getNome(), ENT_NOQUOTES, 'UTF-8'); ?></h4>
+                            <p class="descricao"><?php echo nl2br(htmlspecialchars($produto->getDescricao(), ENT_NOQUOTES, 'UTF-8')); ?></p>
+                            <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
+                            
+                            <div class="actions">
+                                <form action="../../view/admin/editarProduto.php" method="POST" class="form-edit">
+                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                    <button type="submit" class="btn-edit">Editar</button>
+                                </form>
+                                <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
+                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                    <button type="submit" class="btn-delete">Excluir</button>
+                                </form>
                             </div>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </div>
+        </div>
 
-            <div id="M" class="tabcontent">
-                <h3>M</h3>
-                <div class="produto-container">
-                    <?php foreach ($produtos as $produto): ?>
-                        <?php if ($produto->getTamanho() === 'M'): ?>
-                            <div class="produto-card">
-                                <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
-                                <h4><?php echo htmlspecialchars($produto->getNome()); ?></h4>
-                                <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
-                                <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
-                                
-                                <div class="actions">
-                                    <form action="../../view/admin/editarProduto.php" method="POST" class="form-edit">
-                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                        <button type="submit" class="btn-edit">Editar</button>
-                                    </form>
-                                    <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
-                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                        <button type="submit" class="btn-delete">Excluir</button>
-                                    </form>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </div>
-            </div>
 
-            <div id="G" class="tabcontent">
-                <h3>G</h3>
-                <div class="produto-container">
-                    <?php foreach ($produtos as $produto): ?>
-                        <?php if ($produto->getTamanho() === 'G'): ?>
-                            <div class="produto-card">
-                                <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" alt="<?php echo htmlspecialchars($produto->getNome()); ?>" class="produto-imagem">
-                                <h4><?php echo htmlspecialchars($produto->getNome()); ?></h4>
-                                <p class="descricao"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
-                                <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
-                                
-                                <div class="actions">
-                                    <form action="../../view/admin/editarProduto.php" method="POST" class="form-edit">
-                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                        <button type="submit" class="btn-edit">Editar</button>
-                                    </form>
-                                    <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
-                                        <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
-                                        <button type="submit" class="btn-delete">Excluir</button>
-                                    </form>
-                                </div>
+        <div id="M" class="tabcontent">
+            <h3>M</h3>
+            <div class="produto-container">
+                <?php foreach ($produtos as $produto): ?>
+                    <?php if ($produto->getTamanho() === 'M'): ?>
+                        <div class="produto-card">
+                            <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" 
+                                alt="<?php echo htmlspecialchars($produto->getNome(), ENT_NOQUOTES, 'UTF-8'); ?>" 
+                                class="produto-imagem">
+                            <h4><?php echo htmlspecialchars($produto->getNome(), ENT_NOQUOTES, 'UTF-8'); ?></h4>
+                            <p class="descricao"><?php echo nl2br(htmlspecialchars($produto->getDescricao(), ENT_NOQUOTES, 'UTF-8')); ?></p>
+                            <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
+                            
+                            <div class="actions">
+                                <form action="../../view/admin/editarProduto.php" method="POST" class="form-edit">
+                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                    <button type="submit" class="btn-edit">Editar</button>
+                                </form>
+                                <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
+                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                    <button type="submit" class="btn-delete">Excluir</button>
+                                </form>
                             </div>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </div>
+        </div>
+
+
+        <div id="G" class="tabcontent">
+            <h3>G</h3>
+            <div class="produto-container">
+                <?php foreach ($produtos as $produto): ?>
+                    <?php if ($produto->getTamanho() === 'G'): ?>
+                        <div class="produto-card">
+                            <img src="<?php echo '../../assets/img/' . basename($produto->getImagem()); ?>" 
+                                alt="<?php echo htmlspecialchars($produto->getNome(), ENT_NOQUOTES, 'UTF-8'); ?>" 
+                                class="produto-imagem">
+                            <h4><?php echo htmlspecialchars($produto->getNome(), ENT_NOQUOTES, 'UTF-8'); ?></h4>
+                            <p class="descricao"><?php echo nl2br(htmlspecialchars($produto->getDescricao(), ENT_NOQUOTES, 'UTF-8')); ?></p>
+                            <p class="preco">Preço: R$ <?php echo number_format($produto->getPreco(), 2, ',', '.'); ?></p>
+                            
+                            <div class="actions">
+                                <form action="../../view/admin/editarProduto.php" method="POST" class="form-edit">
+                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                    <button type="submit" class="btn-edit">Editar</button>
+                                </form>
+                                <form action="../../controller/produto/deleteProdutoController.php" method="POST" class="form-delete">
+                                    <input type="hidden" name="id" value="<?php echo $produto->getId(); ?>">
+                                    <button type="submit" class="btn-delete">Excluir</button>
+                                </form>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
 
         <?php endif; ?>
     </main>
