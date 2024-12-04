@@ -82,14 +82,14 @@ require_once  "../../controller/cliente/readClienteController.php";
     <main>
         <h1>Clientes</h1>
             <section class="section__btn">
-                <div class="alertaSucessoError" id="mensagemFlash">
-                    <?php if (isset($_SESSION['msg'])): ?>
-                        <div class="alerta success" id="msgSucesso">
+                <div class="alertaSucessoError" >
+                    <?php if (isset($_SESSION['msg' ])): ?>
+                        <div class="alerta success" id="msgSucesso" id="mensagemFlash">
                             <?php echo htmlspecialchars($_SESSION['msg']); ?>
                         </div>
                         <?php unset($_SESSION['msg']); // Remove a mensagem da sessão ?>
                     <?php elseif (isset($_SESSION['error'])): ?>
-                        <div class="alerta error" id="msgErro">
+                        <div class="alerta error" id="msgErro" id="mensagemFlash">
                             <?php echo htmlspecialchars($_SESSION['error']); ?>
                         </div>
                         <?php unset($_SESSION['error']); // Remove a mensagem da sessão ?>
