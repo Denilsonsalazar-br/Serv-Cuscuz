@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/12/2024 às 15:01
+-- Tempo de geração: 10/12/2024 às 15:38
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -142,7 +142,7 @@ CREATE TABLE `t_funcionario` (
   `cpf` char(14) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `telefone` char(20) DEFAULT NULL,
-  `data_criacao` date DEFAULT NULL,
+  `data_criacao` timestamp NULL DEFAULT NULL,
   `senha` varchar(255) DEFAULT NULL,
   `t_perfil_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -237,7 +237,7 @@ INSERT INTO `t_pedido` (`id`, `data`, `status`, `entrega_domicilio`, `preco_tota
 (32, '2024-12-01 19:06:19', 'ENTREGUE', NULL, 85.96, 29),
 (36, '2024-12-01 19:54:52', 'ENTREGUE', NULL, 28.00, 29),
 (37, '2024-12-01 23:19:59', 'ENTREGUE', NULL, 59.97, 29),
-(38, '2024-12-04 17:30:03', 'PREPARANDO', NULL, 114.89, 29),
+(38, '2024-12-04 17:30:03', 'A_CAMINHO', NULL, 114.89, 29),
 (39, '2024-12-08 14:54:00', 'A_CAMINHO', NULL, 264.49, 29);
 
 -- --------------------------------------------------------
@@ -291,10 +291,7 @@ INSERT INTO `t_produto` (`id`, `nome`, `descricao`, `imagem`, `preco`, `t_funcio
 (8, 'cuscusz  padrao', 'fsfaddgafdg', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_normal.jpg', 14.00, 1, 'G', NULL, 6),
 (9, 'Cuscuz paulista', 'hjghg', 'cuscuz3.jpg', 18.50, 1, 'P', NULL, 1),
 (10, 'cuscuz  brasileiro', 'fdgfdgs', 'cuscuz2.jpg', 16.90, 1, 'P', NULL, 1),
-(12, 'sadsfs', 'sddgdg', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/teste3.jpg', 11.00, 1, 'G', NULL, 3),
-(30, 'sales', 'gfdsgdfgfd', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/teste3.jpg', 19.00, 1, 'P', NULL, 6),
 (32, 'gostoso', 'fssdfdsg', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/teste2.jpg', 17.99, 1, 'P', NULL, 10),
-(33, 'gfdgdfhgfh', 'sfsgfhfghfd', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_Recheado_frango.jpg', 15.99, 1, 'M', NULL, 10),
 (34, 'cuscuz delicía', 'adssfá\r\n700g', 'cuscuz3.jpg', 25.99, 1, 'P', NULL, 10);
 
 -- --------------------------------------------------------
@@ -367,8 +364,8 @@ ALTER TABLE `t_funcionario`
 --
 ALTER TABLE `t_itempedido`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `T_Pedido_id` (`t_pedido_id`),
-  ADD KEY `T_Produto_id` (`t_produto_id`);
+  ADD KEY `T_Produto_id` (`t_produto_id`),
+  ADD KEY `fk_itempedido_pedido` (`t_pedido_id`);
 
 --
 -- Índices de tabela `t_pagamento`
@@ -382,7 +379,8 @@ ALTER TABLE `t_pagamento`
 --
 ALTER TABLE `t_pedido`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `T_Cliente_id` (`t_cliente_id`);
+  ADD KEY `T_Cliente_id` (`t_cliente_id`),
+  ADD KEY `idx_t_cliente_id` (`t_cliente_id`);
 
 --
 -- Índices de tabela `t_perfil`
@@ -431,25 +429,25 @@ ALTER TABLE `t_categoria`
 -- AUTO_INCREMENT de tabela `t_cliente`
 --
 ALTER TABLE `t_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de tabela `t_endereco`
 --
 ALTER TABLE `t_endereco`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de tabela `t_funcionario`
 --
 ALTER TABLE `t_funcionario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de tabela `t_itempedido`
 --
 ALTER TABLE `t_itempedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT de tabela `t_pagamento`
@@ -461,7 +459,7 @@ ALTER TABLE `t_pagamento`
 -- AUTO_INCREMENT de tabela `t_pedido`
 --
 ALTER TABLE `t_pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de tabela `t_perfil`
@@ -489,13 +487,13 @@ ALTER TABLE `t_promocao`
 -- Restrições para tabelas `t_alergia`
 --
 ALTER TABLE `t_alergia`
-  ADD CONSTRAINT `fk_t_alergia_t_cliente` FOREIGN KEY (`t_cliente_id`) REFERENCES `t_cliente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_alergia_cliente_idx` FOREIGN KEY (`t_cliente_id`) REFERENCES `t_cliente` (`id`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `t_endereco`
 --
 ALTER TABLE `t_endereco`
-  ADD CONSTRAINT `fk_endereco_cliente` FOREIGN KEY (`t_cliente_id`) REFERENCES `t_cliente` (`id`) ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_endereco_cliente` FOREIGN KEY (`t_cliente_id`) REFERENCES `t_cliente` (`id`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `t_funcionario`
@@ -507,8 +505,8 @@ ALTER TABLE `t_funcionario`
 -- Restrições para tabelas `t_itempedido`
 --
 ALTER TABLE `t_itempedido`
-  ADD CONSTRAINT `fk_itemPedido_pedido` FOREIGN KEY (`t_pedido_id`) REFERENCES `t_pedido` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_itemPedido_produto` FOREIGN KEY (`t_produto_id`) REFERENCES `t_produto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_itemPedido_produto` FOREIGN KEY (`t_produto_id`) REFERENCES `t_produto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_itempedido_pedido` FOREIGN KEY (`t_pedido_id`) REFERENCES `t_pedido` (`id`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `t_pagamento`
@@ -520,13 +518,14 @@ ALTER TABLE `t_pagamento`
 -- Restrições para tabelas `t_pedido`
 --
 ALTER TABLE `t_pedido`
-  ADD CONSTRAINT `fk_pedido_cliente` FOREIGN KEY (`t_cliente_id`) REFERENCES `t_cliente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_pedido_cliente` FOREIGN KEY (`t_cliente_id`) REFERENCES `t_cliente` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_pedido_cliente_idx` FOREIGN KEY (`t_cliente_id`) REFERENCES `t_cliente` (`id`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `t_produto`
 --
 ALTER TABLE `t_produto`
-  ADD CONSTRAINT `fk_produto_funcionario` FOREIGN KEY (`t_funcionario_id`) REFERENCES `t_funcionario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_produto_funcionario` FOREIGN KEY (`t_funcionario_id`) REFERENCES `t_funcionario` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_t_produto_t_categoria1` FOREIGN KEY (`t_categoria_id`) REFERENCES `t_categoria` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
