@@ -5,8 +5,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once __DIR__ . "../../model/DAO/src/conexaobd.php";
 
-// Supondo que a instância de conexão seja $pdo
-$pdo = Conexao::getInstance(); // Obter a instância de conexão
+// Obter a instância de conexão
+$pdo = Conexao::getInstance(); 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
