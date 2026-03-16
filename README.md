@@ -1,11 +1,22 @@
+# Serv-Cuscuz: Sistema de Delivery
 
-Sistema de delivery. 
-"Ainda em desenvolvimento" 
-Estruturado no padrão MVC. 
-O sistema conta com três atores: administrador, funcionário e cliente. 
-Todas as funções são segmentadas, níveis de acesso controlados e separados. 
-Cada ator possui funcionalidades específicas, sendo o administrador o responsável por gerir todas as informações contidas no sistema.
-Um sistema funcional e que é capaz de atender microempreendedores, visando uma melhor gestão de um pequeno negócio.
+Projeto acadêmico desenvolvido para a gestão de pequenos negócios (delivery), estruturado sob o padrão de arquitetura MVC (Model-View-Controller). O sistema visa oferecer controle administrativo eficiente e segmentação de acessos.
+
+## Funcionalidades Principais
+* **Controle de Acesso:** Segmentação por níveis de permissão (Administrador, Funcionário e Cliente).
+* **Painel Administrativo:** Gestão completa de produtos, categorias e configurações do sistema.
+* **Gestão de Produtos:** Cadastro, edição, exclusão e controle de estoque/detalhes.
+* **Gerenciamento de Mídia:** Upload e alteração de imagens para o carrossel de destaque.
+* **Arquitetura:** Padrão MVC para separação de responsabilidades e organização do código.
+
+## Tecnologias Utilizadas
+*  PHP, JavaScript.
+* Banco de Dados: MySQL
+* Interface:  HTML5, CSS.
+
+## Status do Projeto
+🚧 **Em desenvolvimento**
+
 ![Página Home](https://github.com/user-attachments/assets/be5bee77-2c8f-43f4-8451-c6fc271610c8)
 
 
