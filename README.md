@@ -1,6 +1,6 @@
-# Serv-Cuscuz: Sistema de Delivery
+# Serv+Cuscuz: Sistema de Pedidos / Delivery
 
-Projeto acadêmico desenvolvido para a gestão de pequenos negócios (delivery), estruturado sob o padrão de arquitetura MVC (Model-View-Controller). O sistema visa oferecer controle administrativo eficiente e segmentação de acessos.
+Projeto acadêmico desenvolvido para a gestão de pequenos negócios (delivery), estruturado sob o padrão de arquitetura MVC (Model-View-Controller). O sistema visa oferecer controle administrativo eficiente e segmentação de acessos, ideal para microempreendedores
 
 ## Funcionalidades Principais
 * **Controle de Acesso:** Segmentação por níveis de permissão (Administrador, Funcionário e Cliente).
@@ -9,7 +9,7 @@ Projeto acadêmico desenvolvido para a gestão de pequenos negócios (delivery),
 * **Gerenciamento de Mídia:** Upload e alteração de imagens para o carrossel de destaque.
 * **Arquitetura:** Padrão MVC para separação de responsabilidades e organização do código.
 
-## Tecnologias Utilizadas
+## Tecnologia Utilizadas
 *  PHP, JavaScript.
 * Banco de Dados: MySQL
 * Interface:  HTML5, CSS.
