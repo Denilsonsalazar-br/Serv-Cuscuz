@@ -11,7 +11,7 @@ Projeto acadêmico desenvolvido para a gestão de pequenos negócios (delivery),
 
 ## Tecnologia Utilizadas
 *  PHP, JavaScript.
-* Banco de Dados: MySQL
+* Banco de Dados: SQL, MySQL
 * Interface:  HTML5, CSS.
 
 ## Status do Projeto
