@@ -28,10 +28,17 @@ Projeto acadêmico desenvolvido para a gestão de pequenos negócios (delivery),
 * **Cliente** cliente@gmail.com |  **Senha** @Manter123
 * **Funcionário** funcionario@gmail.com | **Senha:** @Manter123
 * **Administrador:** administrador@gmail.com | **Senha:** admin
+* Caso queira, pode mudar a senha/criar novo perfil do funcionário pelo painel do Administrador.
+* E crie um novo Cliente. Só são aceitos CPF verdadeiros
 
 
 ## Status do Projeto
 🚧 **Em desenvolvimento**
+* Falta finalizar as abas de pagamentos **(Integração com API)**
+* Falta concluir o painel do funcionário.
+* Finalizar o perfil do cliente.
+
+  
 
 ![Página Home](https://github.com/user-attachments/assets/be5bee77-2c8f-43f4-8451-c6fc271610c8)
 
