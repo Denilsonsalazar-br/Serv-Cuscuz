@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/12/2024 às 15:38
+-- Tempo de geração: 16/03/2026 às 17:24
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -52,7 +52,7 @@ CREATE TABLE `t_carrossel` (
 --
 
 INSERT INTO `t_carrossel` (`id`, `imagem_url`, `titulo`, `descricao`) VALUES
-(10, 'assets/img/cuscuz1.jpg', '', ''),
+(10, 'assets/img/cuscuz1.jpg', 'Cuscuz do Clemilson', ''),
 (11, 'assets/img/cuscuz2.jpg', '', ''),
 (12, 'assets/img/67268a324ab82-CARROSSEL_02.jpg', '', ''),
 (13, 'assets/img/Cuscuz-nordestino.jpg', '', '');
@@ -103,7 +103,7 @@ CREATE TABLE `t_cliente` (
 --
 
 INSERT INTO `t_cliente` (`id`, `nome`, `sobrenome`, `cpf`, `email`, `telefone`, `data_criacao`, `data_atualizacao`, `senha`) VALUES
-(29, 'Tiago', 'Santos', '0236549871', 'cliente@gmail.com', '12345678978', '2024-10-28 19:09:58', '2024-12-06 16:41:42', '$2y$10$qfZaog6ftzPyHpP3lxQi8Om9uKx7hNoTlFGD6L5C3GyaPb9l460v.');
+(38, 'Cliente', 'Sales', '02165497847', 'cliente@gmail.com', '12345678912', '2026-03-16 16:22:45', '2026-03-16 16:23:57', '$2y$10$/TF1XL1rYS3UVz4uojHOxuaEY9gIc6w4ZUkVfKwIJUQ.DJ8M/Znxe');
 
 -- --------------------------------------------------------
 
@@ -122,13 +122,6 @@ CREATE TABLE `t_endereco` (
   `cep` char(9) DEFAULT NULL,
   `t_cliente_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `t_endereco`
---
-
-INSERT INTO `t_endereco` (`id`, `rua`, `numero`, `complemento`, `bairro`, `cidade`, `estado`, `cep`, `t_cliente_id`) VALUES
-(58, 'adsdasf', 14, 'fdfasfsa', 'asfsafds', 'assfsaf', 'df', '72236800', 29);
 
 -- --------------------------------------------------------
 
@@ -153,7 +146,7 @@ CREATE TABLE `t_funcionario` (
 
 INSERT INTO `t_funcionario` (`id`, `nome`, `cpf`, `email`, `telefone`, `data_criacao`, `senha`, `t_perfil_id`) VALUES
 (1, 'Administrador', '01234567891', 'administrador@gmail.com', '01234567890', NULL, '$2y$10$wOcJ2sJnt0u06j3CDBu0Iur/guqaFYbvPYsEl3CR1avH.KCAOg/7i', 1),
-(7, 'Funcionario', '01234567890', 'funcionario@gmail.com', '12345678912', NULL, '$2y$10$Ze6iVVcwmo2q4dExWumIQOavj8wsggftaCmBfsweFHfkgU2tQ0XHW', 2);
+(7, 'Funcionario', '05398531271', 'funcionario@gmail.com', '12345678912', NULL, '$2y$10$uhcd0AzBVJ7uY/upzNIyJOgv84jZfylC4ciVnNYXgTmZT1MUQHvKO', 2);
 
 -- --------------------------------------------------------
 
@@ -167,31 +160,6 @@ CREATE TABLE `t_itempedido` (
   `t_pedido_id` int(11) NOT NULL,
   `t_produto_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `t_itempedido`
---
-
-INSERT INTO `t_itempedido` (`id`, `quantidade`, `t_pedido_id`, `t_produto_id`) VALUES
-(37, 1, 25, 3),
-(38, 1, 25, 6),
-(39, 1, 26, 1),
-(40, 1, 26, 3),
-(41, 1, 27, 3),
-(42, 1, 27, 7),
-(43, 1, 28, 3),
-(44, 6, 28, 1),
-(45, 1, 29, 1),
-(46, 1, 29, 3),
-(59, 1, 37, 3),
-(60, 1, 37, 1),
-(61, 1, 37, 7),
-(62, 1, 37, 6),
-(63, 10, 38, 3),
-(64, 1, 38, 1),
-(65, 20, 39, 3),
-(66, 1, 39, 6),
-(67, 3, 39, 10);
 
 -- --------------------------------------------------------
 
@@ -222,23 +190,6 @@ CREATE TABLE `t_pedido` (
   `preco_total` decimal(10,2) DEFAULT NULL,
   `t_cliente_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `t_pedido`
---
-
-INSERT INTO `t_pedido` (`id`, `data`, `status`, `entrega_domicilio`, `preco_total`, `t_cliente_id`) VALUES
-(24, '2024-11-30 19:52:16', 'ENTREGUE', NULL, 55.98, 29),
-(25, '2024-12-01 14:32:46', 'ENTREGUE', NULL, 27.98, 29),
-(26, '2024-12-01 14:50:13', 'ENTREGUE', NULL, 28.00, 29),
-(27, '2024-12-01 15:43:10', 'ENTREGUE', NULL, 31.99, 29),
-(28, '2024-12-01 15:47:30', 'ENTREGUE', NULL, 98.00, 29),
-(29, '2024-12-01 17:24:59', 'ENTREGUE', NULL, 28.00, 29),
-(32, '2024-12-01 19:06:19', 'ENTREGUE', NULL, 85.96, 29),
-(36, '2024-12-01 19:54:52', 'ENTREGUE', NULL, 28.00, 29),
-(37, '2024-12-01 23:19:59', 'ENTREGUE', NULL, 59.97, 29),
-(38, '2024-12-04 17:30:03', 'A_CAMINHO', NULL, 114.89, 29),
-(39, '2024-12-08 14:54:00', 'A_CAMINHO', NULL, 264.49, 29);
 
 -- --------------------------------------------------------
 
@@ -287,7 +238,7 @@ INSERT INTO `t_produto` (`id`, `nome`, `descricao`, `imagem`, `preco`, `t_funcio
 (3, 'Cuscuz simples', 'Cuscuz de milho, manteiga. 300g', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/CARROSEEL 01.jpg', 9.99, 1, 'G', NULL, 1),
 (4, 'Cuscuz Recheado', 'Cuscuz, peito de frango e bacon. 350g', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_Recheado_frango.jpg', 14.99, 1, 'M', NULL, 1),
 (6, 'Cuscuz delicia', 'Cuscuz, frango e bacon. \r\n400g', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz-nordestino.jpg', 13.99, 7, 'P', NULL, 1),
-(7, 'Cuscuz simples', 'Cuscuz e manteiga. 300g', 'Cuscuz_normal.jpg', 7.99, 7, 'P', NULL, 2),
+(7, 'Cuscuz do Clemilson', 'Cuscuz e manteiga. 300g', 'Cuscuz_normal.jpg', 7.99, 1, 'P', NULL, 1),
 (8, 'cuscusz  padrao', 'fsfaddgafdg', 'C:/xampp/htdocs/Serv-Cuscuz/Serv+Cuscuz/assets/img/Cuscuz_normal.jpg', 14.00, 1, 'G', NULL, 6),
 (9, 'Cuscuz paulista', 'hjghg', 'cuscuz3.jpg', 18.50, 1, 'P', NULL, 1),
 (10, 'cuscuz  brasileiro', 'fdgfdgs', 'cuscuz2.jpg', 16.90, 1, 'P', NULL, 1),
@@ -429,13 +380,13 @@ ALTER TABLE `t_categoria`
 -- AUTO_INCREMENT de tabela `t_cliente`
 --
 ALTER TABLE `t_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de tabela `t_endereco`
 --
 ALTER TABLE `t_endereco`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de tabela `t_funcionario`
@@ -447,7 +398,7 @@ ALTER TABLE `t_funcionario`
 -- AUTO_INCREMENT de tabela `t_itempedido`
 --
 ALTER TABLE `t_itempedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT de tabela `t_pagamento`
@@ -459,7 +410,7 @@ ALTER TABLE `t_pagamento`
 -- AUTO_INCREMENT de tabela `t_pedido`
 --
 ALTER TABLE `t_pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de tabela `t_perfil`
@@ -538,3 +489,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
