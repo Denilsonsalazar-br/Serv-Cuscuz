@@ -17,12 +17,12 @@ Projeto acadêmico desenvolvido para a gestão de pequenos negócios (delivery),
 ## Passo a Passo para Usar o software.
 * Na pasta "Serv+cuscuz/db"
 * baixe o banco de dados "serv_cuscuz.sql"
-* crie um banco dedos com o nome **Serv+Cuscuz** e importe a tebela que voçe fez o donwload
+* crie um banco dedos com o nome **"Serv+Cuscuz"** e importe a tebela que voçe fez o donwload
 * Caso use o "Xamp" como servidor local, importe para o seu banco de dados no phpmyadmin.
 * Dê "Start" no Apach e MySQL.
-* Depois abra o admin do MySQL, e importe a tabela.
+* Depois abra o admin do MySQL, e confira se o banco está ok.
 * O caminho padrão é esse **"C:\xampp\htdocs\Serv-Cuscuz\Serv+Cuscuz""**
-* Depois a a pagina home.php, ou o navegador o caminho **C:\xampp\htdocs\Serv-Cuscuz\Serv+Cuscuz\pages\home.php**
+* Depois abra a pagina home.php, ou o navegador o caminho **C:\xampp\htdocs\Serv-Cuscuz\Serv+Cuscuz\pages\home.php**
 * já vem um pré cadastro de cliente, funcionário e administrador.
 * O email e senha de todos já forma definidos.
 * **Cliente** cliente@gmail.com |  **Senha** @Manter123
