@@ -153,7 +153,7 @@ CREATE TABLE `t_funcionario` (
 
 INSERT INTO `t_funcionario` (`id`, `nome`, `cpf`, `email`, `telefone`, `data_criacao`, `senha`, `t_perfil_id`) VALUES
 (1, 'Administrador', '01234567891', 'administrador@gmail.com', '01234567890', NULL, '$2y$10$wOcJ2sJnt0u06j3CDBu0Iur/guqaFYbvPYsEl3CR1avH.KCAOg/7i', 1),
-(7, 'Funcionario', '05398531271', 'funcionario@gmail.com', '12345678912', NULL, '$2y$10$Ze6iVVcwmo2q4dExWumIQOavj8wsggftaCmBfsweFHfkgU2tQ0XHW', 2);
+(7, 'Funcionario', '01234567890', 'funcionario@gmail.com', '12345678912', NULL, '$2y$10$Ze6iVVcwmo2q4dExWumIQOavj8wsggftaCmBfsweFHfkgU2tQ0XHW', 2);
 
 -- --------------------------------------------------------
 
