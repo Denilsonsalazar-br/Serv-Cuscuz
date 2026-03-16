@@ -8,6 +8,7 @@ Projeto acadêmico desenvolvido para a gestão de pequenos negócios (delivery),
 * **Gestão de Produtos:** Cadastro, edição, exclusão e controle de estoque/detalhes.
 * **Gerenciamento de Mídia:** Upload e alteração de imagens para o carrossel de destaque.
 * **Arquitetura:** Padrão MVC para separação de responsabilidades e organização do código.
+* **Pedidos:** O cliente pode fazer o pedido, e o funcionário alter o status, c o cliente acompanhar a atualização.
 
 ## Tecnologia Utilizadas
 *  PHP, JavaScript.
@@ -36,7 +37,8 @@ Projeto acadêmico desenvolvido para a gestão de pequenos negócios (delivery),
 🚧 **Em desenvolvimento**
 * Falta finalizar as abas de pagamentos **(Integração com API)**
 * Falta concluir o painel do funcionário.
-* Finalizar o perfil do cliente.
+* Finalizar o perfil do cliente, para a troca de senha.
+* e configurar o chat para suporte.
 
   
 
